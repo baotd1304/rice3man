@@ -1,24 +1,26 @@
 <?php
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\OrderDetail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class order extends Model
-{   
-    protected $table="orders";
-    use HasFactory;
-    
-    public function order_details()
-    {
-        return $this->hasMany(order_details::class,"order_id","id");
-    }
+class Order extends Model
+{
+    protected $table = 'hoadon';
+    protected $primaryKey = 'idHD';
+    // Định nghĩa quan hệ với model User (người dùng)
     public function user()
     {
-       return $this->belongsTo(user::class,"user_id","id");
+        return $this->belongsTo(User::class, 'idND');
+    }
+    
+    // Định nghĩa quan hệ với model OrderDetail (đơn hàng chi tiết)
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'idHD');
+    }
+    public function getAllOrders()
+    {
+        return $this->all();
     }
 }

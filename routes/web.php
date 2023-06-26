@@ -32,6 +32,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\Router;
 
+
+// ADMIN CONTROLLER
+use App\Http\Controllers\admin\NguoiDungController;
+use App\Http\Controllers\admin\DatHangController;
+use App\Http\Controllers\admin\LoaiSPController;
+use App\Http\Controllers\admin\headerAdminController;
+use App\Http\Controllers\admin\BinhLuanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,141 +94,62 @@ Route::prefix('/')->name('client')->group(function () {
 });
 //
 // Route::resource('/admin/product', AdminProductController::class);
-Route::prefix('/admin')->name('site')->group(function () {
-    Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
-    Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
-    Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
-    Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
-});
-Route::prefix('/admin')->name('site')->group(function () {
-    //-----------------Admin Home-----------------
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    //-----------Admin Product-------------
-    Route::get('/product', [AdminProductController::class, 'index'])->name('admin-product');
-    Route::get('/product/create', [AdminProductController::class, 'create'])->name('admin.product.create');
-    Route::post('/product/create', [AdminProductController::class, 'create_'])->name('admin.product.create_');
-    Route::get('/product/delete/{id}', [AdminProductController::class, 'delete'])->name('admin.product.delete');
-    Route::get('/product/trashed/forceDelete/{id}', [AdminProductController::class, 'forceDelete'])->name('admin.product.force');;
-    Route::get('/product/trashed', [AdminProductController::class, 'trashed'])->name('admin.product.trashed');
-    Route::get('/product/restore/{id}', [AdminProductController::class, 'restore'])->name('admin.product.restore');
-    Route::get('product/restore-all', [AdminProductController::class, 'restoreAll'])->name('admin.product.restoreAll');
-    Route::get('/product/update/{id}', [AdminProductController::class, 'update'])->name('admin.product.update');
-    Route::post('/product/update/{id}', [AdminProductController::class, 'update_'])->name('admin.product.update_');
+// Route::prefix('/admin')->name('site')->group(function () {
+//     Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
+//     Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
+//     Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
+//     Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
+// });
 
-    //------------ Admin category_product ---------------
-    Route::get('/product_category', [ProductCategorysController::class, 'index'])->name('admin-product_category');
-    Route::get('/product_category/create', [ProductCategorysController::class, 'create']);
-    Route::post('/product_category/create', [ProductCategorysController::class, 'create_']);
-    Route::get('/product_category/delete/{id}', [ProductCategorysController::class, 'delete']);
-    Route::get('/product_category/trashed/forceDelete/{id}', [ProductCategorysController::class, 'forceDelete']);
-    Route::get('/product_category/trashed', [ProductCategorysController::class, 'trashed']);
-    Route::get('/product_category/restore/{id}', [ProductCategorysController::class, 'restore']);
-    Route::get('product_category/restore-all', [ProductCategorysController::class, 'restoreAll']);
-    Route::get('/product_category/update/{id}', [ProductCategorysController::class, 'update']);
-    Route::post('/product_category/update/{id}', [ProductCategorysController::class, 'update_']);
+// PHAN ADMIN
+// Route::prefix('/admin')->name('site')->group(function () {
+        //user hung
+    Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
+    Route::get('/nguoidung/create', [NguoiDungController::class, 'create'])->name('nguoidung.create');
+    Route::post('/nguoidung', [NguoiDungController::class, 'store'])->name('nguoidung.store');
+    Route::get('/nguoidung/{id}/edit', [NguoiDungController::class, 'edit'])->name('nguoidung.edit');
+    Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
+    Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
 
-    //---------------Admin News ----------------
-    Route::get('/news', [AdminNewsController::class, 'index'])->name('news');
-    Route::get('/news/them', [AdminNewsController::class, 'them'])->name('news.them');
-    Route::post('/news/them', [AdminNewsController::class, 'them1'])->name('news.them1');
-    Route::get('/news/capnhat/{id}', [AdminNewsController::class, 'capnhat'])->name('news.capnhat');
-    Route::post('/news/capnhat/{id}', [AdminNewsController::class, 'capnhat_'])->name('news.capnhat_');
-    Route::get('/news/xoa/{id}', [AdminNewsController::class, 'xoa'])->name('news.xoa');
-    Route::get('/news/phuc-hoi/{id}', [AdminNewsController::class, 'restore'])->name('admin.news.restore');
-    Route::get('/news/phuc-hoi-tat-ca', [AdminNewsController::class, 'restoreAll'])->name('admin.news.restoreAll');
-    Route::get('/news/thung-rac', [AdminNewsController::class, 'trash'])->name('admin.news.trash');
-    Route::post('/news/xoa-nhieu', [AdminNewsController::class, 'deleteMany'])->name('admin.news.deleteMany');
 
-    //-----------------Admin Category_news ------------------------
-    Route::get('/categories_news', [CategoriesNews::class, 'index'])->name('categories_news');
-    Route::get('/categories_news/them', [CategoriesNews::class, 'them'])->name('categories_news.them');
-    Route::post('/categories_news/them', [CategoriesNews::class, 'them1'])->name('categories_news.them1');
-    Route::get('/categories_news/capnhat/{id}', [CategoriesNews::class, 'capnhat'])->name('categories_news.capnhat');
-    Route::post('/categories_news/capnhat/{id}', [CategoriesNews::class, 'capnhat_'])->name('categories_news.capnhat_');
-    Route::get('/categories_news/xoa/{id}', [CategoriesNews::class, 'xoa'])->name('categories_news.xoa');
-    Route::get('/categories_news/phuc-hoi/{id}', [CategoriesNews::class, 'restore'])->name('admin.categories_news.restore');
-    Route::get('/categories_news/phuc-hoi-tat-ca', [CategoriesNews::class, 'restoreAll'])->name('admin.categories_news.restoreAll');
-    Route::get('/categories_news/thung-rac', [CategoriesNews::class, 'trash'])->name('admin.categories_news.trash');
-    Route::post('/categories_news/xoa-nhieu', [CategoriesNews::class, 'deleteMany'])->name('admin.categories_news.deleteMany');
+    //test route
 
-    //-------------------Admin Brands------------------------
-    Route::get('/brand', [BrandController::class, 'index'])->name('admin-brand');
-    Route::get('/brand/create', [BrandController::class, 'create'])->name('admin.brand.create');
-    Route::post('/brand/create', [BrandController::class, 'create_'])->name('admin.brand.create_');
-    Route::get('/brand/delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
-    Route::get('/brand/trashed/forceDelete/{id}', [BrandController::class, 'forceDelete'])->name('admin.brand.forceDelete');
-    //    Route::get('/brand/forceDelete/{id}', [BrandController::class,'forceDelete'])->name('admin.brand.forceDelete');
-    Route::get('/brand/trashed', [BrandController::class, 'trashed'])->name('admin.brand.trashed');
-    Route::get('/brand/restore/{id}', [BrandController::class, 'restore'])->name('admin.brand.restore');
-    Route::get('brand/restore-all', [BrandController::class, 'restoreAll'])->name('admin.brand.retoreAll');
-    Route::get('/brand/update/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
-    Route::post('/brand/update/{id}', [BrandController::class, 'update_'])->name('admin.brand.update_');
 
-    //------------------- Admin Oder-----------------------
-    Route::get('/order', [OrderController::class, 'index'])->name('admin-order');
-    Route::get('/order/detail/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
-    Route::post('/order/detail/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+    Route::get('/loaisanpham', [LoaiSPController::class, 'index'])->name('loaisanpham.index');
+    Route::get('/loaisanpham/create', [LoaiSPController::class, 'create'])->name('loaisanpham.create');
+    Route::post('/loaisanpham', [LoaiSPController::class, 'store'])->name('loaisanpham.store');
+    Route::get('/loaisanpham/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisanpham.edit');
+    Route::put('/loaisanpham/{id}', [LoaiSPController::class, 'update'])->name('loaisanpham.update');
+    Route::delete('/loaisanpham/{id}', [LoaiSPController::class, 'destroy'])->name('loaisanpham.destroy');
 
-    //------------------ Admin Coupon-----------------------
-    Route::get('/coupon', [CoupouController::class, 'index'])->name('admin-coupon');
-    Route::get('/coupon/create', [CoupouController::class, 'create'])->name('admin.coupon.create');
-    Route::post('/coupon/create', [CoupouController::class, 'create_'])->name('admin.coupon.create_');
-    Route::get('/coupon/delete/{id}', [CoupouController::class, 'delete'])->name('admin.coupon.delete');
-    Route::get('/coupon/trashed/forceDelete/{id}', [CoupouController::class, 'forceDelete'])->name('admin.coupon.forceDelete');
-    Route::get('/coupon/trashed', [CoupouController::class, 'trashed'])->name('admin.coupon.trashed');
-    Route::get('/coupon/restore/{id}', [CoupouController::class, 'restore'])->name('admin.coupon.restore');
-    Route::get('coupon/restore-all', [CoupouController::class, 'restoreAll'])->name('admin.coupon.retoreAll');
-    Route::get('/coupon/update/{id}', [CoupouController::class, 'update'])->name('admin.coupon.update');
-    Route::post('/coupon/update/{id}', [CoupouController::class, 'update_'])->name('admin.coupon.update_');
-    //-------------------Admin User------------------------
-    Route::get('/admin_users', [AdminUserController::class, 'index'])->name('admin-user');
-    // Route::get('/admin_users/them', [AdminUserController::class,'them'])->name('admin.admin_users.create');
-    // Route::post('/admin_users/them', [AdminUserController::class,'them1'])->name('admin.admin_users.create_');
-    Route::get('/admin_users/capnhat/{id}', [AdminUserController::class, 'capnhat'])->name('admin.admin_users.update');
-    Route::post('/admin_users/capnhat/{id}', [AdminUserController::class, 'capnhat_'])->name('admin.admin_users.update_');
-    Route::get('/admin_users/xoa/{id}', [AdminUserController::class, 'xoa'])->name('admin.admin_users.delete');
-    Route::get('/admin_users/phuc-hoi/{id}', [AdminUserController::class, 'restore'])->name('admin.admin_users.restore');
-    // thống kê
-    Route::get('/thong-ke', [AdminUserController::class, 'thongke5sp'])->name('thongke');
-    //logout
-    Route::get('/logout', [AdminController::class, 'logout'])->name('admin-logout');
 
-    // ------------------------Admin Import-History-----------------
-    Route::get('/import', [ImportHistoryController::class, 'index']);
-    Route::get('/profile', [AdminController::class,'profile'])->name('admin-profile');
-    // ---------------------- LỊCH SỬ NHẬP HÀNG --------------------
-    Route::get('/purchase', [PurchaseController::class, 'show_import'])->name('show-purchase');
-    Route::get('/purchase/history', [PurchaseController::class, 'history'])->name('show-purchase-history');
-    Route::get('/purchase/history/{id}', [PurchaseController::class, 'historyDetail'])->name('show-purchase-history-detail');
-    //  Quản lý liên hệ user
-    Route::get('/contact', [AdminContactController::class, 'index'])->name('show-contact');
-    Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('show-email');
-    //  Quản lý banner
-    Route::get('/banner', [BannerController::class, 'index'])->name('show-banner');
-    Route::get('/banner/them', [BannerController::class, 'them'])->name('banner.them');
-    Route::post('/banner/them', [BannerController::class, 'them1'])->name('banner.them1');
-    Route::get('/banner/capnhat/{id}', [BannerController::class, 'capnhat'])->name('banner.capnhat');
-    Route::post('/banner/capnhat/{id}', [BannerController::class, 'capnhat_'])->name('banner.capnhat_');
-    Route::get('/banner/xoa/{id}', [BannerController::class, 'xoa'])->name('banner.xoa');
-    Route::get('/banner/phuc-hoi/{id}', [BannerController::class, 'restore'])->name('admin.banner.restore');
-    Route::get('/banner/phuc-hoi-tat-ca', [BannerController::class, 'restoreAll'])->name('admin.banner.restoreAll');
-    Route::get('/banner/thung-rac', [BannerController::class, 'trash'])->name('admin.banner.trash');
-    Route::post('/banner/xoa-nhieu', [BannerController::class, 'deleteMany'])->name('admin.banner.deleteMany');
-    //  quản lý banner
-    Route::get('/comment', [CommentController::class, 'index'])->name('show-comment');
-    Route::get('/comment/xoa/{id}', [CommentController::class, 'xoa'])->name('comment.xoa');
-    
-        //------------ Admin category_product ---------------
-    Route::get('/category_group', [CategoryGroupController::class,'index'])->name('admin-product_category');
-    Route::get('/category_group/create', [CategoryGroupController::class,'create']);
-    Route::post('/category_group/create', [CategoryGroupController::class,'create_']);
-    Route::get('/category_group/delete/{id}', [CategoryGroupController::class,'delete']);
-    Route::get('/category_group/trashed/forceDelete/{id}', [CategoryGroupController::class,'forceDelete']);
-    Route::get('/category_group/trashed',[CategoryGroupController::class,'trashed']);
-    Route::get('/category_group/restore/{id}',[CategoryGroupController::class,'restore']);
-    Route::get('category_group/restore-all',[CategoryGroupController::class,'restoreAll']);
-    Route::get('/category_group/update/{id}', [CategoryGroupController::class,'update']);
-    Route::post('/category_group/update/{id}', [CategoryGroupController::class,'update_']);
-        
+    //hung test order
 
-});
+
+    // Route hiển thị danh sách đơn hàng
+    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiet.index');
+
+    // Route hiển thị chi tiết đơn hàng
+    Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
+
+
+    //Get all information
+
+    Route::get('/getAll/{q}', [headerAdminController::class, 'searchFollowCategory'])->name('admin.getAll');
+
+    //quản lý comment
+
+
+
+
+    Route::get('/binhluan/{idSP}', [BinhLuanController::class, 'index'])->name('binhluan.index');
+    Route::get('/binhluan/{idSP}/create', [BinhLuanController::class, 'create'])->name('binhluan.create');
+    Route::post('/binhluan/{idSP}', [BinhLuanController::class, 'store'])->name('binhluan.store');
+    Route::get('/binhluan/{idBL}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
+    Route::put('/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
+    Route::delete('/binhluan/{idBL}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
+
+    //update thêm
+    Route::put('/sanpham/{idSP}/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
+
+// });
