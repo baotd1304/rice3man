@@ -118,20 +118,15 @@
         </div>
         <div class="list-categories">
            <ul class="level1">
-            @foreach ($category_group as $group )
-            <li>
-                <a href="" class="d-flex">{{$group->name}}</a>
-                <ul class="level2">
-                    @foreach ($group->categories as $item)
-                        <li>
-                            <div class="dot"></div>
-                            <a href="{{route('clientcategory',["slug"=>$item->slug])}}" class="d-flex" >{{$item->category_name}} </a>
-                        </li>
-                        
-                    @endforeach
-                </ul>
-              </li>
-            @endforeach
+            <div class="categoryList">
+                @foreach ($categories as $category )
+                    <div>
+                       <a href="{{route('clientcategory',["slug"=>$category->idLoai])}}">
+                        {{$category->tenLoai}}
+                       </a>
+                    </div>
+                @endforeach
+            </div>
               
            </ul>
         </div>

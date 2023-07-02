@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Models\category_group;
+use App\Models\LoaiSP;
 use Illuminate\View\Component;
 
 class AppHeader extends Component{
@@ -11,13 +12,13 @@ class AppHeader extends Component{
      *
      * @return void
      */
-    public $category_group=[];
+    public $categories=[];
     public $cartFarmApp=[];
 
     public function __construct()
     {
         
-        $this->category_group=category_group::with('categories')->distinct()->get();
+        $this->categories=LoaiSP::get();
         if (isset($_COOKIE["cartFarmApp"])) {
             $json = $_COOKIE["cartFarmApp"];
             $this->cartFarmApp = json_decode($json, true);

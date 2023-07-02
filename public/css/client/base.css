@@ -27,8 +27,8 @@ a:hover {
     /* --lightLeftColBackground: #f9f9f9; */
     --lightLeftColBackground: #eae8e8;
     --darkLeftColBackground: #22272b;
-    --mainColor: #2e9f3c;
-    --mainColor2: #5ea700;
+    --mainColor: #679210;
+    --mainColor2: #efffcf;
     --menuHover: #ffc107;
     --pinkColor: #ffbda6;
     --secondColor: #929292;
@@ -96,6 +96,7 @@ a:hover {
 .title a{
     font-size: 22px;
     font-weight: 700;
+    color: var(--mainColor) !important;
 }
 /* .swiper {
     width: 100%;
@@ -117,22 +118,23 @@ a:hover {
 } */
 .swiper-button-prev, .swiper-button-next {
     /* right: auto; */
-    height: 60px;
+    height: 30px;
     width: 30px;
-    background: #f7f7f7;
+    background: var(--mainColor);
     box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
     color: #707070;
-    border-radius: 50%;
+    border-radius: 6px;
 
 }
 .swiper-button-prev {
-    left: 0px;
-    border-radius: 0 60px 60px 0;
+    left: 3px;
+
+    /* border-radius: 0 60px 60px 0; */
 
 }
 .swiper-button-next {
-    right: 0px;
-    border-radius: 60px 0 0 60px;
+    right: 3px;
+    /* border-radius: 60px 0 0 60px; */
 
 }
 
@@ -152,18 +154,19 @@ a:hover {
 }
 .swiper-button-next:after, .swiper-button-prev:after {
     font-family: swiper-icons;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 0;
     font-weight: 900;
     font-variant: initial;
     line-height: 1;
     position: absolute;
+    color: #fff;
 }
 .swiper-button-prev:after{
-    left: 20%;
+    /* left: 20%; */
 }
 .swiper-button-next:after{
-    right: 20% ;
+    /* right: 20% ; */
 }
 .swiper-pagination-bullet{
     border-radius:8px !important;
@@ -196,3 +199,44 @@ a:hover {
   button{
     font-size: inherit;
   }
+  
+.bread-crumb {
+    margin-bottom: 20px;
+    min-height: 200px;
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+.bread-crumb .title-bread-crumb {
+    text-align: center;
+    font-size: 35px;
+    color: #fff;
+    font-weight: 600;
+}
+.bread-crumb .breadcrumb {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+    padding: 15px 10px;
+    border-radius: 0;
+    font-weight: 400;
+    line-height: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  
+   
+
+}
+.bread-crumb .breadcrumb li a {
+    color: #ffff !important;
+    font-weight: 600;
+}
+.bread-crumb .breadcrumb li strong{
+    color: var(--mainColor);
+}
+.breadcrumb-item.active{
+    color: var(--mainColor);
+}

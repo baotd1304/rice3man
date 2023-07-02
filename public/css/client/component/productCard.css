@@ -8,6 +8,12 @@
     border-radius: 6px;
     gap: 10px;
     height: 100% !important;
+    transition: all 0.1s linear;
+    overflow: hidden;
+}
+.products-card:hover{
+    transition:all 0.1s linear;
+    border: 3px solid var(--mainColor);
 }
 .products-card.isRow{
     height: auto !important;
@@ -19,6 +25,38 @@
 .products-card.isRow .content{
     flex: 5;
 }
+.products-card .action{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+    width: 0;
+    transition: var(--transition);
+
+
+}
+.products-card:hover .action{
+    width: auto;
+    transition: var(--transition);
+
+}
+.products-card .action i{
+    padding: 8px;
+    font-size: 24px;
+    background: var(--mainColor);
+    color: var(--white);
+    transition: var(--transition);
+    
+}
+.products-card .action i:nth-child(1){
+    border-radius: 6px 0 0 0;
+}
+.products-card .action i:last-child{
+    border-radius: 0 0 0 6px;
+}
 .products-card .thumb{
     position: relative;
     width: 100%;
@@ -26,7 +64,7 @@
     border-radius: 6px;
     overflow: hidden;
     object-fit: cover;
-    aspect-ratio: 1/1
+    aspect-ratio: 9/10
 
 
 }
@@ -62,18 +100,19 @@
 
 }
 .products-card .content h3{
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--textColor);
     margin: 0;
     line-height: 22px;
     display: block;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
+    margin-bottom: "5px";
 }
 .products-card .content .price {
   display: flex;
@@ -81,8 +120,8 @@
   gap:5px
 }
 .price .price_new{
-    color: var(--accentColor2);
-    font-size: 14px;
+    color: var(--mainColor);
+    font-size: 16px;
     font-weight: 700;
 }
 .price .price_old{
@@ -92,15 +131,16 @@
 .products-card .discount{
     position: absolute;
     top: 0px;
-    right: 0px;
+    left: 0px;
     padding: 4px 8px;
     background: var(--accentColor2);
     color: var(--txtColorW);
-    border-radius: 6px;
+    border-radius: 0 0 6px 0;
     font-weight: 600;
     font-size: 12px;
     display: none;
     overflow: hidden;
+    z-index: 10;
 
 }
 .products-card.isRow  .discount{
@@ -114,8 +154,8 @@
     position: relative;
     width: 100%;
     border-radius: 10px;
-    height: 22px;
-    background: var(--pinkColor);
+    height: 10px;
+    background: var(--secondColor);
     margin-bottom: 8px;
     display: none;
 }
@@ -148,5 +188,5 @@
     z-index: 1;
     position: absolute;
     height: 100%;
-    background: linear-gradient(to right, #ec1a17, #ffad00);
+    background: var(--mainColor);
 }

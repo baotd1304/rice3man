@@ -51,6 +51,7 @@
 	<div class="row" style="flex-wrap:wrap-reverse">
 		<div class="col-lg-8 col-xs-12">
 			<div class="col-12 pb-4 pt-4">
+				{{-- <img src="{{asset('assets/img/logoRice3man.jpg')}}" alt=""> --}}
 				<img style="width:180px"
 					src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/logo.png?1676652183181" alt="">
 			</div>
@@ -244,11 +245,11 @@
 						</div>
 						<div class="order-item_txt">
 							<div>
-								<p class="name">{{$item->name}}</p>
-								<span class="weight">1kg</span>
+								<p class="name">{{$item->tenSP}}</p>
+								{{-- <span class="weight">1kg</span> --}}
 							</div>
 							<div class="price">
-								{{number_format($item->price_current-($item->price_current*$item->discount/100))}}</div>
+								{{number_format($item->giaSP-($item->price_current*$item->discount/100))}}</div>
 						</div>
 					</div>
 					@endforeach

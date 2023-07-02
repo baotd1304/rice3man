@@ -8,9 +8,12 @@ use App\Mail\SendVerifyCodeMail;
 use App\Models\category;
 use App\Models\category_group;
 use App\Models\coupon;
+use App\Models\LoaiSP;
+use App\Models\MaGiamGia;
 use App\Models\news;
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\SanPham;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,35 +23,35 @@ class ProductsController extends Controller
     protected $query;
     protected $rq;
     public function __construct(Request $request)
-    {   
-        $this->rq=$request;
-        $this->query=product::query();
+    {
+        $this->rq = $request;
+        $this->query = SanPham::query();
         $minPrice = $request->get('min_price');
         $maxPrice = $request->get('max_price');
         $sortBy = $request->get('sort_by');
 
         if ($minPrice && $maxPrice) {
-            $this->query->whereBetween('price_current', [$minPrice, $maxPrice]);
+            $this->query->whereBetween('giaSP', [$minPrice, $maxPrice]);
         }
 
         switch ($sortBy) {
             case 'name_asc':
-                $this->query->orderBy('name', 'asc');
+                $this->query->orderBy('tenSP', 'asc');
                 break;
             case 'name_desc':
-                $this->query->orderBy('name', 'desc');
+                $this->query->orderBy('tenSP', 'desc');
                 break;
             case 'price_desc':
-                $this->query->orderBy('price_current', 'desc');
+                $this->query->orderBy('giaSP', 'desc');
                 break;
             case 'price_asc':
-                $this->query->orderBy('price_current', 'asc');
+                $this->query->orderBy('giaSP', 'asc');
                 break;
             case 'newest':
-                $this->query->orderBy('created_at', 'desc');
+                $this->query->orderBy('ngayDang', 'desc');
                 break;
             case 'oldest':
-                $this->query->orderBy('created_at', 'asc');   
+                $this->query->orderBy('ngayDang', 'asc');
                 break;
         }
         if (isset($_COOKIE["cartFarmApp"])) {
@@ -59,8 +62,8 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         dd($request->sort);
-        $products = product::paginate(12);
-        $categoriesGroup = category_group::with('categories.products')->where('is_hot', 1)->limit(3)->get();
+        $products = SanPham::paginate(12);
+        // $categoriesGroup = LoaiSP::with('categories.products')->where('is_hot', 1)->limit(3)->get();
         $data = [
             "products" => $products
         ];
@@ -68,22 +71,25 @@ class ProductsController extends Controller
     }
     public function category($slug)
     {
-        $category = category::where('slug', $slug)->firstOrFail();
-        $categoryGroups = category_group::all();
-        $products =  $this->query->where('category_id',$category->id)->paginate(8);
+        $category = LoaiSP::where('idLoai', $slug)->firstOrFail();
+        $categories = LoaiSP::all();
+        $products =  $this->query->where('idLoai', $category->idLoai)->paginate(8);
+        $coupons = MaGiamGia::limit(4)->get();
+        
         $data = [
             "category" => $category,
-            "categoryGroups" => $categoryGroups,
+            "categories" => $categories,
             "products" => $products,
-            "title" => $category->category_name,
-            "request"=>$this->rq
+            "coupons" => $coupons,
+            "title" => $category->tenLoai,
+            "request" => $this->rq
         ];
         return view('client.products.index', $data);
     }
     public function group($slug)
     {
-        $categoryGroups = category_group::with('categories.products')->get();
-        $categoryGroup = category_group::with('categories.products')->where('slug', $slug)->first();
+        $categories = LoaiSP::with('sanPhams')->get();
+        $categoryGroup = LoaiSP::with('sanPhams')->where('idSP', $slug)->first();
         $products = $this->query->whereHas('category', function ($query) use ($slug) {
             $query->whereHas('category_group', function ($query) use ($slug) {
                 $query->where('slug', $slug);
@@ -93,39 +99,43 @@ class ProductsController extends Controller
 
         $data = [
             "products" => $products,
-            "categoryGroups" => $categoryGroups,
+            "categories" => $categories,
             "title" => $categoryGroup->name,
-            "request"=>$this->rq
+            "request" => $this->rq
         ];
         return view('client.products.index', $data);
     }
     public function group_all(Request $request)
     {
-       
+
         $products = $this->query->paginate(8);
-        $categoryGroups = category_group::with('categories.products')->get();
+        $categories = LoaiSP::with('sanPhams')->get();
+        $coupons = MaGiamGia::limit(4)->get();
+
         $data = [
             "products" => $products,
-            "categoryGroups" => $categoryGroups,
+            "categories" => $categories,
             "title" => "Tất cả sản phẩm",
-            "request"=>$request
+            "coupons" => $coupons,
+            "request" => $request
         ];
         return view('client.products.index', $data);
     }
     public function productDetail($slug)
     {
         $currentDate = getdate();
-        $product = product::where('slug', $slug)->firstOrFail();
-        $product_relate = product::where('category_id', $product->category_id)->get();
+        $product = SanPham::where('idSP', $slug)->firstOrFail();
+        $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
         // $coupons = coupon::where('user_used', '<', 'limit_used')
         //     // ->whereDate('start_date', '>=', $currentDate)
         //     // ->whereDate('end_date', '>', $currentDate)
         //     // ->orderBy('created_at')
         //     ->get();
-        $coupons = coupon::all();
+        $coupons = MaGiamGia::all();
         $data = [
             "product" => $product,
-            "coupons" => json_encode($coupons),
+            // "coupons" => json_encode($coupons),
+            "coupons" => $coupons,
             "product_relate" => $product_relate
 
         ];
@@ -233,7 +243,7 @@ class ProductsController extends Controller
     }
     public function search(Request $request)
     {
-        $products = product::where('name', 'like', $request->query('q'))->get();
+        $products = SanPham::where('tenSP', 'like', '%' . $request->query('q') . '%')->get();
         $data = [
             "products" => $products,
             "q" => $request->query('q')

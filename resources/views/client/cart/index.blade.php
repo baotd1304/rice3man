@@ -3,77 +3,176 @@
 <link rel="stylesheet" href="{{asset('css/client/cart.css')}}">
 @endsection
 @section('main-content')
+<section class="bread-crumb"
+    style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(//bizweb.dktcdn.net/100/485/131/themes/906771/assets/breadcrumb.jpg?1686556941849) no-repeat center;">
+
+    <div class="container">
+        <div class="title-bread-crumb">
+            Giỏ hàng
+        </div>
+        <nav aria-label="breadcrumb  ">
+            <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
+                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
+    </div>
+</section>
 <div class="container ">
-    <nav aria-label="breadcrumb  " @style("border-bottom:1px solid #eae8e8; ")>
-        <ol class="breadcrumb p-3" @style("margin:0;padding-left:0px")>
-          <li class="breadcrumb-item"><a href="{{route('client')}}">Trang chủ</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
-        </ol>
-      </nav>
-@if (count($carts)>0)
-   <div class="row">
-       <div class="col-12 col-md-8 mt-2 mb-2">
-        <div class="cart-items">
-            @foreach ($carts as $item)
-            <div class="cart-item">
-                <img class="item-img" src="{{asset('upload/'.$item->thumb)}}" alt="">
-                <div class="cart-info">
-                    <div class="info">
-                        <div class="item-name">{{$item->name}}</div>
-                        <div class="item-price">
-                            {{number_format($item->price_current-($item->price_current*$item->discount/100))}} vnđ</div>
-                    </div>
-                    <div class="info">
-                        <div class="btn-quantity">
-                            <form action="{{route('clientminus-to-cart')}}" method="POST">
-                                @csrf
-                               <input type="text" name="productId" value="{{$item->id}}" hidden>
-                               <input type="number" name="amount" value="1" hidden>
-                                <button class="minus">-</button>
-                            </form>
-                            <span class="count">{{$item->amount}}</span>
-                            <form action="{{route('clientadd-to-cart')}}" method="POST">
-                                @csrf
-                               <input type="text" name="productId" value="{{$item->id}}" hidden>
-                               <input type="number" name="amount" value="1" hidden>
-                                <button class="plus">+</button>
-                            </form>
-                        </div>
-                        <form action="{{route('clientremove-to-cart')}}" method="POST">
-                            @csrf
-                            <input type="text" name="productId" value="{{$item->id}}" hidden>
-                            <button class="btn btn-delete">Xóa</button>
-                        </form>
+    @if (count($carts)>0)
+    <div class="row">
+        <div class="col-12 col-md-9 mt-2 mb-2">
+            {{-- PHẦN GIỎ HÀNG --}}
+            <div class="cart-page d-xl-block d-none">
+                <div class="drawer__inner">
+                    <div class="CartPageContainer">
+                        <div action="/cart" method="post" novalidate="" class="cart ajaxcart cartpage">
+                            <div class="cart-header-info">
+                                <div>Thông tin sản phẩm</div>
+                                <div>Đơn giá</div>
+                                <div>Số lượng</div>
+                                <div>Thành tiền</div>
+                            </div>
+                            <div class="ajaxcart__inner ajaxcart__inner--has-fixed-footer cart_body items">
+                                @foreach ($carts as $item)
+                                <div class="ajaxcart__row">
+                                    <div class="ajaxcart__product cart_product" data-line="1">
+                                        <a href="/cam-sanh-vat-nuoc-3kg-18-24-trai"
+                                            class="ajaxcart__product-image cart_image"
+                                            title="Cam sành vắt nước 3kg (18 - 24 trái)"><img
+                                                src="https://bizweb.dktcdn.net/thumb/compact/100/485/131/products/cam-sanh-vat-nuoc-tui-3kg-18-24-trai-202302151630579167.jpg"
+                                                alt="Cam sành vắt nước 3kg (18 - 24 trái)"></a>
+                                        <div class="grid__item cart_info">
+                                            <div class="ajaxcart__product-name-wrapper cart_name">
+                                                <a href="/cam-sanh-vat-nuoc-3kg-18-24-trai"
+                                                    class="ajaxcart__product-name h4"
+                                                    title="Cam sành vắt nước 3kg (18 - 24 trái)">{{$item->tenSP}}</a>
+                                                <a class="cart__btn-remove remove-item-cart ajaxifyCart--remove"
+                                                    href="javascript:;" data-line="1">Xóa</a>
+
+                                            </div>
+                                            <div class="grid">
+                                                <div class="grid__item one-half text-right cart_prices">
+                                                    <span class="cart-price">{{number_format($item->giaSP)}}</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="grid">
+                                                <div class="grid__item one-half cart_select">
+                                                    <div class="ajaxcart__qty input-group-btn">
+                                                        <form action="{{route('clientminus-to-cart')}}" method="POST">
+                                                            @csrf
+                                                            <input type="text" name="productId" value="{{$item->idSP}}"
+                                                                hidden>
+                                                            <input type="number" name="amount" value="" hidden>
+                                                            <button
+                                                                class="minus ajaxcart__qty-adjust ajaxcart__qty--minus items-count">-</button>
+                                                        </form>
+                                                        <span class="count">{{$item->amount}}</span>
+                                                        <form action="{{route('clientadd-to-cart')}}" method="POST">
+                                                            @csrf
+                                                            <input type="text" name="productId" value="{{$item->idSP}}"
+                                                                hidden>
+                                                            <input type="number" name="amount" value="1" hidden>
+                                                            <button
+                                                                class="plus ajaxcart__qty-adjust ajaxcart__qty--plus items-count"">+</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" grid">
+                                                                <div class="grid__item one-half text-right cart_prices">
+                                                                    <span class="cart-price">{{number_format($item->giaSP*$item->amount)}}</span>
+
+                                                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                     </div>
                 </div>
             </div>
-            @endforeach
+
+            {{-- <div class="cart-items">
+                @foreach ($carts as $item)
+                <div class="cart-item">
+                    <img class="item-img" src="{{asset('upload/'.$item->thumb)}}" alt="">
+                    <div class="cart-info">
+                        <div class="info">
+                            <div class="item-name">{{$item->name}}</div>
+                            <div class="item-price">
+                                {{number_format($item->price_current-($item->price_current*$item->discount/100))}} vnđ
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="btn-quantity">
+                                <form action="{{route('clientminus-to-cart')}}" method="POST">
+                                    @csrf
+                                    <input type="text" name="productId" value="{{$item->id}}" hidden>
+                                    <input type="number" name="amount" value="1" hidden>
+                                    <button class="minus">-</button>
+                                </form>
+                                <span class="count">{{$item->amount}}</span>
+                                <form action="{{route('clientadd-to-cart')}}" method="POST">
+                                    @csrf
+                                    <input type="text" name="productId" value="{{$item->id}}" hidden>
+                                    <input type="number" name="amount" value="1" hidden>
+                                    <button class="plus">+</button>
+                                </form>
+                            </div>
+                            <form action="{{route('clientremove-to-cart')}}" method="POST">
+                                @csrf
+                                <input type="text" name="productId" value="{{$item->id}}" hidden>
+                                <button class="btn btn-delete">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div> --}}
         </div>
-       </div>
-       <div class="col-12 col-md-4 mt-2 mb-2">
-        <div class="checkout">
-            <div class="btn checkout-info">
-                <div class="total-text">Tổng</div>
-                <div class="total-value">{{number_format($total)}} vnđ</div>
+        <div class="col-12 col-md-3 mt-2 mb-2">
+            <div class=" cart cart-page">
+                <div class="ajaxcart__footer ajaxcart__footer--fixed cart-footer">
+                    <div class="row">
+                        <div class="ajaxcart__subtotal">
+                            <div class="cart__subtotal">
+                                <div class="cart__col-6">Tổng tiền:</div>
+                               
+                                <div class="text-right cart__totle"><span class="total-price">{{$total}}</span></div>
+                            </div>
+                        </div>
+                        <div class="cart__btn-proceed-checkout-dt">
+                            <a href="{{route('clientpayment')}}">
+                                <button
+                                    class="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout"
+                                    title="Thanh toán">Thanh toán
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form action="{{route('clientremove-all-cart')}}" method="POST">
+                    @csrf
+                    {{-- <button style="width:100%" class="btn btn-delete-all">Xóa tất cả</button> --}}
+                </form>
             </div>
-            <a href="{{route('clientpayment')}}" class="btn btn-ok">Thanh toán</a>
-            <form action="{{route('clientremove-all-cart')}}" method="POST">
-                @csrf
-                <button style="width:100%" class="btn btn-delete-all">Xóa tất cả</button>
-            </form>
+            <div class="alert-success text-center mt-2">{{$couponMsg}}</div>
         </div>
-        <div class="alert-success text-center mt-2">{{$couponMsg}}</div>
-       </div>
-   </div>
+    </div>
     @else
-    <div class="alert alert-warning  my-3">Không có sản phẩm nào. Quay lại <b> <a href="{{route('clientcategory-group-all')}}"> cửa hàng </a> </b> để tiếp tục mua sắm.</div>
+    <div class="alert alert-warning  my-3">Không có sản phẩm nào. Quay lại <b> <a
+                href="{{route('clientcategory-group-all')}}"> cửa hàng </a> </b> để tiếp tục mua sắm.</div>
     @endif
 </div>
 
 <div class="container">
-    @if (count(json_decode($coupons))>0)
-<x-AppCouponCard :list="$coupons" />
-@endif
+    {{-- @if (count(json_decode($coupons))>0)
+    <x-AppCouponCard :list="$coupons" />
+    @endif --}}
 </div>
 @endsection
 

@@ -18,4 +18,8 @@ class LoaiSP extends Model
         'thuTu',
         'anHien',
     ];
+    public function SanPhams()
+    {
+       return $this->hasMany(SanPham::class,"idLoai","idLoai");
+    }
 }

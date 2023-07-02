@@ -4,7 +4,9 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\coupon;
+use App\Models\MaGiamGia;
 use App\Models\product;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -24,17 +26,17 @@ class CartController extends Controller
         $idList[] = $item['productId'];
       }
       if (count($idList) > 0) {
-        $carts = product::whereIn('id', $idList)->get();
+        $carts = SanPham::whereIn('idSP', $idList)->get();
         for ($i = 0; $i < count($carts); $i++) {
-          if ($cartFarmApp[$i]['productId'] == $carts[$i]->id)
+          if ($cartFarmApp[$i]['productId'] == $carts[$i]->idSP)
             $carts[$i]->amount = $cartFarmApp[$i]['amount'];
-          $total += ($carts[$i]->price_current - ($carts[$i]->price_current * $carts[$i]->discount / 100))* $cartFarmApp[$i]['amount'];
+          $total += ($carts[$i]->giaSP - ($carts[$i]->giaSP * $carts[$i]->discount / 100))* $cartFarmApp[$i]['amount'];
         }
       } else {
       }
     }
     if (isset($_COOKIE["couponCode"])) {
-      $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"])->first();
+      $coupon = MaGiamGia::where('maGiamGia', $_COOKIE["couponCode"])->first();
       $couponCode = $_COOKIE["couponCode"];
       if ($coupon != null) {
         if ($total >= $coupon->min_condition) {
@@ -54,12 +56,12 @@ class CartController extends Controller
     } else {
       $couponMsg = "";
     }
-    $coupons = coupon::all();
+    $coupons = MaGiamGia::limit(4)->get();
     $data = [
       'carts' => $carts,
       'total' => $total,
       'couponMsg' => $couponMsg,
-      "coupons" => json_encode($coupons),
+      "coupons" => $coupons,
     ];
     return view('client.cart.index', $data);
   }
