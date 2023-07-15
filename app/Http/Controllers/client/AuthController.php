@@ -6,6 +6,7 @@ use App\Http\Requests\AuthRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Mail\SendVerifyEmail;
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\user_verify;
 use Illuminate\Http\Request;
@@ -138,10 +139,10 @@ class AuthController extends Controller
             'password' =>  $request->password,
         ];
         //kiểm tra trường remember có được chọn hay không
-        
+        // $a=Admin::where('email',$request->email)->whereAnd('password',$request->password)->first();
         if (Auth::guard('admin')->attempt($arr)) {
 
-            return redirect()->route('sitedashboard');
+            // return redirect()->route();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
         } else {
