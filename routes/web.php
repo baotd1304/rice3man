@@ -94,16 +94,17 @@ Route::prefix('/')->name('client')->group(function () {
 });
 //
 // Route::resource('/admin/product', AdminProductController::class);
-// Route::prefix('/admin')->name('site')->group(function () {
-//     Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
-//     Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
-//     Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
-//     Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
-// });
+Route::prefix('/admin')->name('site')->group(function () {
+    Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
+    Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
+    Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
+    Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
+});
 
 // PHAN ADMIN
-// Route::prefix('/admin')->name('site')->group(function () {
+Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function () {
         //user hung
+    Route::get('/', [NguoiDungController::class,'index'])->name('nguoidung.index');
     Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
     Route::get('/nguoidung/create', [NguoiDungController::class, 'create'])->name('nguoidung.create');
     Route::post('/nguoidung', [NguoiDungController::class, 'store'])->name('nguoidung.store');
@@ -152,4 +153,4 @@ Route::prefix('/')->name('client')->group(function () {
     //update thêm
     Route::put('/sanpham/{idSP}/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
 
-// });
+});
