@@ -8,16 +8,18 @@ class Order extends Model
 {
     protected $table = 'hoadon';
     protected $primaryKey = 'idHD';
+    public $timestamps = false;
+
     // Định nghĩa quan hệ với model User (người dùng)
     public function user()
     {
-        return $this->belongsTo(User::class, 'idND');
+        return $this->belongsTo(NguoiDung::class, 'idND');
     }
     
     // Định nghĩa quan hệ với model OrderDetail (đơn hàng chi tiết)
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class, 'idHD');
+        return $this->hasMany(chitietdonhang::class, 'idHD');
     }
     public function getAllOrders()
     {

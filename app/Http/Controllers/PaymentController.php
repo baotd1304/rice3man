@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PaymentRequest;
 use App\Jobs\send_email;
 use App\Mail\SendVerifyCodeMail;
+use App\Models\chitietdonhang;
 use App\Models\coupon;
 use App\Models\MaGiamGia;
 use App\Models\order;
@@ -51,7 +52,7 @@ class PaymentController extends Controller
       $couponCode = $_COOKIE["couponCode"];
       if ($coupon != null) {
         if ($total >= $coupon->min_condition) {
-          $this->couponEligibleForUse=true;
+          $this->couponEligibleForUse = true;
           $couponMsg = "Mã khuyến mãi đã được áp dụng";
           if ($coupon->coupon_type == 1) {
             $total = $total - $coupon->discount;
@@ -83,6 +84,8 @@ class PaymentController extends Controller
   public function create_payment_vnpay_e(PaymentRequest $request)
   {
     $order_code = rand(0000, 9999);
+    session(['cost_id' => $order_code]);
+    session(['url_prev' => url()->previous()]);
     $order_temp = new order_temp();
     $order_temp->user_name = $request->username;
     $order_temp->email = $request->email;
@@ -166,279 +169,68 @@ class PaymentController extends Controller
   {
 
     try {
-      $data = $request->data;
-      $cartFarmApp = [];
-      if (isset($_COOKIE["cartFarmApp"])) {
-        $json = $_COOKIE["cartFarmApp"];
-        $cartFarmApp = json_decode($json, true);
-      }
-      $order_temp = order_temp::where("id", $data['id'])->first();
-      $order = new order();
-      $order->user_name = $order_temp->user_name;
-      $order->email = $order_temp->email;
-      $order->phone = $order_temp->phone;
-      $order->address = $order_temp->address;
-      $order->province = $order_temp->province;
-      $order->district = $order_temp->district;
-      $order->ward = $order_temp->ward;
-      $order->customer_note = $order_temp->customer_note;
-      $order->payment_type = 'ATM';
-      $order->status = 1;
-      $order->total = $order_temp->total;
-      $order->fee_ship = $order_temp->fee_ship;
-      $order->code = $data['order_code'];
-      $order->save();
-      foreach ($cartFarmApp as $item) {
-        // Fetch the product information from the database
-        $product = Product::find($item['productId']);
-        $order_detail = new order_details();
-        $order_detail->order_id = $order->id;
-        $order_detail->product_id = $item['productId'];
-        $order_detail->product_name = $product->name;
-        $order_detail->product_thumb = $product->thumb;
-        $order_detail->price = $product->price_current - ($product->price_current * $product->discount / 100);
-        $order_detail->quantity = $item['amount'];
-        $order_detail->save();
-        $product->quantity_output = $product->quantity_output + $item['amount'];
-        $product->save();
-      }
-      $order_temp = order_temp::where("id", $data["id"])->delete();
-      $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
-      if ($coupon != null) {
-          $coupon->user_used = $coupon->user_used+1;
-          $coupon->save();
-      }
-      setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
-      setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
+      $url = session('url_prev', '/');
+      if ($request->vnp_ResponseCode == "00") {
+        $data = $request->data;
+        $cartFarmApp = [];
+        if (isset($_COOKIE["cartFarmApp"])) {
+          $json = $_COOKIE["cartFarmApp"];
+          $cartFarmApp = json_decode($json, true);
+        }
+        $order_temp = order_temp::where("id", $data['id'])->first();
+        $order = new order();
+        $order->trangThai = 0;
+        $order->thanhToan = 1;
+        $order->tongTien = $order_temp->total;
+        $order->idMGG = 1;
+        $order->idND = 4;
+        // $order->user_name = $order_temp->user_name;
+        // $order->email = $order_temp->email;
+        // $order->phone = $order_temp->phone;
+        // $order->address = $order_temp->address;
+        // $order->province = $order_temp->province;
+        // $order->district = $order_temp->district;
+        // $order->ward = $order_temp->ward;
+        // $order->customer_note = $order_temp->customer_note;
+        // $order->payment_type = 'ATM';
+        // $order->fee_ship = $order_temp->fee_ship;
+        // $order->code = $data['order_code'];
+        $order->save();
+        // foreach ($cartFarmApp as $item) {
+        //   // Fetch the product information from the database
+        //   $product = SanPham::find($item['idSP']);
+        //   $order_detail = new chitietdonhang();
+        //   $order_detail->order_id = $order->id;
+        //   $order_detail->product_id = $item['productId'];
+        //   $order_detail->product_name = $product->name;
+        //   $order_detail->product_thumb = $product->thumb;
+        //   $order_detail->price = $product->price_current - ($product->price_current * $product->discount / 100);
+        //   $order_detail->quantity = $item['amount'];
+        //   $order_detail->save();
+        //   $product->quantity_output = $product->quantity_output + $item['amount'];
+        //   $product->save();
+        // }
+        $order_temp = order_temp::where("id", $data["id"])->delete();
+        // $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
+        // if ($coupon != null) {
+        //     $coupon->user_used = $coupon->user_used+1;
+        //     $coupon->save();
+        // }
+        setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
+        setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
 
-      return redirect()->route('clientpage-thanks',['code'=>$data['order_code']]);
+        return redirect()->route('clientpage-thanks',['code'=>$data['order_code']]);
+        return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');
+      }
+      session()->forget('url_prev');
+      // dd('thất bại');
+      // quay sang một trang lỗi nào đó
+      return redirect($url)->with('errors', 'Lỗi trong quá trình thanh toán phí dịch vụ');
     } catch (\Throwable $th) {
       throw $th;
     }
   }
-  public function create_payment_momo_qr(Request $request)
-  {
-    header('Content-type: text/html; charset=utf-8');
 
-
-
-    $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-
-
-    $partnerCode = "MOMOBKUN20180529";
-    $accessKey = "klm05TvNBzhg7h7j";
-    $secretKey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
-    $orderInfo = "Thanh toán qua MoMo";
-    $amount = "10000";
-    $orderId = time() . "";
-    $returnUrl = "http://localhost:8000/paymomo/result.php";
-    $notifyurl = "http://localhost:8000/paymomo/ipn_momo.php";
-    // Lưu ý: link notifyUrl không phải là dạng localhost
-    $extraData = "merchantName=MoMo Partner";
-
-    $requestId = time() . "";
-    $requestType = "captureMoMoWallet";
-    // $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
-    //before sign HMAC SHA256 signature
-    $rawHash = "partnerCode=" . $partnerCode . "&accessKey=" . $accessKey . "&requestId=" . $requestId . "&amount=" . $amount . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&returnUrl=" . $returnUrl . "&notifyUrl=" . $notifyurl . "&extraData=" . $extraData;
-    $signature = hash_hmac("sha256", $rawHash, $secretKey);
-    $data = array(
-      'partnerCode' => $partnerCode,
-      'accessKey' => $accessKey,
-      'requestId' => $requestId,
-      'amount' => $amount,
-      'orderId' => $orderId,
-      'orderInfo' => $orderInfo,
-      'returnUrl' => $returnUrl,
-      'notifyUrl' => $notifyurl,
-      'extraData' => $extraData,
-      'requestType' => $requestType,
-      'signature' => $signature
-    );
-    $result = $this->execPostRequest($endpoint, json_encode($data));
-    $jsonResult = json_decode($result, true);  // decode json
-
-    //Just a example, please check more in there
-
-    header('Location: ' . $jsonResult['payUrl']);
-  }
-
-  public function return_payment_momo_qr()
-  {
-    dd('xin chào');
-  }
-  public function execPostRequest($url, $data)
-  {
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt(
-      $ch,
-      CURLOPT_HTTPHEADER,
-      array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($data)
-      )
-    );
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    //execute post
-    $result = curl_exec($ch);
-    //close connection
-    curl_close($ch);
-    return $result;
-  }
-  public function create_payment_momo_atm(PaymentRequest $request)
-  {
-    //  dd('xin chào mn');
-    $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-    $partnerCode = "MOMOBKUN20180529";
-    $accessKey = "klm05TvNBzhg7h7j";
-    $secretKey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
-    $orderInfo = "Thanh toán qua MoMo";
-    $orderInfo = "Thanh toán qua MoMo";
-    $amount = "10000";
-    $orderId = time() . "";
-    $returnUrl = route('clientreturn_payment_momo_atm');
-    $notifyurl = route('clientpayment');
-    // Lưu ý: link notifyUrl không phải là dạng localhost
-    $bankCode = "SML";
-    $requestId = time() . "";
-    $requestType = "payWithMoMoATM";
-    $extraData = "";
-    //before sign HMAC SHA256 signature
-    $rawHashArr =  array(
-      'partnerCode' => $partnerCode,
-      'accessKey' => $accessKey,
-      'requestId' => $requestId,
-      'amount' => $amount,
-      'orderId' => $orderId,
-      'orderInfo' => $orderInfo,
-      'bankCode' => $bankCode,
-      'returnUrl' => $returnUrl,
-      'notifyUrl' => $notifyurl,
-      'extraData' => $extraData,
-      'requestType' => $requestType
-    );
-    // echo $serectkey;die;
-    $rawHash = "partnerCode=" . $partnerCode . "&accessKey=" . $accessKey . "&requestId=" . $requestId . "&bankCode=" . $bankCode . "&amount=" . $amount . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&returnUrl=" . $returnUrl . "&notifyUrl=" . $notifyurl . "&extraData=" . $extraData . "&requestType=" . $requestType;
-    $signature = hash_hmac("sha256", $rawHash, $secretKey);
-    $data =  array(
-      'partnerCode' => $partnerCode,
-      'accessKey' => $accessKey,
-      'requestId' => $requestId,
-      'amount' => $amount,
-      'orderId' => $orderId,
-      'orderInfo' => $orderInfo,
-      'returnUrl' => $returnUrl,
-      'bankCode' => $bankCode,
-      'notifyUrl' => $notifyurl,
-      'extraData' => $extraData,
-      'requestType' => $requestType,
-      'signature' => $signature
-    );
-    $result = $this->execPostRequest($endpoint, json_encode($data));
-    $jsonResult = json_decode($result, true);  // decode json
-
-    error_log(print_r($jsonResult, true));
-    return redirect($jsonResult['payUrl']);
-  }
-  public function return_payment_momo_atm(Request $request)
-  {
-    # code...
-  }
-
-  // ///////////////////////////////////////
-  // ///////////////////////////////////////
-  // ///////////////////////////////////////
-  // ///////////////////////////////////////
-  public function get_order_otp(Request $request)
-  {
-    // $email=$request->email??"nguyenthanhdatntd007@gmail.com";
-    $otp = mt_rand(1000, 9999);
-    $mail = new SendVerifyCodeMail($otp);
-    Mail::to($request->email)->send($mail);
-    setcookie('otp_order_gm', json_encode($otp), time() + 3 * 60, '/');
-
-    return response()->json([
-      "message" => "success",
-      "otp" => $otp,
-      "email" => $request->email
-    ]);
-  }
-  public function confirm_order_otp(Request $request)
-  {
-    if ($request->otp != null) {
-      if ($request->otp == $_COOKIE["otp_order_gm"]) {
-        return response()->json(["message" => "success"], 200);
-      } else {
-        return response()->json(["message" => "Mã xác nhận không hợp lệ"], 403);
-      }
-    } else {
-      return response()->json(["Không thể xác định mã xác nhận"], 405);
-    }
-  }
-  public function create_payment_cod(Request $request)
-  {
-
-    if (
-      $request->email != null
-      && $request->username != null
-      && $request->phone != null
-      && $request->address != null
-      && $request->province != null
-      && $request->district != null
-      && $request->ward != null
-    ) {
-      $cartFarmApp = [];
-      $order_code=mt_rand(1000, 9999);
-      if (isset($_COOKIE["cartFarmApp"])) {
-        $json = $_COOKIE["cartFarmApp"];
-        $cartFarmApp = json_decode($json, true);
-      }
-      $order = new order();
-      $order->user_name = $request->username;
-      $order->email = $request->email;
-      $order->phone = $request->phone;
-      $order->address = $request->address;
-      $order->province = $request->province;
-      $order->district = $request->district;
-      $order->ward = $request->ward;
-      $order->customer_note = $request->order_note;
-      $order->payment_type = 'cod';
-      $order->status = 1;
-      $order->total = $request->total;
-      $order->code = $order_code;
-      $order->fee_ship = $request->fee_ship;
-      $order->save();
-      foreach ($cartFarmApp as $item) {
-        // Fetch the product information from the database
-        $product = product::where("id", $item['productId'])->first();
-        $order_detail = new order_details();
-        $order_detail->order_id = $order->id;
-        $order_detail->product_id = $item['productId'];
-        $order_detail->product_name = $product->name;
-        $order_detail->product_thumb = $product->thumb;
-        $order_detail->price = $product->price_current - ($product->price_current * $product->discount / 100);
-        $order_detail->quantity = $item['amount'];
-        $order_detail->save();
-        $product->quantity_output = $product->quantity_output + $item['amount'];
-        $product->save();
-      }
-
-      $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
-      if ($coupon != null) {
-          $coupon->user_used = $coupon->user_used+1;
-          $coupon->save();
-      }
-      setcookie('cartFarmApp', json_encode([]), time() - 3 * 24 * 60 * 60, '/');
-      setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
-      return redirect()->route('clientpage-thanks',['code'=>$order_code]);
-    } else {
-      dd("Vui lòng nhập  thông tin");
-    }
-  }
   public function thanks($code)
   {
     $order = order::where('code', $code)->first();

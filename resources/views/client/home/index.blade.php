@@ -171,6 +171,10 @@
 $indexCategory=0;
 @endphp
 @foreach ($categories as $category )
+@if (count($category->SanPhams)<4)
+    
+@else
+    
 @php
 $indexCategory++;
 @endphp
@@ -224,6 +228,7 @@ $indexCategory++;
     </div>
   </div>
 </section>
+@endif
 @endforeach
 {{-- Hiển thị phản hồi từ khách hàng --}}
 <section class="app-section pt-3 pb-3">
@@ -270,27 +275,35 @@ $indexCategory++;
   </div>
 </section>
 {{-- hiển thị tin tức nổi bật --}}
-{{-- <section class="app-section pt-3 pb-3">
+<section class="app-section pt-3 pb-3">
   <div class="container">
+    <div class="product-row__header position-relative d-flex">
+      <div class="pt-3 pb-3 mb-0">
+        <h2 class="title"><a href="">Tin tức mới nhất </a></h2>
+         <span>Tin tức mới nhất được chúng tôi cập nhật thường xuyên</span>
+      </div>
+      <div class="position-relative navigate">
+        <div class="swiper-button-next categoryGroup "></div>
+        <div class="swiper-button-prev categoryGroup"></div>
+      </div>
+    </div>
     <h2 class="title pt-3 pb-3 mb-0"><a href="">Bài viết nổi bật</a></h2>
     <div class="swiper mySwiperNews">
       <div class="swiper-wrapper">
         @foreach ($news as $item)
         <div class="swiper-slide">
-          <x-NewsCard title="{{$item->title}}"
-            thumb="{{$item->thumb}}"
-            summary="{{$item->summary}} "
-            day="{{$item->created_at->format('d')}}"
-            month="{{$item->created_at->format('m/Y')}}" />
+          <x-NewsCard title="{{$item->tieuDe}}"
+            thumb="{{$item->thumbNail}}"
+            summary="{{$item->noiDung}} "
+            {{-- day="{{$item->ngay->format('d')}}"
+            month="{{$item->ngay->format('m/Y')}}"  --}}
+            />
         </div>
         @endforeach
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
   </div>
-</section> --}}
+</section>
 @endsection
 @section("js")
 

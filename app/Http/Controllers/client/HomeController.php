@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\BaiViet;
 use App\Models\Banner;
 use App\Models\category;
 use App\Models\category_group;
@@ -21,9 +22,11 @@ class HomeController extends Controller
     {   
         $productsFlashSale=SanPham::all()->where('discount','>=',0);
         $categoriesGroup=LoaiSP::with('SanPhams')->get();
+        $news=BaiViet::all();
         $data=[
             "productsFlashSale"=>$productsFlashSale,
             "categories"=>$categoriesGroup,
+            "news"=>$news
         ];
         return view('client.home.index',$data);
     }
@@ -31,23 +34,5 @@ class HomeController extends Controller
     {
         
     }
-    public function exam()
-    {
-        $category=LoaiSP::all();
-
-        dd($category->products);
-        // $pro=$category->products;
-        // return json_encode($category->products);
-        // dd($category_group);
-        // $category->pruduct;
-        // $category->images;
-        $data=[
-            // "products"=>$products,
-            "cate"=>$category,
-        ];
-        return view('client.exam',$data);
-
-        // return Json($data);
-        
-    }
+   
 }
