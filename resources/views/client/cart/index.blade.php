@@ -95,44 +95,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="cart-items">
-                @foreach ($carts as $item)
-                <div class="cart-item">
-                    <img class="item-img" src="{{asset('upload/'.$item->thumb)}}" alt="">
-                    <div class="cart-info">
-                        <div class="info">
-                            <div class="item-name">{{$item->name}}</div>
-                            <div class="item-price">
-                                {{number_format($item->price_current-($item->price_current*$item->discount/100))}} vnđ
-                            </div>
-                        </div>
-                        <div class="info">
-                            <div class="btn-quantity">
-                                <form action="{{route('clientminus-to-cart')}}" method="POST">
-                                    @csrf
-                                    <input type="text" name="productId" value="{{$item->id}}" hidden>
-                                    <input type="number" name="amount" value="1" hidden>
-                                    <button class="minus">-</button>
-                                </form>
-                                <span class="count">{{$item->amount}}</span>
-                                <form action="{{route('clientadd-to-cart')}}" method="POST">
-                                    @csrf
-                                    <input type="text" name="productId" value="{{$item->id}}" hidden>
-                                    <input type="number" name="amount" value="1" hidden>
-                                    <button class="plus">+</button>
-                                </form>
-                            </div>
-                            <form action="{{route('clientremove-to-cart')}}" method="POST">
-                                @csrf
-                                <input type="text" name="productId" value="{{$item->id}}" hidden>
-                                <button class="btn btn-delete">Xóa</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div> --}}
         </div>
         <div class="col-12 col-md-3 mt-2 mb-2">
             <div class=" cart cart-page">
@@ -142,7 +104,7 @@
                             <div class="cart__subtotal">
                                 <div class="cart__col-6">Tổng tiền:</div>
                                
-                                <div class="text-right cart__totle"><span class="total-price">{{$total}}</span></div>
+                                <div class="text-right cart__totle"><span class="total-price">{{number_format($total)}}</span></div>
                             </div>
                         </div>
                         <div class="cart__btn-proceed-checkout-dt">

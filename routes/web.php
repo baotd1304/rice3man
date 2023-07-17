@@ -69,7 +69,7 @@ Route::prefix('/')->name('client')->group(function () {
     Route::get('/category-group/{slug}', [ProductsController::class, 'group'])->name('category-group');
     Route::get('/product/{slug}', [ProductsController::class, 'productDetail'])->name('product-detail');
     Route::get('/news', [NewsController::class, 'index'])->name('news');
-    Route::get('/news/{slug}', [NewsController::class, 'newsDetail'])->name('news-detail');
+    Route::get('/news/{id}', [NewsController::class, 'newsDetail'])->name('news-detail');
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
     Route::get('/contact', [ContactController::class, 'contact'])->name('show-contact');
     Route::post('/contact', [ContactController::class, 'contact_'])->name('contact');

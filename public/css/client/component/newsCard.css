@@ -53,14 +53,14 @@
 .item-blog:hover .block-content .justify {
     height: auto;
     margin-bottom: 1rem;
-    display: -webkit-box;
-    display: block;
-    -webkit-box-orient: vertical;
-    position: relative;
+    /* position: relative; */
     line-height: 1.4 !important;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
     padding: 0 !important;
 }
 .item-blog .block-content .justify {
@@ -93,6 +93,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 !important;
+    -webkit-line-clamp: 3;
 }
 .line-clamp-3 {
     -webkit-line-clamp: 3;

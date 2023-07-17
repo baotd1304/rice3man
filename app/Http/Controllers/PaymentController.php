@@ -182,34 +182,26 @@ class PaymentController extends Controller
         $order->trangThai = 0;
         $order->thanhToan = 1;
         $order->tongTien = $order_temp->total;
-        $order->idMGG = 1;
-        $order->idND = 4;
-        // $order->user_name = $order_temp->user_name;
-        // $order->email = $order_temp->email;
-        // $order->phone = $order_temp->phone;
-        // $order->address = $order_temp->address;
-        // $order->province = $order_temp->province;
-        // $order->district = $order_temp->district;
-        // $order->ward = $order_temp->ward;
-        // $order->customer_note = $order_temp->customer_note;
-        // $order->payment_type = 'ATM';
-        // $order->fee_ship = $order_temp->fee_ship;
-        // $order->code = $data['order_code'];
+        // $order->idMGG = 1;
+        // $order->idND = 4;
+        $order->tenNguoiNhan = $order_temp->user_name;
+        $order->email = $order_temp->email;
+        $order->soDienThoai = $order_temp->phone;
+        $order->diaChi = $order_temp->address.",".$order_temp->ward.",".$order_temp->district.",".$order_temp->province;
         $order->save();
-        // foreach ($cartFarmApp as $item) {
-        //   // Fetch the product information from the database
-        //   $product = SanPham::find($item['idSP']);
-        //   $order_detail = new chitietdonhang();
-        //   $order_detail->order_id = $order->id;
-        //   $order_detail->product_id = $item['productId'];
-        //   $order_detail->product_name = $product->name;
-        //   $order_detail->product_thumb = $product->thumb;
-        //   $order_detail->price = $product->price_current - ($product->price_current * $product->discount / 100);
-        //   $order_detail->quantity = $item['amount'];
-        //   $order_detail->save();
-        //   $product->quantity_output = $product->quantity_output + $item['amount'];
-        //   $product->save();
-        // }
+        foreach ($cartFarmApp as $item) {
+          // Fetch the product information from the database
+          $sanPham = SanPham::find($item['productId']);
+          $chiTietHoaDon = new chitietdonhang();
+          $chiTietHoaDon->idHD = $order->idHD;
+          $chiTietHoaDon->idSP = $item['productId'];
+          $chiTietHoaDon->tenSP = $sanPham->tenSP;
+          $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
+          $chiTietHoaDon->soLuong = $item['amount'];
+          $chiTietHoaDon->save();
+          // $sanPham->quantity_output = $sanPham->quantity_output + $item['amount'];
+          // $sanPham->save();
+        }
         $order_temp = order_temp::where("id", $data["id"])->delete();
         // $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
         // if ($coupon != null) {
@@ -219,23 +211,64 @@ class PaymentController extends Controller
         setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
         setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
 
-        return redirect()->route('clientpage-thanks',['code'=>$data['order_code']]);
+        return redirect()->route('clientpage-thanks',['idHD'=>$order->id]);
         return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');
       }
       session()->forget('url_prev');
-      // dd('thất bại');
+      dd('thất bại');
       // quay sang một trang lỗi nào đó
       return redirect($url)->with('errors', 'Lỗi trong quá trình thanh toán phí dịch vụ');
     } catch (\Throwable $th) {
       throw $th;
     }
   }
-
-  public function thanks($code)
+  public function create_payment_cod(PaymentRequest $request)
   {
-    $order = order::where('code', $code)->first();
+
+      $cartFarmApp = [];
+      $order_code = mt_rand(1000, 9999);
+      if (isset($_COOKIE["cartFarmApp"])) {
+        $json = $_COOKIE["cartFarmApp"];
+        $cartFarmApp = json_decode($json, true);
+      }
+      $hoaDon = new order();
+      $hoaDon->tenNguoiNhan = $request->username;
+      $hoaDon->email = $request->email;
+      $hoaDon->soDienThoai = $request->phone;
+      $hoaDon->diaChi = $request->address.",".$request->ward.",".$request->district.",".$request->province;
+      $hoaDon->trangThai = 0;
+      $hoaDon->thanhToan = 0;
+      $hoaDon->tongTien = $request->total;
+      // $hoaDon->idMGG = 1;
+      // $hoaDon->idND = 4;
+      $hoaDon->save();
+      foreach ($cartFarmApp as $item) {
+        // Fetch the product information from the database
+        $sanPham = SanPham::find($item['productId']);
+        $chiTietHoaDon = new chitietdonhang();
+        $chiTietHoaDon->idHD = $hoaDon->idHD;
+        $chiTietHoaDon->idSP = $item['productId'];
+        $chiTietHoaDon->tenSP = $sanPham->tenSP;
+        $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
+        $chiTietHoaDon->soLuong = $item['amount'];
+        $chiTietHoaDon->save();
+      }
+
+      // $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
+      // if ($coupon != null) {
+      //   $coupon->user_used = $coupon->user_used + 1;
+      //   $coupon->save();
+      // }
+      setcookie('cartFarmApp', json_encode([]), time() - 3 * 24 * 60 * 60, '/');
+      setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
+      return redirect()->route('clientpage-thanks', ['idHD' => $hoaDon->idHD]);
+  }
+
+  public function thanks($idHD)
+  {
+    $hoaDon = order::where('idHD', $idHD)->first();
     $data = [
-      "order" => $order
+      "hoaDon" => $hoaDon
     ];
     return view('client.thankyou.index', $data);
   }

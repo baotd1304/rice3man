@@ -52,12 +52,12 @@
 		<div class="col-lg-8 col-xs-12">
 			<div class="col-12 pb-4 pt-4">
 				{{-- <img src="{{asset('assets/img/logoRice3man.jpg')}}" alt=""> --}}
-				<img style="width:180px"
-					src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/logo.png?1676652183181" alt="">
+				<img style="width:160px"
+					src="assets/img/logoRice3man.jpg" alt="">
 			</div>
 			<div class="input-infomation row ">
 				<form id="form-order" action="{{route('clientpayment_cod')}}" method="POST"
-					class="form-order col-lg-6 col-xs-12">
+					class="form-order col-lg-12 col-xs-12">
 					@csrf
 					<div class="order-title">
 						<h3>Thông tin nhận hàng</h3>
@@ -76,7 +76,7 @@
 							{{$message}}
 							@enderror</span>
 					</div>
-					<div>
+					<div >
 						<div class="form-group order">
 							<input type="text" name="username" placeholder="Họ tên" value="{{old('username')}}"
 								required>
@@ -106,57 +106,47 @@
 					<input type="text" id="input_province" name="province" value="{{old('province')}}" hidden>
 					<input type="text" id="input_district" name="district" value="{{old('district')}}" hidden>
 
-					<div>
-						<div class="form-group order">
-							<select id="province">
-								<option value="">-- Chọn tỉnh/thành --</option>
-							</select>
+					<div class="row">
+						<div class="col-4">
+							<div class="form-group order">
+								<select id="province">
+									<option value="">-- Chọn tỉnh/thành --</option>
+								</select>
+							</div>
+							<span class="text-danger">@error('province')
+								{{$message}}
+								@enderror</span>
 						</div>
-						<span class="text-danger">@error('province')
-							{{$message}}
-							@enderror</span>
-					</div>
-					<div>
-						<div class="form-group order">
-							<select id="district">
-								<option value="">-- Chọn quận/huyện --</option>
-							</select>
+						<div  class="col-4">
+							<div class="form-group order">
+								<select id="district">
+									<option value="">-- Chọn quận/huyện --</option>
+								</select>
+							</div>
+							<span class="text-danger">@error('district')
+								{{$message}}
+								@enderror</span>
 						</div>
-						<span class="text-danger">@error('district')
-							{{$message}}
-							@enderror</span>
-					</div>
-					<div>
-						<div class="form-group order">
-							<select id="ward" name="ward">
-								<option value="">-- Chọn xã/phường --</option>
-							</select>
+						<div  class="col-4">
+							<div class="form-group order">
+								<select id="ward" name="ward">
+									<option value="">-- Chọn xã/phường --</option>
+								</select>
+							</div>
+							<span class="text-danger">@error('ward')
+								{{$message}}
+								@enderror</span>
 						</div>
-						<span class="text-danger">@error('ward')
-							{{$message}}
-							@enderror</span>
 					</div>
-					<div class="form-group order">
+					{{-- <div class="form-group order">
 						<textarea name="order_note" {{old('order_note')}} placeholder="Ghi chú">Ghi chú</textarea>
-					</div>
+					</div> --}}
 					<input type="number" name="total" value="{{$total}}" hidden>
 					<input type="number" name="fee_ship" value="0" hidden>
 					<input type="text" id="couponCode" value={{$couponCode}} name="couponCode" hidden>
 
 				</form>
-				<div class="transition col-lg-6 col-xs-12">
-					<div class="order-title">
-						<h3>Vận Chuyển</h3>
-					</div>
-					<div class="form-group order">
-						<div class="fee-ship">
-							<span>
-								<i class='bx bxs-truck'></i>
-								Fee ship
-							</span>
-							<span>0</span>
-						</div>
-					</div>
+				<div class="transition col-lg-12 col-xs-12">
 					<div class="order-title">
 						<h3>Thanh Toán</h3>
 					</div>
@@ -190,15 +180,6 @@
 											<div id="payment_vnpay" class="payment_vnpay payment-online__item ">
 												<div class="thumb">
 													<img src="https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2w2SHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3c10eafdffd111f6ec8ef44d76353152683cf2b2/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJc0FXa0NMQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--492f60b9aac6e8159e50e72bb289c5feb47a79d4/logo%20VNPAY-02.png"
-														alt="">
-												</div>
-												<div class="check"><i class='bx bxs-check-circle'></i></div>
-											</div>
-										</div>
-										<div class="col-4">
-											<div class="payment_momo payment-online__item ">
-												<div class="thumb">
-													<img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
 														alt="">
 												</div>
 												<div class="check"><i class='bx bxs-check-circle'></i></div>
@@ -350,17 +331,11 @@
 	}
 	btnOrderNow.forEach(e=>{
 		e.onclick=()=>{
-			if(getOtp==true){
-			sendNotificationGetOtp()
+			formOrder.submit()
 		
             
 		}
-		else{
-			formOrder.submit()
-		}
 	}
-    let email=document.getElementById('#email')
-		}
 	)
 	const sendNotificationGetOtp=()=>{
 		
@@ -543,7 +518,7 @@ $("#btn-applyCouponCode").click(()=>{
 			var selectedDistrict = $("#district").val();
 			if (selectedDistrict) {
 				// Lấy thông tin địa lý của các xã/phường từ API
-				$.get("https://provinces.open			-api.vn/api/d/" + selectedDistrict + "?depth=2", function(data) {
+				$.get("https://provinces.open-api.vn/api/d/" + selectedDistrict + "?depth=2", function(data) {
 				var wards = data.wards;
 
 				// Thêm các xã/phường vào trường chọn

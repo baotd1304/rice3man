@@ -19,7 +19,7 @@
                 <p class="justify line-clamp line-clamp-3">{{$summary}}
                 </p>
                 
-                <a class="viewmore" href="/9-sieu-thuc-pham-can-co-trong-che-do-an-uong-cua-nguoi-cao-tuoi" title="Đọc tiếp">Đọc tiếp</a>
+                <a class="viewmore" href="{{$link}}" title="Đọc tiếp">Đọc tiếp</a>
                 
             </div>
     

@@ -3,42 +3,29 @@
 <link rel="stylesheet" href="{{asset('css/client/newsDetail.css')}}">
 @endsection
 @section('main-content')
-<div class="container mt-4 text-color">
-    <div class="row border-bottom">
-        <div class="col-lg-3 col-xs-12">
-            <div class="aside-content">
-                <h2 class="title-head">
-                    Danh mục tin
-                </h2>
-                <nav class="nav-category navbar-toggleable-md pb-3">
-                    <ul class="nav flex-column">
-                        @foreach ($category_news as $item )
-                        <li class="nav-item position-relative p-8">
-                            <a href="">{{$item->name}}</a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </nav>
-            </div>
-            <div class="aside-content">
-                <h2 class="title-head">
-                    Có thể bạn quan tâm
-                </h2>
-                <div class="list-blogs ">
-                    @foreach ($newsRelate as $item )
-                    <x-NewsCard isRow={{true}} link="{{route('clientnews-detail',['slug'=>$item->slug])}}"
-                        title="{{$item->title}}" thumb="{{$item->thumb}}" summary="{{$item->summary}}"/>
-                    @endforeach
-                </div>
-            </div>
+<section class="bread-crumb"
+    style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(//bizweb.dktcdn.net/100/485/131/themes/906771/assets/breadcrumb.jpg?1686556941849) no-repeat center;">
+
+    <div class="container">
+        <div class="title-bread-crumb">
+            {{$post->tieuDe}}
         </div>
-        <article class="col-lg-9 col-xs-12">
-            <h1 class="article-name font-weight-bold">{{$post->title}}</h1>
+        <nav aria-label="breadcrumb  ">
+            <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
+                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$post->tieuDe}}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<div class="container mt-4 text-color">
+    <div class="row pb-5 border-bottom mb-3">
+        <article class="col-lg-12 col-xs-12">
             <div class="entry-date">
-                <p>Đăng bởi: <b>{{$post->created_by}} - {{$post->created_at->format('d/m/Y')}}</b></p>
+                <p>Đăng bởi: <b>{{$post->tacGia}} -</b></p>
             </div>
             <div class="table-of-contents">
-                {!!$post->content!!}
+                {!!$post->noiDung!!}
             </div>
         </article>
     </div>
@@ -112,13 +99,11 @@
             <div style="display: grid;grid-template-columns:repeat(4,1fr);gap :10px;margin-top: 20px;">
   
               @foreach ($newsRelate as $item )
-              <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['slug'=>$item->slug])}}"
-                title="{{$item->title}}"
-                thumb="{{$item->thumb}}"
-                summary="{{$item->summary}}"
-                day="{{$item->created_at->format('d')}}"
-                month="{{$item->created_at->format('m/Y')}}"
-                />
+              <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['id'=>$item->idBV])}}"
+                title="{{$item->tieuDe}}"
+                thumb="{{$item->thumbNail}}"
+                summary="{{$item->noiDung}} "/>
+                
                 @endforeach
             </div>
     </div>

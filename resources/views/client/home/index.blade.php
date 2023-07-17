@@ -295,8 +295,8 @@ $indexCategory++;
           <x-NewsCard title="{{$item->tieuDe}}"
             thumb="{{$item->thumbNail}}"
             summary="{{$item->noiDung}} "
-            {{-- day="{{$item->ngay->format('d')}}"
-            month="{{$item->ngay->format('m/Y')}}"  --}}
+            {{-- day="{{$item->ngay}}"
+            month="{{$item->ngay}}"  --}}
             />
         </div>
         @endforeach

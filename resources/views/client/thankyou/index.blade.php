@@ -8,7 +8,7 @@
   <div class="container">
     <header>
       <div class="logo">
-        <img style="width:160px" src="{{asset('img/logo.png')}}" alt="Logo">
+        <img style="width:160px" src="{{asset('assets/img/logoRice3man.jpg')}}" alt="Logo">
       </div>
       <h1>Cảm ơn bạn đã mua hàng!</h1>
     </header>
@@ -16,22 +16,21 @@
       <div class="confirm-info">
         <div class="confirm-line">
             <h3>Thông tin mua hàng</h3>
-            <p><strong>Tên khách hàng :</strong>{{$order->user_name}}</p>
-            <p><strong>Số điện thoại  :</strong>{{$order->phone}}</p>
-            <p><strong>Email          :</strong>{{$order->email}}</p>
+            <p><strong>Tên khách hàng :</strong>{{$hoaDon->tenNguoiNhan}}</p>
+            <p><strong>Số điện thoại  :</strong>{{$hoaDon->soDienThoai}}</p>
+            <p><strong>Email          :</strong>{{$hoaDon->email}}</p>
         </div>
          <div class="confirm-line">
             <h3>Đia chỉ giao hàng</h3>
-            <p><strong>Địa chỉ nhà   :</strong>{{$order->address}}</p>
-            <p><strong>Khu vực  :</strong>{{$order->ward}}, {{$order->district}}, {{$order->province}}</p>
+            <p><strong>Địa chỉ   :</strong>{{$hoaDon->diaChi}}</p>
         </div>
          <div class="confirm-line">
-            <h3>Phương thức giao dịch</h3>
-            @if ($order->payment_type=='ATM')
-              <p class="email">Thanh toán online</p>
+            <h3>Thanh toán</h3>
+            @if ($hoaDon->thanhToan==1)
+              <p class="email">Đã thanh toán</p>
               
             @else
-            <p class="email">Thanh toán khi nhận hàng</p>
+            <p class="email">Chưa thanh toán</p>
               
             @endif
         </div>
@@ -45,19 +44,19 @@
     <div class="order-details">
       <!-- Hiển thị danh sách sản phẩm ở đây -->
       <div class="confirm-orderList">
-        <h4>Đơn hàng <span class="id-order">{{$order->code}}</h4>
+        <h4>Đơn hàng <span class="id-order">{{$hoaDon->id}}</h4>
         <ul class="order-list">
-          @foreach ($order->order_details as $item )
+          @foreach ($hoaDon->orderDetails as $item )
           <div class="order-item">
             <div class="order-item_img">
-                <img src="{{asset('upload/'.$item->product_thumb)}}" alt="">
-                <span>{{$item->quantity}}</span>
+                {{-- <img src="{{asset('upload/'.$item->urlHinh])}}" alt=""> --}}
+                <span>{{$item->soLuong}}</span>
             </div>
             <div class="order-item_txt">
                 <div>
-                    <p class="name">{{$item->product_name}}</p>
+                    <p class="name">{{$item->tenSP}}</p>
                 </div>
-                <div class="price">{{number_format($item->price)}}</div>
+                <div class="price">{{number_format($item->giaSP)}}</div>
             </div>
         </div>
           @endforeach
@@ -67,7 +66,7 @@
           <div class="orderSumary-line total">
             <span class="text">Tổng cộng</span>
             <span class="price">
-               {{number_format($order->total)}}
+               {{number_format($hoaDon->tongTien)}}
             </span>
           </div>
         </div>
