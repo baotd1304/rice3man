@@ -103,13 +103,13 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function () {
+// ->middleware('auth.admin')
+Route::prefix('/admin')->name('site')->group(function () {
         //user hung
-    Route::get('/', [NguoiDungController::class,'index'])->name('nguoidung.index');
     Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
 
 
-    Route::get('/dashboard', function () {
+    Route::get('/', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
     //1.Route Loai san pham
