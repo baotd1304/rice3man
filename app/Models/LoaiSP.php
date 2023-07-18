@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LoaiSP extends Model
 {
     use HasFactory;
-
     protected $table = 'loaisanpham';
     protected $primaryKey = 'idLoai';
     public $timestamps = false;
@@ -22,4 +21,5 @@ class LoaiSP extends Model
     {
        return $this->hasMany(SanPham::class,"idLoai","idLoai");
     }
+    protected $attributes= ['anHien'=> 1];
 }

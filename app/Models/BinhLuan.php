@@ -1,21 +1,29 @@
 <?php
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BinhLuan extends Model
 {
-    protected $table = 'binhluan';
-    protected $primaryKey = 'idBL';
-    protected $fillable = ['idSP', 'idND', 'noiDung', 'ngayBL', 'anHien'];
-
-    public function sanpham()
+    use HasFactory;
+    protected $table ="binhluan"; 
+    public $primaryKey = "idBL";
+    public $timestamps = false;
+    protected $fillable = ['idBL', 'idSP', 'idND', 'noiDung', 'tacgia',
+                            'anHien', 'noiBat'];
+    protected $dates = ['ngayDang'];
+    protected $attributes= ['thumbNail'=>'', 'tacGia'=>'', 'noidung'=>'',
+                            'anHien'=>1, 'noiBat'=>1];
+    
+    public function tacGia()
     {
-        return $this->belongsTo(SanPham::class, 'idSP');
+        return $this->belongsTo(NguoiDung::class, 'idND', 'idND');
+    }
+    public function baiviet()
+    {
+        return $this->belongsTo(SanPham::class, 'idSP', 'idSP');
     }
 
-    public function nguoidung()
-    {
-        return $this->belongsTo(NguoiDung::class, 'idND');
-    }
 }

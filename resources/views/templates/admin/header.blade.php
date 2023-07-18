@@ -10,24 +10,27 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../../../assets/img/faviconrice3man.jpg" rel="icon">
-  <link href="../../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assetsAdmin/img/faviconrice3man.jpg')}}" rel="icon">
+  <link href="{{ asset('assetsAdmin/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="../../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/quill/quill.snow.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/vendor/simple-datatables/style.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../../../assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('assetsAdmin/css/style.css')}}" rel="stylesheet">
+
+  {{-- css js file breeze --}}
+  {{-- @vite(['resources/css/app.css', 'resources/js/app.js'])  --}}
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -45,7 +48,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="../../../assets/img/logoRice3man.jpg" alt="">
+        <img src="{{ asset('assetsAdmin/img/logoRice3man.jpg')}}" alt="">
         <span class="d-none d-lg-block">Rice 3 Man</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -70,21 +73,21 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="../../../assets/img/r3m.png" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Bảo</span>
+            <img src="{{ asset('assetsAdmin/img/r3m.png')}}" alt="Profile" class="rounded-circle">
+            {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span> --}}
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Admin</h6>
-              <span>Quản trị viên</span>
+              {{-- <h6>{{ Auth::user()->role? 'Admin' : 'User' }}</h6>
+              <span>{{ Auth::user()->role? 'Quản trị viên' : 'Khách hàng' }}</span> --}}
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            {{-- <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}">
                 <i class="bi bi-person"></i>
                 <span>Thông tin cá nhân</span>
               </a>
@@ -94,7 +97,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}"> --}}
                 <i class="bi bi-gear"></i>
                 <span>Tài khoản</span>
               </a>
@@ -103,21 +106,26 @@
               <hr class="dropdown-divider">
             </li>
 
-            {{-- <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
+            <li>
+              {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('client.dashboard')}}"> --}}
+                <i class="bi bi-arrow-return-left"></i>
+                <span>Chuyển đến public</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li> --}}
+            </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Đăng xuất</span>
-              </a>
+              {{-- <form method="POST" action="{{ route('logout') }}"> --}}
+                @csrf
+                {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();"> --}}
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Đăng xuất</span>
+                </a>
+              {{-- </form> --}}
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -140,7 +148,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route("loaisp.index") }}">
           <i class="bi bi-layout-text-window-reverse"></i><span>Loại sản phẩm</span>
         </a>
         {{-- <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
@@ -158,17 +166,13 @@
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="{{ route("sanpham.index") }}">
           <i class="bi bi-menu-button-wide"></i><span>Sản phẩm</span>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          
-          
-        </ul>
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed">
+        <a class="nav-link collapsed" href="{{ route("thuonghieusp.index") }}">
           <i class="bi bi-journal-text"></i><span>Thương hiệu sản phẩm</span>
         </a>
       </li><!-- End Forms Nav -->
@@ -176,17 +180,28 @@
       <!-- End Charts Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{{route('')}}">
+        <a class="nav-link collapsed"  href="{{ route('chitiethoadon.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý hoá đơn</span>
         </a>
       </li>
      
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route('nguoidung.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý người dùng</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("baiviet.index") }}">
+          <i class="bi bi-journal-text"></i><span>Bài viết</span>
+        </a>
+      </li>
       
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("binhluan.index") }}">
+          <i class="bi bi-journal-text"></i><span>Bình luận</span>
+        </a>
+      </li>
 
       <li class="nav-heading">Thông tin</li>
 

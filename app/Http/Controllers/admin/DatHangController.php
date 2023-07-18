@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\chitietdonhang;
+use Illuminate\Http\Request;
 use App\Models\NguoiDung;
 use App\Models\Order;
-use Illuminate\Http\Request;
+use App\Models\chitietdonhang;
 
 class DatHangController extends Controller
 {
-     // Hiển thị danh sách đơn hàng
+    
+    // Hiển thị danh sách đơn hàng
     
     
     // Hiển thị chi tiết đơn hàng
@@ -33,4 +34,9 @@ class DatHangController extends Controller
         return view('admin.qlyhoadon.index', ['orders' => $orders]);
     }
     
+    
+
+    
 }
+
+

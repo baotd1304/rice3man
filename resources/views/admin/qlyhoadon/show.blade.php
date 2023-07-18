@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-      <a href="{{ route('chitiet.index') }}" class="btn btn-primary mb-3">Quay lại</a>
+      <a href="{{ route('chitiethoadon.index') }}" class="btn btn-primary mb-3">Quay lại</a>
 
         <table class="table">
           <thead class="thead-dark">
@@ -16,12 +16,13 @@
               <th scope="col">Giá sản phẩm</th>
               <th scope="col">Ngày mua</th>
               <th scope="col">Tổng tiền</th>
+              
               <!-- Thêm các cột khác của bảng -->
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{{ $order1->idHD }}</td>
+              <td>{{ $order1->idHD }}</td> 
               <td>{{ $order1->soLuong }}</td>
               <td>{{ $order1->tenSP }}</td>
               <td>{{ $order1->giaSP }}</td>
