@@ -103,8 +103,8 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-// ->middleware('auth.admin')
-Route::prefix('/admin')->name('site')->group(function () {
+// 
+Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function () {
         //user hung
     Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
 
