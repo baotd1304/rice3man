@@ -18,5 +18,4 @@ class LoaiSP extends Model
     {
        return $this->hasMany(SanPham::class,"idLoai","idLoai");
     }
-    protected $attributes= ['anHien'=> 1];
 }

@@ -32,13 +32,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\Router;
 
-use App\Http\Controllers\Admin\SanphamController;
 use App\Http\Controllers\Admin\ThuonghieuSPController;
-use App\Http\Controllers\Admin\LoaiSPController;
 use App\Http\Controllers\Admin\BaivietController;
-use App\Http\Controllers\Admin\BinhLuanController;
-use App\Http\Controllers\Admin\NguoiDungController;
-use App\Http\Controllers\Admin\DatHangController;
 
 // ADMIN CONTROLLER
 use App\Http\Controllers\admin\NguoiDungController;
