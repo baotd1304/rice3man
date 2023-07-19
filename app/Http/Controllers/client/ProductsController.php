@@ -206,7 +206,6 @@ class ProductsController extends Controller
     }
     public function minusToCart(Request $request)
     {
-
         $isFind = false;
         for ($i = 0; $i < count($this->cartFarmApp); $i++) {
             if ($this->cartFarmApp[$i]['productId'] == $request->productId) {

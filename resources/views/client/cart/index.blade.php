@@ -43,12 +43,21 @@
                                                 src="https://bizweb.dktcdn.net/thumb/compact/100/485/131/products/cam-sanh-vat-nuoc-tui-3kg-18-24-trai-202302151630579167.jpg"
                                                 alt="Cam sành vắt nước 3kg (18 - 24 trái)"></a>
                                         <div class="grid__item cart_info">
+                                           
                                             <div class="ajaxcart__product-name-wrapper cart_name">
                                                 <a href="/cam-sanh-vat-nuoc-3kg-18-24-trai"
                                                     class="ajaxcart__product-name h4"
                                                     title="Cam sành vắt nước 3kg (18 - 24 trái)">{{$item->tenSP}}</a>
                                                 <a class="cart__btn-remove remove-item-cart ajaxifyCart--remove"
-                                                    href="javascript:;" data-line="1">Xóa</a>
+                                                    href="javascript:;" data-line="1"> <form action="{{route('clientremove-to-cart')}}" method="POST">
+                                                        @csrf
+                                                        <input type="text" name="productId" value="{{$item->idSP}}"
+                                                                hidden>
+                                                        <button
+                                                            class="cart__btn-remove remove-item-cart ajaxifyCart--remove">
+                                                            xóa
+                                                        </button>
+                                                    </form></a>
 
                                             </div>
                                             <div class="grid">
@@ -64,7 +73,7 @@
                                                             @csrf
                                                             <input type="text" name="productId" value="{{$item->idSP}}"
                                                                 hidden>
-                                                            <input type="number" name="amount" value="" hidden>
+                                                            <input type="number" name="amount" value="1" hidden>
                                                             <button
                                                                 class="minus ajaxcart__qty-adjust ajaxcart__qty--minus items-count">-</button>
                                                         </form>
