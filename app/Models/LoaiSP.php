@@ -13,11 +13,8 @@ class LoaiSP extends Model
     protected $primaryKey = 'idLoai';
     public $timestamps = false;
 
-    protected $fillable = [
-        'tenLoai',
-        'thuTu',
-        'anHien',
-    ];
+    protected $fillable = ['idLoai', 'tenLoai','thuTu', 'anHien'];
+    protected $attributes= ['anHien'=> 1];
     public function SanPhams()
     {
        return $this->hasMany(SanPham::class,"idLoai","idLoai");

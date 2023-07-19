@@ -142,7 +142,7 @@ class AuthController extends Controller
         // $a=Admin::where('email',$request->email)->whereAnd('password',$request->password)->first();
         if (Auth::guard('admin')->attempt($arr)) {
 
-            // return redirect()->route();
+            return redirect()->route('sanpham.index');
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
         } else {

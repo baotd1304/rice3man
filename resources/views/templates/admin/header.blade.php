@@ -139,54 +139,50 @@
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("loaisp.index") }}">
           <i class="bi bi-layout-text-window-reverse"></i><span>Loại sản phẩm</span>
         </a>
-        {{-- <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route("loaisp.create") }}">
-              <i class="bi bi-circle"></i><span>Thêm loại sản phẩm</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route("loaisp.index") }}">
-              <i class="bi bi-circle"></i><span>Danh sách loại sản phẩm</span>
-            </a>
-          </li>
-        </ul> --}}
-      </li><!-- End Tables Nav -->
+        
+      </li><!-- End Tables Nav --> --}}
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="" >
+        <a class="nav-link collapsed" href="{{ route("sanpham.index") }}">
           <i class="bi bi-menu-button-wide"></i><span>Sản phẩm</span>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          
-          
-        </ul>
       </li><!-- End Components Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed">
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("thuonghieusp.index") }}">
           <i class="bi bi-journal-text"></i><span>Thương hiệu sản phẩm</span>
         </a>
-      </li><!-- End Forms Nav -->
+      </li><!-- End Forms Nav --> --}}
 
       <!-- End Charts Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{{route('')}}">
+        <a class="nav-link collapsed"  href="{{ route('chitiethoadon.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý hoá đơn</span>
         </a>
       </li>
      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('nguoidung.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý người dùng</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("baiviet.index") }}">
+          <i class="bi bi-journal-text"></i><span>Bài viết</span>
+        </a>
+      </li>
       
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("binhluan.index") }}">
+          <i class="bi bi-journal-text"></i><span>Bình luận</span>
+        </a>
+      </li> --}}
 
       <li class="nav-heading">Thông tin</li>
 

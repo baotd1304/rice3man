@@ -12,13 +12,12 @@ class SanPham extends Model
 
     protected $table = 'sanpham';
     protected $primaryKey = 'idSP';
-    protected $fillable = [
-        'ten',
-        'moTa',
-        'gia',
-        'soLuong',
-        // Các trường khác của bảng 'sanpham'
-    ];
+    public $timestamps = false;
+    protected $fillable = ['idSP', 'idLoai', 'idTH', 'tenSP', 'giaSP', 'urlHinh', 'moTa',
+                            'soLuotXem', 'soLuotMua', 'anHien', 'noiBat'];
+    protected $dates = ['ngayDang'];
+    protected $attributes= ['soLuotXem'=>0, 'soLuotMua'=>0, 'moTa'=>'', 'urlHinh'=>'',
+                            'anHien'=>1, 'noiBat'=>1, 'idLoai'=>1, 'idTH'=>1 ]; 
 
     // Quan hệ 1-nhiều với bình luận
     public function binhLuans()

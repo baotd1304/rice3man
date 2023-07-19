@@ -2,7 +2,7 @@
 <a href="{{$link}}" class="products-card {{$isRow==true?'isRow':''}}">
     <div class="discount {{$discount>0?'isActive':''}}" >Giảm {{$discount}}%</div>
     <div class="thumb">
-        <img src={{asset('upload/'.$thumb)}} alt="">
+        <img src={{asset($thumb)}} alt="">
     </div>
     <div class="action">
         <i class='bx bx-basket '></i>

@@ -39,6 +39,7 @@ use App\Http\Controllers\admin\DatHangController;
 use App\Http\Controllers\admin\LoaiSPController;
 use App\Http\Controllers\admin\headerAdminController;
 use App\Http\Controllers\admin\BinhLuanController;
+use App\Http\Controllers\admin\SanphamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,33 +103,28 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function () {
-        //user hung
-    Route::get('/', [NguoiDungController::class,'index'])->name('nguoidung.index');
-    Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
-    Route::get('/nguoidung/create', [NguoiDungController::class, 'create'])->name('nguoidung.create');
-    Route::post('/nguoidung', [NguoiDungController::class, 'store'])->name('nguoidung.store');
-    Route::get('/nguoidung/{id}/edit', [NguoiDungController::class, 'edit'])->name('nguoidung.edit');
-    Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
-    Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
+Route::prefix('/admin')->middleware('auth.admin')->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'admin.dashboard'])->name('admin.dashboard');
 
-
-    //test route
-
-
-    Route::get('/loaisanpham', [LoaiSPController::class, 'index'])->name('loaisanpham.index');
-    Route::get('/loaisanpham/create', [LoaiSPController::class, 'create'])->name('loaisanpham.create');
-    Route::post('/loaisanpham', [LoaiSPController::class, 'store'])->name('loaisanpham.store');
-    Route::get('/loaisanpham/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisanpham.edit');
-    Route::put('/loaisanpham/{id}', [LoaiSPController::class, 'update'])->name('loaisanpham.update');
-    Route::delete('/loaisanpham/{id}', [LoaiSPController::class, 'destroy'])->name('loaisanpham.destroy');
-
-
-    //hung test order
-
+    
+    //2. Route san pham
+    Route::get('/sanpham/index', [SanphamController::class, 'index'])->name('sanpham.index');
+    Route::get('/sanpham/create', [SanphamController::class, 'create'])->name('sanpham.create');
+    Route::post('/sanpham', [SanphamController::class, 'store'])->name('sanpham.store');
+    Route::get('/sanpham/{id}/edit', [SanphamController::class, 'edit'])->name('sanpham.edit');
+    Route::put('/sanpham/{id}', [SanphamController::class, 'update'])->name('sanpham.update');
+    Route::delete('/sanpham/{id}', [SanphamController::class, 'destroy'])->name('sanpham.destroy');
 
     // Route hiển thị danh sách đơn hàng
-    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiet.index');
+    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
+
+    // Route hiển thị chi tiết đơn hàng
+    Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
+
+    
+
+    // Route hiển thị danh sách đơn hàng
+    // Route::get('/orders', [DatHangController::class, 'index'])->name('chitiet.index');
 
     // Route hiển thị chi tiết đơn hàng
     Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');

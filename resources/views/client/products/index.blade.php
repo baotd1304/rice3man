@@ -141,7 +141,7 @@
                     @endphp
                     <div class="col-6  col-lg-3 mb-2 mt-2">
                         <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}"
-                            name="{{$item->tenSP}}" thumb="{{$item->thumb}}" priceOld="{{$price1}}"
+                            name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
                             priceCurrent="{{$price2}}đ" discount="{{$item->discount}}" />
 
                     </div>
