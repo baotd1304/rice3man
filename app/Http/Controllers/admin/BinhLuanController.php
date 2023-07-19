@@ -1,68 +1,52 @@
 <?php
-
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BinhLuan;
-use App\Models\SanPham;
+use App\Models\NguoiDung;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class BinhLuanController extends Controller
 {
-    public function index($idSP)
+    public function index()
     {
-        $binhLuans = BinhLuan::where('idSP', $idSP)->get();
-        $sanPham = SanPham::findOrFail($idSP);
-        return view('admin.binhluan.index', compact('binhLuans', 'sanPham'));
+        $perPage = 50;
+        $listbl = BinhLuan::join('sanpham', 'binhluan.idSP', '=', 'sanpham.idSP')
+                ->join('nguoidung', 'binhluan.idND', '=', 'nguoidung.idND')
+                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'nguoidung.ten as tenND')
+                ->orderBy('idBL', 'DESC')->paginate($perPage);
+        
+        return view('admin.binhluan.index', compact('listbl'));
+    }
+    public function edit(Request $request, $idBL=0)
+    {
+        $binhluan = BinhLuan::join('sanpham', 'binhluan.idSP', '=', 'sanpham.idSP')
+                ->join('nguoidung', 'binhluan.idND', '=', 'nguoidung.idND')
+                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'nguoidung.ten as tenND')
+                ->find($idBL);
+        if ($binhluan==null) {
+            $request->session()->flash('thongbao', "Bình luận $idBL không có");
+            return redirect("/thongbao");
+        }
+        return view("admin.binhluan.edit", compact('binhluan') );
     }
 
-    public function create($idSP)
-{
-    $sanPham = SanPham::findOrFail($idSP);
-    return view('admin.binhluan.create', compact('sanPham'));
-}
-
-
-    public function store(Request $request, $idSP)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'noiDung' => 'required',
-            // Thêm các quy tắc validation khác nếu cần
+        $binhluan = BinhLuan::find($id);
+        if ($binhluan==null) {
+            $request->session()->flash('thongbao', "Bình luận $id không tồn tại");
+            redirect("/thongbao");
+        }
+        $validatedData =$request->validate([
+            'anHien' => 'required | boolean',
+        ],[
+            'anHien.required' => 'Chọn trạng thái hiển thị',
         ]);
-
-        $validatedData['idSP'] = $idSP;
-        $binhLuan = BinhLuan::create($validatedData);
-
-        return redirect()->route('binhluan.index', $idSP)->with('success', 'Bình luận đã được tạo thành công.');
+        BinhLuan::where('idBL', $id)->update($validatedData);
+        return redirect()->route('binhluan.index')->with('success', 'Cập nhật bình luận thành công!');
     }
 
-    public function edit($idBL)
-    {
-        $binhLuan = BinhLuan::findOrFail($idBL);
-        return view('admin.binhluan.edit', compact('binhLuan'));
-    }
-
-    public function update(Request $request, $idBL)
-    {
-        $validatedData = $request->validate([
-            'noiDung' => 'required',
-            'sanPham' => 'required',
-            'binhLuan' => 'required',
-            // Thêm các quy tắc validation khác nếu cần
-        ]);
-
-        $binhLuan = BinhLuan::findOrFail($idBL);
-        $binhLuan->update($validatedData);
-
-        return redirect()->route('binhluan.index', $binhLuan->idSP)->with('success', 'Bình luận đã được cập nhật thành công.');
-    }
-
-    public function destroy($idBL)
-    {
-        $binhLuan = BinhLuan::findOrFail($idBL);
-        $idSP = $binhLuan->idSP;
-        $binhLuan->delete();
-
-        return redirect()->route('binhluan.index', $idSP)->with('success', 'Bình luận đã được xóa thành công.');
-    }
 }

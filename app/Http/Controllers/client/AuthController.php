@@ -138,8 +138,6 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' =>  $request->password,
         ];
-        //kiểm tra trường remember có được chọn hay không
-        // $a=Admin::where('email',$request->email)->whereAnd('password',$request->password)->first();
         if (Auth::guard('admin')->attempt($arr)) {
 
             return redirect()->route('sanpham.index');

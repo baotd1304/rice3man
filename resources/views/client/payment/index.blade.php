@@ -290,7 +290,6 @@
 	const btnOrderNow=document.querySelectorAll(".btn.btn-buyNow")
 	const formOrder=document.getElementById('form-order')
 	const btnPaymentVnpay=document.querySelector(".payment_vnpay")
-	const btnPaymentMomo=document.querySelector(".payment_momo")
 	const btnPaymentItems=document.querySelectorAll(".payment-online__item")
 	const btn_verify_code_otp=document.querySelector("#btn_verify_code_otp")
 	
@@ -321,14 +320,7 @@
 		});
 		btnPaymentVnpay.classList.add('active')
 	}
-	btnPaymentMomo.onclick=()=>{
-		getOtp=false
-		formOrder.action="http://127.0.0.1:8000/search"
-		btnPaymentItems.forEach(item => {
-		item.classList.remove('active')
-		});
-		btnPaymentMomo.classList.add('active')
-	}
+
 	btnOrderNow.forEach(e=>{
 		e.onclick=()=>{
 			formOrder.submit()
@@ -337,78 +329,7 @@
 		}
 	}
 	)
-	const sendNotificationGetOtp=()=>{
-		
-		$("#form-order").validate({
-			rules: {
-			username : {
-				required: true,
-			},
-			phone: {
-				required: true,
-			},
-			email: {
-				required: true,
-				// email: true
-			},
-			address: {
-				required: true,
-			},
-			province: {
-				required: true,
-			},
-			ward: {
-				required: true,
-			},
-			district: {
-				required: true,
-			},
-			},
-			messages : {
-			username: {
-				required: "Vui lòng nhập tên khi nhận hàng"
-			},
-			phone: {
-				required: "Vui lòng nhập số điện thoại nhận hàng",
-			},
-			email: {
-				required : "Vui lòng nhập email nhận hàng",
-				// email: "Vui lòng nhập đúng định dạng abc@gmail.com"
-			},
-			address: {
-				required: "Vui lòng nhập số điện thoại nhận hàng",
-			},
-			province: {
-				required: "Vui lòng nhập số điện thoại nhận hàng",
-			},
-			district: {
-				required: "Vui lòng nhập số điện thoại nhận hàng",
-			},
-			ward: {
-				required: "Vui lòng nhập số điện thoại nhận hàng",
-			},
-			},
-			submitHandler: function(form) {
-				btn_verify_code_otp.click()
-				let email=$('#user_email').val()
-				console.log(email)
-				$.ajax({
-							type: 'post',
-							url: 'http://127.0.0.1:8000/api/get_order_otp',
-							data:{
-								email
-							},
-							success:function(data){
-								console.log(data)
-								// alert('vui lòng nhập mã xác nhận')
-							}
-					});
-					$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-				}
-		});
-		$("#form-order").submit()
-		
-	}
+	
 
 	// PHẦN NHẬP CODE
 	function inputCode(event, p, c, n) {
@@ -476,11 +397,13 @@ $("#btn-applyCouponCode").click(()=>{
        console.log("xin chào bạn")
 	   
 	}
-	$.get("https://provinces.open-api.vn/api/p/", function(data) {
+	$.get("https://provinces.open-api.vn/api/p", function(data) {
+	
 			var provinces = data;
 
 			// Thêm các tỉnh/thành vào trường chọn
 			for (var i = 0; i < provinces.length; i++) {
+				console.log('gedâdadadadt')
 				$("#province").append(`<option value="${provinces[i].code}">${provinces[i].name}</option>`);
 			}
 		});

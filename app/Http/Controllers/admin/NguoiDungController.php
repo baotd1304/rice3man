@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\NguoiDung;
 use Illuminate\Http\Request;
-
+use App\Models\NguoiDung;
 class NguoiDungController extends Controller
 {
+    //
     public function index()
     {
         $nguoiDung = NguoiDung::all();
-// return view('client.home.index');
+
         return view('admin.nguoidung.index', compact('nguoiDung'));
     }
    
@@ -73,3 +73,6 @@ class NguoiDungController extends Controller
         return redirect()->route('nguoidung.index')->with('success', 'Người dùng đã được xóa thành công.');
     }
 }
+
+
+
