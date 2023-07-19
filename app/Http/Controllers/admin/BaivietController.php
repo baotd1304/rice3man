@@ -37,17 +37,21 @@ class BaivietController extends Controller
             'tacGia'=> '',
             'anHien' => 'required|boolean',
             'noiBat' => 'required|boolean',
+            'thumbNail' => 'image|mimes:jpeg,png,jpg|max:2048',
         ],[
             'tieuDe.required' => 'Bạn chưa nhập tiêu đề bài viết',
             'tieuDe.min' => 'Tiêu đề bài viết phải dài hơn 5 ký tự',
             'tieuDe.max' => 'Tiêu đề bài viết phải ngắn hơn 255 ký tự',
             'noiDung.required' => 'Bạn chưa nhập nội dung bài viết',
             'noiDung.min' => 'Nội dung bài viết phải dài hơn 5 ký tự',
+            'thumbNail.image' => 'File tải lên phải là hình ảnh',
+            'thumbNail.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'thumbNail.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
         if ($request->has('thumbNail')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('thumbNail')->getClientOriginalName();
-            $path = $request->file('thumbNail')->storeAs('images/baiviet', $fileName, 'public');
-            $validatedData["thumbNail"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('thumbNail')->getClientOriginalName();
+            $path = $request->file('thumbNail')->move('upload/images/baiviet', $fileName);
+            $validatedData["thumbNail"] = '/'.$path;
         }
         BaiViet::create($validatedData);
         return redirect()->route('baiviet.index')->with('success', 'Thêm bài viết thành công!');
@@ -91,17 +95,21 @@ class BaivietController extends Controller
             'tacGia'=> '',
             'anHien' => 'required|boolean',
             'noiBat' => 'required|boolean',
+            'thumbNail' => 'image|mimes:jpeg,png,jpg|max:2048',
         ],[
             'tieuDe.required' => 'Bạn chưa nhập tiêu đề bài viết',
             'tieuDe.min' => 'Tiêu đề bài viết phải dài hơn 5 ký tự',
             'tieuDe.max' => 'Tiêu đề bài viết phải ngắn hơn 255 ký tự',
             'noiDung.required' => 'Bạn chưa nhập nội dung bài viết',
             'noiDung.min' => 'Nội dung bài viết phải dài hơn 5 ký tự',
+            'thumbNail.image' => 'File tải lên phải là hình ảnh',
+            'thumbNail.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'thumbNail.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
         if ($request->has('thumbNail')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('thumbNail')->getClientOriginalName();
-            $path = $request->file('thumbNail')->storeAs('images/baiviet', $fileName, 'public');
-            $validatedData["thumbNail"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('thumbNail')->getClientOriginalName();
+            $path = $request->file('thumbNail')->move('upload/images/baiviet', $fileName);
+            $validatedData["thumbNail"] = '/'.$path;
         }
         BaiViet::where('idBV', $idBV)->update($validatedData);
 
