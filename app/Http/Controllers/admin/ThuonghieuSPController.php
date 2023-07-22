@@ -34,20 +34,24 @@ class ThuonghieuSPController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tenTH' => 'required|min:5',
+            'tenTH' => 'required|min:3',
             'thuTu' => 'required|integer',
             'anHien' => 'required|boolean',
+            'urlHinhTH' => 'image|mimes:jpeg,png,jpg|max:2048',
         ],[
             'tenTH.required' => 'Bạn chưa nhập tên thương hiệu sản phẩm',
-            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 5 ký tự',
+            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 3 ký tự',
             'thuTu.required' => 'Bạn chưa nhập thứ tự thương hiệu sản phẩm',
-            'thuTu.ỉnteger' => 'Thứ tự phải là dạng số',
+            'thuTu.integer' => 'Thứ tự phải là dạng số',
             'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
+            'urlHinhTH.image' => 'File tải lên phải là hình ảnh',
+            'urlHinhTH.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'urlHinhTH.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
         if ($request->has('urlHinhTH')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('urlHinhTH')->getClientOriginalName();
-            $path = $request->file('urlHinhTH')->storeAs('images/thuonghieusp', $fileName, 'public');
-            $validatedData["urlHinhTH"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinhTH')->getClientOriginalName();
+            $path = $request->file('urlHinhTH')->move('upload/images/thuonghieuSP', $fileName);
+            $validatedData["urlHinhTH"] = '/'.$path;
         }
         ThuongHieuSP::create($validatedData);
         return redirect()->route('thuonghieusp.index')
@@ -82,20 +86,24 @@ class ThuonghieuSPController extends Controller
             redirect("/thongbao");
         }
         $validatedData = $request->validate([
-            'tenTH' => 'required|min:5',
+            'tenTH' => 'required|min:3',
             'thuTu' => 'required|integer',
             'anHien' => 'required|boolean',
+            'urlHinhTH' => 'image|mimes:jpeg,png,jpg|max:2048',
         ],[
             'tenTH.required' => 'Bạn chưa nhập tên thương hiệu sản phẩm',
-            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 5 ký tự',
+            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 3 ký tự',
             'thuTu.required' => 'Bạn chưa nhập thứ tự thương hiệu sản phẩm',
             'thuTu.integer' => 'Thứ tự phải là dạng số',
             'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
+            'urlHinhTH.image' => 'File tải lên phải là hình ảnh',
+            'urlHinhTH.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'urlHinhTH.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
         if ($request->has('urlHinhTH')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('urlHinhTH')->getClientOriginalName();
-            $path = $request->file('urlHinhTH')->storeAs('images/thuonghieusp', $fileName, 'public');
-            $validatedData["urlHinhTH"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinhTH')->getClientOriginalName();
+            $path = $request->file('urlHinhTH')->move('upload/images/thuonghieuSP', $fileName);
+            $validatedData["urlHinhTH"] = '/'.$path;
         }
         ThuongHieuSP::where('idTH', $id)->update($validatedData);
         return redirect()->route('thuonghieusp.index')

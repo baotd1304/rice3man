@@ -66,7 +66,7 @@ class SanphamController extends Controller
             // $path = $request->file('urlHinh')->storeAs('images/sanpham', $fileName, 'public');
             // $validatedData["urlHinh"] = '/storage/'.$path;
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinh')->getClientOriginalName();
-            $path = $request->file('urlHinh')->move('upload/images/', $fileName);
+            $path = $request->file('urlHinh')->move('upload/images/sanpham', $fileName);
             $validatedData["urlHinh"] = '/'.$path;
         }
         SanPham::create($validatedData);
@@ -129,7 +129,7 @@ class SanphamController extends Controller
         
         if ($request->has('urlHinh')) {
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinh')->getClientOriginalName();
-            $path = $request->file('urlHinh')->move('upload/images/', $fileName);
+            $path = $request->file('urlHinh')->move('upload/images/sanpham', $fileName);
             $validatedData["urlHinh"] = '/'.$path;
         }
         SanPham::where('idSP', $id)->update($validatedData);

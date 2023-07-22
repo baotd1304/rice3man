@@ -94,11 +94,11 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> --}}
 
             <li>
               {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}"> --}}
-                <i class="bi bi-gear"></i>
+            <i class="bi bi-gear"></i>
                 <span>Tài khoản</span>
               </a>
             </li>
@@ -107,7 +107,7 @@
             </li>
 
             <li>
-              {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('client.dashboard')}}"> --}}
+              <a class="dropdown-item d-flex align-items-center" href="{{route('client')}}">
                 <i class="bi bi-arrow-return-left"></i>
                 <span>Chuyển đến public</span>
               </a>
@@ -147,12 +147,12 @@
         </a>
       </li>
 
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route("loaisp.index") }}">
           <i class="bi bi-layout-text-window-reverse"></i><span>Loại sản phẩm</span>
         </a>
         
-      </li><!-- End Tables Nav --> --}}
+      </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route("sanpham.index") }}">
@@ -160,11 +160,11 @@
         </a>
       </li><!-- End Components Nav -->
 
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route("thuonghieusp.index") }}">
           <i class="bi bi-journal-text"></i><span>Thương hiệu sản phẩm</span>
         </a>
-      </li><!-- End Forms Nav --> --}}
+      </li><!-- End Forms Nav -->
 
       <!-- End Charts Nav -->
       
@@ -174,7 +174,7 @@
         </a>
       </li>
      
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('nguoidung.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý người dùng</span>
         </a>
@@ -190,7 +190,7 @@
         <a class="nav-link collapsed" href="{{ route("binhluan.index") }}">
           <i class="bi bi-journal-text"></i><span>Bình luận</span>
         </a>
-      </li> --}}
+      </li>
 
       <li class="nav-heading">Thông tin</li>
 

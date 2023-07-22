@@ -105,10 +105,18 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-Route::prefix('/admin')->middleware('auth.admin')->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'admin.dashboard'])->name('admin.dashboard');
-
+// Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
+Route::prefix('/admin')->group(function () {
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     
+    //1.Route Loai san pham
+    Route::get('/loaisp/index', [LoaiSPController::class, 'index'])->name('loaisp.index');
+    Route::get('/loaisp/create', [LoaiSPController::class, 'create'])->name('loaisp.create');
+    Route::post('/loaisp', [LoaiSPController::class, 'store'])->name('loaisp.store');
+    Route::get('/loaisp/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisp.edit');
+    Route::put('/loaisp/{id}', [LoaiSPController::class, 'update'])->name('loaisp.update');
+    Route::delete('/loaisp/{id}', [LoaiSPController::class, 'destroy'])->name('loaisp.destroy');
+
     //2. Route san pham
     Route::get('/sanpham/index', [SanphamController::class, 'index'])->name('sanpham.index');
     Route::get('/sanpham/create', [SanphamController::class, 'create'])->name('sanpham.create');
@@ -117,38 +125,43 @@ Route::prefix('/admin')->middleware('auth.admin')->group(function () {
     Route::put('/sanpham/{id}', [SanphamController::class, 'update'])->name('sanpham.update');
     Route::delete('/sanpham/{id}', [SanphamController::class, 'destroy'])->name('sanpham.destroy');
 
+    //3. Route thuong hieu san pham
+    Route::get('/thuonghieusp/index', [ThuonghieuSPController::class, 'index'])->name('thuonghieusp.index');
+    Route::get('/thuonghieusp/create', [ThuonghieuSPController::class, 'create'])->name('thuonghieusp.create');
+    Route::post('/thuonghieusp', [ThuonghieuSPController::class, 'store'])->name('thuonghieusp.store');
+    Route::get('/thuonghieusp/{id}/edit', [ThuonghieuSPController::class, 'edit'])->name('thuonghieusp.edit');
+    Route::put('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'update'])->name('thuonghieusp.update');
+    Route::delete('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'destroy'])->name('thuonghieusp.destroy');
+
+    //4. Route bai viet
+    Route::get('/baiviet/index', [BaivietController::class, 'index'])->name('baiviet.index');
+    Route::get('/baiviet/create', [BaivietController::class, 'create'])->name('baiviet.create');
+    Route::post('/baiviet', [BaivietController::class, 'store'])->name('baiviet.store');
+    Route::get('/baiviet/{id}/edit', [BaivietController::class, 'edit'])->name('baiviet.edit');
+    Route::put('/baiviet/{id}', [BaivietController::class, 'update'])->name('baiviet.update');
+    Route::delete('/baiviet/{id}', [BaivietController::class, 'destroy'])->name('baiviet.destroy');
+
+    //5. Route binh luan
+    Route::get('/binhluan/index', [BinhLuanController::class, 'index'])->name('binhluan.index');
+    Route::get('/binhluan/create', [BinhLuanController::class, 'create'])->name('binhluan.create');
+    Route::post('/binhluan', [BinhLuanController::class, 'store'])->name('binhluan.store');
+    Route::get('/binhluan/{id}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
+    Route::put('/binhluan/{id}', [BinhLuanController::class, 'update'])->name('binhluan.update');
+    Route::delete('/binhluan/{id}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
+
+    //6. Route user
+    Route::get('/nguoidung', [NguoiDungController::class, 'index'])->name('nguoidung.index');
+    Route::get('/nguoidung/create', [NguoiDungController::class, 'create'])->name('nguoidung.create');
+    Route::post('/nguoidung', [NguoiDungController::class, 'store'])->name('nguoidung.store');
+    Route::get('/nguoidung/{id}/edit', [NguoiDungController::class, 'edit'])->name('nguoidung.edit');
+    Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
+    Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
+
+
     // Route hiển thị danh sách đơn hàng
     Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
 
     // Route hiển thị chi tiết đơn hàng
     Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
-
-    
-
-    // Route hiển thị danh sách đơn hàng
-    // Route::get('/orders', [DatHangController::class, 'index'])->name('chitiet.index');
-
-    // Route hiển thị chi tiết đơn hàng
-    Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
-
-
-    //Get all information
-
-    Route::get('/getAll/{q}', [headerAdminController::class, 'searchFollowCategory'])->name('admin.getAll');
-
-    //quản lý comment
-
-
-
-
-    Route::get('/binhluan/{idSP}', [BinhLuanController::class, 'index'])->name('binhluan.index');
-    Route::get('/binhluan/{idSP}/create', [BinhLuanController::class, 'create'])->name('binhluan.create');
-    Route::post('/binhluan/{idSP}', [BinhLuanController::class, 'store'])->name('binhluan.store');
-    Route::get('/binhluan/{idBL}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
-    Route::put('/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
-    Route::delete('/binhluan/{idBL}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
-
-    //update thêm
-    Route::put('/sanpham/{idSP}/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
 
 });
