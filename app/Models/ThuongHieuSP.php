@@ -13,4 +13,8 @@ class ThuongHieuSP extends Model
     public $timestamps = false;
     protected $fillable = ['idTH', 'tenTH', 'urlHinhTH', 'thuTu', 'anHien'];
     protected $attributes= ['anHien'=> 1, 'urlHinhTH'=>''];
+    public function SanPhams()
+    {
+       return $this->hasMany(SanPham::class,"idTH","idTH");
+    }
 }

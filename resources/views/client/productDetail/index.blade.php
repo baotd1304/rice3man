@@ -13,11 +13,11 @@
 	
 	<div class="container">
 		<div class="title-bread-crumb">
-			Xà lách xoong Đà Lạt
+			{{$product->tenSP}}
 		</div>
     <nav aria-label="breadcrumb  " >
       <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
-          <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('client')}}">Trang chủ</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{$product->tenSP}}</li>
       </ol>
     </nav>
@@ -34,7 +34,7 @@
         <div class="swiper mySwiperProductDetailThumb">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="{{asset('upload/'.$product->urlHinh)}}" alt=""
+              <img src="{{asset($product->urlHinh)}}" alt=""
                 onerror="this.src='{{asset('upload/error.jpg')}}'" />
             </div>
             {{-- @foreach ($product->products_images as $product_images )
