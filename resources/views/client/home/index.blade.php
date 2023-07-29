@@ -7,9 +7,9 @@
 <section class="banner">
   <div class="swiper mySwiperBanner">
     <div class="swiper-wrapper">
-      @foreach ($categories as $item)
+      @foreach ($sliders as $slider)
       <div class="swiper-slide">
-        <img src="https://bizweb.dktcdn.net/100/485/131/themes/906771/assets/slider_1.jpg?1686556941849" alt="">
+        <img src="{{ $slider->hinhSlider }}" alt="" width="1296px">
       </div>
       @endforeach
     </div>
@@ -17,11 +17,11 @@
   </div>
 </section>
 
-{{-- Phần danh mục nổi bật --}}
+{{-- Phần thương hiệu nổi bật --}}
 <section class="app-section pt-3 pb-3">
   <div class="container">
     <div class="product-row__header position-relative d-flex">
-      <h2 class="title"><a href="">Danh mục nổi bật</a></h2>
+      <h2 class="title"><a href="">Thương hiệu nổi bật</a></h2>
       <div class="position-relative navigate">
         <div class="swiper-button-next categoryGroup "></div>
         <div class="swiper-button-prev categoryGroup"></div>
@@ -29,15 +29,14 @@
     </div>
     <div class="swiper mySwiperCategoryGroup">
       <div class="swiper-wrapper">
-        @foreach ($categories as $group)
+        @foreach ($thuonghieusps as $thuonghieusp)
         <div class="swiper-slide">
           <div class="category__group__card">
             <div class="thumb">
-              {{-- <img  src="{{asset('upload/'.$group->thumb)}}" alt="" onerror="this.src='{{asset('upload/error.jpg')}}'" > --}}
-              <img  src="https://bizweb.dktcdn.net/100/485/131/themes/906771/assets/danhmuc_3.jpg?1686556941849" alt="" onerror="this.src='{{asset('upload/error.jpg')}}'" >
+              <img  src="{{asset($thuonghieusp->urlHinhTH)}}" alt="" onerror="this.src='{{asset('upload/error.jpg')}}'" >
             </div>
             <div class="content">
-              <a href="" class="name">{{$group->tenLoai}} loai</a>
+              <a href="" class="name">{{$thuonghieusp->tenTH}}</a>
             </div>
           </div>
 
@@ -48,38 +47,28 @@
     </div>
   </div>
 </section>
-{{-- Kết thúc phần danh mục nổi bật --}}
+{{-- Kết thúc phần thương hiệu nổi bật --}}
 {{-- --}}
 <section class="app-section pt-3 pb-3">
   <div class="container">
-    <div class="pt-3 pb-3 mb-0">
-      <h2 class="title mb-0 "><a href="">Ưu đãi trong tuần</a></h2>
-      <span>Trương trình hấp dẫn đang chờ bạn</span>
+    <div class="product-row__header position-relative d-flex">
+      <h2 class="title"><a href="{{ route('clientcategory-group-all')}}">Sản phẩm mới nhất</a></h2>
+      <div class="position-relative navigate">
+        <div class="swiper-button-next categoryGroup "></div>
+        <div class="swiper-button-prev categoryGroup"></div>
+      </div>
     </div>
     <div class="products-row">
-      <div class="product-row__header position-relative d-flex">
-        <div class="count-down">
-          <div class="timer-view" data-countdown="countdown" data-date="2023-08-01-00-00-00">
-            <div class="block-timer"><p><b>34</b>Ngày</p></div><span>:</span><div class="block-timer">
-              <p><b>11</b>Giờ</p></div><span class="mobile">:</span><div class="block-timer"><p>
-              <b>24</b>Phút</p></div><span>:</span><div class="block-timer"><p><b>34</b>Giây</p>
-            </div>
-          </div>
-        </div>
-        <div class="position-relative navigate">
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-        </div>
-      </div>
+      
       <div class="swiper mySwiperTypeEvent">
         <div class="swiper-wrapper">
           @foreach ($productsFlashSale as $item)
           @php
             $price1="";
-                  $price2=number_format($item->price_current);
+                  $price2=number_format($item->giaSP,0,",",".");
                   if($item->discount>0){
-                    $price1=number_format($item->giaSP);
-                    $price2=number_format($item->giaSP);
+                    $price1=number_format($item->giaSP,0,",",".");
+                    $price2=number_format($item->giaSP,0,",",".");
                   }
             // $progressValue=($item->quantity_output/$item->quantity_input)*100;
             // $progressTxt="Đã hết hàng";
@@ -119,14 +108,14 @@
           <div class="swiper-slide">
             <div class="service__card">
               <div class="item">
-                <img width="235" height="158" class="lazyload loaded" src="https://bizweb.dktcdn.net/100/485/131/themes/906771/assets/dichvu_1.jpg?1686556941849" data-src="//bizweb.dktcdn.net/100/485/131/themes/906771/assets/dichvu_1.jpg?1686556941849" alt="" data-was-processed="true">
+                <img width="235" height="158" class="lazyload loaded" src="{{ asset('upload/images/dichvu_1.png')}}" data-src="{{ asset('upload/images/dichvu_1.png')}}" alt="" data-was-processed="true">
                 <h3>
-                    Rau hữu cơ tươi
+                    Chất lượng, đa dạng
                 </h3>
                 <div class="content">
-                    Được trồng theo phương pháp hiện đại nhất, đạt tiêu chuẩn quốc tế, vô cùng an toàn khi sử dụng.
+                    Sản phẩm chất lượng, đa dạng mẫu mã đến từ các thương hiệu uy tín, quen thuộc.
                 </div>
-                <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
+                {{-- <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a> --}}
             </div>
             </div>
           </div>
@@ -138,9 +127,9 @@
                     Giao hàng nhanh chóng
                 </h3>
                 <div class="content">
-                    Được trồng theo phương pháp hiện đại nhất, đạt tiêu chuẩn quốc tế, vô cùng an toàn khi sử dụng.
+                    Dịch vụ giao hàng nhanh chóng, đảm bảo an toàn, tiện lợi tới tận tay khách hàng.
                 </div>
-                <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
+                {{-- <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a> --}}
             </div>
             </div>
           </div>
@@ -152,9 +141,9 @@
                     Thanh toán dễ dàng
                 </h3>
                 <div class="content">
-                    Được trồng theo phương pháp hiện đại nhất, đạt tiêu chuẩn quốc tế, vô cùng an toàn khi sử dụng.
+                    Thanh toán dễ dàng với nhiều lựa chọn khác nhau, đảm bảo thông tin khách hàng.
                 </div>
-                <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a>
+                {{-- <a href="/collections/all" title="Tìm hiểu thêm">Tìm hiểu thêm</a> --}}
             </div>
             </div>
           </div>
@@ -183,12 +172,12 @@ $indexCategory++;
   <div class="container">
     {{-- <h2 class="title pt-3 pb-3 mb-0"><a href="">{{$category->tenLoai}}</a></h2> --}}
     <div class="row align-items-center products-section {{($indexCategory%2==0)?" left":"right"}}">
-      <div class="col-xl-3 col-lg-4 col-md-5 col-xs-12 mb-3 mb-md-0">
+      {{-- <div class="col-xl-3 col-lg-4 col-md-5 col-xs-12 mb-3 mb-md-0">
         <a href="">
           <img style="width:100%;height:100%" class="category-thumb"
             src="https://bizweb.dktcdn.net/100/485/131/themes/906771/assets/image_product1.png?1686556941849" onerror="this.src='{{asset('upload/error.jpg')}}'" alt="">
         </a>
-      </div>
+      </div> --}}
       <div class="col-xl-9 col-lg-8 col-md-7 col-xs-12" style="height:100%">
         <div class="products-row mb-5">
           <div class="swiper mySwiperTypeCategory">
@@ -203,10 +192,10 @@ $indexCategory++;
                 @foreach ($category->SanPhams as $item)
                 @php
                   $price1="";
-                  $price2=number_format($item->giaSP);
+                  $price2=number_format($item->giaSP,0,",",".");
                   if($item->discount>0){
-                    $price1=number_format($item->giaSP)."đ";
-                    $price2=number_format($item->giaSP);
+                    $price1=number_format($item->giaSP,0,",",".")."đ";
+                    $price2=number_format($item->giaSP,0,",",".");
                   }
                 @endphp
                 <div class="swiper-slide">
@@ -219,7 +208,7 @@ $indexCategory++;
             <div class="swiper-pagination"></div>
           </div>
           <div class="view_more text-center mt-3 position-relative">
-            <a href="{{route('clientcategory-group',['slug'=>$group->idLoai])}}" title="Xem thêm" class="position-relative text-light d-inline-block">
+            <a href="{{route('clientcategory',['slug'=>$item->idLoai])}}" title="Xem thêm" class="position-relative text-light d-inline-block">
               Xem thêm
             </a>
           </div>
@@ -236,23 +225,22 @@ $indexCategory++;
     <h2 class="title pt-3 pb-3 mb-0"><a href="">Phản hồi tù khách hàng</a></h2>
     <div class="swiper mySwiperFeeback " style="padding: 10px">
       <div class="swiper-wrapper ">
-        @foreach ($productsFlashSale as $item)
+        @foreach ($binhluans as $bl)
         <div class="swiper-slide ">
           <div class="feedback-card">
             <div class="info">
               <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_1.jpg?1681360920404" class="thumb" alt="">
               <div class="auth">
-                <div class="name">Vũ Quýnh Trang</div>
+                <div class="name">{{ $bl->ten }}</div>
                 <div class="posittion">Nội trợ</div>
               </div>
             </div>
-            <div class="content">
-              Mình rất ưng khi đến green market. Ở đây có rất nhiều thực phẩm phong phú, tha hồ lựa chọn. Nhân viên chuyên
-              nghiệp, nhiệt tình. Chúc green market ngày càng phát triển.
+            <div class="content style='width:588px; height:81px'">
+              {{ $bl->noiDung }}
             </div>
           </div>
         </div>
-        <div class="swiper-slide ">
+        {{-- <div class="swiper-slide ">
           <div class="feedback-card">
             <div class="info">
               <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_2.jpg?1681360920404" class="thumb" alt="">
@@ -265,7 +253,7 @@ $indexCategory++;
              Mình là một nhân viên văn phòng nên thời gian để đi chợ là không có, thật may mắn mình đã tìm được green market.  Theo mình thì đây là website về thực phẩm tốt nhất hiện nay,
             </div>
           </div>
-        </div>
+        </div> --}}
         @endforeach
       </div>
       <div class="swiper-button-next"></div>
@@ -469,4 +457,5 @@ $indexCategory++;
    
    
 </script>
+
 @endsection

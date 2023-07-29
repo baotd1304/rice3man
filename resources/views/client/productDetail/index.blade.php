@@ -80,8 +80,8 @@
           @else
           <div class="product-detail--info__price-old">{{$product->giaSP}}<span> vnđ</span></div>
           @endif --}}
-          <div class="product-detail--info__price-new">{{number_format($product->giaSP)}}<span> vnđ</span></div>
-          <div class="product-detail--info__price-old">{{number_format($product->giaSP)}}<span> vnđ</span></div>
+          <div class="product-detail--info__price-new">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
+          <div class="product-detail--info__price-old">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
         </div>
         <label class="sl section" @style("display: block;font-weight: 600;margin-bottom: 0.5rem;")>Số lượng:</label>
         <form id="form-add" method="post" action={{route('clientadd-to-cart')}}>

@@ -29,10 +29,10 @@
     @foreach ($products as $item)
     @php
     $price1="";
-    $price2=number_format($item->giaSP);
+    $price2=number_format($item->giaSP,0,",",".");
     if($item->discount>0){
-    $price1=number_format($item->giaSP)."vnđ";
-    $price2=number_format($item->giaSP-($item->giaSP*$item->discount/100));
+    $price1=number_format($item->giaSP,0,",",".")."vnđ";
+    $price2=number_format($item->giaSP-($item->giaSP*$item->discount/100),0,",",".");
     }
     @endphp
     <div class="col-3">

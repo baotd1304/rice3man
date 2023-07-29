@@ -26,7 +26,10 @@ class SanPham extends Model
     }
     public function LoaiSP()
     {
-        return $this->belongsTo(LoaiSP::class,'idLoai','idSP');
+        return $this->belongsTo(LoaiSP::class,'idLoai','idLoai');
     }
-    
+    public function ThuonghieuSP()
+    {
+        return $this->belongsTo(ThuongHieuSP::class,'idTH','idTH');
+    }
 }

@@ -42,6 +42,8 @@ use App\Http\Controllers\admin\LoaiSPController;
 use App\Http\Controllers\admin\headerAdminController;
 use App\Http\Controllers\admin\BinhLuanController;
 use App\Http\Controllers\admin\SanphamController;
+use App\Http\Controllers\admin\SliderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,8 +107,8 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
-// Route::prefix('/admin')->group(function () {
+// Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
+Route::prefix('/admin')->group(function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     
     //1.Route Loai san pham
@@ -156,6 +158,14 @@ Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn �
     Route::get('/nguoidung/{id}/edit', [NguoiDungController::class, 'edit'])->name('nguoidung.edit');
     Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
     Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
+
+    //7. Route slider
+    Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('/slider', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
 
 
     // Route hiển thị danh sách đơn hàng
