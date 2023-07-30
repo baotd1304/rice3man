@@ -105,6 +105,7 @@
 					</div>
 					<input type="text" id="input_province" name="province" value="{{old('province')}}" hidden>
 					<input type="text" id="input_district" name="district" value="{{old('district')}}" hidden>
+					<input type="text" id="input_ward" name="ward" value="{{old('ward')}}" hidden>
 
 					<div class="row">
 						<div class="col-4">

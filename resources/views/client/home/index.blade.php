@@ -219,7 +219,7 @@ $indexCategory++;
             <div class="swiper-pagination"></div>
           </div>
           <div class="view_more text-center mt-3 position-relative">
-            <a href="{{route('clientcategory-group',['slug'=>$group->idLoai])}}" title="Xem thêm" class="position-relative text-light d-inline-block">
+            <a href="{{route('clientcategory',['slug'=>$item->idLoai])}}" title="Xem thêm" class="position-relative text-light d-inline-block">
               Xem thêm
             </a>
           </div>
