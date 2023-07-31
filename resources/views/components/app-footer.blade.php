@@ -3,9 +3,9 @@
 
 <!-- <link rel="stylesheet" href="{{asset('css/client/home.css')}}"> -->
 
-<footer class="mt-4">
+<footer class="mt-1">
 
-<div class="section-policy">
+<div class="section-policy mb-5">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -192,18 +192,15 @@
                     <address class="vcard mb-4">
                         <p class="adr">
                             <b>Địa Chỉ: </b>
-                            68 Phúc Lộc Thọ, Quận 1, Thành phố Hồ Chí Minh
+                            Công viên phần mềm Quang Trung, Quận 12, Thành phố Hồ Chí Minh
                         </p>
                         <p class="email">
                             <b>Email:</b>
-                            <a href="mailto:haidinh147039@gmail.com" title="haidinh147039@gmail.com">greenmarket@gmail.com</a>
+                            <a href="mailto:rice3man@gmail.com" title="rice3man@gmail.com">rice3man@gmail.com</a>
                         </p>
                         <p class="hotline">
                             <b>Hotline: </b>
-                            <a href="tel:0937782305" title="19006750">19006750</a>
-                        </p>
-                        <p class="giayphep">
-                        Giấy chứng nhận Đăng ký Kinh doanh số 0309532xxx do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 01/04/2002
+                            <a href="tel:19006750" title="19006750">19006750</a>
                         </p>
                     </address>
                 </div>
@@ -274,7 +271,7 @@
                     <div class="coppyright">
                         Bản quyền thuộc về
                         <a href="#" rel="nofollow noopener" title="NewYummy" target="_bla
-                        "> green market.</a>
+                        "> Rice 3 Man</a>
                     </div>
                 </div>
             </div>

@@ -107,8 +107,8 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-// Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
+// Route::prefix('/admin')->group(function () {
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     
     //1.Route Loai san pham

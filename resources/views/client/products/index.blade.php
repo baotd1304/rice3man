@@ -12,7 +12,7 @@
 @endsection
 @section('main-content')
 <section class="bread-crumb"
-    style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(/upload/images/slider\2023-07-29_1690624556_2.png) no-repeat center; height:200px">
+style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(//bizweb.dktcdn.net/100/485/131/themes/906771/assets/breadcrumb.jpg?1686556941849) no-repeat center;">
 
     <div class="container">
         <div class="title-bread-crumb">

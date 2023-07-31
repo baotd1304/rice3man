@@ -171,18 +171,18 @@ $indexCategory++;
 <section class="app-section">
   <div class="container">
     {{-- <h2 class="title pt-3 pb-3 mb-0"><a href="">{{$category->tenLoai}}</a></h2> --}}
-    <div class="row align-items-center products-section {{($indexCategory%2==0)?" left":"right"}}">
+    <div class="row align-items-center products-section">
       {{-- <div class="col-xl-3 col-lg-4 col-md-5 col-xs-12 mb-3 mb-md-0">
         <a href="">
           <img style="width:100%;height:100%" class="category-thumb"
             src="https://bizweb.dktcdn.net/100/485/131/themes/906771/assets/image_product1.png?1686556941849" onerror="this.src='{{asset('upload/error.jpg')}}'" alt="">
         </a>
       </div> --}}
-      <div class="col-xl-9 col-lg-8 col-md-7 col-xs-12" style="height:100%">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12" style="height:100%">
         <div class="products-row mb-5">
           <div class="swiper mySwiperTypeCategory">
             <div class="product-row__header position-relative d-flex">
-              <h2 class="title "><a href="">{{$category->tenLoai}}</a></h2>
+              <h2 class="title "><a href="{{ route('clientcategory',['slug'=>$category->idLoai])}}">{{$category->tenLoai}}</a></h2>
               <div class="position-relative navigate">
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -201,7 +201,7 @@ $indexCategory++;
                 <div class="swiper-slide">
                   <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}" 
                     name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
-                    priceCurrent="{{$price2}}đ" discount="{{10}}" />
+                    priceCurrent="{{$price2}}đ" discount="{{0}}" />
                 </div>
                 @endforeach
             </div>
@@ -215,6 +215,7 @@ $indexCategory++;
         </div>
       </div>
     </div>
+    
   </div>
 </section>
 @endif
@@ -229,10 +230,10 @@ $indexCategory++;
         <div class="swiper-slide ">
           <div class="feedback-card">
             <div class="info">
-              <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_1.jpg?1681360920404" class="thumb" alt="">
+              {{-- <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_1.jpg?1681360920404" class="thumb" alt=""> --}}
               <div class="auth">
                 <div class="name">{{ $bl->ten }}</div>
-                <div class="posittion">Nội trợ</div>
+                {{-- <div class="posittion">Nội trợ</div> --}}
               </div>
             </div>
             <div class="content style='width:588px; height:81px'">
@@ -266,14 +267,14 @@ $indexCategory++;
 <section class="app-section pt-3 pb-3">
   <div class="container">
     <div class="product-row__header position-relative d-flex">
-      <div class="pt-3 pb-3 mb-0">
+      {{-- <div class="pt-3 pb-3 mb-0">
         <h2 class="title"><a href="">Tin tức mới nhất </a></h2>
          <span>Tin tức mới nhất được chúng tôi cập nhật thường xuyên</span>
       </div>
       <div class="position-relative navigate">
         <div class="swiper-button-next categoryGroup "></div>
         <div class="swiper-button-prev categoryGroup"></div>
-      </div>
+      </div> --}}
     </div>
     <h2 class="title pt-3 pb-3 mb-0"><a href="">Bài viết nổi bật</a></h2>
     <div class="swiper mySwiperNews">

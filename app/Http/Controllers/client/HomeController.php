@@ -27,7 +27,9 @@ class HomeController extends Controller
         $categoriesGroup=LoaiSP::with('SanPhams')->get();
         $thuonghieusp=ThuongHieuSP::where('anHien', 1)->orderbyDesc('thuTu')->get();
         $sliders=Slider::where('anHien', 1)->orderbyDesc('ngayDang')->get();
-        $binhluans=BinhLuan::with('nguoibl')->get();
+        $binhluans=BinhLuan::join('nguoidung', 'nguoidung.idND', '=', 'binhluan.idND')
+                ->select('binhluan.*', 'nguoidung.ten')
+                ->orderBy('ngayBL', 'DESC')->get();
         $news=BaiViet::all();
         $data=[
             "productsFlashSale"=>$productsFlashSale,
