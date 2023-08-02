@@ -74,38 +74,28 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{ asset('assetsAdmin/img/r3m.png')}}" alt="Profile" class="rounded-circle">
-            {{-- <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span> --}}
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              {{-- <h6>{{ Auth::user()->role? 'Admin' : 'User' }}</h6>
-              <span>{{ Auth::user()->role? 'Quản trị viên' : 'Khách hàng' }}</span> --}}
+              <h6>{{ Auth::user()->name }}</h6>
+              <span>{{ Auth::user()->role? 'Quản trị viên' : 'Khách hàng' }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            {{-- <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{{route('admin.profile.edit')}}">
                 <i class="bi bi-person"></i>
-                <span>Thông tin cá nhân</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li> --}}
-
-            <li>
-              {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('profile.edit')}}"> --}}
-            <i class="bi bi-gear"></i>
-                <span>Tài khoản</span>
+                <span>Thông tin tài khoản</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
+            
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{route('client')}}">
                 <i class="bi bi-arrow-return-left"></i>
@@ -117,15 +107,15 @@
             </li>
 
             <li>
-              {{-- <form method="POST" action="{{ route('logout') }}"> --}}
+              <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                {{-- <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}"
+                <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}"
                             onclick="event.preventDefault();
-                                        this.closest('form').submit();"> --}}
+                                        this.closest('form').submit();">
                   <i class="bi bi-box-arrow-right"></i>
                   <span>Đăng xuất</span>
                 </a>
-              {{-- </form> --}}
+              </form>
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -201,18 +191,18 @@
       <li class="nav-heading">Thông tin</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{route('admin.profile.edit')}}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-question-circle"></i>
           <span>F.A.Q</span>
         </a>
-      </li><!-- End F.A.Q Page Nav -->
+      </li><!-- End F.A.Q Page Nav --> --}}
 
       
 

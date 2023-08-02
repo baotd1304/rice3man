@@ -70,4 +70,8 @@ function scrollToTop() {
   .app__header__navigation {
       margin-bottom: 25px;
   }
+  .app__header__control{
+    position: relative;
+    z-index: 3001;
+}
 </style>

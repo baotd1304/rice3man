@@ -41,6 +41,7 @@ use App\Http\Controllers\admin\DatHangController;
 use App\Http\Controllers\admin\LoaiSPController;
 use App\Http\Controllers\admin\headerAdminController;
 use App\Http\Controllers\admin\BinhLuanController;
+use App\Http\Controllers\admin\ProfileAdminController;
 use App\Http\Controllers\admin\SanphamController;
 use App\Http\Controllers\admin\SliderController;
 
@@ -60,12 +61,12 @@ Route::prefix('/')->name('client')->middleware('auth.client')->group(function ()
 });
 
 Route::prefix('/')->name('client')->group(function () {
-    Route::get('/login', [AuthController::class, 'show_login_user'])->name('show-login');
-    Route::get('/logout', [AuthController::class, 'logout_user'])->name('logout-user');
-    Route::post('/login', [AuthController::class, 'login_user'])->name('login');
-    Route::get('/register', [AuthController::class, 'show_register_user'])->name('show-register');
-    Route::post('/register', [AuthController::class, 'register_user'])->name('register');
-    Route::get('/email/verify/{token}', [AuthController::class, 'verify_email'])->name('verify-email');
+    // Route::get('/login', [AuthController::class, 'show_login_user'])->name('show-login');
+    // Route::get('/logout', [AuthController::class, 'logout_user'])->name('logout-user');
+    // Route::post('/login', [AuthController::class, 'login_user'])->name('login');
+    // Route::get('/register', [AuthController::class, 'show_register_user'])->name('show-register');
+    // Route::post('/register', [AuthController::class, 'register_user'])->name('register');
+    // Route::get('/email/verify/{token}', [AuthController::class, 'verify_email'])->name('verify-email');
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -107,8 +108,13 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn để fix auth admin
+Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { // ẩn để fix auth admin
 // Route::prefix('/admin')->group(function () {
+
+    Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/profile', [ProfileAdminController::class, 'destroy'])->name('admin.profile.destroy');
+
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
     
     //1.Route Loai san pham
@@ -175,3 +181,22 @@ Route::prefix('/admin')->middleware('auth.admin')->group(function () { // ẩn �
     Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
 
 });
+
+use App\Http\Controllers\ProfileController;
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+// Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('clienthome');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
+});
+
+
+require __DIR__.'/auth.php';

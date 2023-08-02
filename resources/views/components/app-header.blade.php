@@ -33,16 +33,89 @@
                         </div>
                      </div>
                      <div class="action-item auth">
-                        <i class='bx bx-user'></i>
-                        {{-- <div class="link">
-                            @if (auth()->user())
-                            <div><a href="{{route('clientaccount')}}">{{Auth::guard('web')->user()->username}}</a></div>
+                         <div class="link">
+                             @if (auth()->user())
+                             <div class="nav-item dropdown">
+                                 <a class="nav-link nav-profile d-flex align-items-center" href="#" 
+                                 data-bs-toggle="dropdown" aria-expanded="false" 
+                                 style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
+                                 <i class='bx bx-user'></i>
+                                 <span class="d-none d-md-block dropdown-toggle ps-1">{{Auth::user()->name}}</span>
+                                </a><!-- End Profile Iamge Icon -->
+                      
+                                <ul class="dropdown-menu dropdown-menu-start dropdown-menu-arrow profile">
+                                  <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
+                                      <span>Tài khoản</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                      
+                                  <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                      <span>Lịch sử mua hàng</span>
+                                    </a>
+                                  </li>
+                                  @if (Auth()->user()->role == 1)
+                                  <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.dashboard')}}">
+                                      <span>Chuyển đến Admin</span>
+                                    </a>
+                                  </li>
+                                  @endif
+                                  <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                      
+                                  <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" 
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <span>Đăng xuất</span>
+                                        </a>
+                                    </form>
+                                  </li>
+                                  
+                                  
+                      
+                                </ul><!-- End Profile Dropdown Items -->
+                            </div>
+                            
                             @else
-                            <div><a href="{{route('clientshow-register')}}">Đăng ký </a></div>
-                            <div><a href="{{route('clientshow-login')}}">Đăng nhập</a></div>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link nav-profile d-flex align-items-center" href="#" 
+                                    data-bs-toggle="dropdown" aria-expanded="false" 
+                                    style="padding: 0px">
+                                    <i class='bx bx-user'></i>
+                                  <span class="d-none d-md-block dropdown-toggle"></span>
+                                </a><!-- End Profile Iamge Icon -->
+                      
+                                <ul class="dropdown-menu dropdown-menu-start dropdown-menu-arrow profile">
+                                  <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="/register">
+                                      <span>Đăng ký</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
+                      
+                                  <li>
+                                    <a class="dropdown-item d-flex align-items-center" href="/login">
+                                      <span>Đăng nhập</span>
+                                    </a>
+                                  </li>
+                                </ul><!-- End Profile Dropdown Items -->
+                            </div>
                             @endif
                             
-                        </div> --}}
+                        </div>
                      </div>
                      <div class="action-item cart position-relative">
                         <a  href="{{route('clientcart')}}">
