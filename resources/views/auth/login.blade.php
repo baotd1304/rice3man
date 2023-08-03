@@ -59,3 +59,17 @@
 
 
 @endsection
+
+<style>
+    .app__header{
+        max-width: 1300px;
+        margin: auto;
+    }
+    footer .section-policy, .container, .foo-mid, .foo_bot{
+        max-width: 1300px !important;
+        margin: auto;
+    }
+    footer .foo_bot{
+        position: relative;
+    }
+</style>

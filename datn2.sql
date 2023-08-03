@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th7 30, 2023 lúc 04:58 PM
+-- Thời gian đã tạo: Th8 03, 2023 lúc 11:50 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -236,10 +236,9 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_06_15_073405_add_updated_at_to_nguoidung', 1);
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
 
 -- --------------------------------------------------------
 
@@ -315,18 +314,6 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `personal_access_tokens`
 --
 
@@ -363,7 +350,7 @@ CREATE TABLE `quantri` (
 --
 
 INSERT INTO `quantri` (`Ten`, `idQT`, `password`, `email`, `soDienThoai`, `created_at`) VALUES
-('hùng ', 1, '$2y$10$vnezb2VaYSfujrF6Vov8sOkM29PE.a4mY6/kJoo5nn5ivfRYfL866', 'hung@gmail.com', '123456789', '2023-07-15 08:53:32'),
+('hùng ', 1, '$2y$10$vnezb2VaYSfujrF6Vov8sOkM29PE.a4mY6/kJoo5nn5ivfRYfL866', 'hung@gmail.com', '12345678', '2023-07-15 08:53:32'),
 ('hùng 2', 2, '12345678', 'hung2@gmai.com', '12345678', '2023-07-15 08:53:32');
 
 -- --------------------------------------------------------
@@ -494,12 +481,25 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `phone` varchar(20) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `role` tinyint(1) NOT NULL DEFAULT 0 COMMENT '1 admin,\r\n0 user',
+  `active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 active,\r\n0 inactive',
   `password` varchar(255) NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`, `active`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Trần Duy Bảo', 'admin@gmail.comm', '123123', NULL, '31313', 0, 1, '$2y$10$IkdLU029CaAULswowUD/feYOtQJSZwozOld2Dk4vDcFmUOrahKAcu', '2023-08-02 07:02:57', 'qTqnfTRUQsVI3E9EltM14z3pxeOzRoY8yYb9UdVxEnjsejW5KjGNmZatIq8l', '2023-08-02 06:53:22', '2023-08-02 09:41:37'),
+(4, 'Duy Bảo', 'admin@gmail.comeqe', '121212', NULL, '31313', 1, 1, '$2y$10$.ujw19JzB1mQn08kilCPoOPmCY1btulEOY0XpmeL3wk1Buytyhv1i', '2023-08-02 10:43:28', NULL, '2023-08-02 10:43:06', '2023-08-02 10:44:18');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -585,12 +585,6 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Chỉ mục cho bảng `password_reset_tokens`
---
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
-
---
 -- Chỉ mục cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -629,7 +623,8 @@ ALTER TABLE `thuonghieusp`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_phone_unique` (`phone`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -687,7 +682,7 @@ ALTER TABLE `magiamgia`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `nguoidung`
@@ -735,7 +730,7 @@ ALTER TABLE `thuonghieusp`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -129,7 +129,7 @@ footer .store .tit {
 
 .foo_bot {
     width: 100%;
-    position: absolute;
+    /* position: absolute; */
     left: 0%;
     right: 100%;
 }

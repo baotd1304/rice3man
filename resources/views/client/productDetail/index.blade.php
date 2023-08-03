@@ -171,10 +171,10 @@
               @foreach ($product_relate as $item)
               @php
                 $price1="";
-                      $price2=number_format($item->price_current);
+                      $price2=number_format($item->giaSP,0,",",".");
                       if($item->discount>0){
-                        $price1=number_format($item->giaSP);
-                        $price2=number_format($item->giaSP);
+                        $price1=number_format($item->giaSP,0,",",".");
+                        $price2=number_format($item->giaSP,0,",",".");
                       }
                 // $progressValue=($item->quantity_output/$item->quantity_input)*100;
                 // $progressTxt="Đã hết hàng";
