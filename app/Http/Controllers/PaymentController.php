@@ -211,7 +211,7 @@ class PaymentController extends Controller
         setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
         setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
 
-        return redirect()->route('clientpage-thanks',['idHD'=>$order->id]);
+        return redirect()->route('clientpage-thanks',['idHD'=>$order->idHD]);
         return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');
       }
       session()->forget('url_prev');

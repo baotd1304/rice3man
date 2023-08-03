@@ -222,7 +222,7 @@
 					@endphp
 					<div class="order-item">
 						<div class="order-item_img">
-							<img src="{{asset('upload/'.$item->thumb)}}" alt="">
+							<img src="{{asset($item->urlHinh)}}" alt="">
 							<span>{{$item->amount}}</span>
 						</div>
 						<div class="order-item_txt">

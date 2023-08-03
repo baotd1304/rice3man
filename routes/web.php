@@ -89,7 +89,7 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/payment_momo_atm', [PaymentController::class, 'create_payment_momo_atm'])->name('payment_momo_atm');
     Route::get('/return_payment_momo_atm', [PaymentController::class, 'return_payment_momo_atm'])->name('return_payment_momo_atm');
     Route::get('/search', [ProductsController::class, 'search'])->name('search');
-    Route::get('/thanks/{code}', [PaymentController::class, 'thanks'])->name('page-thanks');
+    Route::get('/thanks/{idHD}', [PaymentController::class, 'thanks'])->name('page-thanks');
     Route::post('/add-to-cart', [ProductsController::class, 'addToCart'])->name('add-to-cart');
     Route::post('/buy-now', [ProductsController::class, 'buyNow'])->name('buy-now');
     Route::post('/minus-to-cart', [ProductsController::class, 'minusToCart'])->name('minus-to-cart');
