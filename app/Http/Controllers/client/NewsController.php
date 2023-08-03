@@ -29,15 +29,15 @@ class NewsController extends Controller
        try {
         $post = BaiViet::where('idBV', $id)->firstOrFail();
         $newsRelate=BaiViet::where('idBV','<>',$post->idBV)->paginate(4);
-        $comments=BinhLuan::where('idBV',$post->idBV)->get();
+        // $comments=BinhLuan::where('idBV',$post->idBV)->get();
         $data=[
             "post"=>$post,
             "newsRelate"=>$newsRelate,
-            "comments"=>$comments
+            "comments"=>[],
         ];
         return view('client.newsDetail.index',$data);
        } catch (\Throwable $th) {
-         dd($th);
+        //  dd($th);
        }
 
     }

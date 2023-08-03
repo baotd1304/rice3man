@@ -32,13 +32,18 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\Router;
 
-use App\Http\Controllers\Admin\SanphamController;
 use App\Http\Controllers\Admin\ThuonghieuSPController;
-use App\Http\Controllers\Admin\LoaiSPController;
 use App\Http\Controllers\Admin\BaivietController;
-use App\Http\Controllers\Admin\BinhLuanController;
-use App\Http\Controllers\Admin\NguoiDungController;
-use App\Http\Controllers\Admin\DatHangController;
+
+// ADMIN CONTROLLER
+use App\Http\Controllers\admin\NguoiDungController;
+use App\Http\Controllers\admin\DatHangController;
+use App\Http\Controllers\admin\LoaiSPController;
+use App\Http\Controllers\admin\headerAdminController;
+use App\Http\Controllers\admin\BinhLuanController;
+use App\Http\Controllers\admin\ProfileAdminController;
+use App\Http\Controllers\admin\SanphamController;
+use App\Http\Controllers\admin\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,12 +61,12 @@ Route::prefix('/')->name('client')->middleware('auth.client')->group(function ()
 });
 
 Route::prefix('/')->name('client')->group(function () {
-    Route::get('/login', [AuthController::class, 'show_login_user'])->name('show-login');
-    Route::get('/logout', [AuthController::class, 'logout_user'])->name('logout-user');
-    Route::post('/login', [AuthController::class, 'login_user'])->name('login');
-    Route::get('/register', [AuthController::class, 'show_register_user'])->name('show-register');
-    Route::post('/register', [AuthController::class, 'register_user'])->name('register');
-    Route::get('/email/verify/{token}', [AuthController::class, 'verify_email'])->name('verify-email');
+    // Route::get('/login', [AuthController::class, 'show_login_user'])->name('show-login');
+    // Route::get('/logout', [AuthController::class, 'logout_user'])->name('logout-user');
+    // Route::post('/login', [AuthController::class, 'login_user'])->name('login');
+    // Route::get('/register', [AuthController::class, 'show_register_user'])->name('show-register');
+    // Route::post('/register', [AuthController::class, 'register_user'])->name('register');
+    // Route::get('/email/verify/{token}', [AuthController::class, 'verify_email'])->name('verify-email');
 
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -103,15 +108,15 @@ Route::prefix('/admin')->name('site')->group(function () {
 });
 
 // PHAN ADMIN
-// 
-Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function () {
-        //user hung
-    Route::get('/nguoidung', [NguoiDungController::class,'index'])->name('nguoidung.index');
+Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { // ẩn để fix auth admin
+// Route::prefix('/admin')->group(function () {
 
+    Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/profile', [ProfileAdminController::class, 'destroy'])->name('admin.profile.destroy');
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    
     //1.Route Loai san pham
     Route::get('/loaisp/index', [LoaiSPController::class, 'index'])->name('loaisp.index');
     Route::get('/loaisp/create', [LoaiSPController::class, 'create'])->name('loaisp.create');
@@ -160,47 +165,38 @@ Route::prefix('/admin')->name('site')->middleware('auth.admin')->group(function 
     Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
     Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
 
-
-    //test route
-
-
-    Route::get('/loaisanpham', [LoaiSPController::class, 'index'])->name('loaisanpham.index');
-    Route::get('/loaisanpham/create', [LoaiSPController::class, 'create'])->name('loaisanpham.create');
-    Route::post('/loaisanpham', [LoaiSPController::class, 'store'])->name('loaisanpham.store');
-    Route::get('/loaisanpham/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisanpham.edit');
-    Route::put('/loaisanpham/{id}', [LoaiSPController::class, 'update'])->name('loaisanpham.update');
-    Route::delete('/loaisanpham/{id}', [LoaiSPController::class, 'destroy'])->name('loaisanpham.destroy');
+    //7. Route slider
+    Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('/slider', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
 
 
-    //hung test order
-
-
-    // Route hiển thị danh sách đơn hàng
-    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiet.index');
     // Route hiển thị danh sách đơn hàng
     Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
 
     // Route hiển thị chi tiết đơn hàng
     Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
 
-
-    //Get all information
-
-    Route::get('/getAll/{q}', [headerAdminController::class, 'searchFollowCategory'])->name('admin.getAll');
-
-    //quản lý comment
-
-
-
-
-    Route::get('/binhluan/{idSP}', [BinhLuanController::class, 'index'])->name('binhluan.index');
-    Route::get('/binhluan/{idSP}/create', [BinhLuanController::class, 'create'])->name('binhluan.create');
-    Route::post('/binhluan/{idSP}', [BinhLuanController::class, 'store'])->name('binhluan.store');
-    Route::get('/binhluan/{idBL}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
-    Route::put('/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
-    Route::delete('/binhluan/{idBL}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
-
-    //update thêm
-    Route::put('/sanpham/{idSP}/binhluan/{idBL}', [BinhLuanController::class, 'update'])->name('binhluan.update');
-
 });
+
+use App\Http\Controllers\ProfileController;
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+// Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('clienthome');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
+});
+
+
+require __DIR__.'/auth.php';

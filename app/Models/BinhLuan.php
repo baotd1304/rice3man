@@ -17,7 +17,7 @@ class BinhLuan extends Model
     protected $attributes= ['thumbNail'=>'', 'tacGia'=>'', 'noidung'=>'',
                             'anHien'=>1, 'noiBat'=>1];
     
-    public function tacGia()
+    public function nguoibl()
     {
         return $this->belongsTo(NguoiDung::class, 'idND', 'idND');
     }
@@ -25,5 +25,5 @@ class BinhLuan extends Model
     {
         return $this->belongsTo(SanPham::class, 'idSP', 'idSP');
     }
-
+    
 }

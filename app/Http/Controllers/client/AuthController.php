@@ -140,7 +140,7 @@ class AuthController extends Controller
         ];
         if (Auth::guard('admin')->attempt($arr)) {
 
-            return redirect()->route('site.admin.dashboard');
+            return redirect()->route('sanpham.index');
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
         } else {

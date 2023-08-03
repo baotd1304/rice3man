@@ -12,7 +12,7 @@
 @endsection
 @section('main-content')
 <section class="bread-crumb"
-    style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(//bizweb.dktcdn.net/100/485/131/themes/906771/assets/breadcrumb.jpg?1686556941849) no-repeat center;">
+style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url(//bizweb.dktcdn.net/100/485/131/themes/906771/assets/breadcrumb.jpg?1686556941849) no-repeat center;">
 
     <div class="container">
         <div class="title-bread-crumb">
@@ -20,8 +20,8 @@
         </div>
         <nav aria-label="breadcrumb  ">
             <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
-                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
             </ol>
         </nav>
     </div>
@@ -113,7 +113,7 @@
                               <label for="">Z-A</label>
                               <input type="radio" id="" name="sort_by" value="price_asc" {{ $request->get('sort_by') ==
                             'price_asc' ? 'checked' : '' }}>
-                              <label for="">Gía tăng dần</label>
+                              <label for="">Giá tăng dần</label>
                               <input type="radio" id="" name="sort_by" value="price_desc" {{ $request->get('sort_by') ==
                             'price_desc' ? 'checked' : '' }}>
                               <label for="">Giá giảm dần</label>
@@ -133,15 +133,15 @@
                     @foreach ($products as $item)
                     @php
                     $price1="";
-                    $price2=number_format($item->giaSP);
+                    $price2=number_format($item->giaSP,0,",",".");
                     if($item->discount>0){
-                    $price1=number_format($item->giaSP)."đ";
-                    $price2=number_format($item->giaSP-($item->giaSP*$item->discount/100));
+                    $price1=number_format($item->giaSP,0,",",".")."đ";
+                    $price2=number_format($item->giaSP-($item->giaSP*$item->discount/100),0,",",".");
                     }
                     @endphp
                     <div class="col-6  col-lg-3 mb-2 mt-2">
                         <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}"
-                            name="{{$item->tenSP}}" thumb="{{$item->thumb}}" priceOld="{{$price1}}"
+                            name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
                             priceCurrent="{{$price2}}đ" discount="{{$item->discount}}" />
 
                     </div>

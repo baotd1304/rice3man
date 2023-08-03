@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="mb-3 col-md-12">
                                                 <label>Nội dung</label> 
-                                                <textarea id="noiDung" name="noiDung" rows="5" class="form-control"> {{ $baiviet->idBV }} </textarea> 
+                                                <textarea id="noiDung" name="noiDung" rows="5" class="form-control"> {{ $baiviet->noiDung }} </textarea> 
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="mb-3">

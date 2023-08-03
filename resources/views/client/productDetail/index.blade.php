@@ -13,11 +13,11 @@
 	
 	<div class="container">
 		<div class="title-bread-crumb">
-			Xà lách xoong Đà Lạt
+			{{$product->tenSP}}
 		</div>
     <nav aria-label="breadcrumb  " >
       <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
-          <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('client')}}">Trang chủ</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{$product->tenSP}}</li>
       </ol>
     </nav>
@@ -34,7 +34,7 @@
         <div class="swiper mySwiperProductDetailThumb">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="{{asset('upload/'.$product->urlHinh)}}" alt=""
+              <img src="{{asset($product->urlHinh)}}" alt=""
                 onerror="this.src='{{asset('upload/error.jpg')}}'" />
             </div>
             {{-- @foreach ($product->products_images as $product_images )
@@ -80,8 +80,8 @@
           @else
           <div class="product-detail--info__price-old">{{$product->giaSP}}<span> vnđ</span></div>
           @endif --}}
-          <div class="product-detail--info__price-new">{{number_format($product->giaSP)}}<span> vnđ</span></div>
-          <div class="product-detail--info__price-old">{{number_format($product->giaSP)}}<span> vnđ</span></div>
+          <div class="product-detail--info__price-new">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
+          <div class="product-detail--info__price-old">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
         </div>
         <label class="sl section" @style("display: block;font-weight: 600;margin-bottom: 0.5rem;")>Số lượng:</label>
         <form id="form-add" method="post" action={{route('clientadd-to-cart')}}>
@@ -171,10 +171,10 @@
               @foreach ($product_relate as $item)
               @php
                 $price1="";
-                      $price2=number_format($item->price_current);
+                      $price2=number_format($item->giaSP,0,",",".");
                       if($item->discount>0){
-                        $price1=number_format($item->giaSP);
-                        $price2=number_format($item->giaSP);
+                        $price1=number_format($item->giaSP,0,",",".");
+                        $price2=number_format($item->giaSP,0,",",".");
                       }
                 // $progressValue=($item->quantity_output/$item->quantity_input)*100;
                 // $progressTxt="Đã hết hàng";

@@ -45,6 +45,7 @@ class SanphamController extends Controller
             'giaSP' => 'required | integer | min:1',
             'idLoai' => '',
             'idTH' => '',
+            'urlHinh' => 'image|mimes:jpeg,png,jpg|max:2048',
             'moTa' => '',
             'anHien' => 'required | boolean',
             'noiBat' => 'required | boolean',
@@ -55,11 +56,18 @@ class SanphamController extends Controller
             'giaSP.required' => 'Bạn chưa nhập giá sản phẩm',
             'giaSP.min' => 'Giá sản phẩm phải lớn hơn 0',
             'giaSP.integer' => 'Giá sản phẩm phải dạng số',
+            'urlHinh.image' => 'File tải lên phải là hình ảnh',
+            'urlHinh.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'urlHinh.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
+        
         if ($request->has('urlHinh')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('urlHinh')->getClientOriginalName();
-            $path = $request->file('urlHinh')->storeAs('images/sanpham', $fileName, 'public');
-            $validatedData["urlHinh"] = '/storage/'.$path;
+            // $fileName = (date('Y-m-d',time())).'_'.$request->file('urlHinh')->getClientOriginalName();
+            // $path = $request->file('urlHinh')->storeAs('images/sanpham', $fileName, 'public');
+            // $validatedData["urlHinh"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinh')->getClientOriginalName();
+            $path = $request->file('urlHinh')->move('upload/images/sanpham', $fileName);
+            $validatedData["urlHinh"] = '/'.$path;
         }
         SanPham::create($validatedData);
         return redirect()->route('sanpham.index')->with('success', 'Thêm sản phẩm thành công!');
@@ -103,6 +111,7 @@ class SanphamController extends Controller
             'giaSP' => 'required | integer | min:1',
             'idLoai' => '',
             'idTH' => '',
+            'urlHinh' => 'image|mimes:jpeg,png,jpg|max:2048',
             'moTa' => '',
             'anHien' => 'required | boolean',
             'noiBat' => 'required | boolean',
@@ -113,12 +122,15 @@ class SanphamController extends Controller
             'giaSP.required' => 'Bạn chưa nhập giá sản phẩm',
             'giaSP.min' => 'Giá sản phẩm phải lớn hơn 0',
             'giaSP.integer' => 'Giá sản phẩm phải dạng số',
+            'urlHinh.image' => 'File tải lên phải là hình ảnh',
+            'urlHinh.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'urlHinh.max' => 'File tải lên không vượt quá 2048 kb',
         ]);
         
         if ($request->has('urlHinh')) {
-            $fileName = (date('Y-m-d',time())).'_'.$request->file('urlHinh')->getClientOriginalName();
-            $path = $request->file('urlHinh')->storeAs('images/sanpham', $fileName, 'public');
-            $validatedData["urlHinh"] = '/storage/'.$path;
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinh')->getClientOriginalName();
+            $path = $request->file('urlHinh')->move('upload/images/sanpham', $fileName);
+            $validatedData["urlHinh"] = '/'.$path;
         }
         SanPham::where('idSP', $id)->update($validatedData);
         

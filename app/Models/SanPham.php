@@ -12,6 +12,12 @@ class SanPham extends Model
 
     protected $table = 'sanpham';
     protected $primaryKey = 'idSP';
+    public $timestamps = false;
+    protected $fillable = ['idSP', 'idLoai', 'idTH', 'tenSP', 'giaSP', 'urlHinh', 'moTa',
+                            'soLuotXem', 'soLuotMua', 'anHien', 'noiBat'];
+    protected $dates = ['ngayDang'];
+    protected $attributes= ['soLuotXem'=>0, 'soLuotMua'=>0, 'moTa'=>'', 'urlHinh'=>'',
+                            'anHien'=>1, 'noiBat'=>1, 'idLoai'=>1, 'idTH'=>1 ]; 
 
     // Quan hệ 1-nhiều với bình luận
     public function binhLuans()
@@ -20,11 +26,10 @@ class SanPham extends Model
     }
     public function LoaiSP()
     {
-        return $this->belongsTo(LoaiSP::class,'idLoai','idSP');
+        return $this->belongsTo(LoaiSP::class,'idLoai','idLoai');
     }
-    protected $fillable = ['idSP', 'idLoai', 'idTH', 'tenSP', 'giaSP', 'urlHinh', 'moTa',
-                            'soLuotXem', 'soLuotMua', 'anHien', 'noiBat'];
-    protected $dates = ['ngayDang'];
-    protected $attributes= ['soLuotXem'=>0, 'soLuotMua'=>0, 'moTa'=>'', 'urlHinh'=>'',
-                            'anHien'=>1, 'noiBat'=>1, 'idLoai'=>1, 'idTH'=>1 ]; 
+    public function ThuonghieuSP()
+    {
+        return $this->belongsTo(ThuongHieuSP::class,'idTH','idTH');
+    }
 }
