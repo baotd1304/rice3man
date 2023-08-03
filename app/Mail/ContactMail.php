@@ -18,11 +18,11 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public $username;
+    public $subject;
     public $content;
-    public function __construct($username=null,$content="")
+    public function __construct($subject=null,$content=null)
     {
-        $this->username=$username;
+        $this->subject=$subject;
         $this->content=$content;
     }
 
@@ -34,7 +34,7 @@ class ContactMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'EMAIL LIÊN HỆ TỪ KHÁCH HÀNG GREEN MARKET',
+            subject: $this->subject,
         );
     }
 
@@ -46,7 +46,7 @@ class ContactMail extends Mailable
     public function content()
     {
         return new Content(
-        view:'client.mail.order_otp_email.index',
+        view:'client.mail.contactEmail.index',
         );
     }
 

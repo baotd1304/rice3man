@@ -23,9 +23,9 @@
                 <div class="m-auto bg-white d-block">
                     <div class="row">
                         <div class="col-md-6 col-12">
-                            <p class="mb-2"><b> Địa chỉ cửa hàng:</b> {{$company_info->address}}</p>
-                            <p class="mb-2"><b> Hotline:</b><a href="tel:{{$company_info->hotline}}"> {{$company_info->hotline}}</a></p>
-                            <p class="mb-2"><b> Email:</b><a href="mailto:haidinh147039@gmail.com"> {{$company_info->email}}</a></p>
+                            <p class="mb-2"><b> Địa chỉ cửa hàng:</b> </p>
+                            <p class="mb-2"><b> Hotline:</b><a href="tel:"> </a></p>
+                            <p class="mb-2"><b> Email:</b><a href="mailto:haidinh147039@gmail.com"></a></p>
                             <div class="mt-3">
                                 <form method="post" action="{{route('clientcontact')}}" id="contact">
                                     @csrf

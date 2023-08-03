@@ -13,28 +13,19 @@ class ContactController extends Controller
 {
     public function contact()
     {
-        $company_info=DB::table('company_info')->first();
-        $data=[
-           "company_info"=>$company_info
-        ];
-        return view('client.contact.index',$data);
+     
+        return view('client.contact.index');
     }
     public function contact_(Request $request)
     {   
         try {
-            $customer_email=new customer_emails();
-            $customer_email->customer_name=$request->name;
-            $customer_email->subject=$request->subject;
-            $customer_email->from=$request->from;
-            $customer_email->content=$request->content;
-            $customer_email->save();
+               
+        $mail=new ContactMail($request->subject,$request->content);
+        Mail:: to($request->from)->queue($mail);
             return back()->with('success','Gửi liên hệ thành công, chúng tôi sẽ sớm phảm hồi email của bạn'); 
         } catch (\Throwable $th) {
-            
             return back()->with('fail','Đã có lỗi vui lòng thực hiện lại'); 
         }
-        
-        // $mail=new ContactMail();
-        // Mail:: to($request->email)->queue($mail);
+     
     }
 }
