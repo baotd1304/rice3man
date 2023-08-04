@@ -178,7 +178,7 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { 
     Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
 
     // Route hiển thị chi tiết đơn hàng
-    Route::get('/orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
+    Route::get('orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
 
 });
 

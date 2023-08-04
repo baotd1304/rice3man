@@ -25,9 +25,10 @@
               <td>{{ $order1->idHD }}</td> 
               <td>{{ $order1->soLuong }}</td>
               <td>{{ $order1->tenSP }}</td>
-              <td>{{ $order1->giaSP }}</td>
+              <td>{{ number_format($order1->giaSP, 0, ',', '.') }} đ</td>
+
               <td>{{ $order->ngayMua }}</td>
-              <td>{{ $tt }}</td>
+              <td>{{ number_format($tt, 0, ',', '.') }} đ</td>
               <!-- Thêm các cột khác của bảng -->
             </tr>
           </tbody>
@@ -40,8 +41,13 @@
           <div class="card-header">
         <!-- Hiển thị các thông tin khác của người dùng -->
         <ul>
-            <li>Trạng thái vận chuyển: {{ $order1->trangThai == 1 ? 'Đã giao hàng' : 'Chưa giao hàng' }}</li>
-            <li>Trạng thái thanh toán: {{ $order1->thanhToan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</li>
+         
+            <li>Tên người nhận :{{ $order->tenNguoiNhan }} </li>
+            <li>Email người nhận :{{ $order->email }} </li>
+            <li>Địa chỉ người nhận :{{ $order->diaChi }} </li>
+            <li>Số điện thoại người nhận :{{ $order->soDienThoai }} </li>
+            <li>Trạng thái vận chuyển: {{ $order->trangThai == 1 ? 'Đã giao hàng' : 'Chưa giao hàng' }}</li>
+            <li>Trạng thái thanh toán: {{ $order->thanhToan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</li>
         </ul>
           </div>
           <div class="card-body">

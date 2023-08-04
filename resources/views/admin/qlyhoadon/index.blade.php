@@ -9,7 +9,6 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">ID Đơn hàng</th>
-            <th scope="col">ID Người mua</th>
             <th scope="col">Ngày mua</th>
             <th scope="col">Hành động</th>
             
@@ -19,8 +18,7 @@
         <tbody>
           @foreach ($orders as $order)
           <tr>
-            <td>{{ $order->idHD }}</td>
-            <td>{{ $order->idND }}</td>
+            <td>{{ $order->idHD }}</td>           
             <td>{{ $order->ngayMua }}</td>
             <td><a href="{{ route('showhoadon.show1', $order->idHD) }}" class="btn btn-primary">Chi tiết</a></td>
             <!-- Thêm các cột khác của bảng -->
