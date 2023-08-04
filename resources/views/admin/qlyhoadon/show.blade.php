@@ -21,16 +21,18 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($order1 as $order)
             <tr>
-              <td>{{ $order1->idHD }}</td> 
-              <td>{{ $order1->soLuong }}</td>
-              <td>{{ $order1->tenSP }}</td>
-              <td>{{ number_format($order1->giaSP, 0, ',', '.') }} đ</td>
+              <td>{{ $order->idCTHD }}</td> 
+              <td>{{ $order->soLuong }}</td>
+              <td>{{ $order->tenSP }}</td>
+              <td>{{ number_format($order->giaSP, 0, ',', '.') }} đ</td>
 
               <td>{{ $order->ngayMua }}</td>
-              <td>{{ number_format($tt, 0, ',', '.') }} đ</td>
+              <td>{{ number_format($order->soLuong * $order->giaSP, 0, ',', '.') }} đ</td>
               <!-- Thêm các cột khác của bảng -->
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

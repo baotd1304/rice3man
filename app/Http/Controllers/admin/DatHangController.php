@@ -17,16 +17,15 @@ class DatHangController extends Controller
     // Hiển thị chi tiết đơn hàng
     public function show1($idHD)
     {
-        $order1 = chitietdonhang::findOrFail($idHD);
-        $order = Order::find($order1->idHD); // Lấy thông tin đơn hàng từ model Order theo $idHD
-        $tt = $order1->giaSP * $order1->soLuong;
+        $order1 = chitietdonhang::where('idHD', $idHD)->get();
+        $order = Order::find($idHD); // Lấy thông tin đơn hàng từ model Order theo $idHD
         $user = NguoiDung::find($order->idND); // Truy xuất thông tin người dùng
         $ten = $order->tenNguoiNhan;
         $email = $order->email;
         $sdt = $order->soDienThoai;
         $diachi = $order->diaChi;
         $thanhToan = $order->thanhToan;
-        return view('admin.qlyhoadon.show', compact('order', 'order1', 'tt', 'user','sdt','diachi','email','thanhToan'));
+        return view('admin.qlyhoadon.show', compact('order', 'order1', 'user','sdt','diachi','email','thanhToan'));
     }
     public function index()
     {
