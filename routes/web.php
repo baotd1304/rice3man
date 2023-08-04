@@ -32,18 +32,18 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Symfony\Component\Routing\Router;
 
-use App\Http\Controllers\Admin\ThuonghieuSPController;
-use App\Http\Controllers\Admin\BaivietController;
+use App\Http\Controllers\ProfileController;
 
 // ADMIN CONTROLLER
 use App\Http\Controllers\admin\NguoiDungController;
 use App\Http\Controllers\admin\DatHangController;
 use App\Http\Controllers\admin\LoaiSPController;
-use App\Http\Controllers\admin\headerAdminController;
 use App\Http\Controllers\admin\BinhLuanController;
 use App\Http\Controllers\admin\ProfileAdminController;
 use App\Http\Controllers\admin\SanphamController;
 use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\Admin\ThuonghieuSPController;
+use App\Http\Controllers\Admin\BaivietController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ use App\Http\Controllers\admin\SliderController;
 |
 */
 
-Route::prefix('/')->name('client')->middleware('auth.client')->group(function () {
-    Route::get('/account', [AccountController::class, 'account'])->name('account');
+Route::prefix('/')->name('client')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/account', [ProfileController::class, 'edit'])->name('account');
 });
 
 Route::prefix('/')->name('client')->group(function () {
@@ -182,11 +182,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { 
 
 });
 
-use App\Http\Controllers\ProfileController;
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 // Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('clienthome');
 
@@ -194,9 +189,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     
 });
-
 
 require __DIR__.'/auth.php';

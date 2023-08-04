@@ -40,7 +40,7 @@
                                  data-bs-toggle="dropdown" aria-expanded="false" 
                                  style="padding-left: 0px;padding-right: 0px;padding-top: 0px;padding-bottom: 0px;">
                                  <i class='bx bx-user'></i>
-                                 <span class="d-none d-md-block dropdown-toggle ps-1">{{Auth::user()->name}}</span>
+                                 <span class="text-white d-none d-md-block dropdown-toggle ps-1">{{Auth::user()->name}}</span>
                                 </a><!-- End Profile Iamge Icon -->
                       
                                 <ul class="dropdown-menu dropdown-menu-start dropdown-menu-arrow profile">

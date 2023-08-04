@@ -34,10 +34,10 @@ class PasswordResetLinkController extends Controller
         ],[
             'email.required' => "Bạn chưa nhập email/số điện thoại",
             'phone.required' => "Bạn chưa nhập email/số điện thoại",
-            'email.exists' => "Email/số điện thoại không đúng",
-            'phone.exists' => "Email/số điện thoại không đúng",
-            'email.email' => "Vui lòng nhập email/số điện thoại",
-            'phone.numeric' => "Vui lòng nhập email/số điện thoại",
+            'email.exists' => "Email/số điện thoại không tồn tại",
+            'phone.exists' => "Email/số điện thoại không tồn tại",
+            'email.email' => "Vui lòng nhập email/số điện thoại đúng định dạng",
+            'phone.numeric' => "Vui lòng nhập email/số điện thoại đúng định dạng",
         ]);
 
         // We will send the password reset link to this user. Once we have attempted

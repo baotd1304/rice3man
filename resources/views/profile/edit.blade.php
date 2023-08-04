@@ -3,11 +3,11 @@
 @section('main-content')
 
 <x-app-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Tài khoản') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
     {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -77,3 +77,17 @@
 </x-app-layout>
 
 @endsection
+
+<style>
+    .app__header{
+        max-width: 1300px;
+        margin: auto;
+    }
+    footer .section-policy, .container, .foo-mid, .foo_bot{
+        max-width: 1300px !important;
+        margin: auto;
+    }
+    footer .foo_bot{
+        position: relative;
+    }
+</style>

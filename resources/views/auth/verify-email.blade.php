@@ -3,7 +3,7 @@
 @section('main-content')
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Cảm ơn bạn đã đăng ký! Trước khi bắt đầu, bạn có thể xác minh địa chỉ email của mình bằng cách nhấp vào liên kết chúng tôi vừa gửi cho bạn qua email không? Nếu bạn không nhận được email, chúng tôi sẽ sẵn lòng gửi cho bạn một email khác.') }}
+        {{ __('Bạn có thể xác minh địa chỉ email của mình bằng cách nhấp vào liên kết chúng tôi vừa gửi cho bạn qua email không? Nếu bạn không nhận được email, chúng tôi sẽ sẵn lòng gửi cho bạn một email khác.') }}
     </div>
 
     @if (session('status') == 'verification-link-sent')
@@ -34,3 +34,17 @@
 </x-guest-layout>
 
 @endsection
+
+<style>
+    .app__header{
+        max-width: 1300px;
+        margin: auto;
+    }
+    footer .section-policy, .container, .foo-mid, .foo_bot{
+        max-width: 1300px !important;
+        margin: auto;
+    }
+    footer .foo_bot{
+        position: relative;
+    }
+</style>
