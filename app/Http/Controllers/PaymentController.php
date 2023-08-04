@@ -210,7 +210,8 @@ class PaymentController extends Controller
         // }
         setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
         setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
-
+        $mail = new SendVerifyCodeMail(0000);
+        Mail::to($order->email)->send($mail);
         return redirect()->route('clientpage-thanks',['idHD'=>$order->idHD]);
         return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');
       }
@@ -261,6 +262,8 @@ class PaymentController extends Controller
       // }
       setcookie('cartFarmApp', json_encode([]), time() - 3 * 24 * 60 * 60, '/');
       setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
+      $mail = new SendVerifyCodeMail(0000);
+     Mail::to($hoaDon->email)->send($mail);
       return redirect()->route('clientpage-thanks', ['idHD' => $hoaDon->idHD]);
   }
 
