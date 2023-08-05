@@ -53,17 +53,17 @@
                 </ul>
                 <div class="tab-content pt-2" id="myTabjustifiedContent">
                     <div class="tab-pane fade show active" id="home-justified" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="max-w-xl">
+                        <div class="max-w-xl m-auto">
                             @include('profile.partials.update-profile-information-form')
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile-justified" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="max-w-xl">
+                        <div class="max-w-xl m-auto">
                             @include('profile.partials.update-password-form')
                         </div>
                     </div>
                     <div class="tab-pane fade" id="contact-justified" role="tabpanel" aria-labelledby="contact-tab">
-                        <div class="max-w-xl">
+                        <div class="max-w-xl m-auto">
                             @include('profile.partials.delete-user-form')
                         </div>
                     </div>

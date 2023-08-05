@@ -1,6 +1,7 @@
 @extends('client.appLayout.index')
 @section("css")
 <link rel="stylesheet" href="{{asset('css/client/productDetail.css')}}">
+<link rel="stylesheet" href="{{asset('css/client/newsDetail.css')}}">
 @endsection
 @section('main-content')
 @if(session('success'))
@@ -155,6 +156,8 @@
       <h3 class="title underline">Thông tin chi tiết</h3>
       <div>{!!$product->mota!=""?$product->mota:'Đang cập nhật'!!}</div>
     </div>
+
+    
     {{-- PHẦN HIỂN THỊ SẢN PHẨM LIÊN QUAN --}}
     <section class="app-section pt-3 pb-3">
       <div class="container">
@@ -199,6 +202,82 @@
         </div>
       </div>
     </section>
+
+    {{-- Phần hiển thị comment --}}
+    <hr>
+    <div class="container mt-4 text-color">
+      <div class="row mb-5">
+        <div class="col-6 ">
+            <h3 class="title">Viết bình luận</h3>
+            <form method="POST" action="{{route('clientcomment')}}" id="article_comments" accept-charset="UTF-8" class="comment-form">
+                @csrf
+                @if (Auth::guard('web')->check()==false)
+                <p class="alert alert-warning">
+                    Vui lòng đăng nhập để thực hiện chức năng bình luận
+                </p>
+                @endif
+                <input type="text" name="idUser" value="{{Auth::guard('web')->user()->id??null}}" hidden>
+                <input type="text" name="idSP" value="{{$product->idSP}}" hidden>
+                <div class="row comment-form">
+                    <div class="col-12 form-group">
+                        <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
+                    </div>
+                    {{-- <div class="col-12 form-group">
+                        <input class="form-control" title="E-mail" type="email" placeholder="E-mail *" name="email"
+                            value="">
+                    </div> --}}
+                </div>
+                <div class="field aw-blog-comment-area form-group">
+                    <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
+                        name="content"></textarea>
+                    <span class="text-danger">@error('content')
+                        {{$message}}
+                        @enderror</span>
+                </div>
+                <div style="width:96%" class="button-set">
+                    <button type="submit"
+                        class="book-submit btn btn-primary text-center d-flex align-items-center font-weight-boldt font-weight-bold"
+                        @disabled(Auth::guard('web')->check()==true?false:true) >Gửi
+                        bình luận
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <h3 class="title">Bình luận</h3>
+            @if (count($binhluans)>0)
+            @foreach ($binhluans as $binhluan )
+            <div class="comment-container">
+                <div class="comment-header">
+                    @if ($binhluan->avatar == '')
+                        <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="40px" height="40px">
+                    @else <img src="{{$binhluan->avatar}}" alt="" width="40px" height="40px">
+                    @endif
+                    {{-- <img src="https://via.placeholder.com/40x40" alt="Avatar"> --}}
+                    <h4>{{$binhluan->name}}</h4>
+                </div>
+                <div class="comment-body">
+                    <p>{{$binhluan->noiDung}}</p>
+                </div>
+                <div class="comment-footer">  
+                    <span>Thích</span>
+                    <span>Trả lời</span>
+                    <span>{{ $binhluan->ngayBL->format('d/m/Y') }}</span>
+                    {{-- <a href="#">Xóa</a> --}}
+                </div>
+            </div>
+            @endforeach
+            @else
+            <p class="alert alert-warning">
+                Hiện tại chưa có bình luận.
+            </p>
+            @endif
+        </div>
+      </div>
+    </div>
+
+    {{-- End phần hiển thị comment --}}
+
   </div>
   <div class="related-products d-sm-block d-none">
     <div class="sidebar">

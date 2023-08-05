@@ -5,7 +5,7 @@
             <h1>Bài viết</h1>
             <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('baiviet.index') }}">Bài viết</a></li>
                 <li class="breadcrumb-item active">Thêm bài viết</li>
             </ol>

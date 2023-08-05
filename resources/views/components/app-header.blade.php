@@ -93,7 +93,7 @@
                                     data-bs-toggle="dropdown" aria-expanded="false" 
                                     style="padding: 0px">
                                     <i class='bx bx-user'></i>
-                                  <span class="d-none d-md-block dropdown-toggle"></span>
+                                  <span class="text-white d-none d-md-block dropdown-toggle"></span>
                                 </a><!-- End Profile Iamge Icon -->
                       
                                 <ul class="dropdown-menu dropdown-menu-start dropdown-menu-arrow profile">

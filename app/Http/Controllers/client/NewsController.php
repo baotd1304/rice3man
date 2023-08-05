@@ -28,26 +28,27 @@ class NewsController extends Controller
     {
        try {
         $post = BaiViet::where('idBV', $id)->firstOrFail();
-        $newsRelate=BaiViet::where('idBV','<>',$post->idBV)->paginate(4);
-        // $comments=BinhLuan::where('idBV',$post->idBV)->get();
+        $newsRelate=BaiViet::where('tacGia','<>',$post->tacGia)->paginate(4);
+        $binhluans=BinhLuan::with('author')->where('idSP',$id)->get();
         $data=[
             "post"=>$post,
             "newsRelate"=>$newsRelate,
-            "comments"=>[],
+            "binhluans"=>$binhluans,
         ];
         return view('client.newsDetail.index',$data);
-       } catch (\Throwable $th) {
-        //  dd($th);
-       }
+        } 
+        catch (\Throwable $th) {
+            //  dd($th);
+        }
 
     }
-    public function comment(CommentRequest $request)
+    public function binhluan(CommentRequest $request)
     {
-       $comment=new comment();
-       $comment->content=$request->content;
-       $comment->news_id=$request->news_id;
-       $comment->user_id=$request->user_id;
-       $comment->save();
+       $binhluan=new BinhLuan();
+       $binhluan->noiDung=$request->content;
+       $binhluan->idSP=$request->idSP;
+       $binhluan->idND=$request->idND;
+       $binhluan->save();
        return redirect()->back();
     }
 }

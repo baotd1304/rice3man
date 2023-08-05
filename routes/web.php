@@ -44,6 +44,7 @@ use App\Http\Controllers\admin\SanphamController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\Admin\ThuonghieuSPController;
 use App\Http\Controllers\Admin\BaivietController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,21 +96,20 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/minus-to-cart', [ProductsController::class, 'minusToCart'])->name('minus-to-cart');
     Route::post('/remove-to-cart', [ProductsController::class, 'removeToCart'])->name('remove-to-cart');
     Route::post('/remove-all-cart', [ProductsController::class, 'removeAllCart'])->name('remove-all-cart');
-    Route::post('/comment', [NewsController::class, 'comment'])->name('comment');
+    Route::post('/comment', [ProductsController::class, 'binhluan'])->name('comment');
     Route::post('/useCouponCode', [CouponController::class, 'useCouponCode'])->name('use-coupon-code');
 });
 //
 // Route::resource('/admin/product', AdminProductController::class);
-Route::prefix('/admin')->name('site')->group(function () {
-    Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
-    Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
-    Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
-    Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
-});
+// Route::prefix('/admin')->name('site')->group(function () {
+//     Route::get('/login', [AuthController::class, 'show_login_admin'])->name('show-login');
+//     Route::post('/login', [AuthController::class, 'login_admin'])->name('login');
+//     Route::get('/admin_users/them', [AdminUserController::class, 'them'])->name('admin.admin_users.create');
+//     Route::post('/admin_users/them', [AdminUserController::class, 'them1'])->name('admin.admin_users.create_');
+// });
 
 // PHAN ADMIN
-Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { // ẩn để fix auth admin
-// Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
 
     Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
@@ -158,12 +158,12 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () { 
     Route::delete('/binhluan/{id}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
 
     //6. Route user
-    Route::get('/nguoidung', [NguoiDungController::class, 'index'])->name('nguoidung.index');
-    Route::get('/nguoidung/create', [NguoiDungController::class, 'create'])->name('nguoidung.create');
-    Route::post('/nguoidung', [NguoiDungController::class, 'store'])->name('nguoidung.store');
-    Route::get('/nguoidung/{id}/edit', [NguoiDungController::class, 'edit'])->name('nguoidung.edit');
-    Route::put('/nguoidung/{id}', [NguoiDungController::class, 'update'])->name('nguoidung.update');
-    Route::delete('/nguoidung/{id}', [NguoiDungController::class, 'destroy'])->name('nguoidung.destroy');
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
     //7. Route slider
     Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
