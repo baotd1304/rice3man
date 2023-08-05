@@ -141,9 +141,9 @@
                     <li><a href="{{route('clienthome')}}">
                         Trang chủ
                     </a></li>
-                    <li><a href="">
-                        Về chúng tôi
-                    </a></li>
+                    <li><a href="{{route('clientaddjobs')}}">
+                      Về chúng tôi
+                  </a></li>
                     <li>
                         <a href="{{route('clientcategory-group-all')}}">
                            Sản phẩm 
@@ -165,9 +165,7 @@
                     <li><a href="{{route('clientnews')}}">
                         Tin tức 
                     </a></li>
-                    <li><a href="{{route('clientaddjobs')}}">
-                        Tuyển dụng 
-                    </a></li>
+                    
                     <li><a href="{{route('clientshow-contact')}}">
                         Liên hệ
                     </a></li>

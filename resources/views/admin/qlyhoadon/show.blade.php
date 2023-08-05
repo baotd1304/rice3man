@@ -1,5 +1,46 @@
 @extends('templates.admin.donhang')
-
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* CSS cho phần card-header */
+    .card-header {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+  
+    .card-header ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    strong{
+      color: black;
+    }
+  
+    .card-header li {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+  
+    /* CSS cho phần card-body */
+    .card-body {
+      padding: 10px;
+      padding-bottom: 15px;
+    }
+  
+    .card-body p {
+      margin: 0;
+      font-size: 14px;
+    }
+  
+   
+    .text-right {
+      text-align: right;
+    }
+  </style>
+</head>
 @section('show')
 <main id="main" class="main">
   <div class="container">
@@ -21,15 +62,15 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($order1 as $order)
+            @foreach ($order1 as $order2)
             <tr>
-              <td>{{ $order->idCTHD }}</td> 
-              <td>{{ $order->soLuong }}</td>
-              <td>{{ $order->tenSP }}</td>
-              <td>{{ number_format($order->giaSP, 0, ',', '.') }} đ</td>
+              <td>{{ $order2->idCTHD }}</td> 
+              <td>{{ $order2->soLuong }}</td>
+              <td>{{ $order2->tenSP }}</td>
+              <td>{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
 
               <td>{{ $order->ngayMua }}</td>
-              <td>{{ number_format($order->soLuong * $order->giaSP, 0, ',', '.') }} đ</td>
+              <td>{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
               <!-- Thêm các cột khác của bảng -->
             </tr>
             @endforeach
@@ -40,28 +81,32 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">
-        <!-- Hiển thị các thông tin khác của người dùng -->
-        <ul>
-         
-            <li>Tên người nhận :{{ $order->tenNguoiNhan }} </li>
-            <li>Email người nhận :{{ $order->email }} </li>
-            <li>Địa chỉ người nhận :{{ $order->diaChi }} </li>
-            <li>Số điện thoại người nhận :{{ $order->soDienThoai }} </li>
-            <li>Trạng thái vận chuyển: {{ $order->trangThai == 1 ? 'Đã giao hàng' : 'Chưa giao hàng' }}</li>
-            <li>Trạng thái thanh toán: {{ $order->thanhToan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</li>
-        </ul>
+          <h1 style="text-align: center">Thông tin hóa đơn</h1>
+          <hr>
+          <div class="card" >
+            
+            <div class="card-header">
+              <!-- Hiển thị các thông tin khác của người dùng -->
+              <ul class="list-unstyled">
+                <li><strong>Tên người nhận:</strong> {{ $order->tenNguoiNhan }}</li>
+                <br>
+                <li><strong>Email người nhận:</strong> {{ $order->email }}</li><br>
+                <li><strong>Địa chỉ người nhận:</strong> {{ $order->diaChi }}</li><br>
+                <li><strong>Số điện thoại người nhận:</strong> {{ $order->soDienThoai }}</li><br>
+                <li><strong>Trạng thái vận chuyển:</strong> {{ $order->trangThai == 1 ? 'Đã giao hàng' : 'Chưa giao hàng' }}</li><br>
+                <li><strong>Trạng thái thanh toán:</strong> {{ $order->thanhToan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</li><br>
+              </ul>
+            </div>
+            <div class="card-body">
+              @if ($user)
+              <p><strong>Tên người dùng:</strong> {{ $user->ten }}</p>
+              <p><strong>Email người mua:</strong> {{ $email }}</p>
+              <p><strong>Số điện thoại người mua:</strong> {{ $sdt }}</p>
+              <p><strong>Địa chỉ người mua:</strong> {{ $diachi }}</p>
+              @endif
+              <!-- Thêm các thông tin khác của đơn hàng -->
+            </div>
           </div>
-          <div class="card-body">
-            @if ($user)
-            <p> Tên người dùng : {{$user->ten}}</p>
-            <p> Email người mua : {{$email}}</p>
-            <p> Số điện thoại người mua : {{$sdt}}</p>
-            <p> Địa chỉ người mua : {{$diachi}}</p>
-            @endif
-            <!-- Thêm các thông tin khác của đơn hàng -->
-          </div>
-        </div>
       </div>
     </div>
   </div>
