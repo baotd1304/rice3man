@@ -91,19 +91,13 @@
                                 </div>
                                 <ul class="links">
                                         <li>    
-                                            <a href="" title="Về Food Yummy">Về Chúng Tôi</a>
-                                        </li>
-                                        <li>
-                                            <a href="" title="Tuyển Dụng">Tuyển Dụng Nhân Sự</a>
-                                        </li>
-                                        <li>
-                                            <a href="" title="Gía Trị">Giá Trị Cốt Lõi</a>
+                                            <a href="{{route('clientaddjobs')}}" title="Về Rice 3 man">Về Chúng Tôi</a>
                                         </li>
                                         <li>
                                             <a href="" title="Nguồn Gốc">Nguồn Gốc Thực Phẩm</a>
                                         </li>
                                         <li>
-                                            <a href="" title="Liên Hệ">Liên Hệ</a>
+                                            <a href="{{route('clientcontact')}}" title="Liên Hệ">Liên Hệ</a>
                                         </li>
                                 </ul>
                             </div>
@@ -114,18 +108,7 @@
                                     Chính Sách
                                 </div>
                                 <ul class="links">
-                                        <li>    
-                                            <a href="/chinh-sach" title="Chính sách bảo mật">Chính sách bảo mật</a>
-                                        </li>
-                                        <li>
-                                            <a href="/chinh-sach" title="vận chuyển">Chính sách vận chuyển</a>
-                                        </li>
-                                        <li>
-                                            <a href="/chinh-sach" title="đổi trả">Chính sách đổi trả</a>
-                                        </li>
-                                        <li>
-                                            <a href="/chinh-sach" title="Chính sách mua bán">Chính sách mua bán</a>
-                                        </li>
+                                        
                                         <li>
                                             <a href="/chinh-sach" title="Liên Hệ">Liên Hệ</a>
                                         </li>
@@ -139,7 +122,7 @@
                                 </div>
                                 <ul class="links">
                                     <li>    
-                                        <a href="/huong-dan" title="mua hàng">Hướng dẫn mua hàng</a>
+                                        <a href="#" title="mua hàng">Hướng dẫn mua hàng</a>
                                     </li>
                                     <li>
                                         <a href="/huong-dan" title="đổi trả">Hướng dẫn đổi trả</a>

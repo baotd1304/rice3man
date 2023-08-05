@@ -9,6 +9,6 @@ class AddjobController extends Controller
 {
     public function index()
     {
-        return view('client.addjobs.index');
+        return view('client.about.index');
     }
 }
