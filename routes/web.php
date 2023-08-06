@@ -141,12 +141,11 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
 
     //8. Route hoadon
     // Route hiển thị danh sách đơn hàng
-    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
+    Route::get('/orders', [DatHangController::class, 'index'])->name('order.index');
     //update hoadon
-    Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('chitiethoadon.update');
-
+    Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('order.update');
     // Route hiển thị chi tiết đơn hàng
-    Route::get('orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
+    Route::get('orders/{idHD}/edit', [DatHangController::class, 'showOrderDetail'])->name('order.showOrderDetail');
 
 });
 

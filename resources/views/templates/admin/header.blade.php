@@ -163,7 +163,7 @@
       <!-- End Charts Nav -->
       
       <li class="nav-item">
-        <a class="nav-link collapsed"  href="{{ route('chitiethoadon.index') }}">
+        <a class="nav-link collapsed"  href="{{ route('order.index') }}">
           <i class="bi bi-grid"></i><span>Quản lý hoá đơn</span>
         </a>
       </li>

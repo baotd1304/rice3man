@@ -1,6 +1,6 @@
 @extends('client.appLayoutEmpty.index')
-@section('css')
 <title>Cảm ơn bạn đã mua hàng!</title>
+@section('css')
 <link rel="stylesheet" href="{{asset('css/client/thankyou.css')}}">
 
 @endsection
@@ -49,14 +49,14 @@
           @foreach ($hoaDon->orderDetails as $item )
           <div class="order-item">
             <div class="order-item_img">
-                {{-- <img src="{{asset('upload/'.$item->urlHinh])}}" alt=""> --}}
+                <img src="{{asset($item->urlHinh)}}" alt="">
                 <span>{{$item->soLuong}}</span>
             </div>
             <div class="order-item_txt">
                 <div>
                     <p class="name">{{$item->tenSP}}</p>
                 </div>
-                <div class="price">{{number_format($item->giaSP)}}</div>
+                <div class="price">{{number_format($item->giaSP,0,",",".")}} vnđ</div>
             </div>
         </div>
           @endforeach
@@ -66,7 +66,7 @@
           <div class="orderSumary-line total">
             <span class="text">Tổng cộng</span>
             <span class="price">
-               {{number_format($hoaDon->tongTien)}}
+               {{number_format($hoaDon->tongTien,0,",",".")}} vnđ
             </span>
           </div>
         </div>
@@ -76,7 +76,7 @@
         <h2>Cảm ơn bạn đã mua hàng!</h2>
         <p>Xin vui lòng giữ đơn hàng của bạn cho tới khi bạn nhận được sản phẩm của mình.</p>
         <div class="d-flex  align-items-center justify-content-between">
-          <a href="{{route('client')}}">Trở về trang mua hàng</a>
+          <a href="{{route('client')}}" style="text-decoration: underline">Trở về trang mua hàng</a>
           <button class="btn btn-primary" onclick="window.print()">In đơn hàng</button>
         </div>
       </div>

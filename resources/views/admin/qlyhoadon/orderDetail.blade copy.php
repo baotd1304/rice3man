@@ -46,7 +46,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-      <a href="{{ route('chitiethoadon.index') }}" class="btn btn-primary mb-3">Quay lại</a>
+      <a href="{{ route('order.index') }}" class="btn btn-primary mb-3">Quay lại</a>
 
         <table class="table">
           <thead class="thead-dark">
@@ -81,20 +81,23 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <h1 style="text-align: center">Thông tin hóa đơn</h1>
-          <hr>
           
           <div class="card" >
-          <form action="{{ route('chitiethoadon.update', $order->idHD) }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('order.update', $order->idHD) }}" method="POST" enctype="multipart/form-data">
                               
             <div class="card-header">
+              <h4 style="text-align: center">Thông tin hóa đơn</h4>
               <!-- Hiển thị các thông tin khác của người dùng -->
+              
+              
+            </div>
+            <div class="card-body">
               <ul class="list-unstyled">
                 <li><strong>Tên người nhận:</strong> {{ $order->tenNguoiNhan }}</li>
                 <br>
                 <li><strong>Email người nhận:</strong> {{ $order->email }}</li><br>
-                <li><strong>Địa chỉ người nhận:</strong> {{ $order->diaChi }}</li><br>
                 <li><strong>Số điện thoại người nhận:</strong> {{ $order->soDienThoai }}</li><br>
+                <li><strong>Địa chỉ người nhận:</strong> {{ $order->diaChi }}</li><br>
               </ul>
               <div class="row m-auto">
                 <div class="col-md-6">
@@ -116,20 +119,19 @@
                   </div>
                 </div>
               </div>
-              
-            </div>
-            <div class="card-body">
               @if ($user)
-              <p><strong>Tên người dùng:</strong> {{ $user->ten }}</p>
-              <p><strong>Email người mua:</strong> {{ $email }}</p>
-              <p><strong>Số điện thoại người mua:</strong> {{ $sdt }}</p>
-              <p><strong>Địa chỉ người mua:</strong> {{ $diachi }}</p>
+              <ul class="list-unstyled">
+                <li><strong>Tên người dùng:</strong> {{ $user->name }}</li><br>
+                <li><strong>Email người mua:</strong> {{ $user->email }}</li><br>
+                <li><strong>Số điện thoại người mua:</strong> {{ $user->phone }}<br>
+                <li><strong>Địa chỉ người mua:</strong> {{ $user->address }}</li><br>
+              </ul>
               @endif
               <!-- Thêm các thông tin khác của đơn hàng -->
 
               <div class="pb-3 pt-3">
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
-                <a type="cancle" href="{{route('sanpham.index')}}" class="btn btn-outline-dark ml-3">Hủy</a>
+                <a type="cancle" href="{{route('order.index')}}" class="btn btn-outline-dark ml-3">Hủy</a>
               </div>
             
               @csrf {{ method_field('PUT') }}

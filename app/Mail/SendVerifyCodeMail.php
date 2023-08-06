@@ -32,7 +32,7 @@ class SendVerifyCodeMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'MÃ XÁC NHẬN ĐƠN HÀNG',
+            subject: 'MAIL XÁC NHẬN ĐƠN HÀNG',
         );
     }
 
@@ -44,7 +44,7 @@ class SendVerifyCodeMail extends Mailable
     public function content()
     {
         return new Content(
-        view:'client.mail.order_otp_email.index',
+            view:'client.mail.order_otp_email.index',
         );
     }
 

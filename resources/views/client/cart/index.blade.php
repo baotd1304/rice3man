@@ -37,19 +37,20 @@
                                 @foreach ($carts as $item)
                                 <div class="ajaxcart__row">
                                     <div class="ajaxcart__product cart_product" data-line="1">
-                                        <a href="/cam-sanh-vat-nuoc-3kg-18-24-trai"
-                                            class="ajaxcart__product-image cart_image"
-                                            title="Cam sành vắt nước 3kg (18 - 24 trái)"><img
-                                                src="https://bizweb.dktcdn.net/thumb/compact/100/485/131/products/cam-sanh-vat-nuoc-tui-3kg-18-24-trai-202302151630579167.jpg"
-                                                alt="Cam sành vắt nước 3kg (18 - 24 trái)"></a>
+                                        <a href="{{route('clientproduct-detail', $item->idSP)}}"
+                                            class="ajaxcart__product-image cart_image">
+                                            <img src="{{ $item->urlHinh}}" alt="">
+                                        </a>
                                         <div class="grid__item cart_info">
                                            
                                             <div class="ajaxcart__product-name-wrapper cart_name">
-                                                <a href="/cam-sanh-vat-nuoc-3kg-18-24-trai"
-                                                    class="ajaxcart__product-name h4"
-                                                    title="Cam sành vắt nước 3kg (18 - 24 trái)">{{$item->tenSP}}</a>
+                                                <a href="{{route('clientproduct-detail', $item->idSP)}}"
+                                                    class="ajaxcart__product-name h4">
+                                                    {{$item->tenSP}}
+                                                </a>
                                                 <a class="cart__btn-remove remove-item-cart ajaxifyCart--remove"
-                                                    href="javascript:;" data-line="1"> <form action="{{route('clientremove-to-cart')}}" method="POST">
+                                                    href="javascript:;" data-line="1"> 
+                                                    <form action="{{route('clientremove-to-cart')}}" method="POST">
                                                         @csrf
                                                         <input type="text" name="productId" value="{{$item->idSP}}"
                                                                 hidden>
@@ -57,12 +58,13 @@
                                                             class="cart__btn-remove remove-item-cart ajaxifyCart--remove">
                                                             xóa
                                                         </button>
-                                                    </form></a>
+                                                    </form>
+                                                </a>
 
                                             </div>
                                             <div class="grid">
                                                 <div class="grid__item one-half text-right cart_prices">
-                                                    <span class="cart-price">{{number_format($item->giaSP)}}</span>
+                                                    <span class="cart-price">{{number_format($item->giaSP,0,",",".")}}</span>
 
                                                 </div>
                                             </div>
@@ -90,17 +92,17 @@
                                                 </div>
                                             </div>
                                             <div class=" grid">
-                                                                <div class="grid__item one-half text-right cart_prices">
-                                                                    <span class="cart-price">{{number_format($item->giaSP*$item->amount)}}</span>
+                                                <div class="grid__item one-half text-right cart_prices">
+                                                    <span class="cart-price">{{number_format($item->giaSP*$item->amount,0,",",".")}}</span>
 
-                                                                </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
                                     </div>
                                 </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,7 +115,7 @@
                             <div class="cart__subtotal">
                                 <div class="cart__col-6">Tổng tiền:</div>
                                
-                                <div class="text-right cart__totle"><span class="total-price">{{number_format($total)}}</span></div>
+                                <div class="text-right cart__totle"><span class="total-price">{{number_format($total,0,",",".")}}</span></div>
                             </div>
                         </div>
                         <div class="cart__btn-proceed-checkout-dt">
@@ -136,7 +138,7 @@
     </div>
     @else
     <div class="alert alert-warning  my-3">Không có sản phẩm nào. Quay lại <b> <a
-                href="{{route('clientcategory-group-all')}}"> cửa hàng </a> </b> để tiếp tục mua sắm.</div>
+                href="{{route('clientcategory-group-all')}}"> trang sản phẩm </a> </b> để tiếp tục mua sắm.</div>
     @endif
 </div>
 

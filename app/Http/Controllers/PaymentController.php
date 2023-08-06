@@ -233,6 +233,7 @@ class PaymentController extends Controller
         $cartFarmApp = json_decode($json, true);
       }
       $hoaDon = new order();
+      $hoaDon->idND = $request->idND;
       $hoaDon->tenNguoiNhan = $request->username;
       $hoaDon->email = $request->email;
       $hoaDon->soDienThoai = $request->phone;
@@ -250,6 +251,7 @@ class PaymentController extends Controller
         $chiTietHoaDon->idHD = $hoaDon->idHD;
         $chiTietHoaDon->idSP = $item['productId'];
         $chiTietHoaDon->tenSP = $sanPham->tenSP;
+        $chiTietHoaDon->urlHinh = $sanPham->urlHinh;
         $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
         $chiTietHoaDon->soLuong = $item['amount'];
         $chiTietHoaDon->save();
@@ -263,7 +265,7 @@ class PaymentController extends Controller
       setcookie('cartFarmApp', json_encode([]), time() - 3 * 24 * 60 * 60, '/');
       setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
       $mail = new SendVerifyCodeMail(0000);
-     Mail::to($hoaDon->email)->send($mail);
+      Mail::to($hoaDon->email)->send($mail);
       return redirect()->route('clientpage-thanks', ['idHD' => $hoaDon->idHD]);
   }
 

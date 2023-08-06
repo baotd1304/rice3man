@@ -98,7 +98,7 @@
                       
                                 <ul class="dropdown-menu dropdown-menu-start dropdown-menu-arrow profile">
                                   <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="/register">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{route('register')}}">
                                       <span>Đăng ký</span>
                                     </a>
                                   </li>
@@ -107,7 +107,7 @@
                                   </li>
                       
                                   <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="/login">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{route('login')}}">
                                       <span>Đăng nhập</span>
                                     </a>
                                   </li>
@@ -118,7 +118,7 @@
                         </div>
                      </div>
                      <div class="action-item cart position-relative">
-                        <a  href="{{route('clientcart')}}">
+                        <a  href="{{route('clientshow-contact')}}">
                             <i class='bx bx-map d-flex'></i>
                         </a>
                      </div>
