@@ -140,7 +140,7 @@
                     <tr>
                         <td align="center" valign="top" style="padding: 36px 24px">
                             <a href="https://www.blogdesire.com" target="_blank" style="display: inline-block">
-                                <img src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/logo.png?1669280565026"
+                                <img src="{{asset('assets/img/logoRice3man.jpg')}}"
                                     alt="Logo" border="0" width="90" style="
                                             display: block;
                                             width: 120px;
@@ -184,7 +184,7 @@
                                         line-height: 48px;
                                         text-align:center
                                     ">
-                                Mã xác nhận đơn hàng
+                                Cảm ơn bạn đã mua hàng, chúc bạn ngày mới vui vẻ
                             </h1>
                         </td>
                     </tr>
@@ -217,7 +217,7 @@
                                     line-height: 24px;
                                 ">
                             <p style="margin: 0">
-                                Đây là mã xác nhận đơn hàng của bạn vui lòng nhập đoạn mã này để tiếp tục mua hàng
+                               Cảm ơn bạn đã mua hàng qua trang web rice3man, đơn hàng của bạn đang được chúng tôi xử lý. Chúc bạn một ngày vui vẻ
                             </p>
                         </td>
                     </tr>
@@ -246,7 +246,7 @@
                                                                 color: #ffffff;
                                                                 text-decoration: none;
                                                                 border-radius: 6px;
-                                                            ">{{$opt}}</div>
+                                                            "> <a href="http://rice3man.top">Theo dõi chúng tôi</a></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -266,7 +266,7 @@
                                     border-bottom: 3px solid #d4dadf;
                                 ">
                             <p style="margin: 0">
-                                Green Market
+                               Rice 3 Man
                             </p>
                         </td>
                     </tr>

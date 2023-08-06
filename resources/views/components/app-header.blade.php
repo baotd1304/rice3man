@@ -118,7 +118,7 @@
                         </div>
                      </div>
                      <div class="action-item cart position-relative">
-                        <a  href="{{route('clientcart')}}">
+                        <a  href="{{route('clientcontact')}}">
                             <i class='bx bx-map d-flex'></i>
                         </a>
                      </div>

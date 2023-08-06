@@ -68,7 +68,6 @@
               <td>{{ $order2->soLuong }}</td>
               <td>{{ $order2->tenSP }}</td>
               <td>{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
-
               <td>{{ $order->ngayMua }}</td>
               <td>{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
               <!-- Thêm các cột khác của bảng -->
