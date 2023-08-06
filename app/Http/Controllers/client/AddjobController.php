@@ -11,4 +11,8 @@ class AddjobController extends Controller
     {
         return view('client.about.index');
     }
+    public function demo()
+    {
+        return view('client.huongdan.index');
+    }
 }

@@ -59,7 +59,7 @@ use App\Http\Controllers\Admin\BaivietController;
 Route::prefix('/')->name('client')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/account', [ProfileController::class, 'edit'])->name('account');
 });
-Route::get('/huongdan', [DemoController::class, 'index'])->name('demo');
+
 
 Route::prefix('/')->name('client')->group(function () {
     // Route::get('/login', [AuthController::class, 'show_login_user'])->name('show-login');
@@ -81,7 +81,7 @@ Route::prefix('/')->name('client')->group(function () {
     Route::get('/contact', [ContactController::class, 'contact'])->name('show-contact');
     Route::post('/contact', [ContactController::class, 'contact_'])->name('contact');
     Route::get('/addjobs', [AddjobController::class, 'index'])->name('addjobs');
-    
+    Route::get('/huongdan', [AddjobController::class, 'demo'])->name('demo');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::post('/payment_cod', [PaymentController::class, 'create_payment_cod'])->name('payment_cod');
     Route::post('/payment_vnpay', [PaymentController::class, 'create_payment_vnpay_e'])->name('payment_vnpay');

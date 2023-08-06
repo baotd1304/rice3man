@@ -122,7 +122,7 @@
                                 </div>
                                 <ul class="links">
                                     <li>    
-                                        <a href="#" title="mua hàng">Hướng dẫn mua hàng</a>
+                                        <a href="{{route('clientdemo')}}" title="mua hàng">Hướng dẫn mua hàng</a>
                                     </li>
                                     <li>
                                         <a href="/huong-dan" title="đổi trả">Hướng dẫn đổi trả</a>
