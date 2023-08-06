@@ -44,8 +44,8 @@
                                 @foreach ($listbl as $bl)
                                     <tr>
                                         <td class="align-middle text-center"> {{$bl->idBL}} </td>
-                                        <td class="align-middle">{{$bl->tenSP}}</td>
-                                        <td class="align-middle">{{$bl->tenND}}</td>
+                                        <td class="align-middle">{{Str::limit($bl->tenSP, 30)}}</td>
+                                        <td class="align-middle">{{$bl->name}}</td>
                                         <td class="align-middle"> {{Str::limit($bl->noiDung, 30)}} </td>
                                         <td class="align-middle text-center"> {{date('d/m/Y',strtotime($bl->ngayBL))}} </td>
                                         <td class="align-middle text-center">

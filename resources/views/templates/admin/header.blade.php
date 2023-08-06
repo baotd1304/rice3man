@@ -73,7 +73,11 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assetsAdmin/img/r3m.png')}}" alt="Profile" class="rounded-circle">
+            @if (Auth::user()->avatar == '')
+                <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" style="width: 50px; height: 50px">
+            @else <img src="{{Auth::user()->avatar}}" alt="" width="50px" height="50px">
+            @endif
+            {{-- <img src="{{ asset('assetsAdmin/img/r3m.png')}}" alt="Profile" class="rounded-circle"> --}}
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -165,8 +169,8 @@
       </li>
      
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('nguoidung.index') }}">
-          <i class="bi bi-grid"></i><span>Quản lý người dùng</span>
+        <a class="nav-link collapsed" href="{{ route('user.index') }}">
+          <i class="bi bi-grid"></i><span>Quản lý tài khoản</span>
         </a>
       </li>
 

@@ -5,7 +5,7 @@
             <h1>Bài viết</h1>
             <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('baiviet.index') }}">Bài viết</a></li>
                 <li class="breadcrumb-item active">Thêm bài viết</li>
             </ol>
@@ -50,7 +50,7 @@
                                                 <div class="mb-3">
                                                     <label for="tacGia">Tác giả</label>
                                                     <div class="input-group">
-                                                        <input value="{{ old('tacGia') }}" type="text" name="tacGia" id="tacGia" class="form-control">
+                                                        <input value="{{Auth::guard('web')->user()->name??null}}" type="text" name="tacGia" id="tacGia" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>

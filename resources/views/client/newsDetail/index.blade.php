@@ -12,7 +12,7 @@
         </div>
         <nav aria-label="breadcrumb  ">
             <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
-                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$post->tieuDe}}</li>
             </ol>
         </nav>
@@ -29,7 +29,7 @@
             </div>
         </article>
     </div>
-    <div class="row mb-5">
+    {{-- <div class="row mb-5">
         <div class="col-6 ">
             <h3 class="title">Viết bình luận</h3>
             <form method="POST" action="{{route('clientcomment')}}" id="article_comments" accept-charset="UTF-8" class="comment-form">
@@ -39,17 +39,14 @@
                     Vui lòng đăng nhập để thực hiện chức năng bình luận
                 </p>
                 @endif
-                <input type="text" name="user_id" value="{{Auth::guard('web')->user()->id??null}}" hidden>
-                <input type="text" name="news_id" value="{{$post->id}}" hidden>
-                {{-- <div class="row comment-form">
+                <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
+                <input type="text" name="idSP" value="{{$post->idBV}}" hidden>
+                <div class="row comment-form">
                     <div class="col-12 form-group">
-                        <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="">
+                        <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->id??null}}">
                     </div>
-                    <div class="col-12 form-group">
-                        <input class="form-control" title="E-mail" type="email" placeholder="E-mail *" name="email"
-                            value="">
-                    </div>
-                </div> --}}
+                    
+                </div>
                 <div class="field aw-blog-comment-area form-group">
                     <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
                         name="content"></textarea>
@@ -68,20 +65,20 @@
         </div>
         <div class="col-6">
             <h3 class="title">Bình luận</h3>
-            @if (count($comments)>0)
-            @foreach ($comments as $item )
+            @if (count($binhluans)>0)
+            @foreach ($binhluans as $binhluan )
             <div class="comment-container">
                 <div class="comment-header">
                     <img src="https://via.placeholder.com/40x40" alt="Avatar">
-                    <h4>{{$item->author->username}}</h4>
+                    <h4>{{$binhluan->idND}}</h4>
                 </div>
                 <div class="comment-body">
-                    <p>{{$item->content}}</p>
+                    <p>{{$binhluan->noiDung}}</p>
                 </div>
                 <div class="comment-footer">
                     <span>Thích</span>
                     <span>Trả lời</span>
-                    <span>{{ $item->created_at->format('d/m/Y') }}</span>
+                    <span>{{ $binhluan->ngayBL->format('d/m/Y') }}</span>
                     <a href="#">Xóa</a>
                 </div>
             </div>
@@ -92,18 +89,21 @@
             </p>
             @endif
         </div>
-    </div>
+    </div> --}}
     <div class="row">
-        <h3 class="title">Bài viết liên quan</h3>
+        <h3 class="title">Bài viết cùng tác giả</h3>
         <div class="col-12">
             <div style="display: grid;grid-template-columns:repeat(4,1fr);gap :10px;margin-top: 20px;">
   
-              @foreach ($newsRelate as $item )
-              <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['id'=>$item->idBV])}}"
-                title="{{$item->tieuDe}}"
-                thumb="{{$item->thumbNail}}"
-                summary="{{$item->noiDung}} "/>
-                
+                @foreach ($newsRelate as $bv )
+                <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['id'=>$bv->idBV])}}"
+                    title="{{$bv->tieuDe}}"
+                    thumb="{{$bv->thumbNail}}"
+                    summary="{{$bv->noiDung}}"
+                    link="{{route('clientnews-detail', $bv->idBV)}}"
+                    day="{{date('d/m/Y',strtotime($bv->ngayDang))}}"
+                    />
+                    
                 @endforeach
             </div>
     </div>

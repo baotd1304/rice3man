@@ -83,8 +83,10 @@
         <div class="card">
           <h1 style="text-align: center">Thông tin hóa đơn</h1>
           <hr>
+          
           <div class="card" >
-            
+          <form action="{{ route('chitiethoadon.update', $order->idHD) }}" method="POST" enctype="multipart/form-data">
+                              
             <div class="card-header">
               <!-- Hiển thị các thông tin khác của người dùng -->
               <ul class="list-unstyled">
@@ -93,9 +95,28 @@
                 <li><strong>Email người nhận:</strong> {{ $order->email }}</li><br>
                 <li><strong>Địa chỉ người nhận:</strong> {{ $order->diaChi }}</li><br>
                 <li><strong>Số điện thoại người nhận:</strong> {{ $order->soDienThoai }}</li><br>
-                <li><strong>Trạng thái vận chuyển:</strong> {{ $order->trangThai == 1 ? 'Đã giao hàng' : 'Chưa giao hàng' }}</li><br>
-                <li><strong>Trạng thái thanh toán:</strong> {{ $order->thanhToan == 1 ? 'Đã thanh toán' : 'Chưa thanh toán' }}</li><br>
               </ul>
+              <div class="row m-auto">
+                <div class="col-md-6">
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input value="1" type="radio" class="btn-check" name="trangThai" id="btnradio1" autocomplete="off" {{$order->trangThai?"checked":""}}>
+                    <label class="btn btn-outline-primary" for="btnradio1">Đã giao hàng</label>
+                  
+                    <input value="0" type="radio" class="btn-check" name="trangThai" id="btnradio2" autocomplete="off" {{$order->trangThai?"":"checked"}}>
+                    <label class="btn btn-outline-secondary" for="btnradio2">Chưa giao hàng</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input value="1" type="radio" class="btn-check" name="thanhToan" id="btnradio3" autocomplete="off" {{$order->thanhToan?"checked":""}}>
+                    <label class="btn btn-outline-primary" for="btnradio3">Đã thanh toán</label>
+                  
+                    <input value="0" type="radio" class="btn-check" name="thanhToan" id="btnradio4" autocomplete="off" {{$order->thanhToan?"":"checked"}}>
+                    <label class="btn btn-outline-secondary" for="btnradio4">Chưa thanh toán</label>
+                  </div>
+                </div>
+              </div>
+              
             </div>
             <div class="card-body">
               @if ($user)
@@ -105,7 +126,15 @@
               <p><strong>Địa chỉ người mua:</strong> {{ $diachi }}</p>
               @endif
               <!-- Thêm các thông tin khác của đơn hàng -->
+
+              <div class="pb-3 pt-3">
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                <a type="cancle" href="{{route('sanpham.index')}}" class="btn btn-outline-dark ml-3">Hủy</a>
+              </div>
+            
+              @csrf {{ method_field('PUT') }}
             </div>
+          </form>
           </div>
       </div>
     </div>

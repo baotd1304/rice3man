@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 03, 2023 lúc 11:50 AM
+-- Thời gian đã tạo: Th8 06, 2023 lúc 05:55 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -53,7 +53,7 @@ CREATE TABLE `baiviet` (
   `thumbNail` varchar(255) NOT NULL,
   `noiDung` text NOT NULL,
   `tacGia` varchar(50) DEFAULT NULL,
-  `ngay` datetime NOT NULL DEFAULT current_timestamp(),
+  `ngayDang` datetime NOT NULL DEFAULT current_timestamp(),
   `anHien` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 hien thi,\r\n0 an',
   `noiBat` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 noi bat,\r\n0 k noi bat',
   `tieuDe` varchar(500) NOT NULL
@@ -63,10 +63,12 @@ CREATE TABLE `baiviet` (
 -- Đang đổ dữ liệu cho bảng `baiviet`
 --
 
-INSERT INTO `baiviet` (`idBV`, `thumbNail`, `noiDung`, `tacGia`, `ngay`, `anHien`, `noiBat`, `tieuDe`) VALUES
+INSERT INTO `baiviet` (`idBV`, `thumbNail`, `noiDung`, `tacGia`, `ngayDang`, `anHien`, `noiBat`, `tieuDe`) VALUES
 (1, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:48', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
 (2, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:54', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
-(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 0, 0, 'dadadad');
+(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 1, 0, 'dadadad'),
+(4, '/upload/images/baiviet\\2023-08-05_1691228140_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '<p>31313</p>', '1313', '2023-08-04 23:29:22', 1, 1, 'dadadad'),
+(5, '/upload/images/baiviet\\2023-08-05_1691227392_242881598_3057768137876191_6013778442553363722_n.jpg', '<p>thong tin huu ich&nbsp;<img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2023/08/04/1541163/top-2-san-pham-gao-thien-nhat-ngon-nhat-hien-nay-202308050742099597.png\" /></p>', 'Duy Bảo', '2023-08-05 16:23:12', 1, 1, 'Bai viet hay');
 
 -- --------------------------------------------------------
 
@@ -88,11 +90,26 @@ CREATE TABLE `binhluan` (
 --
 
 INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) VALUES
-(6, 1, 1, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-07-29 17:30:24', 1),
-(7, 2, 1, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-07-29 17:30:24', 1),
-(8, 3, 1, 'Gạo rất ngon, mềm dẻo và thươm', '2023-07-29 17:30:24', 1),
-(9, 4, 1, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-07-29 17:30:24', 1),
-(10, 5, 1, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-07-29 17:30:24', 1);
+(14, 1, 9, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:01:10', 1),
+(15, 2, 9, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:01:10', 1),
+(16, 3, 10, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:01:10', 1),
+(17, 4, 10, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:01:10', 1),
+(18, 5, 11, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:01:10', 1),
+(19, 1, 9, 't4tretret', '2023-08-05 23:01:10', 1),
+(20, 1, 9, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:06:47', 1),
+(21, 2, 9, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:06:47', 1),
+(22, 3, 10, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:06:47', 1),
+(23, 4, 10, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:06:47', 1),
+(24, 5, 11, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:06:47', 1),
+(25, 3, 9, 'sản phẩm chất lượng cao, giá hợp lý', '2023-08-05 23:09:35', 1),
+(26, 10, 9, '41414', '2023-08-05 23:27:24', 1),
+(27, 10, 9, 'rtrtrt', '2023-08-05 23:28:18', 1),
+(28, 10, 9, '54545', '2023-08-05 23:28:23', 1),
+(29, 10, 9, 'sđsư', '2023-08-05 23:32:42', 1),
+(30, 1, 9, '31313', '2023-08-05 23:43:04', 1),
+(31, 1, 9, 'bluan 1', '2023-08-05 23:43:19', 1),
+(32, 19, 9, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
+(33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1);
 
 -- --------------------------------------------------------
 
@@ -115,9 +132,13 @@ CREATE TABLE `chitiethoadon` (
 
 INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaSP`) VALUES
 (1, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300),
-(2, 6, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 2, 78000),
+(2, 4, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 2, 78000),
 (3, 8, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 6, 129000),
-(4, 11, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 3, 83300);
+(4, 11, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 3, 83300),
+(5, 12, 8, 'Nếp sáp Vinh Hiển túi 1kg', 2, 31000),
+(6, 13, 33, 'Gạo lức huyết rồng PMT túi 1kg', 3, 54500),
+(7, 14, 8, 'Nếp sáp Vinh Hiển túi 1kg', 3, 31000),
+(8, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300);
 
 -- --------------------------------------------------------
 
@@ -167,7 +188,10 @@ INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan
 (8, NULL, NULL, 774000, '2023-07-23 20:00:22', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
 (9, NULL, NULL, 774000, '2023-07-23 20:00:47', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
 (10, NULL, NULL, 774000, '2023-07-23 20:01:12', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam');
+(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam'),
+(12, NULL, NULL, 62000, '2023-08-04 20:48:08', 0, 0, 'tran baotran baotran bao', 'tdb1304@gmail.com', 131313, '31313,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
+(13, NULL, NULL, 163500, '2023-08-04 20:49:27', 1, 1, 'tdb1304@gmail.com', 'tdb1304@gmail.com', 123123123, '121212,Xã Mỹ Thái,Huyện Lạng Giang,Tỉnh Bắc Giang'),
+(14, NULL, NULL, 93000, '2023-08-04 21:06:17', 1, 0, 'tran baotran baotran bao', 'baotd1304@gmail.com', 123123123, '424232,Thị trấn Thanh Sơn,Huyện Thanh Sơn,Tỉnh Phú Thọ');
 
 -- --------------------------------------------------------
 
@@ -265,7 +289,7 @@ CREATE TABLE `nguoidung` (
 
 INSERT INTO `nguoidung` (`idND`, `ten`, `matKhau`, `email`, `sdt`, `diaChi`, `hinh`, `vaiTro`, `hoatDong`, `updated_at`) VALUES
 (1, 'Phan Văn Hùng', '212312312312', 'hungpvps19362@fpt.edu.vn', '0857626102', 'ssss', 'aaaaaaa', 0, 0, NULL),
-(5, 'Phan Văn Hùng ah', '212312312', 'hungpvps19362@fpt.edu.vn', '0857626104', 'âjajaj', 'aaaa', 0, 0, NULL);
+(9, 'Phan Văn Hùng ah', '212312312', 'hungpvps19362@fpt.edu.vn', '0857626104', 'âjajaj', 'aaaa', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -310,6 +334,14 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('tdb1304@gmail.com', '$2y$10$Sc/A8nWJgTnEPRvoHzRDZu8DqJgjhuibqFd5VcDfi5hv3bPYtV1pu', '2023-08-04 03:24:52'),
+('baotd1304@gmail.xn--com4rr34343434-ukb', '$2y$10$sywqKKXWKD3t2A5rY2m4OODDezHa6rH3831qvn5oRfdNrpEg2r/WO', '2023-08-04 03:48:05');
 
 -- --------------------------------------------------------
 
@@ -478,7 +510,7 @@ INSERT INTO `thuonghieusp` (`idTH`, `tenTH`, `urlHinhTH`, `thuTu`, `anHien`) VAL
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
@@ -498,8 +530,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`, `active`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Trần Duy Bảo', 'admin@gmail.comm', '123123', NULL, '31313', 0, 1, '$2y$10$IkdLU029CaAULswowUD/feYOtQJSZwozOld2Dk4vDcFmUOrahKAcu', '2023-08-02 07:02:57', 'qTqnfTRUQsVI3E9EltM14z3pxeOzRoY8yYb9UdVxEnjsejW5KjGNmZatIq8l', '2023-08-02 06:53:22', '2023-08-02 09:41:37'),
-(4, 'Duy Bảo', 'admin@gmail.comeqe', '121212', NULL, '31313', 1, 1, '$2y$10$.ujw19JzB1mQn08kilCPoOPmCY1btulEOY0XpmeL3wk1Buytyhv1i', '2023-08-02 10:43:28', NULL, '2023-08-02 10:43:06', '2023-08-02 10:44:18');
+(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'eU5Hs9amt4yGIX5civ3k7fZiCHWvWB4xeFJ7E4wSBzpGtuFpv8VOvth8HZUJ', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
+(10, 'Phan Văn Hùng', '343432@gmail.comrrr555', '5456546455', NULL, '21212', 1, 0, '$2y$10$nP0uKqaQArzUwpaibydj1OzYqw7gNvLVmKeZS2vvkqRFBEs1yO7fy', '2023-08-04 02:59:52', NULL, '2023-08-04 02:54:23', '2023-08-05 06:44:20'),
+(11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '34353535', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
+(12, 'Trần Duy Bảo', 'baotd1304@gmail.xn--com4rr34343434-ukb', '343535354343', '/upload/images/profile\\2023-08-05_1691243332_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', NULL, 1, 0, '$2y$10$wHumpfwYnRvkr.A6vj.4TumaDo.jHvx.EVM5gAkK5y/vF0pXM90qC', NULL, NULL, '2023-08-04 03:42:21', '2023-08-05 06:48:52'),
+(13, 'Trần Duy Bảo', 'baotd1304@gmail.com', '123434343434', NULL, '3333', 0, 1, '$2y$10$lU.7/Rmgx2NJR/FkqqA1nO9nR0cYx8SpwaPfptDUO3xdmhrJU.Y.2', '2023-08-04 07:01:29', NULL, '2023-08-04 07:01:09', '2023-08-04 07:18:29');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -522,8 +557,8 @@ ALTER TABLE `baiviet`
 --
 ALTER TABLE `binhluan`
   ADD PRIMARY KEY (`idBL`),
-  ADD KEY `binhluan_fk_idND` (`idND`),
-  ADD KEY `binhluan_fk_idSP` (`idSP`);
+  ADD KEY `binhluan_fk_idSP` (`idSP`),
+  ADD KEY `idND` (`idND`);
 
 --
 -- Chỉ mục cho bảng `chitiethoadon`
@@ -640,19 +675,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
-  MODIFY `idBV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idBV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -664,7 +699,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -688,13 +723,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `idND` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idND` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -730,7 +765,7 @@ ALTER TABLE `thuonghieusp`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -740,7 +775,7 @@ ALTER TABLE `users`
 -- Các ràng buộc cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  ADD CONSTRAINT `binhluan_fk_idND` FOREIGN KEY (`idND`) REFERENCES `nguoidung` (`idND`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `binhluan_fk_idND` FOREIGN KEY (`idND`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `binhluan_fk_idSP` FOREIGN KEY (`idSP`) REFERENCES `sanpham` (`idSP`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -755,7 +790,7 @@ ALTER TABLE `chitiethoadon`
 --
 ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_fk_idMGG` FOREIGN KEY (`idMGG`) REFERENCES `magiamgia` (`idMGG`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `hoadon_fk_idND` FOREIGN KEY (`idND`) REFERENCES `nguoidung` (`idND`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `hoadon_fk_idND` FOREIGN KEY (`idND`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Các ràng buộc cho bảng `sanpham`

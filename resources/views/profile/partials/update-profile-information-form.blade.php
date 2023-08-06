@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -58,6 +58,12 @@
             <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" autofocus autocomplete="address" />
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
+        <div>
+            <x-input-label for="avatar" :value="__('Hình ảnh')" />
+            <img class="p-3" src="{{$user->avatar}}" alt="User chưa có hình" width="150px">
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" autofocus autocomplete="avatar" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Lưu') }}</x-primary-button>
@@ -72,5 +78,6 @@
                 >{{ __('Đã lưu.') }}</p>
             @endif
         </div>
+
     </form>
 </section>

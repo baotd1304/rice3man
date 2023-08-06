@@ -27,7 +27,12 @@ class ProfileAdminController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $validatedData = $request->user()->fill($request->validated());
+        if ($request->has('avatar')) {
+            $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('avatar')->getClientOriginalName();
+            $path = $request->file('avatar')->move('upload/images/profile', $fileName);
+            $validatedData["avatar"] = '/'.$path;
+        }
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

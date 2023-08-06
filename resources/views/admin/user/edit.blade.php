@@ -1,13 +1,15 @@
+
 @extends('templates.admin.master')
+
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Bài viết</h1>
+            <h1>Tài khoản</h1>
             <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('baiviet.index') }}">Bài viết</a></li>
-                <li class="breadcrumb-item active">Cập nhật bài viết</li>
+                <li class="breadcrumb-item"><a href="{{ route('user.index') }}">Tài khoản</a></li>
+                <li class="breadcrumb-item active">Danh sách tài khoản</li>
             </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -18,71 +20,78 @@
 
                 <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Cập nhật bài viết</h5>
+                    <h5 class="card-title">Cập nhật tài khoản</h5>
 
                     <!-- Table with stripped rows -->
                     <section class="content">
                         
                         <!-- Default box -->
                         <div class="container-fluid">
-                            <form action="{{ route('baiviet.update', $baiviet->idBV) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="tenSP">Tiêu đề bài viết</label>
-                                                    <input value="{{ $baiviet->tieuDe }}" type="text" name="tieuDe" id="tieuDe" class="form-control">	
+                                                    <label for="name">Tên</label>
+                                                    <input value="{{ $user->name }}" type="text" name="name" id="name" class="form-control" disabled>	
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="email">Email</label>
+                                                    <input value="{{ $user->email }}" type="text" name="email" id="email" class="form-control" disabled>	
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="phone">Số điện thoại</label>
+                                                    <input value="{{ $user->phone }}" type="text" name="phone" id="phone" class="form-control" disabled>	
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label for="address">Địa chỉ</label>
+                                                    <input value="{{ $user->address }}" type="text" name="address" id="address" class="form-control" disabled>	
+                                                </div>
+                                            </div>
+                                            
                                             <div class="mb-3">
                                                 <div class="col-md-12">
                                                     <label>Hình ảnh</label>
-                                                    <img class="p-3" src="{{$baiviet->thumbNail}}" alt="BV chưa có hình" width="150px">
-                                                    <input class="form-control" name="thumbNail" type="file" id="thumbNail" value="{{ $baiviet->thumbNail }}">
+                                                    <img class="p-3" src="{{$user->avatar}}" alt="User chưa có hình" width="150px">
+                                                    {{-- <input class="form-control" name="avatar" type="file" id="avatar" value="{{ $user->avatar }}"> --}}
                                                </div>
-                                            </div>
-                                            <div class="mb-3 col-md-12">
-                                                <label>Nội dung</label> 
-                                                <textarea id="noiDung" name="noiDung" rows="5" class="form-control"> {{ $baiviet->noiDung }} </textarea> 
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-3">
-                                                    <label for="tacGia">Tác giả</label>
-                                                    <div class="input-group">
-                                                        <input value="{{ $baiviet->tacGia }}" type="text" name="tacGia" id="tacGia" class="form-control">
-                                                    </div>
-                                                </div>
                                             </div>
 
                                             <div class="row mt-3 mb-3">
-                                                <label class="col-form-label col-sm-2">Hiển thị</label>
+                                                <label class="col-form-label col-sm-2">Vai trò</label>
                                                 <div class="col-md-4">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input mt-2" type="radio" name="anHien" id="gridRadios1" value="1" {{$baiviet->anHien?"checked":""}}>
-                                                        <label class="form-check-label" for="gridRadios1">
-                                                            <i class="bi bi-check-circle btn btn-success rounded-circle"></i>
+                                                        <input class="form-check-input mt-2" type="radio" name="role" id="gridRadios1" value="1" {{$user->role?"checked":""}}>
+                                                        <label class="form-check-label" for="gridRadios1">Admin
+                                                            <iconify-icon class="btn btn-danger rounded-circle" icon="clarity:administrator-solid" width="20" height="20"></iconify-icon>
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input mt-2" type="radio" name="anHien" id="gridRadios2" value="0" {{$baiviet->anHien?"":"checked"}}>
-                                                        <label class="form-check-label" for="gridRadios2">
-                                                            <i class="bi bi-x-circle btn btn-secondary rounded-circle"></i>
+                                                        <input class="form-check-input mt-2" type="radio" name="role" id="gridRadios2" value="0" {{$user->role?"":"checked"}}>
+                                                        <label class="form-check-label" for="gridRadios2">User
+                                                            <iconify-icon class="btn btn-info rounded-circle" icon="clarity:user-solid" width="20" height="20"></iconify-icon>
                                                         </label>
                                                     </div>
                                                 
                                                 </div>
-                                                <label class="col-form-label col-sm-2">Nổi bật</label>
+                                                <label class="col-form-label col-sm-2">Hoạt động</label>
                                                 <div class="col-md-4">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input mt-2" type="radio" name="noiBat" id="gridRadios3" value="1" {{$baiviet->noiBat?"checked":""}}>
+                                                        <input class="form-check-input mt-2" type="radio" name="active" id="gridRadios3" value="1" {{$user->active?"checked":""}}>
                                                         <label class="form-check-label" for="gridRadios3">
                                                             <i class="bi bi-check-circle btn btn-success rounded-circle"></i>
                                                         </label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input mt-2" type="radio" name="noiBat" id="gridRadios4" value="0" {{$baiviet->noiBat?"":"checked"}}>
+                                                        <input class="form-check-input mt-2" type="radio" name="active" id="gridRadios4" value="0" {{$user->active?"":"checked"}}>
                                                         <label class="form-check-label" for="gridRadios4">
                                                             <i class="bi bi-x-circle btn btn-secondary rounded-circle"></i>
                                                         </label>
@@ -105,7 +114,7 @@
 
                                 <div class="pb-3 pt-3">
                                     <button type="submit" class="btn btn-primary">Cập nhật</button>
-                                    <a type="cancle" href="{{route('baiviet.index')}}" class="btn btn-outline-dark ml-3">Hủy</a>
+                                    <a type="cancle" href="{{route('user.index')}}" class="btn btn-outline-dark ml-3">Hủy</a>
                                 </div>
 
                                 @csrf {{ method_field('PUT') }}
@@ -130,10 +139,6 @@
 @endsection
 
 @section('customJs')
-<script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('noiDung', {
-        height: '200px', width: '100%', language: 'vi'
-    });
-</script>
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 @endsection

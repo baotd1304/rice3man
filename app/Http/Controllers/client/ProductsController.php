@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\client;
 
+use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Mail\SendVerifyCodeMail;
@@ -14,6 +15,7 @@ use App\Models\news;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\SanPham;
+use App\Models\BinhLuan;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Mail;
 
@@ -121,11 +123,14 @@ class ProductsController extends Controller
         ];
         return view('client.products.index', $data);
     }
-    public function productDetail($slug)
+    public function productDetail($id)
     {
         $currentDate = getdate();
-        $product = SanPham::where('idSP', $slug)->firstOrFail();
+        $product = SanPham::where('idSP', $id)->firstOrFail();
         $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
+        $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
+                ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP',$id)
+                ->orderbyDesc('ngayBL')->get();
         // $coupons = coupon::where('user_used', '<', 'limit_used')
         //     // ->whereDate('start_date', '>=', $currentDate)
         //     // ->whereDate('end_date', '>', $currentDate)
@@ -136,7 +141,8 @@ class ProductsController extends Controller
             "product" => $product,
             // "coupons" => json_encode($coupons),
             "coupons" => $coupons,
-            "product_relate" => $product_relate
+            "product_relate" => $product_relate,
+            "binhluans"=>$binhluans,
 
         ];
         return view('client.productDetail.index', $data);
@@ -249,4 +255,16 @@ class ProductsController extends Controller
         ];
         return view('client.search.index', $data);
     }
+
+    public function binhluan(CommentRequest $request)
+    {
+       $binhluan=new BinhLuan();
+       $binhluan->noiDung=$request->content;
+       $binhluan->idSP=$request->idSP;
+       $binhluan->idND=$request->idND;
+       $binhluan->save();
+       return redirect()->back();
+    }
+
+
 }

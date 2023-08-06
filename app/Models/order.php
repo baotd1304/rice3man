@@ -13,7 +13,7 @@ class Order extends Model
     // Định nghĩa quan hệ với model User (người dùng)
     public function user()
     {
-        return $this->belongsTo(NguoiDung::class, 'idND');
+        return $this->belongsTo(User::class, 'idND');
     }
     
     // Định nghĩa quan hệ với model OrderDetail (đơn hàng chi tiết)
@@ -23,6 +23,6 @@ class Order extends Model
     }
     public function getAllOrders()
     {
-        return $this->all();
+        return $this->orderbyDesc('ngayMua')->get();
     }
 }

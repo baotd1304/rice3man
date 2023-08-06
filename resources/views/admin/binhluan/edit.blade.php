@@ -40,7 +40,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="tenND">Người bình luận</label>
-                                                        <input value="{{ $binhluan->tenND }}" type="text" name="tenND" disabled class="form-control" placeholder="">	
+                                                        <input value="{{ $binhluan->name }}" type="text" name="tenND" disabled class="form-control" placeholder="">	
                                                     </div>
                                                 </div>
                                             </div>

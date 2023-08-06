@@ -2,7 +2,7 @@
     border-radius: 5px;
     overflow: hidden;
     height: 100%;
-    background: red;
+    background: white;
     transition: all .4s ease;
     /* position: relative; */
 }
@@ -75,6 +75,9 @@
 .item-blog .block-content h3 a {
     color: #fff;
 }
+.item-blog .block-content h3 a:hover {
+    color: black;
+}
 .item-blog .block-content .viewmore {
     font-weight: 500;
     position: relative;
@@ -83,6 +86,9 @@
     padding: 5px 20px;
     border-radius: 10px;
     color: #fff;
+}
+.item-blog .block-content .viewmore:hover{
+    background-color: black;
 }
 .line-clamp {
     display: -webkit-box;

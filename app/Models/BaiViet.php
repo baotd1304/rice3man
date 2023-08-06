@@ -11,7 +11,8 @@ class BaiViet extends Model
     protected $table ="baiviet"; 
     public $primaryKey = "idBV";
     public $timestamps = false;
-    protected $fillable = ['idBV', 'tieuDe', 'noiDung', 'thumbNail', 'anHien', 'tacGia'];
+    protected $fillable = ['idBV', 'tieuDe', 'noiDung', 'tacGia', 'thumbNail', 
+                        'anHien', 'noiBat'];
     protected $dates = ['ngayDang'];
-    protected $attributes= ['noiDung'=>'', 'anHien'=>1]; 
+    protected $attributes= ['noiDung'=>'', 'anHien'=>1, 'noiBat'=>1];
 }

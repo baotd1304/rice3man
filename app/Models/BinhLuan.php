@@ -11,19 +11,26 @@ class BinhLuan extends Model
     protected $table ="binhluan"; 
     public $primaryKey = "idBL";
     public $timestamps = false;
-    protected $fillable = ['idBL', 'idSP', 'idND', 'noiDung', 'tacgia',
-                            'anHien', 'noiBat'];
-    protected $dates = ['ngayDang'];
-    protected $attributes= ['thumbNail'=>'', 'tacGia'=>'', 'noidung'=>'',
-                            'anHien'=>1, 'noiBat'=>1];
+    protected $fillable = ['idBL', 'idSP', 'idND', 'noiDung',
+                            'anHien'];
+    protected $dates = ['ngayBL'];
+    protected $attributes= ['anHien'=>1];
     
-    public function nguoibl()
+    // public function nguoibl()
+    // {
+    //     return $this->belongsTo(NguoiDung::class, 'idND', 'idND');
+    // }
+    // public function baiviet()
+    // {
+    //     return $this->belongsTo(SanPham::class, 'idSP', 'idSP');
+    // }
+
+    public function author()
     {
-        return $this->belongsTo(NguoiDung::class, 'idND', 'idND');
+        return $this->belongsTo(User::class,'idND','id');
     }
-    public function baiviet()
+    public function sanphams()
     {
-        return $this->belongsTo(SanPham::class, 'idSP', 'idSP');
+        return $this->belongsTo(SanPham::class,"idSP","idSP");
     }
-    
 }

@@ -223,16 +223,20 @@ $indexCategory++;
 {{-- Hiển thị phản hồi từ khách hàng --}}
 <section class="app-section pt-3 pb-3">
   <div class="container">
-    <h2 class="title pt-3 pb-3 mb-0"><a href="">Phản hồi tù khách hàng</a></h2>
+    <h2 class="title pt-3 pb-3 mb-0"><a href="">Phản hồi từ khách hàng</a></h2>
     <div class="swiper mySwiperFeeback " style="padding: 10px">
       <div class="swiper-wrapper ">
         @foreach ($binhluans as $bl)
         <div class="swiper-slide ">
           <div class="feedback-card">
             <div class="info">
+              @if ($bl->avatar == '')
+                  <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">
+              @else <img src="{{$bl->avatar}}" alt="" width="50px" height="50px">
+              @endif
               {{-- <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_1.jpg?1681360920404" class="thumb" alt=""> --}}
               <div class="auth">
-                <div class="name">{{ $bl->ten }}</div>
+                <div class="name">{{ $bl->name }}</div>
                 {{-- <div class="posittion">Nội trợ</div> --}}
               </div>
             </div>
@@ -279,16 +283,21 @@ $indexCategory++;
     <h2 class="title pt-3 pb-3 mb-0"><a href="">Bài viết nổi bật</a></h2>
     <div class="swiper mySwiperNews">
       <div class="swiper-wrapper">
-        @foreach ($news as $item)
-        <div class="swiper-slide">
-          <x-NewsCard title="{{$item->tieuDe}}"
-            thumb="{{$item->thumbNail}}"
-            summary="{{$item->noiDung}} "
-            {{-- day="{{$item->ngay}}"
-            month="{{$item->ngay}}"  --}}
-            />
-        </div>
-        @endforeach
+          @foreach ($news as $bv)
+          <div class="swiper-slide">
+            <x-NewsCard title="{{$bv->tieuDe}}"
+              thumb="{{$bv->thumbNail}}"
+              summary="{{$bv->noiDung}} "
+              link="{{route('clientnews-detail', $bv->idBV)}}"
+              day="{{date('d/m/Y',strtotime($bv->ngayDang))}}"
+              />
+          </div>
+          @endforeach
+          </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
       </div>
     </div>
   </div>

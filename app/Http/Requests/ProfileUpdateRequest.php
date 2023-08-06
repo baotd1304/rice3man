@@ -20,6 +20,7 @@ class ProfileUpdateRequest extends FormRequest
             'phone' => ['numeric', 'max_digits:20', Rule::unique(User::class)->ignore($this->user()->id)],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'address' => ['max:255'],
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
         ];
     }
     public function messages()
@@ -27,6 +28,9 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'phone.unique' => 'Số điện thoại đã được sử dụng',
             'email.unique' => 'Email đã được sử dụng',
+            'avatar.image' => 'File tải lên phải là hình ảnh',
+            'avatar.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
+            'avatar.max' => 'File tải lên không vượt quá 2048 kb',
         ];
     }
 }
