@@ -12,7 +12,13 @@ class DatHangController extends Controller
 {
     
     // Hiển thị danh sách đơn hàng
-    
+    public function index()
+    {
+        $Order = new Order();
+        $orders = $Order->getAllOrders();
+        
+        return view('admin.qlyhoadon.index', ['orders' => $orders]);
+    }
     
     // Hiển thị chi tiết đơn hàng
     public function show1($idHD)
@@ -27,12 +33,21 @@ class DatHangController extends Controller
         $thanhToan = $order->thanhToan;
         return view('admin.qlyhoadon.show', compact('order', 'order1', 'user','sdt','diachi','email','thanhToan'));
     }
-    public function index()
+    
+
+    public function update(Request $request, $id)
     {
-        $Order = new Order();
-        $orders = $Order->getAllOrders();
+        $validatedData =$request->validate([
+            
+            'trangThai' => 'required | boolean',
+            'thanhToan' => 'required | boolean',
+        ],[
+            
+        ]);
+       
+        Order::where('idHD', $id)->update($validatedData);
         
-        return view('admin.qlyhoadon.index', ['orders' => $orders]);
+        return redirect()->route('chitiethoadon.index')->with('success', 'Cập nhật hóa đơn thành công!');
     }
     
     

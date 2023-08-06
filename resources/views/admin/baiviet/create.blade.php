@@ -50,7 +50,7 @@
                                                 <div class="mb-3">
                                                     <label for="tacGia">Tác giả</label>
                                                     <div class="input-group">
-                                                        <input value="{{ old('tacGia') }}" type="text" name="tacGia" id="tacGia" class="form-control">
+                                                        <input value="{{Auth::guard('web')->user()->name??null}}" type="text" name="tacGia" id="tacGia" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>

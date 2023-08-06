@@ -128,7 +128,7 @@ class ProductsController extends Controller
         $currentDate = getdate();
         $product = SanPham::where('idSP', $id)->firstOrFail();
         $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
-        $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idUser')
+        $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
                 ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP',$id)
                 ->orderbyDesc('ngayBL')->get();
         // $coupons = coupon::where('user_used', '<', 'limit_used')
@@ -261,7 +261,7 @@ class ProductsController extends Controller
        $binhluan=new BinhLuan();
        $binhluan->noiDung=$request->content;
        $binhluan->idSP=$request->idSP;
-       $binhluan->idUser=$request->idUser;
+       $binhluan->idND=$request->idND;
        $binhluan->save();
        return redirect()->back();
     }

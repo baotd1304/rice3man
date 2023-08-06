@@ -14,8 +14,8 @@ class BinhLuanController extends Controller
     {
         $perPage = 50;
         $listbl = BinhLuan::join('sanpham', 'binhluan.idSP', '=', 'sanpham.idSP')
-                ->join('nguoidung', 'binhluan.idND', '=', 'nguoidung.idND')
-                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'nguoidung.ten as tenND')
+                ->join('users', 'binhluan.idND', '=', 'users.id')
+                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'users.name as name')
                 ->orderBy('idBL', 'DESC')->paginate($perPage);
         
         return view('admin.binhluan.index', compact('listbl'));
@@ -23,8 +23,8 @@ class BinhLuanController extends Controller
     public function edit(Request $request, $idBL=0)
     {
         $binhluan = BinhLuan::join('sanpham', 'binhluan.idSP', '=', 'sanpham.idSP')
-                ->join('nguoidung', 'binhluan.idND', '=', 'nguoidung.idND')
-                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'nguoidung.ten as tenND')
+                ->join('users', 'binhluan.idND', '=', 'users.id')
+                ->select('binhluan.*', 'sanpham.tenSP as tenSP', 'users.name as name')
                 ->find($idBL);
         if ($binhluan==null) {
             $request->session()->flash('thongbao', "Bình luận $idBL không có");

@@ -11,7 +11,7 @@ class BinhLuan extends Model
     protected $table ="binhluan"; 
     public $primaryKey = "idBL";
     public $timestamps = false;
-    protected $fillable = ['idBL', 'idSP', 'idUser', 'noiDung',
+    protected $fillable = ['idBL', 'idSP', 'idND', 'noiDung',
                             'anHien'];
     protected $dates = ['ngayBL'];
     protected $attributes= ['anHien'=>1];
@@ -27,7 +27,7 @@ class BinhLuan extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class,'idUser','id');
+        return $this->belongsTo(User::class,'idND','id');
     }
     public function sanphams()
     {

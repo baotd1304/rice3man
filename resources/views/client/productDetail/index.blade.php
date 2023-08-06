@@ -216,20 +216,17 @@
                     Vui lòng đăng nhập để thực hiện chức năng bình luận
                 </p>
                 @endif
-                <input type="text" name="idUser" value="{{Auth::guard('web')->user()->id??null}}" hidden>
+                <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
                 <input type="text" name="idSP" value="{{$product->idSP}}" hidden>
                 <div class="row comment-form">
                     <div class="col-12 form-group">
                         <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
                     </div>
-                    {{-- <div class="col-12 form-group">
-                        <input class="form-control" title="E-mail" type="email" placeholder="E-mail *" name="email"
-                            value="">
-                    </div> --}}
                 </div>
                 <div class="field aw-blog-comment-area form-group">
                     <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
-                        name="content"></textarea>
+                        name="content">
+                    </textarea>
                     <span class="text-danger">@error('content')
                         {{$message}}
                         @enderror</span>
@@ -237,8 +234,7 @@
                 <div style="width:96%" class="button-set">
                     <button type="submit"
                         class="book-submit btn btn-primary text-center d-flex align-items-center font-weight-boldt font-weight-bold"
-                        @disabled(Auth::guard('web')->check()==true?false:true) >Gửi
-                        bình luận
+                        @disabled(Auth::guard('web')->check()==true?false:true) >Gửi bình luận
                     </button>
                 </div>
             </form>
