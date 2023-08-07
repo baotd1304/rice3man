@@ -38,9 +38,7 @@ use App\Http\Controllers\Admin\UserController;
 Route::prefix('/')->name('client')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/account', [ProfileController::class, 'edit'])->name('account');
 });
-
 Route::prefix('/')->name('client')->group(function () {
-
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/category/{slug}', [ProductsController::class, 'category'])->name('category');
@@ -74,15 +72,12 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/useCouponCode', [CouponController::class, 'useCouponCode'])->name('use-coupon-code');
 });
 
-// PHAN ADMIN
+// phần ADMIN
 Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
-
     Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [ProfileAdminController::class, 'destroy'])->name('admin.profile.destroy');
-
     Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
-    
     //1.Route Loai san pham
     Route::get('/loaisp/index', [LoaiSPController::class, 'index'])->name('loaisp.index');
     Route::get('/loaisp/create', [LoaiSPController::class, 'create'])->name('loaisp.create');
@@ -90,7 +85,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/loaisp/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisp.edit');
     Route::put('/loaisp/{id}', [LoaiSPController::class, 'update'])->name('loaisp.update');
     Route::delete('/loaisp/{id}', [LoaiSPController::class, 'destroy'])->name('loaisp.destroy');
-
     //2. Route san pham
     Route::get('/sanpham/index', [SanphamController::class, 'index'])->name('sanpham.index');
     Route::get('/sanpham/create', [SanphamController::class, 'create'])->name('sanpham.create');
@@ -98,7 +92,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/sanpham/{id}/edit', [SanphamController::class, 'edit'])->name('sanpham.edit');
     Route::put('/sanpham/{id}', [SanphamController::class, 'update'])->name('sanpham.update');
     Route::delete('/sanpham/{id}', [SanphamController::class, 'destroy'])->name('sanpham.destroy');
-
     //3. Route thuong hieu san pham
     Route::get('/thuonghieusp/index', [ThuonghieuSPController::class, 'index'])->name('thuonghieusp.index');
     Route::get('/thuonghieusp/create', [ThuonghieuSPController::class, 'create'])->name('thuonghieusp.create');
@@ -106,7 +99,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/thuonghieusp/{id}/edit', [ThuonghieuSPController::class, 'edit'])->name('thuonghieusp.edit');
     Route::put('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'update'])->name('thuonghieusp.update');
     Route::delete('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'destroy'])->name('thuonghieusp.destroy');
-
     //4. Route bai viet
     Route::get('/baiviet/index', [BaivietController::class, 'index'])->name('baiviet.index');
     Route::get('/baiviet/create', [BaivietController::class, 'create'])->name('baiviet.create');
@@ -114,7 +106,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/baiviet/{id}/edit', [BaivietController::class, 'edit'])->name('baiviet.edit');
     Route::put('/baiviet/{id}', [BaivietController::class, 'update'])->name('baiviet.update');
     Route::delete('/baiviet/{id}', [BaivietController::class, 'destroy'])->name('baiviet.destroy');
-
     //5. Route binh luan
     Route::get('/binhluan/index', [BinhLuanController::class, 'index'])->name('binhluan.index');
     Route::get('/binhluan/create', [BinhLuanController::class, 'create'])->name('binhluan.create');
@@ -122,7 +113,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/binhluan/{id}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
     Route::put('/binhluan/{id}', [BinhLuanController::class, 'update'])->name('binhluan.update');
     Route::delete('/binhluan/{id}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
-
     //6. Route user
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -130,7 +120,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-
     //7. Route slider
     Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
     Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
@@ -138,27 +127,19 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
     Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update');
     Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
-
-
     //8. Route hoadon
     // Route hiển thị danh sách đơn hàng
     Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
     //update hoadon
     Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('chitiethoadon.update');
-
     // Route hiển thị chi tiết đơn hàng
     Route::get('orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
 
 });
-
-
 // Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('clienthome');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
 });
-
 require __DIR__.'/auth.php';
