@@ -51,7 +51,8 @@ Route::prefix('/')->name('client')->group(function () {
     Route::get('/contact', [ContactController::class, 'contact'])->name('show-contact');
     Route::post('/contact', [ContactController::class, 'contact_'])->name('contact');
     Route::get('/addjobs', [AddjobController::class, 'index'])->name('addjobs');
-    
+    Route::get('/huongdan', [AddjobController::class, 'demo'])->name('demo');
+    Route::get('/chinh-sach', [AddjobController::class, 'chinhsach'])->name('chinhsach');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::post('/payment_cod', [PaymentController::class, 'create_payment_cod'])->name('payment_cod');
     Route::post('/payment_vnpay', [PaymentController::class, 'create_payment_vnpay_e'])->name('payment_vnpay');
