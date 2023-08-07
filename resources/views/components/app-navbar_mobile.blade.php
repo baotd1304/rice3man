@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <a href="{{route('clientaccount')}}" class="item">
+    <a href="{{route('profile.edit')}}" class="item">
         <i class='bx bx-user'></i>
         <span>Tài khoản</span>
     </a>

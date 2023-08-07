@@ -26,8 +26,13 @@ class ProfileUpdateRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.max' => 'Tên không được quá :max ký tự',
             'phone.unique' => 'Số điện thoại đã được sử dụng',
+            'phone.numeric' => 'Số điện thoại phải là dạng số',
+            'phone.max_digits' => 'Số điện thoại không được quá :max_digits chữ số',
             'email.unique' => 'Email đã được sử dụng',
+            'email.max' => 'Email không được quá :max ký tự',
+            'address.max' => 'Địa chỉ không được quá :max ký tự',
             'avatar.image' => 'File tải lên phải là hình ảnh',
             'avatar.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
             'avatar.max' => 'File tải lên không vượt quá 2048 kb',

@@ -51,9 +51,7 @@
 	<div class="row" style="flex-wrap:wrap-reverse">
 		<div class="col-lg-8 col-xs-12">
 			<div class="col-12 pb-4 pt-4">
-				{{-- <img src="{{asset('assets/img/logoRice3man.jpg')}}" alt=""> --}}
-				<img style="width:160px"
-					src="assets/img/logoRice3man.jpg" alt="">
+				<a href="{{route('clienthome')}}"><img style="width:160px" src="assets/img/logoRice3man.jpg" alt=""></a>
 			</div>
 			<div class="input-infomation row ">
 				<form id="form-order" action="{{route('clientpayment_cod')}}" method="POST"
@@ -61,16 +59,20 @@
 					@csrf
 					<div class="order-title">
 						<h3>Thông tin nhận hàng</h3>
-						<a href="">
-							<i class='bx bx-user-circle'></i>
-							<span>đăng nhập</span>
-						</a>
+						@if (Auth::guard('web')->check()==false)
+							<a href="{{route('login')}}">
+								<i class='bx bx-user-circle'></i>
+								<span>đăng nhập</span>
+							</a>
+						@endif
 					</div>
 					<div class="error-txt "></div>
 					<div>
+						<input type="number" name="idND" id="idND"
+								value="{{Auth::guard('web')->user()->id??null}}" hidden>
 						<div class="form-group order">
 							<input type="email" name="email" placeholder="email" id="user_email"
-								value="{{old('email')}}" required>
+								value="{{Auth::guard('web')->user()->email??old('email')}}" required>
 						</div>
 						<span class="text-danger">@error('email')
 							{{$message}}
@@ -78,7 +80,7 @@
 					</div>
 					<div >
 						<div class="form-group order">
-							<input type="text" name="username" placeholder="Họ tên" value="{{old('username')}}"
+							<input type="text" name="username" placeholder="Họ tên" value="{{Auth::guard('web')->user()->name??old('name')}}"
 								required>
 						</div>
 						<span class="text-danger">@error('username')
@@ -87,8 +89,8 @@
 					</div>
 					<div>
 						<div class="form-group order">
-							<input type="text" name="phone" placeholder="số điện thoại(tùy chọn)"
-								value="{{old('phone')}}" required>
+							<input type="text" name="phone" placeholder="số điện thoại"
+								value="{{Auth::guard('web')->user()->phone??old('phone')}}" required>
 						</div>
 						<span class="text-danger">@error('phone')
 							{{$message}}
@@ -96,7 +98,7 @@
 					</div>
 					<div>
 						<div class="form-group order">
-							<input type="text" name="address" placeholder="địa chỉ(tùy chọn)" value="{{old('address')}}"
+							<input type="text" name="address" placeholder="địa chỉ" value="{{Auth::guard('web')->user()->address??old('address')}}"
 								required>
 						</div>
 						<span class="text-danger">@error('address')

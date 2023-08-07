@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 06, 2023 lúc 05:55 AM
+-- Thời gian đã tạo: Th8 07, 2023 lúc 03:32 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -66,9 +66,8 @@ CREATE TABLE `baiviet` (
 INSERT INTO `baiviet` (`idBV`, `thumbNail`, `noiDung`, `tacGia`, `ngayDang`, `anHien`, `noiBat`, `tieuDe`) VALUES
 (1, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:48', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
 (2, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:54', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
-(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 1, 0, 'dadadad'),
-(4, '/upload/images/baiviet\\2023-08-05_1691228140_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '<p>31313</p>', '1313', '2023-08-04 23:29:22', 1, 1, 'dadadad'),
-(5, '/upload/images/baiviet\\2023-08-05_1691227392_242881598_3057768137876191_6013778442553363722_n.jpg', '<p>thong tin huu ich&nbsp;<img alt=\"\" src=\"https://cdn.tgdd.vn/Files/2023/08/04/1541163/top-2-san-pham-gao-thien-nhat-ngon-nhat-hien-nay-202308050742099597.png\" /></p>', 'Duy Bảo', '2023-08-05 16:23:12', 1, 1, 'Bai viet hay');
+(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 1, 1, 'dadadad'),
+(4, '/upload/images/baiviet\\2023-08-05_1691228140_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '<p>31313</p>', '1313', '2023-08-04 23:29:22', 1, 1, 'dadadad');
 
 -- --------------------------------------------------------
 
@@ -109,7 +108,8 @@ INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) V
 (30, 1, 9, '31313', '2023-08-05 23:43:04', 1),
 (31, 1, 9, 'bluan 1', '2023-08-05 23:43:19', 1),
 (32, 19, 9, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
-(33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1);
+(33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1),
+(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1);
 
 -- --------------------------------------------------------
 
@@ -123,22 +123,38 @@ CREATE TABLE `chitiethoadon` (
   `idSP` int(11) NOT NULL,
   `tenSP` varchar(255) NOT NULL,
   `soLuong` int(11) NOT NULL,
-  `giaSP` double NOT NULL
+  `giaSP` double NOT NULL,
+  `urlHinh` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `chitiethoadon`
 --
 
-INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaSP`) VALUES
-(1, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300),
-(2, 4, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 2, 78000),
-(3, 8, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 6, 129000),
-(4, 11, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 3, 83300),
-(5, 12, 8, 'Nếp sáp Vinh Hiển túi 1kg', 2, 31000),
-(6, 13, 33, 'Gạo lức huyết rồng PMT túi 1kg', 3, 54500),
-(7, 14, 8, 'Nếp sáp Vinh Hiển túi 1kg', 3, 31000),
-(8, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300);
+INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaSP`, `urlHinh`) VALUES
+(1, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300, ''),
+(2, 4, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 2, 78000, ''),
+(3, 8, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 6, 129000, ''),
+(4, 11, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 3, 83300, ''),
+(5, 12, 8, 'Nếp sáp Vinh Hiển túi 1kg', 2, 31000, ''),
+(6, 13, 33, 'Gạo lức huyết rồng PMT túi 1kg', 3, 54500, ''),
+(7, 14, 8, 'Nếp sáp Vinh Hiển túi 1kg', 3, 31000, ''),
+(8, 4, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300, ''),
+(9, 15, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 3, 38000, ''),
+(10, 15, 35, 'Gạo tấm thơm PMT túi 2kg', 3, 42000, ''),
+(11, 16, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 3, 78000, ''),
+(12, 17, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 2, 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg'),
+(13, 17, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 3, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(14, 18, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 2, 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg'),
+(15, 18, 35, 'Gạo tấm thơm PMT túi 2kg', 2, 42000, 'https://cdn.tgdd.vn/Products/Images/2513/146580/bhx/gao-tam-thom-pmt-tui-2kg-202303261932283448_300x300.jpg'),
+(16, 18, 8, 'Nếp sáp Vinh Hiển túi 1kg', 1, 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg'),
+(17, 19, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 2, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(18, 19, 31, 'Nếp than PMT túi 1kg', 2, 55500, 'https://cdn.tgdd.vn/Products/Images/2513/146577/bhx/nep-than-pmt-tui-1kg-202103040831126066_300x300.jpg'),
+(19, 22, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 1, 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg'),
+(20, 26, 8, 'Nếp sáp Vinh Hiển túi 1kg', 1, 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg'),
+(21, 27, 34, 'Gạo lức PMT túi 2kg', 2, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
+(22, 28, 19, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 2, 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg'),
+(23, 28, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg');
 
 -- --------------------------------------------------------
 
@@ -170,6 +186,7 @@ CREATE TABLE `hoadon` (
   `ngayMua` datetime NOT NULL DEFAULT current_timestamp(),
   `thanhToan` tinyint(1) NOT NULL COMMENT '1 da thanh toan,\r\n0 chua thanh toan',
   `trangThai` tinyint(1) NOT NULL COMMENT '1 da giao hang,\r\n0 chua giao hang',
+  `isDone` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 chưa xác nhận,\r\n1 đã xác nhận,\r\n2 đã hoàn thành,\r\n3 hủy',
   `tenNguoiNhan` varchar(50) NOT NULL,
   `email` varchar(225) NOT NULL,
   `soDienThoai` int(11) NOT NULL,
@@ -180,18 +197,32 @@ CREATE TABLE `hoadon` (
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan`, `trangThai`, `tenNguoiNhan`, `email`, `soDienThoai`, `diaChi`) VALUES
-(4, NULL, NULL, 166600, '2023-07-19 21:47:53', 0, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Duy Phiên,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(5, NULL, NULL, 166600, '2023-07-19 21:49:36', 0, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Phú Đô,Huyện Phú Lương,Tỉnh Thái Nguyên'),
-(6, NULL, NULL, 156000, '2023-07-19 22:06:06', 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(7, NULL, NULL, 156000, '2023-07-19 22:07:16', 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(8, NULL, NULL, 774000, '2023-07-23 20:00:22', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(9, NULL, NULL, 774000, '2023-07-23 20:00:47', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(10, NULL, NULL, 774000, '2023-07-23 20:01:12', 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam'),
-(12, NULL, NULL, 62000, '2023-08-04 20:48:08', 0, 0, 'tran baotran baotran bao', 'tdb1304@gmail.com', 131313, '31313,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
-(13, NULL, NULL, 163500, '2023-08-04 20:49:27', 1, 1, 'tdb1304@gmail.com', 'tdb1304@gmail.com', 123123123, '121212,Xã Mỹ Thái,Huyện Lạng Giang,Tỉnh Bắc Giang'),
-(14, NULL, NULL, 93000, '2023-08-04 21:06:17', 1, 0, 'tran baotran baotran bao', 'baotd1304@gmail.com', 123123123, '424232,Thị trấn Thanh Sơn,Huyện Thanh Sơn,Tỉnh Phú Thọ');
+INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan`, `trangThai`, `isDone`, `tenNguoiNhan`, `email`, `soDienThoai`, `diaChi`) VALUES
+(4, NULL, NULL, 166600, '2023-07-19 21:47:53', 0, 1, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Duy Phiên,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
+(5, NULL, NULL, 166600, '2023-07-19 21:49:36', 0, 0, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Phú Đô,Huyện Phú Lương,Tỉnh Thái Nguyên'),
+(6, NULL, NULL, 156000, '2023-07-19 22:06:06', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
+(7, NULL, NULL, 156000, '2023-07-19 22:07:16', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
+(8, NULL, NULL, 774000, '2023-07-23 20:00:22', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
+(9, NULL, NULL, 774000, '2023-07-23 20:00:47', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
+(10, NULL, NULL, 774000, '2023-07-23 20:01:12', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
+(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam'),
+(12, NULL, NULL, 62000, '2023-08-04 20:48:08', 1, 1, 0, 'tran baotran baotran bao', 'tdb1304@gmail.com', 131313, '31313,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
+(13, NULL, NULL, 163500, '2023-08-04 20:49:27', 1, 1, 3, 'tdb1304@gmail.com', 'tdb1304@gmail.com', 123123123, '121212,Xã Mỹ Thái,Huyện Lạng Giang,Tỉnh Bắc Giang'),
+(14, NULL, NULL, 93000, '2023-08-04 21:06:17', 1, 0, 0, 'tran baotran baotran bao', 'baotd1304@gmail.com', 123123123, '424232,Thị trấn Thanh Sơn,Huyện Thanh Sơn,Tỉnh Phú Thọ'),
+(15, NULL, NULL, 240000, '2023-08-06 15:59:02', 0, 0, 0, 'duy baoduy baoduy bao', 'baotd1304@gmail.com', 123123123, '313112,Xã Văn Quán,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
+(16, NULL, NULL, 234000, '2023-08-06 16:18:27', 0, 0, 0, '3131313131313', 'admin@gmail.com', 3131313, '3131313,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
+(17, NULL, NULL, 184000, '2023-08-06 18:22:10', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,,Huyện Đồng Hỷ,Tỉnh Thái Nguyên'),
+(18, NULL, NULL, 180000, '2023-08-06 18:29:02', 0, 0, 0, '3131313', 'admin@gmail', 31313, 'êrẻ,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
+(19, NULL, NULL, 183000, '2023-08-06 22:41:16', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Hùng Thắng,Huyện Tiên Lãng,Thành phố Hải Phòng'),
+(20, NULL, NULL, 0, '2023-08-06 22:42:06', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh'),
+(21, NULL, NULL, 0, '2023-08-06 22:46:00', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Sơn Đông,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
+(22, 9, NULL, 38000, '2023-08-06 22:51:51', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh'),
+(23, 9, NULL, 38000, '2023-08-06 22:54:58', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh'),
+(24, 9, NULL, 38000, '2023-08-06 22:55:08', 1, 0, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
+(25, 9, NULL, 38000, '2023-08-06 22:56:01', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
+(26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
+(27, 9, NULL, 97000, '2023-08-06 23:09:39', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 111111, 'fshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\n'),
+(28, 9, NULL, 115400, '2023-08-07 19:20:23', 0, 0, 3, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc');
 
 -- --------------------------------------------------------
 
@@ -530,7 +561,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`, `active`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'eU5Hs9amt4yGIX5civ3k7fZiCHWvWB4xeFJ7E4wSBzpGtuFpv8VOvth8HZUJ', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
+(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'Irac9DJdLEII0y1Xf9WuBX3Bs6kr7lq6m3leDHRAua2gzWwegYMBmqr7XTda', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
 (10, 'Phan Văn Hùng', '343432@gmail.comrrr555', '5456546455', NULL, '21212', 1, 0, '$2y$10$nP0uKqaQArzUwpaibydj1OzYqw7gNvLVmKeZS2vvkqRFBEs1yO7fy', '2023-08-04 02:59:52', NULL, '2023-08-04 02:54:23', '2023-08-05 06:44:20'),
 (11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '34353535', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
 (12, 'Trần Duy Bảo', 'baotd1304@gmail.xn--com4rr34343434-ukb', '343535354343', '/upload/images/profile\\2023-08-05_1691243332_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', NULL, 1, 0, '$2y$10$wHumpfwYnRvkr.A6vj.4TumaDo.jHvx.EVM5gAkK5y/vF0pXM90qC', NULL, NULL, '2023-08-04 03:42:21', '2023-08-05 06:48:52'),
@@ -681,13 +712,13 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -699,7 +730,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`

@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'name.required' => 'Bạn chưa nhập họ tên',
             'name.max' => 'Họ tên tối đa 255 ký tự',
             'phone.required' => 'Bạn chưa nhập số điện thoại',
-            'phone.max_digits' => 'Số điện thoại tối đa :max chữ số',
+            'phone.max_digits' => 'Số điện thoại tối đa :max_digits chữ số',
             'phone.numeric' => 'Số điện thoại phải là dạng số',
             'phone.unique' => 'Số điện thoại đã được sử dụng',
             'email.required' => 'Bạn chưa nhập email',

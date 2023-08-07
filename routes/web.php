@@ -22,7 +22,9 @@ use App\Http\Controllers\admin\SanphamController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\Admin\ThuonghieuSPController;
 use App\Http\Controllers\Admin\BaivietController;
+use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\client\OrderProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +37,6 @@ use App\Http\Controllers\Admin\UserController;
 |
 */
 
-Route::prefix('/')->name('client')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/account', [ProfileController::class, 'edit'])->name('account');
-});
 Route::prefix('/')->name('client')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -77,7 +76,9 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [ProfileAdminController::class, 'destroy'])->name('admin.profile.destroy');
-    Route::view('/dashboard', 'admin.dashboard')->name('admin.dashboard');
+
+    Route::get('/dashboard', [dashboardController::class, 'index'])->name('admin.dashboard');
+    
     //1.Route Loai san pham
     Route::get('/loaisp/index', [LoaiSPController::class, 'index'])->name('loaisp.index');
     Route::get('/loaisp/create', [LoaiSPController::class, 'create'])->name('loaisp.create');
@@ -129,17 +130,22 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
     //8. Route hoadon
     // Route hiển thị danh sách đơn hàng
-    Route::get('/orders', [DatHangController::class, 'index'])->name('chitiethoadon.index');
+    Route::get('/orders', [DatHangController::class, 'index'])->name('order.index');
     //update hoadon
-    Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('chitiethoadon.update');
+    Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('order.update');
     // Route hiển thị chi tiết đơn hàng
-    Route::get('orders/{idHD}', [DatHangController::class, 'show1'])->name('showhoadon.show1');
+    Route::get('orders/{idHD}/edit', [DatHangController::class, 'showOrderDetail'])->name('order.showOrderDetail');
 
 });
-// Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('clienthome');
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+//Route profile
+Route::prefix('/profile')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/order', [OrderProfileController::class, 'index'])->name('orderPersonal.index');
+    Route::put('/order/{idHD}', [OrderProfileController::class, 'update'])->name('orderPersonal.update');
+    Route::get('/order/{idHD}/edit', [OrderProfileController::class, 'showOrderDetail'])->name('orderPersonal.showOrderDetail');
 });
 require __DIR__.'/auth.php';

@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
-   
+    
     {{-- css --}}
     {{-- icon --}}
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -45,6 +44,7 @@
 </body>
 
 @yield("js")
+<script src="{{ asset('assetsAdmin/vendor/simple-datatables/simple-datatables.js') }}"></script>
 <script>
   window.onscroll = function() { scrollFunction() };
   const scrollToTopButton = document.querySelector(".scrollToTopButton");

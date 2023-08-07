@@ -121,8 +121,7 @@
 <body style="background-color: #e9ecef">
     <!-- start preheader -->
     <div class="preheader">
-        A preheader is the short summary text that follows the subject line
-        when an email is viewed in the inbox.
+        
     </div>
     <!-- end preheader -->
 
@@ -139,14 +138,14 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px">
                     <tr>
                         <td align="center" valign="top" style="padding: 36px 24px">
-                            <a href="https://www.blogdesire.com" target="_blank" style="display: inline-block">
-                                <img src="{{asset('assets/img/logoRice3man.jpg')}}"
+                            <a href="{{route('clienthome')}}" target="_blank" style="display: inline-block">
+                                <img src="{{asset('assets/img/logoRice3Man.jpg')}}"
                                     alt="Logo" border="0" width="90" style="
                                             display: block;
                                             width: 120px;
                                             max-width: 120px;
                                             min-width: 120px;
-                                        " />
+                                            "/>
                             </a>
                         </td>
                     </tr>
@@ -184,7 +183,7 @@
                                         line-height: 48px;
                                         text-align:center
                                     ">
-                                Cảm ơn bạn đã mua hàng, chúc bạn ngày mới vui vẻ
+                                Cảm ơn bạn đã mua hàng
                             </h1>
                         </td>
                     </tr>
@@ -217,7 +216,9 @@
                                     line-height: 24px;
                                 ">
                             <p style="margin: 0">
-                               Cảm ơn bạn đã mua hàng qua trang web rice3man, đơn hàng của bạn đang được chúng tôi xử lý. Chúc bạn một ngày vui vẻ
+                                Bạn đã hoàn thành việc mua hàng bên website Rice3Man.
+                                <br>
+                                Nếu không phải bạn thực hiện việc mua hàng xin vui lòng liên hệ với chúng tôi <a href="{{ route('clienthome')}}">tại đây</a>
                             </p>
                         </td>
                     </tr>
@@ -234,7 +235,7 @@
                                                 <td align="center" bgcolor="#5ea700" style="
                                                             border-radius: 6px;
                                                         ">
-                                                    <div style="
+                                                    {{-- <div style="
                                                                 display: inline-block;
                                                                 padding: 16px
                                                                     36px;
@@ -246,7 +247,8 @@
                                                                 color: #ffffff;
                                                                 text-decoration: none;
                                                                 border-radius: 6px;
-                                                            "> <a style="text-decoration: none;" href="http://rice3man.top">Theo dõi chúng tôi</a></div>
+                                                            ">{{$opt}}
+                                                    </div> --}}
                                                 </td>
                                             </tr>
                                         </table>
@@ -266,7 +268,10 @@
                                     border-bottom: 3px solid #d4dadf;
                                 ">
                             <p style="margin: 0">
-                               Rice 3 Man
+                                Trân trọng
+                            </p>
+                            <p style="margin: 0">
+                                Rice 3 Man
                             </p>
                         </td>
                     </tr>
@@ -289,13 +294,13 @@
                                     line-height: 20px;
                                     color: #666;
                                 ">
-                            <p style="margin: 0">
+                            {{-- <p style="margin: 0">
                                 You received this email because we received
                                 a request for [type_of_action] for your
                                 account. If you didn't request
                                 [type_of_action] you can safely delete this
                                 email.
-                            </p>
+                            </p> --}}
                         </td>
                     </tr>
                     <!-- end permission -->
@@ -310,14 +315,14 @@
                                     line-height: 20px;
                                     color: #666;
                                 ">
-                            <p style="margin: 0">
+                            {{-- <p style="margin: 0">
                                 To stop receiving these emails, you can
                                 <a href="https://www.blogdesire.com" target="_blank">unsubscribe</a>
                                 at any time.
                             </p>
                             <p style="margin: 0">
-                                Paste 1234 S. Broadway St. City, State 12345
-                            </p>
+                                Công viên phần mềm Quang Trung
+                            </p> --}}
                         </td>
                     </tr>
                     <!-- end unsubscribe -->
