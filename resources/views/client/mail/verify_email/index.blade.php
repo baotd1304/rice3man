@@ -290,7 +290,7 @@
                                     border-bottom: 3px solid #d4dadf;
                                 ">
                             <p style="margin: 0">
-                                Green Market
+                                Rice 3 man
                             </p>
                         </td>
                     </tr>
