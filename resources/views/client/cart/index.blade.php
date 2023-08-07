@@ -12,7 +12,7 @@
         </div>
         <nav aria-label="breadcrumb  ">
             <ol class=" breadcrumb p-3" @style("margin:0;padding-left:0px")>
-                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang trủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('client')}}">Trang Chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
             </ol>
         </nav>

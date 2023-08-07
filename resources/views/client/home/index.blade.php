@@ -222,13 +222,14 @@ $indexCategory++;
 @endforeach
 {{-- Hiển thị phản hồi từ khách hàng --}}
 <section class="app-section pt-3 pb-3">
-  <div class="container">
-    <h2 class="title pt-3 pb-3 mb-0"><a href="">Phản hồi từ khách hàng</a></h2>
+  <div class="container " >
+    <h2 class="title pt-3 pb-3 mb-0" ><a href="">Phản hồi từ khách hàng</a></h2>
     <div class="swiper mySwiperFeeback " style="padding: 10px">
       <div class="swiper-wrapper ">
         @foreach ($binhluans as $bl)
-        <div class="swiper-slide ">
-          <div class="feedback-card">
+        <div class="swiper-slide ps-4 pe-4 ">
+          <div class="feedback-card w-100 ">
+           
             <div class="info">
               @if ($bl->avatar == '')
                   <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">

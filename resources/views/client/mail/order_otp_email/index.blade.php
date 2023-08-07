@@ -246,7 +246,7 @@
                                                                 color: #ffffff;
                                                                 text-decoration: none;
                                                                 border-radius: 6px;
-                                                            "> <a href="http://rice3man.top">Theo dõi chúng tôi</a></div>
+                                                            "> <a style="text-decoration: none;" href="http://rice3man.top">Theo dõi chúng tôi</a></div>
                                                 </td>
                                             </tr>
                                         </table>
