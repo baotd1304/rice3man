@@ -37,6 +37,7 @@ class DatHangController extends Controller
             
             'trangThai' => 'required | boolean',
             'thanhToan' => 'required | boolean',
+            'isDone' => 'required | numeric',
         ],[
             
         ]);

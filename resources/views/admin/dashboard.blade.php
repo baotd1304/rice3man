@@ -17,7 +17,7 @@
             <div class="row">
     
             <!-- Left side columns -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="row">
     
                 <!-- Sales Card -->
@@ -38,15 +38,20 @@
                     </div>
     
                     <div class="card-body">
-                        <h5 class="card-title">Sales <span>| Today</span></h5>
+                        <h5 class="card-title">Đơn hàng 
+                            {{-- <span>| Tháng này</span> --}}
+                        </h5>
     
                         <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-cart"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>145</h6>
-                            <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            <h6>
+                                {{$countOrders}}
+                            </h6>
+                            <span class="text-success small pt-1 fw-bold">{{$countOrdersDone}}</span> 
+                            <span class="text-muted small pt-2 ps-1">chưa xác nhận</span>
     
                         </div>
                         </div>
@@ -73,15 +78,17 @@
                     </div>
     
                     <div class="card-body">
-                        <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                        <h5 class="card-title">Doanh thu 
+                            {{-- <span>| This Month</span> --}}
+                        </h5>
     
                         <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-currency-dollar"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>$3,264</h6>
-                            <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                            <h6>{{number_format($countRevenue,0,",",".")}} vnđ</h6>
+                            <span class="text-success small pt-1 fw-bold">{{number_format($countRevenueDone,0,",",".")}} vnđ</span> <span class="text-muted small pt-2 ps-1">thực tế</span>
     
                         </div>
                         </div>
@@ -109,15 +116,17 @@
                     </div>
     
                     <div class="card-body">
-                        <h5 class="card-title">Customers <span>| This Year</span></h5>
+                        <h5 class="card-title">Tài khoản 
+                            {{-- <span>| This Year</span> --}}
+                        </h5>
     
                         <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-people"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>1244</h6>
-                            <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                            <h6>{{$countUsers}}</h6>
+                            <span class="text-danger small pt-1 fw-bold">{{$countCustomer}}</span> <span class="text-muted small pt-2 ps-1">khách hàng</span>
     
                         </div>
                         </div>
@@ -128,7 +137,7 @@
                 </div><!-- End Customers Card -->
     
                 <!-- Reports -->
-                <div class="col-12">
+                {{-- <div class="col-12">
                     <div class="card">
     
                     <div class="filter">
@@ -207,7 +216,7 @@
                     </div>
     
                     </div>
-                </div><!-- End Reports -->
+                </div><!-- End Reports --> --}}
     
                 <!-- Recent Sales -->
                 <div class="col-12">
@@ -227,54 +236,45 @@
                     </div>
     
                     <div class="card-body">
-                        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                        <h5 class="card-title">Đơn hàng mới nhất 
+                            {{-- <span>| Today</span> --}}
+                        </h5>
     
                         <table class="table table-borderless datatable">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th scope="col">Trạng thái</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($orders as $order)
                             <tr>
-                            <th scope="row"><a href="#">#2457</a></th>
-                            <td>Brandon Jacob</td>
-                            <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                            <td>$64</td>
-                            <td><span class="badge bg-success">Approved</span></td>
+                                <th scope="row"><a href="#">{{$order->idHD}}</a></th>
+                                <td>{{$order->tenNguoiNhan}}</td>
+                                <td>{{$order->email}}</td>
+                                <td><a href="#" class="text-primary">{{$order->soDienThoai}}</a></td>
+                                <td>{{number_format($order->tongTien,0,",",".")}}</td>
+                                <td><span class="badge 
+                                    @if ($order->isDone==0) bg-secondary
+                                    @elseif ($order->isDone==1) bg-info
+                                    @elseif ($order->isDone==2) bg-success
+                                    @elseif ($order->isDone==3) bg-warning
+                                    @endif
+                                ">
+                                    @if ($order->isDone==0) Chưa xác nhận
+                                    @elseif ($order->isDone==1) Đã xác nhận
+                                    @elseif ($order->isDone==2) Đã hoàn thành
+                                    @elseif ($order->isDone==3) Đã hủy
+                                    @endif
+                                </span></td>
                             </tr>
-                            <tr>
-                            <th scope="row"><a href="#">#2147</a></th>
-                            <td>Bridie Kessler</td>
-                            <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                            <td>$47</td>
-                            <td><span class="badge bg-warning">Pending</span></td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#">#2049</a></th>
-                            <td>Ashleigh Langosh</td>
-                            <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                            <td>$147</td>
-                            <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#">#2644</a></th>
-                            <td>Angus Grady</td>
-                            <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                            <td>$67</td>
-                            <td><span class="badge bg-danger">Rejected</span></td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#">#2644</a></th>
-                            <td>Raheem Lehner</td>
-                            <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                            <td>$165</td>
-                            <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
+                            @endforeach
+                            
                         </tbody>
                         </table>
     
@@ -301,54 +301,30 @@
                     </div>
     
                     <div class="card-body pb-0">
-                        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+                        <h5 class="card-title">Sản phẩm vừa bán
+                            {{-- <span>| Today</span> --}}
+                        </h5>
     
                         <table class="table table-borderless">
-                        <thead>
+                        <thead align="center">
                             <tr>
-                            <th scope="col">Preview</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Sold</th>
-                            <th scope="col">Revenue</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col" class="text-left">Tên sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng bán</th>
+                            <th scope="col">Tổng tiền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
-                            <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                            <td>$64</td>
-                            <td class="fw-bold">124</td>
-                            <td>$5,828</td>
+                            @foreach ($spRecent as $sp)
+                            <tr align="center">
+                                <th scope="row"><a href="{{route('clientproduct-detail', $sp->idSP)}}"><img src="{{$sp->urlHinh}}" alt=""></a></th>
+                                <td><a href="{{route('clientproduct-detail', $sp->idSP)}}" class="text-left text-primary fw-bold">{{$sp->tenSP}}</a></td>
+                                <td>{{number_format($sp->giaSP,0,",",".")}}</td>
+                                <td >{{$sp->soLuong}}</td>
+                                <td class="fw-bold">{{number_format($sp->giaSP*$sp->soLuong,0,",",".")}}</td>
                             </tr>
-                            <tr>
-                            <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
-                            <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                            <td>$46</td>
-                            <td class="fw-bold">98</td>
-                            <td>$4,508</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
-                            <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                            <td>$59</td>
-                            <td class="fw-bold">74</td>
-                            <td>$4,366</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
-                            <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                            <td>$32</td>
-                            <td class="fw-bold">63</td>
-                            <td>$2,016</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
-                            <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                            <td>$79</td>
-                            <td class="fw-bold">41</td>
-                            <td>$3,239</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                         </table>
     
@@ -361,7 +337,7 @@
             </div><!-- End Left side columns -->
     
             <!-- Right side columns -->
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
     
                 <!-- Recent Activity -->
                 <div class="card">
@@ -642,7 +618,7 @@
                 </div>
                 </div><!-- End News & Updates -->
     
-            </div><!-- End Right side columns -->
+            </div><!-- End Right side columns --> --}}
     
             </div>
         </section>

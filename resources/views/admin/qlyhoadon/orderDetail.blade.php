@@ -65,7 +65,7 @@
                               </tr>
                               <tr>
                                 <td>Số điện thoại</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->phone }}</td>
                               </tr>
                               <tr>
                                 <td valign="middle">Địa chỉ</td>
@@ -75,7 +75,7 @@
                           @endif
                         </div>
                             <!-- Thêm các thông tin khác của đơn hàng -->
-                            <div class="m-auto col-lg-8 mb-3" style="display: flex; justify-content: space-between">
+                            <div class="m-auto col-lg-12 mb-3" style="display: flex; justify-content: space-between">
                               <div class="">
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                   <input value="1" type="radio" class="btn-check" name="trangThai" id="btnradio1" autocomplete="off" {{$order->trangThai?"checked":""}}>
@@ -92,6 +92,26 @@
                                 
                                   <input value="0" type="radio" class="btn-check" name="thanhToan" id="btnradio4" autocomplete="off" {{$order->thanhToan?"":"checked"}}>
                                   <label class="btn btn-outline-secondary" for="btnradio4">Chưa thanh toán</label>
+                                </div>
+                              </div>
+                              <div class="">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                  <input value="0" type="radio" class="btn-check" name="isDone" id="btnradio5" autocomplete="off" 
+                                  @if ($order->isDone==0) checked
+                                  @endif>
+                                  <label class="btn btn-outline-secondary" for="btnradio5">Chưa xác nhận</label>
+                                  <input value="1" type="radio" class="btn-check" name="isDone" id="btnradio6" autocomplete="off" 
+                                  @if ($order->isDone==1) checked
+                                  @endif>
+                                  <label class="btn btn-outline-primary" for="btnradio6">Đã xác nhận</label>
+                                  <input value="2" type="radio" class="btn-check" name="isDone" id="btnradio7" autocomplete="off" 
+                                  @if ($order->isDone==2) checked
+                                  @endif>
+                                  <label class="btn btn-outline-info" for="btnradio7">Hoàn thành</label>
+                                  <input value="3" type="radio" class="btn-check" name="isDone" id="btnradio8" autocomplete="off" 
+                                  @if ($order->isDone==3) checked
+                                  @endif>
+                                  <label class="btn btn-outline-danger" for="btnradio8">Đã hủy</label>
                                 </div>
                               </div>
                             </div>

@@ -36,6 +36,7 @@
                                     <th scope="col">Điện thoại</th>
                                     <th scope="col" class="text-center">Tổng tiền</th>
                                     <th scope="col" class="text-center">Ngày mua</th>
+                                    <th scope="col" class="text-center">Trạng thái</th>
                                     <th scope="col" class="text-center">Vận chuyển</th>
                                     <th scope="col" class="text-center">Thanh toán</th>
                                     <th scope="col" class="text-center" style="text-align: center">Hành động</th>
@@ -49,6 +50,13 @@
                                       <td class="align-middle text-center"> {{$order->soDienThoai}} </td>
                                       <td class="align-middle text-center"> {{number_format($order->tongTien,0,",",".")}} </td>
                                         <td class="align-middle text-center"> {{date('d/m/Y',strtotime($order->ngayMua))}} </td>
+                                        <td class="align-middle text-center">
+                                            @if ($order->isDone==0) Chưa xác nhận
+                                            @elseif ($order->isDone==1) Đã xác nhận
+                                            @elseif ($order->isDone==2) Đã hoàn thành
+                                            @elseif ($order->isDone==3) <p style="color: red">Đã hủy</p>
+                                            @endif
+                                        </td>
                                         <td class="align-middle text-center">
                                             <a class="{{ $order->trangThai ? 'btn btn-success rounded-circle' : 'btn btn-secondary rounded-circle' }}">
                                                 <i class="bi {{$order->trangThai?"bi-check-circle":"bi-x-circle"}}"></i>
