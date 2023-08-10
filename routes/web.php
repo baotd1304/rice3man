@@ -50,17 +50,13 @@ Route::prefix('/')->name('client')->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
     Route::get('/contact', [ContactController::class, 'contact'])->name('show-contact');
     Route::post('/contact', [ContactController::class, 'contact_'])->name('contact');
-    Route::get('/addjobs', [AddjobController::class, 'index'])->name('addjobs');
+    Route::get('/about', [AddjobController::class, 'index'])->name('about');
     Route::get('/huongdan', [AddjobController::class, 'demo'])->name('demo');
     Route::get('/chinh-sach', [AddjobController::class, 'chinhsach'])->name('chinhsach');
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
     Route::post('/payment_cod', [PaymentController::class, 'create_payment_cod'])->name('payment_cod');
     Route::post('/payment_vnpay', [PaymentController::class, 'create_payment_vnpay_e'])->name('payment_vnpay');
     Route::get('/return_payment_vnpay', [PaymentController::class, 'return_payment_vnpay_e'])->name('return_payment_vnpay');
-    Route::post('/payment_momo_qr', [PaymentController::class, 'create_payment_momo_qr'])->name('payment_momo_qr');
-    Route::get('/return_payment_momo_qr', [PaymentController::class, 'return_payment_momo_qr'])->name('return_payment_momo_qr');
-    Route::post('/payment_momo_atm', [PaymentController::class, 'create_payment_momo_atm'])->name('payment_momo_atm');
-    Route::get('/return_payment_momo_atm', [PaymentController::class, 'return_payment_momo_atm'])->name('return_payment_momo_atm');
     Route::get('/search', [ProductsController::class, 'search'])->name('search');
     Route::get('/thanks/{idHD}', [PaymentController::class, 'thanks'])->name('page-thanks');
     Route::post('/add-to-cart', [ProductsController::class, 'addToCart'])->name('add-to-cart');

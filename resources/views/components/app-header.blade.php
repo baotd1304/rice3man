@@ -141,7 +141,7 @@
                     <li><a href="{{route('clienthome')}}">
                         Trang chủ
                     </a></li>
-                    <li><a href="{{route('clientaddjobs')}}">
+                    <li><a href="{{route('clientabout')}}">
                       Về chúng tôi
                   </a></li>
                     <li>

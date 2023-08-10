@@ -26,6 +26,7 @@ class dashboardController extends Controller
                 ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)
                 ->orderbyDesc('ngayBL')->get();
         $news=BaiViet::where('anHien', 1)->where('noiBat', 1)->orderbyDesc('ngayDang')->get();
+        
         $orders = Order::orderbyDesc('ngayMua')->get();
         $spRecent = chitietdonhang::orderbyDesc('idCTHD')->limit(5)->get();
 

@@ -31,20 +31,20 @@
                                     <h5 class="m-2"><strong>Thông tin người nhận</strong></h5>
                                     <table class="col-lg-8 table table-hover table-strip table-bordered">
                                         <tr>
-                                        <td class="col-md-3">Họ tên</td>
-                                        <td class="col-md-9">{{ $order->tenNguoiNhan }}</td>
+                                            <td class="ps-4 pe-4 col-3">Họ tên</td>
+                                            <td class="ps-4 pe-4">{{ $order->tenNguoiNhan }}</td>
                                         </tr>
                                         <tr>
-                                        <td>Email</td>
-                                        <td>{{ $order->email }}</td>
+                                            <td class="ps-4 pe-4">Email</td>
+                                            <td class="ps-4 pe-4">{{ $order->email }}</td>
                                         </tr>
                                         <tr>
-                                        <td>Số điện thoại</td>
-                                        <td>{{ $order->soDienThoai }}</td>
+                                            <td class="ps-4 pe-4">Số điện thoại</td>
+                                            <td class="ps-4 pe-4">{{ $order->soDienThoai }}</td>
                                         </tr>
                                         <tr>
-                                        <td valign="middle">Địa chỉ</td>
-                                        <td>{{ $order->diaChi }}</td>
+                                            <td class="ps-4 pe-4" valign="middle">Địa chỉ</td>
+                                            <td class="ps-4 pe-4">{{ $order->diaChi }}</td>
                                         </tr>
                                     </table>
             
@@ -53,61 +53,61 @@
                                         <h5 class="m-2"><strong>Thông tin người đặt hàng</strong></h5>
                                         <table class="table table-hover table-strip table-bordered">
                                         <tr>
-                                            <td class="col-md-3">Họ tên</td>
-                                            <td class="col-md-9">{{ $user->name }}</td>
+                                            <td class="ps-4 pe-4 col-3">Họ tên</td>
+                                            <td class="ps-4 pe-4">{{ $user->name }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Email</td>
-                                            <td>{{ $user->email }}</td>
+                                            <td class="ps-4 pe-4">Email</td>
+                                            <td class="ps-4 pe-4">{{ $user->email }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Số điện thoại</td>
-                                            <td>{{ $user->phone }}</td>
+                                            <td class="ps-4 pe-4">Số điện thoại</td>
+                                            <td class="ps-4 pe-4">{{ $user->phone }}</td>
                                         </tr>
                                         <tr>
-                                            <td valign="middle">Địa chỉ</td>
-                                            <td>{{ $user->address }}</td>
+                                            <td class="ps-4 pe-4" valign="middle">Địa chỉ</td>
+                                            <td class="ps-4 pe-4">{{ $user->address }}</td>
                                         </tr>
                                         </table>
                                     @endif
                                     </div>
-                                        <div class="col-lg-8 m-auto">
-                                            <hr>
-                                            <h5 class="m-2"><strong>Tình trạng đơn hàng</strong></h5>
-                                            <table class="col-lg-8 table table-hover table-strip table-bordered">
-                                                <tr>
-                                                    <td class="col-md-3">Giao hàng</td>
-                                                    <td class="col-md-9">{{ $order->trangThai?"Đã giao hàng": "Chưa giao hàng" }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Thanh toán</td>
-                                                    <td>{{ $order->thanhToan?"Đã thanh toán": "Chưa thanh toán" }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Trạng thái</td>
-                                                    <td>
-                                                        @if ($order->isDone==0) Chưa xác nhận
-                                                        @elseif ($order->isDone==1) Đã xác nhận
-                                                        @elseif ($order->isDone==2) Đã hoàn thành
-                                                        @elseif ($order->isDone==3) <p style="color: red">Đã hủy</p>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            
-                                        </div>
+                                    <div class="col-lg-8 m-auto">
+                                        <hr>
+                                        <h5 class="m-2"><strong>Tình trạng đơn hàng</strong></h5>
+                                        <table id="orderTable" class="col-lg-8 table table-hover table-strip table-bordered">
+                                            <tr>
+                                                <td class="ps-4 pe-4 col-3">Giao hàng</td>
+                                                <td class="ps-4 pe-4">{{ $order->trangThai?"Đã giao hàng": "Chưa giao hàng" }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 pe-4">Thanh toán</td>
+                                                <td class="ps-4 pe-4">{{ $order->thanhToan?"Đã thanh toán": "Chưa thanh toán" }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="ps-4 pe-4">Trạng thái</td>
+                                                <td class="ps-4 pe-4">
+                                                    @if ($order->isDone==0) Chưa xác nhận
+                                                    @elseif ($order->isDone==1) Đã xác nhận
+                                                    @elseif ($order->isDone==2) Đã hoàn thành
+                                                    @elseif ($order->isDone==3) <p style="color: red">Đã hủy</p>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                    </div>
                                         
                                         
                                     <table class="table table-hover table-strip table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th scope="col" class="align-middle text-center">STT</th>
-                                            <th scope="col" class="align-middle">Tên sản phẩm</th>
-                                            <th scope="col" class="align-middle text-center">Giá sản phẩm</th>
-                                            <th scope="col" class="align-middle text-center">Số lượng</th>
-                                            <th scope="col" class="align-middle text-center">Hình ảnh</th>
-                                            <th scope="col" class="align-middle text-center">Ngày mua</th>
-                                            <th scope="col" class="align-middle text-center">Thành tiền</th>
+                                        <tr align="center" >
+                                            <th scope="col">STT</th>
+                                            <th scope="col" class="text-left">Tên sản phẩm</th>
+                                            <th scope="col">Giá sản phẩm</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Ngày mua</th>
+                                            <th scope="col">Thành tiền</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -118,15 +118,14 @@
                                         @php
                                         $stt = $stt+1;
                                         @endphp
-                                        <tr>
-                                        <td class="align-middle text-center">{{ $stt }}</td> 
-                                        <td class="align-middle">{{Str::limit($order2->tenSP, 30)}}</td>
-                                        <td class="align-middle text-center">{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
-                                        <td class="align-middle text-center">{{ $order2->soLuong }}</td>
-                                        <td class="align-middle text-center"><img src="{{$order2->urlHinh}}" alt="" width="50px"></td>
-                                        <td class="align-middle text-center">{{date('d/m/Y',strtotime($order->ngayMua))}}</td>
-                                        <td class="align-middle text-center">{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
-                                        <!-- Thêm các cột khác của bảng -->
+                                        <tr align="center" valign="middle ">
+                                            <td>{{ $stt }}</td> 
+                                            <td class="text-left"><a href="{{route('clientproduct-detail', $order2->idSP)}}">{{Str::limit($order2->tenSP)}}</a></td>
+                                            <td>{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
+                                            <td>{{ $order2->soLuong }}</td>
+                                            <td><a href="{{route('clientproduct-detail', $order2->idSP)}}"><img src="{{$order2->urlHinh}}" alt="" width="50px"></a></td>
+                                            <td>{{date('d/m/Y',strtotime($order->ngayMua))}}</td>
+                                            <td>{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

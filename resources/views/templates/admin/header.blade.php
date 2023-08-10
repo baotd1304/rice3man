@@ -164,13 +164,13 @@
       
       <li class="nav-item">
         <a class="nav-link collapsed"  href="{{ route('order.index') }}">
-          <i class="bi bi-grid"></i><span>Quản lý hoá đơn</span>
+          <i class="bi bi-grid"></i><span>Hóa đơn</span>
         </a>
       </li>
      
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('user.index') }}">
-          <i class="bi bi-grid"></i><span>Quản lý tài khoản</span>
+          <i class="bi bi-grid"></i><span>Tài khoản</span>
         </a>
       </li>
 
@@ -197,7 +197,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('admin.profile.edit')}}">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <span>Tài khoản cá nhân</span>
         </a>
       </li><!-- End Profile Page Nav -->
 

@@ -17,7 +17,7 @@
             <div class="row">
     
             <!-- Left side columns -->
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <div class="row">
     
                 <!-- Sales Card -->
@@ -87,8 +87,8 @@
                             <i class="bi bi-currency-dollar"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>{{number_format($countRevenue,0,",",".")}} vnđ</h6>
-                            <span class="text-success small pt-1 fw-bold">{{number_format($countRevenueDone,0,",",".")}} vnđ</span> <span class="text-muted small pt-2 ps-1">thực tế</span>
+                            <h6>{{number_format($countRevenue,0,",",".")}}đ</h6>
+                            <span class="text-success small pt-1 fw-bold">{{number_format($countRevenueDone,0,",",".")}}đ</span> <span class="text-muted small pt-2 ps-1">thực tế</span>
     
                         </div>
                         </div>
@@ -137,7 +137,7 @@
                 </div><!-- End Customers Card -->
     
                 <!-- Reports -->
-                {{-- <div class="col-12">
+                <div class="col-12">
                     <div class="card">
     
                     <div class="filter">
@@ -216,7 +216,7 @@
                     </div>
     
                     </div>
-                </div><!-- End Reports --> --}}
+                </div><!-- End Reports -->
     
                 <!-- Recent Sales -->
                 <div class="col-12">
@@ -245,8 +245,9 @@
                             <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Tên khách hàng</th>
-                            <th scope="col">Email</th>
+                            {{-- <th scope="col">Email</th> --}}
                             <th scope="col">Số điện thoại</th>
+                            <th scope="col">Ngày mua</th>
                             <th scope="col">Tổng tiền</th>
                             <th scope="col">Trạng thái</th>
                             </tr>
@@ -254,16 +255,17 @@
                         <tbody>
                             @foreach ($orders as $order)
                             <tr>
-                                <th scope="row"><a href="#">{{$order->idHD}}</a></th>
-                                <td>{{$order->tenNguoiNhan}}</td>
-                                <td>{{$order->email}}</td>
-                                <td><a href="#" class="text-primary">{{$order->soDienThoai}}</a></td>
+                                <th scope="row"><a href="{{route('order.showOrderDetail', $order->idHD)}}">{{$order->idHD}}</a></th>
+                                <td>{{Str::limit($order->tenNguoiNhan, 30)}}</td>
+                                {{-- <td>{{$order->email}}</td> --}}
+                                <td>{{$order->soDienThoai}}</td>
+                                <td>{{$order->ngayMua}}</td>
                                 <td>{{number_format($order->tongTien,0,",",".")}}</td>
                                 <td><span class="badge 
                                     @if ($order->isDone==0) bg-secondary
                                     @elseif ($order->isDone==1) bg-info
                                     @elseif ($order->isDone==2) bg-success
-                                    @elseif ($order->isDone==3) bg-warning
+                                    @elseif ($order->isDone==3) bg-danger
                                     @endif
                                 ">
                                     @if ($order->isDone==0) Chưa xác nhận
@@ -309,7 +311,7 @@
                         <thead align="center">
                             <tr>
                             <th scope="col">Hình ảnh</th>
-                            <th scope="col" class="text-left">Tên sản phẩm</th>
+                            <th scope="col" style="text-align: left">Tên sản phẩm</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng bán</th>
                             <th scope="col">Tổng tiền</th>
@@ -319,7 +321,11 @@
                             @foreach ($spRecent as $sp)
                             <tr align="center">
                                 <th scope="row"><a href="{{route('clientproduct-detail', $sp->idSP)}}"><img src="{{$sp->urlHinh}}" alt=""></a></th>
-                                <td><a href="{{route('clientproduct-detail', $sp->idSP)}}" class="text-left text-primary fw-bold">{{$sp->tenSP}}</a></td>
+                                <td style="text-align: left">
+                                    <a href="{{route('clientproduct-detail', $sp->idSP)}}" class="text-primary fw-bold">
+                                        {{$sp->tenSP}}
+                                    </a>
+                                </td>
                                 <td>{{number_format($sp->giaSP,0,",",".")}}</td>
                                 <td >{{$sp->soLuong}}</td>
                                 <td class="fw-bold">{{number_format($sp->giaSP*$sp->soLuong,0,",",".")}}</td>
@@ -337,7 +343,7 @@
             </div><!-- End Left side columns -->
     
             <!-- Right side columns -->
-            {{-- <div class="col-lg-4">
+            <div class="col-lg-4">
     
                 <!-- Recent Activity -->
                 <div class="card">
@@ -618,7 +624,7 @@
                 </div>
                 </div><!-- End News & Updates -->
     
-            </div><!-- End Right side columns --> --}}
+            </div><!-- End Right side columns -->
     
             </div>
         </section>

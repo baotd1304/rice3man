@@ -98,7 +98,7 @@
   <div class="container">
     <div class="product-row__header position-relative d-flex">
       <div class="pt-3 pb-3 mb-0">
-        <h2 class="title mb-0 "><a href="">Dịch vụ đặc biệt của chúng tôi </a></h2>
+        <h2 class="title mb-0" style="font-size: 22px; font-weight: 700; text-transform: uppercase">Dịch vụ đặc biệt của chúng tôi</h2>
         <span>Những dịch vụ tốt nhất dành cho khách hàng của chúng tôi</span>
       </div>
     </div>
@@ -223,42 +223,33 @@ $indexCategory++;
 {{-- Hiển thị phản hồi từ khách hàng --}}
 <section class="app-section pt-3 pb-3">
   <div class="container">
-    <h2 class="title pt-3 pb-3 mb-0"><a href="">Phản hồi từ khách hàng</a></h2>
-    <div class="swiper mySwiperFeeback " style="padding: 10px">
+    <div class="swiper mySwiperFeeback"> 
+      <div class="product-row__header position-relative d-flex">
+        <h2 class="title" style="font-size: 22px; font-weight: 700; text-transform: uppercase">Phản hồi từ khách hàng</h2>
+        
+      </div>
       <div class="swiper-wrapper ">
         @foreach ($binhluans as $bl)
-        <div class="swiper-slide ">
-          <div class="feedback-card">
-            <div class="info">
-              @if ($bl->avatar == '')
-                  <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">
-              @else <img src="{{$bl->avatar}}" alt="" width="50px" height="50px">
-              @endif
-              {{-- <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_1.jpg?1681360920404" class="thumb" alt=""> --}}
-              <div class="auth">
-                <div class="name">{{ $bl->name }}</div>
-                {{-- <div class="posittion">Nội trợ</div> --}}
+        <div class="swiper-slide ps-5 pe-5">
+          <div class="feedback-card w-100">
+            <a href="{{ route('clientproduct-detail', $bl->idSP)}}">
+              <div class="info">
+                @if ($bl->avatar == '')
+                    <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">
+                @else <img src="{{$bl->avatar}}" alt="" width="50px" height="50px">
+                @endif
+                <div class="auth">
+                  <div class="name">{{ $bl->name }}</div>
+                  {{-- <div class="posittion">Nội trợ</div> --}}
+                </div>
               </div>
-            </div>
-            <div class="content style='width:588px; height:81px'">
-              {{ $bl->noiDung }}
-            </div>
+              <div class="content">
+                {{ $bl->noiDung }}
+              </div>
+            </a>
           </div>
         </div>
-        {{-- <div class="swiper-slide ">
-          <div class="feedback-card">
-            <div class="info">
-              <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_2.jpg?1681360920404" class="thumb" alt="">
-              <div class="auth">
-                <div class="name">Đoàn Hương Giang</div>
-                <div class="posittion">Nhân viên văn phòng</div>
-              </div>
-            </div>
-            <div class="content">
-             Mình là một nhân viên văn phòng nên thời gian để đi chợ là không có, thật may mắn mình đã tìm được green market.  Theo mình thì đây là website về thực phẩm tốt nhất hiện nay,
-            </div>
-          </div>
-        </div> --}}
+        
         @endforeach
       </div>
       <div class="swiper-button-next"></div>
@@ -268,19 +259,15 @@ $indexCategory++;
   </div>
 </section>
 {{-- hiển thị tin tức nổi bật --}}
-<section class="app-section pt-3 pb-3">
+<section class="app-section pt-1 pb-3">
   <div class="container">
     <div class="product-row__header position-relative d-flex">
-      {{-- <div class="pt-3 pb-3 mb-0">
-        <h2 class="title"><a href="">Tin tức mới nhất </a></h2>
+      <div class="pt-3 pb-3 mb-0">
+        <h2 class="title"><a href="#">Tin tức mới nhất </a></h2>
          <span>Tin tức mới nhất được chúng tôi cập nhật thường xuyên</span>
       </div>
-      <div class="position-relative navigate">
-        <div class="swiper-button-next categoryGroup "></div>
-        <div class="swiper-button-prev categoryGroup"></div>
-      </div> --}}
+      
     </div>
-    <h2 class="title pt-3 pb-3 mb-0"><a href="">Bài viết nổi bật</a></h2>
     <div class="swiper mySwiperNews">
       <div class="swiper-wrapper">
           @foreach ($news as $bv)

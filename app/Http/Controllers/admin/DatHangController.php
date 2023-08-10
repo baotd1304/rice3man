@@ -44,7 +44,7 @@ class DatHangController extends Controller
        
         Order::where('idHD', $id)->update($validatedData);
         
-        return redirect()->route('order.index')->with('success', 'Cập nhật hóa đơn thành công!');
+        return redirect()->route('order.index')->with('success', 'Cập nhật hóa đơn ID '.$id.' thành công!');
     }
     
     

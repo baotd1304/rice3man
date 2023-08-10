@@ -34,20 +34,20 @@
                           <h5 class="mt-3"><strong>Thông tin người nhận</strong></h5>
                           <table class="col-lg-8 table table-hover table-strip table-bordered">
                             <tr>
-                              <td class="col-md-3">Họ tên</td>
-                              <td class="col-md-9">{{ $order->tenNguoiNhan }}</td>
+                              <td class="ps-4 pe-4 col-3">Họ tên</td>
+                              <td class="ps-4 pe-4">{{ $order->tenNguoiNhan }}</td>
                             </tr>
                             <tr>
-                              <td>Email</td>
-                              <td>{{ $order->email }}</td>
+                              <td class="ps-4 pe-4">Email</td>
+                              <td class="ps-4 pe-4">{{ $order->email }}</td>
                             </tr>
                             <tr>
-                              <td>Số điện thoại</td>
-                              <td>{{ $order->soDienThoai }}</td>
+                              <td class="ps-4 pe-4">Số điện thoại</td>
+                              <td class="ps-4 pe-4">{{ $order->soDienThoai }}</td>
                             </tr>
                             <tr>
-                              <td valign="middle">Địa chỉ</td>
-                              <td>{{ $order->diaChi }}</td>
+                              <td class="ps-4 pe-4" valign="middle">Địa chỉ</td>
+                              <td class="ps-4 pe-4">{{ $order->diaChi }}</td>
                             </tr>
                           </table>
 
@@ -56,65 +56,73 @@
                             <h5><strong>Thông tin người đặt hàng</strong></h5>
                             <table class="table table-hover table-strip table-bordered">
                               <tr>
-                                <td class="col-md-3">Họ tên</td>
-                                <td class="col-md-9">{{ $user->name }}</td>
+                                <td class="ps-4 pe-4 col-3">Họ tên</td>
+                                <td class="ps-4 pe-4">{{ $user->name }}</td>
                               </tr>
                               <tr>
-                                <td>Email</td>
-                                <td>{{ $user->email }}</td>
+                                <td class="ps-4 pe-4">Email</td>
+                                <td class="ps-4 pe-4">{{ $user->email }}</td>
                               </tr>
                               <tr>
-                                <td>Số điện thoại</td>
-                                <td>{{ $user->phone }}</td>
+                                <td class="ps-4 pe-4">Số điện thoại</td>
+                                <td class="ps-4 pe-4">{{ $user->phone }}</td>
                               </tr>
                               <tr>
-                                <td valign="middle">Địa chỉ</td>
-                                <td>{{ $user->address }}</td>
+                                <td class="ps-4 pe-4" valign="middle">Địa chỉ</td>
+                                <td class="ps-4 pe-4">{{ $user->address }}</td>
                               </tr>
                             </table>
                           @endif
                         </div>
-                            <!-- Thêm các thông tin khác của đơn hàng -->
-                            <div class="m-auto col-lg-12 mb-3" style="display: flex; justify-content: space-between">
-                              <div class="">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                  <input value="1" type="radio" class="btn-check" name="trangThai" id="btnradio1" autocomplete="off" {{$order->trangThai?"checked":""}}>
-                                  <label class="btn btn-outline-primary" for="btnradio1">Đã giao hàng</label>
-                                
-                                  <input value="0" type="radio" class="btn-check" name="trangThai" id="btnradio2" autocomplete="off" {{$order->trangThai?"":"checked"}}>
-                                  <label class="btn btn-outline-secondary" for="btnradio2">Chưa giao hàng</label>
-                                </div>
-                              </div>
-                              <div class="">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                  <input value="1" type="radio" class="btn-check" name="thanhToan" id="btnradio3" autocomplete="off" {{$order->thanhToan?"checked":""}}>
-                                  <label class="btn btn-outline-primary" for="btnradio3">Đã thanh toán</label>
-                                
-                                  <input value="0" type="radio" class="btn-check" name="thanhToan" id="btnradio4" autocomplete="off" {{$order->thanhToan?"":"checked"}}>
-                                  <label class="btn btn-outline-secondary" for="btnradio4">Chưa thanh toán</label>
-                                </div>
-                              </div>
-                              <div class="">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                  <input value="0" type="radio" class="btn-check" name="isDone" id="btnradio5" autocomplete="off" 
-                                  @if ($order->isDone==0) checked
-                                  @endif>
-                                  <label class="btn btn-outline-secondary" for="btnradio5">Chưa xác nhận</label>
-                                  <input value="1" type="radio" class="btn-check" name="isDone" id="btnradio6" autocomplete="off" 
-                                  @if ($order->isDone==1) checked
-                                  @endif>
-                                  <label class="btn btn-outline-primary" for="btnradio6">Đã xác nhận</label>
-                                  <input value="2" type="radio" class="btn-check" name="isDone" id="btnradio7" autocomplete="off" 
-                                  @if ($order->isDone==2) checked
-                                  @endif>
-                                  <label class="btn btn-outline-info" for="btnradio7">Hoàn thành</label>
-                                  <input value="3" type="radio" class="btn-check" name="isDone" id="btnradio8" autocomplete="off" 
-                                  @if ($order->isDone==3) checked
-                                  @endif>
-                                  <label class="btn btn-outline-danger" for="btnradio8">Đã hủy</label>
-                                </div>
-                              </div>
-                            </div>
+                        <div class="col-lg-8 m-auto">
+                          <hr>
+                          <h5 class="m-2"><strong>Tình trạng đơn hàng</strong></h5>
+                          <table class="col-lg-8 table table-hover table-strip table-bordered">
+                              <tr>
+                                  <td class="ps-4 pe-4 col-3">Giao hàng</td>
+                                  <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                      <input value="1" type="radio" class="btn-check" name="trangThai" id="btnradio1" autocomplete="off" {{$order->trangThai?"checked":""}}>
+                                      <label class="btn btn-outline-success" for="btnradio1">Đã giao hàng</label>
+                                    
+                                      <input value="0" type="radio" class="btn-check" name="trangThai" id="btnradio2" autocomplete="off" {{$order->trangThai?"":"checked"}}>
+                                      <label class="btn btn-outline-secondary" for="btnradio2">Chưa giao hàng</label>
+                                    </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="ps-4 pe-4" >Thanh toán</td>
+                                  <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                      <input value="1" type="radio" class="btn-check" name="thanhToan" id="btnradio3" autocomplete="off" {{$order->thanhToan?"checked":""}}>
+                                      <label class="btn btn-outline-success" for="btnradio3">Đã thanh toán</label>
+                                    
+                                      <input value="0" type="radio" class="btn-check" name="thanhToan" id="btnradio4" autocomplete="off" {{$order->thanhToan?"":"checked"}}>
+                                      <label class="btn btn-outline-secondary" for="btnradio4">Chưa thanh toán</label>
+                                    </div>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="ps-4 pe-4">Trạng thái</td>
+                                  <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                      <input value="0" type="radio" class="btn-check" name="isDone" id="btnradio5" autocomplete="off" 
+                                      @if ($order->isDone==0) checked @endif>
+                                      <label class="btn btn-outline-secondary" for="btnradio5">Chưa xác nhận</label>
+                                      <input value="1" type="radio" class="btn-check" name="isDone" id="btnradio6" autocomplete="off" 
+                                      @if ($order->isDone==1) checked @endif>
+                                      <label class="btn btn-outline-info" for="btnradio6">Đã xác nhận</label>
+                                      <input value="2" type="radio" class="btn-check" name="isDone" id="btnradio7" autocomplete="off" 
+                                      @if ($order->isDone==2) checked @endif>
+                                      <label class="btn btn-outline-success" for="btnradio7">Hoàn thành</label>
+                                      <input value="3" type="radio" class="btn-check" name="isDone" id="btnradio8" autocomplete="off" 
+                                      @if ($order->isDone==3) checked @endif {{$order->isDone==2?"disabled":""}}>
+                                      <label class="btn btn-outline-danger" for="btnradio8">Đã hủy</label>
+                                    </div>
+                                  </td>
+                              </tr>
+                          </table>
+                        </div>
                             
                         <table class="table table-hover table-strip table-bordered">
                           <thead>
@@ -138,7 +146,7 @@
                             @endphp
                             <tr>
                               <td class="align-middle text-center">{{ $stt }}</td> 
-                              <td class="align-middle">{{Str::limit($order2->tenSP, 30)}}</td>
+                              <td class="align-middle">{{Str::limit($order2->tenSP)}}</td>
                               <td class="align-middle text-center">{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
                               <td class="align-middle text-center">{{ $order2->soLuong }}</td>
                               <td class="align-middle text-center"><img src="{{$order2->urlHinh}}" alt="" width="50px"></td>

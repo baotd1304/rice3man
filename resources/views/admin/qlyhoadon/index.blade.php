@@ -50,12 +50,20 @@
                                       <td class="align-middle text-center"> {{$order->soDienThoai}} </td>
                                       <td class="align-middle text-center"> {{number_format($order->tongTien,0,",",".")}} </td>
                                         <td class="align-middle text-center"> {{date('d/m/Y',strtotime($order->ngayMua))}} </td>
-                                        <td class="align-middle text-center">
-                                            @if ($order->isDone==0) Chưa xác nhận
-                                            @elseif ($order->isDone==1) Đã xác nhận
-                                            @elseif ($order->isDone==2) Đã hoàn thành
-                                            @elseif ($order->isDone==3) <p style="color: red">Đã hủy</p>
-                                            @endif
+                                        <td>
+                                            <span class="badge 
+                                                @if ($order->isDone==0) bg-secondary
+                                                @elseif ($order->isDone==1) bg-info
+                                                @elseif ($order->isDone==2) bg-success
+                                                @elseif ($order->isDone==3) bg-danger
+                                                @endif
+                                            ">
+                                                @if ($order->isDone==0) Chưa xác nhận
+                                                @elseif ($order->isDone==1) Đã xác nhận
+                                                @elseif ($order->isDone==2) Đã hoàn thành
+                                                @elseif ($order->isDone==3) Đã hủy
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="align-middle text-center">
                                             <a class="{{ $order->trangThai ? 'btn btn-success rounded-circle' : 'btn btn-secondary rounded-circle' }}">

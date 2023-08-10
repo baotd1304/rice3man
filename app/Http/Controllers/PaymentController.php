@@ -187,7 +187,7 @@ class PaymentController extends Controller
         $order->tenNguoiNhan = $order_temp->user_name;
         $order->email = $order_temp->email;
         $order->soDienThoai = $order_temp->phone;
-        $order->diaChi = $order_temp->address.",".$order_temp->ward.",".$order_temp->district.",".$order_temp->province;
+        $order->diaChi = $order_temp->address.", ".$order_temp->ward.", ".$order_temp->district.", ".$order_temp->province;
         $order->save();
         foreach ($cartFarmApp as $item) {
           // Fetch the product information from the database
@@ -238,7 +238,7 @@ class PaymentController extends Controller
       $hoaDon->tenNguoiNhan = $request->username;
       $hoaDon->email = $request->email;
       $hoaDon->soDienThoai = $request->phone;
-      $hoaDon->diaChi = $request->address.",".$request->ward.",".$request->district.",".$request->province;
+      $hoaDon->diaChi = $request->address.", ".$request->ward.", ".$request->district.", ".$request->province;
       $hoaDon->trangThai = 0;
       $hoaDon->thanhToan = 0;
       $hoaDon->tongTien = $request->total;
