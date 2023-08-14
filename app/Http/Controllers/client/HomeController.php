@@ -4,14 +4,10 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\BaiViet;
-use App\Models\Banner;
 use App\Models\BinhLuan;
-use App\Models\category;
-use App\Models\category_group;
+use App\Models\Contact;
 use App\Models\LoaiSP;
-use App\Models\news;
 use Illuminate\Http\Request;
-use App\Models\product;
 use App\Models\SanPham;
 use App\Models\Slider;
 use App\Models\ThuongHieuSP;
@@ -28,7 +24,9 @@ class HomeController extends Controller
         $thuonghieusp=ThuongHieuSP::where('anHien', 1)->orderbyDesc('thuTu')->get();
         $sliders=Slider::where('anHien', 1)->orderbyDesc('ngayDang')->get();
         $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
-                ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)
+                ->join('sanpham', 'sanpham.idSP', '=', 'binhluan.idSP')
+                ->select('binhluan.*', 'users.name', 'users.avatar', 'sanpham.slug')
+                ->where('binhluan.anHien', 1)
                 ->orderbyDesc('ngayBL')->get();
         $news=BaiViet::where('anHien', 1)->where('noiBat', 1)->orderbyDesc('ngayDang')->get();
         $data=[
@@ -37,13 +35,10 @@ class HomeController extends Controller
             "thuonghieusps"=>$thuonghieusp,
             "news"=>$news,
             "sliders" => $sliders,
-            "binhluans" => $binhluans
+            "binhluans" => $binhluans,
         ];
-        return view('client.home.index',$data);
+        return view('client.home.index', $data);
     }
-    public function getAll()
-    {
-        
-    }
+
    
 }

@@ -44,7 +44,9 @@
                             <tbody>
                                 @foreach ($listloaisp as $loaisp)
                                     <tr>
-                                        <td class="align-middle text-center"> {{$loaisp->idLoai}} </td>
+                                        <td class="align-middle text-center">
+                                            <a href="{{route('clientcategory', $loaisp->slug)}}"> {{$loaisp->idLoai}} </a>
+                                        </td>
                                         <td class="align-middle"> {{$loaisp->tenLoai}} </td>
                                         <td class="align-middle text-center"> {{$loaisp->thuTu}} </td>
                                         <td class="align-middle text-center ">

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SanphamRequest;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 Paginator::useBootstrap();
 use App\Models\SanPham;
 use App\Models\LoaiSP;
 use App\Models\ThuongHieuSP;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SanphamController extends Controller
 {
@@ -38,27 +40,18 @@ class SanphamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SanphamRequest $request)
     {
         $validatedData =$request->validate([
-            'tenSP' => 'required | min:5 | max:255',
-            'giaSP' => 'required | integer | min:1',
+            'tenSP' => '',
+            'slug' => '',
+            'giaSP' => '',
             'idLoai' => '',
             'idTH' => '',
-            'urlHinh' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'urlHinh' => '',
             'moTa' => '',
-            'anHien' => 'required | boolean',
-            'noiBat' => 'required | boolean',
-        ],[
-            'tenSP.required' => 'Bạn chưa nhập tên sản phẩm',
-            'tenSP.min' => 'Tên sản phẩm phải dài hơn 5 ký tự',
-            'tenSP.max' => 'Tên sản phẩm phải ngắn hơn 255 ký tự',
-            'giaSP.required' => 'Bạn chưa nhập giá sản phẩm',
-            'giaSP.min' => 'Giá sản phẩm phải lớn hơn 0',
-            'giaSP.integer' => 'Giá sản phẩm phải dạng số',
-            'urlHinh.image' => 'File tải lên phải là hình ảnh',
-            'urlHinh.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'urlHinh.max' => 'File tải lên không vượt quá 2048 kb',
+            'anHien' => '',
+            'noiBat' => '',
         ]);
         
         if ($request->has('urlHinh')) {
@@ -99,7 +92,7 @@ class SanphamController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(SanphamRequest $request, $id)
     {
         $sp = Sanpham::find($id);
         if ($sp==null) {
@@ -107,24 +100,15 @@ class SanphamController extends Controller
             redirect("/thongbao");
         }
         $validatedData =$request->validate([
-            'tenSP' => 'required | min:5 | max:255',
-            'giaSP' => 'required | integer | min:1',
+            'tenSP' => '',
+            'slug' => '',
+            'giaSP' => '',
             'idLoai' => '',
             'idTH' => '',
-            'urlHinh' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'urlHinh' => '',
             'moTa' => '',
-            'anHien' => 'required | boolean',
-            'noiBat' => 'required | boolean',
-        ],[
-            'tenSP.required' => 'Bạn chưa nhập tên sản phẩm',
-            'tenSP.min' => 'Tên sản phẩm phải dài hơn 5 ký tự',
-            'tenSP.max' => 'Tên sản phẩm phải ngắn hơn 255 ký tự',
-            'giaSP.required' => 'Bạn chưa nhập giá sản phẩm',
-            'giaSP.min' => 'Giá sản phẩm phải lớn hơn 0',
-            'giaSP.integer' => 'Giá sản phẩm phải dạng số',
-            'urlHinh.image' => 'File tải lên phải là hình ảnh',
-            'urlHinh.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'urlHinh.max' => 'File tải lên không vượt quá 2048 kb',
+            'anHien' => '',
+            'noiBat' => '',
         ]);
         
         if ($request->has('urlHinh')) {
@@ -134,7 +118,7 @@ class SanphamController extends Controller
         }
         SanPham::where('idSP', $id)->update($validatedData);
         
-        return redirect()->route('sanpham.index')->with('success', 'Cập nhật sản phẩm thành công!');
+        return redirect()->route('sanpham.index')->with('success', 'Cập nhật sản phẩm mã ID '.$id. ' thành công!');
     }
 
     /**
@@ -146,5 +130,11 @@ class SanphamController extends Controller
 
         return redirect()->route('sanpham.index')
             ->with('success', 'Xóa sản phẩm thành công.');
+    }
+
+    public function getSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(SanPham::class, 'slug', $request->tenSP);
+        return response()->json(['slug' => $slug]);
     }
 }

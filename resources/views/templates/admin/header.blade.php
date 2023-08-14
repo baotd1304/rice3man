@@ -16,6 +16,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('assetsAdmin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -28,6 +30,8 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assetsAdmin/css/style.css')}}" rel="stylesheet">
+
+  
 
   {{-- css js file breeze --}}
   {{-- @vite(['resources/css/app.css', 'resources/js/app.js'])  --}}
@@ -147,18 +151,19 @@
         </a>
         
       </li><!-- End Tables Nav -->
-
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("thuonghieusp.index") }}">
+          <i class="bi bi-journal-text"></i><span>Thương hiệu sản phẩm</span>
+        </a>
+      </li><!-- End Forms Nav -->
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route("sanpham.index") }}">
           <i class="bi bi-menu-button-wide"></i><span>Sản phẩm</span>
         </a>
       </li><!-- End Components Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route("thuonghieusp.index") }}">
-          <i class="bi bi-journal-text"></i><span>Thương hiệu sản phẩm</span>
-        </a>
-      </li><!-- End Forms Nav -->
 
       <!-- End Charts Nav -->
       

@@ -36,6 +36,12 @@
                                                     <input value="{{ $baiviet->tieuDe }}" type="text" name="tieuDe" id="tieuDe" class="form-control">	
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3">
+                                                    <label for="slug">Slug</label>
+                                                    <input value="{{ $baiviet->slug }}" type="text" name="slug" id="slug" class="form-control">	
+                                                </div>
+                                            </div>
                                             <div class="mb-3">
                                                 <div class="col-md-12">
                                                     <label>Hình ảnh</label>
@@ -134,6 +140,17 @@
 <script>
     CKEDITOR.replace('noiDung', {
         height: '200px', width: '100%', language: 'vi'
+    });
+</script>
+
+<script>
+    $('#tieuDe').change(function(e) {
+        $.get('{{ route('baiviet.slug') }}',
+            { 'tieuDe': $(this).val() },
+            function( data ){
+                $('#slug').val(data.slug);
+            }
+        );
     });
 </script>
 @endsection

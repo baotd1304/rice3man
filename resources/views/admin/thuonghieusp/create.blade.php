@@ -42,6 +42,12 @@
                                                     <input value="{{ old('thuTu') }}" type="number" name="thuTu" id="thuTu" class="form-control" placeholder="" min="1">	
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="slug">Slug</label>
+                                                    <input value="{{ old('slug') }}" type="text" name="slug" id="slug" class="form-control" placeholder="">	
+                                                </div>
+                                            </div>
                                             <div class="mb-3">
                                                 <div class="col-md-12">
                                                     <label>Hình ảnh</label>
@@ -99,4 +105,17 @@
         </section>
     </main><!-- End #main -->
 
+@endsection
+
+@section('customJs')
+<script>
+    $('#tenTH').change(function(e) {
+        $.get('{{ route('thuonghieusp.slug') }}',
+            { 'tenTH': $(this).val() },
+            function( data ){
+                $('#slug').val(data.slug);
+            }
+        );
+    });
+</script>
 @endsection

@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class SanPham extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $table = 'sanpham';
     protected $primaryKey = 'idSP';
     public $timestamps = false;
-    protected $fillable = ['idSP', 'idLoai', 'idTH', 'tenSP', 'giaSP', 'urlHinh', 'moTa',
+    protected $fillable = ['idSP', 'idLoai', 'idTH', 'tenSP', 'slug', 'giaSP', 'urlHinh', 'moTa',
                             'soLuotXem', 'soLuotMua', 'anHien', 'noiBat'];
     protected $dates = ['ngayDang'];
     protected $attributes= ['soLuotXem'=>0, 'soLuotMua'=>0, 'moTa'=>'', 'urlHinh'=>'',
@@ -31,5 +32,14 @@ class SanPham extends Model
     public function ThuonghieuSP()
     {
         return $this->belongsTo(ThuongHieuSP::class,'idTH','idTH');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'tenSP'
+            ]
+        ];
     }
 }

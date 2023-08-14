@@ -49,7 +49,7 @@
                             <tbody>
                                 @foreach ($listsp as $sp)
                                     <tr>
-                                        <td class="align-middle text-center"> {{$sp->idSP}} </td>
+                                        <td class="align-middle text-center"><a href="{{route('clientproduct-detail', $sp->slug)}}"> {{$sp->idSP}} </a></td>
                                         <td class="align-middle"> {{Str::limit($sp->tenSP, 30)}} </td>
                                         <td class="align-middle">{{$sp->tenLoai}}</td>
                                         {{-- <td class="align-middle">{{$sp->tenTH}}</td> --}}

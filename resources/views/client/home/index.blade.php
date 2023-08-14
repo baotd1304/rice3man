@@ -81,7 +81,7 @@
 
           @endphp
           <div class="swiper-slide">
-            <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}" 
+            <x-ProductCard link="{{route('clientproduct-detail', $item->slug)}}" 
               isProgress={{true}} progressTxt="Cháy hàng" progressValue="{{90}}"
               name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
               priceCurrent="{{$price2}}" discount="{{0}}" />
@@ -182,7 +182,7 @@ $indexCategory++;
         <div class="products-row mb-5">
           <div class="swiper mySwiperTypeCategory">
             <div class="product-row__header position-relative d-flex">
-              <h2 class="title "><a href="{{ route('clientcategory',['slug'=>$category->idLoai])}}">{{$category->tenLoai}}</a></h2>
+              <h2 class="title "><a href="{{ route('clientcategory', $category->slug)}}">{{$category->tenLoai}}</a></h2>
               <div class="position-relative navigate">
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -199,7 +199,7 @@ $indexCategory++;
                   }
                 @endphp
                 <div class="swiper-slide">
-                  <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}" 
+                  <x-ProductCard link="{{route('clientproduct-detail', $item->slug)}}" 
                     name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
                     priceCurrent="{{$price2}}đ" discount="{{0}}" />
                 </div>
@@ -208,7 +208,7 @@ $indexCategory++;
             <div class="swiper-pagination"></div>
           </div>
           <div class="view_more text-center mt-3 position-relative">
-            <a href="{{route('clientcategory',['slug'=>$item->idLoai])}}" title="Xem thêm" class="position-relative text-light d-inline-block">
+            <a href="{{route('clientcategory', $category->slug)}}" title="Xem thêm" class="position-relative text-light d-inline-block">
               Xem thêm
             </a>
           </div>
@@ -232,7 +232,7 @@ $indexCategory++;
         @foreach ($binhluans as $bl)
         <div class="swiper-slide ps-5 pe-5">
           <div class="feedback-card w-100">
-            <a href="{{ route('clientproduct-detail', $bl->idSP)}}">
+            <a href="{{ route('clientproduct-detail', $bl->slug)}}">
               <div class="info">
                 @if ($bl->avatar == '')
                     <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">
@@ -244,7 +244,8 @@ $indexCategory++;
                 </div>
               </div>
               <div class="content">
-                {{ $bl->noiDung }}
+                {{-- {{ $bl->noiDung }} --}}
+                {{Str::limit($bl->noiDung, 120)}}
               </div>
             </a>
           </div>
@@ -275,7 +276,7 @@ $indexCategory++;
             <x-NewsCard title="{{$bv->tieuDe}}"
               thumb="{{$bv->thumbNail}}"
               summary="{{$bv->noiDung}} "
-              link="{{route('clientnews-detail', $bv->idBV)}}"
+              link="{{route('clientnews-detail', $bv->slug)}}"
               day="{{date('d/m/Y',strtotime($bv->ngayDang))}}"
               />
           </div>

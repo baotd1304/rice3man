@@ -1,1 +1,0 @@
-xin chà<object data="" type=""></object>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LoaispRequest;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 Paginator::useBootstrap();
 use App\Models\LoaiSP;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class LoaiSPController extends Controller
 {
@@ -22,20 +24,15 @@ class LoaiSPController extends Controller
         return view('admin.loaisp.create');
     }
 
-    public function store(Request $request)
+    public function store(LoaispRequest $request)
     {
         $validatedData = $request->validate([
-            'tenLoai' => 'required|min:5',
-            'thuTu' => 'required|integer',
-            'anHien' => 'required|boolean',
-        ],[
-            'tenLoai.required' => 'Bạn chưa nhập tên loại sản phẩm',
-            'tenLoai.min' => 'Tên loại sản phẩm phải dài hơn 5 ký tự',
-            'thuTu.required' => 'Bạn chưa nhập thứ tự loại sản phẩm',
-            'thuTu.ỉnteger' => 'Thứ tự phải là dạng số',
-            'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
+            'tenLoai' => '',
+            'slug' => '',
+            'thuTu' => '',
+            'anHien' => '',
         ]);
-
+        
         LoaiSP::create($validatedData);
 
         return redirect()->route('loaisp.index')
@@ -48,20 +45,15 @@ class LoaiSPController extends Controller
         return view('admin.loaisp.edit', compact('loaisp'));
     }
 
-    public function update(Request $request, $id)
+    public function update(LoaispRequest $request, $id)
     {
         $validatedData = $request->validate([
-            'tenLoai' => 'required|min:5',
-            'thuTu' => 'required|integer',
-            'anHien' => 'required|boolean',
-        ],[
-            'tenLoai.required' => 'Bạn chưa nhập tên loại sản phẩm',
-            'tenLoai.min' => 'Tên loại sản phẩm phải dài hơn 5 ký tự',
-            'thuTu.required' => 'Bạn chưa nhập thứ tự loại sản phẩm',
-            'thuTu.ỉnteger' => 'Thứ tự phải là dạng số',
-            'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
+            'tenLoai' => '',
+            'slug' => '',
+            'thuTu' => '',
+            'anHien' => '',
         ]);
-
+        
         LoaiSP::where('idLoai', $id)->update($validatedData);
 
         return redirect()->route('loaisp.index')
@@ -75,4 +67,12 @@ class LoaiSPController extends Controller
         return redirect()->route('loaisp.index')
             ->with('success', 'Xoá loại sản phẩm thành công.');
     }
+
+    public function getSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(LoaiSP::class, 'slug', $request->tenLoai);
+        return response()->json(['slug' => $slug]);
+
+    }
+
 }

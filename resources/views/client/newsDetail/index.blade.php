@@ -29,78 +29,18 @@
             </div>
         </article>
     </div>
-    {{-- <div class="row mb-5">
-        <div class="col-6 ">
-            <h3 class="title">Viết bình luận</h3>
-            <form method="POST" action="{{route('clientcomment')}}" id="article_comments" accept-charset="UTF-8" class="comment-form">
-                @csrf
-                @if (Auth::guard('web')->check()==false)
-                <p class="alert alert-warning">
-                    Vui lòng đăng nhập để thực hiện chức năng bình luận
-                </p>
-                @endif
-                <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
-                <input type="text" name="idSP" value="{{$post->idBV}}" hidden>
-                <div class="row comment-form">
-                    <div class="col-12 form-group">
-                        <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->id??null}}">
-                    </div>
-                    
-                </div>
-                <div class="field aw-blog-comment-area form-group">
-                    <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
-                        name="content"></textarea>
-                    <span class="text-danger">@error('content')
-                        {{$message}}
-                        @enderror</span>
-                </div>
-                <div style="width:96%" class="button-set">
-                    <button type="submit"
-                        class="book-submit btn btn-primary text-center d-flex align-items-center font-weight-boldt font-weight-bold"
-                        @disabled(Auth::guard('web')->check()==true?false:true) >Gửi
-                        bình luận
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="col-6">
-            <h3 class="title">Bình luận</h3>
-            @if (count($binhluans)>0)
-            @foreach ($binhluans as $binhluan )
-            <div class="comment-container">
-                <div class="comment-header">
-                    <img src="https://via.placeholder.com/40x40" alt="Avatar">
-                    <h4>{{$binhluan->idND}}</h4>
-                </div>
-                <div class="comment-body">
-                    <p>{{$binhluan->noiDung}}</p>
-                </div>
-                <div class="comment-footer">
-                    <span>Thích</span>
-                    <span>Trả lời</span>
-                    <span>{{ $binhluan->ngayBL->format('d/m/Y') }}</span>
-                    <a href="#">Xóa</a>
-                </div>
-            </div>
-            @endforeach
-            @else
-            <p class="alert alert-warning">
-                Hiện tại chưa có bình luận.
-            </p>
-            @endif
-        </div>
-    </div> --}}
+    
     <div class="row">
-        <h3 class="title">Bài viết cùng tác giả</h3>
+        <h3 class="title">Bài viết cùng tác giả</h3>s
         <div class="col-12">
             <div style="display: grid;grid-template-columns:repeat(4,1fr);gap :10px;margin-top: 20px;">
   
                 @foreach ($newsRelate as $bv )
-                <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['id'=>$bv->idBV])}}"
+                <x-NewsCard isRow={{false}} link="{{route('clientnews-detail', $bv->slug])}}"
                     title="{{$bv->tieuDe}}"
                     thumb="{{$bv->thumbNail}}"
                     summary="{{$bv->noiDung}}"
-                    link="{{route('clientnews-detail', $bv->idBV)}}"
+                    link="{{route('clientnews-detail', $bv->slug)}}"
                     day="{{date('d/m/Y',strtotime($bv->ngayDang))}}"
                     />
                     

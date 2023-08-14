@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Models\BaiViet;
 use App\Models\BinhLuan;
-use App\Models\category_news;
-use App\Models\comment;
-use App\Models\news;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,16 +21,14 @@ class NewsController extends Controller
         ];
         return view('client.news.index',$data);
     }
-    public function newsDetail($id)
+    public function newsDetail($slug)
     {
        try {
-        $post = BaiViet::where('idBV', $id)->firstOrFail();
-        $newsRelate=BaiViet::where('tacGia','<>',$post->tacGia)->paginate(4);
-        $binhluans=BinhLuan::with('author')->where('idSP',$id)->get();
+        $post = BaiViet::where('slug', $slug)->firstOrFail();
+        $newsRelate=BaiViet::where('tacGia','=', $post->tacGia)->paginate(4);
         $data=[
             "post"=>$post,
             "newsRelate"=>$newsRelate,
-            "binhluans"=>$binhluans,
         ];
         return view('client.newsDetail.index',$data);
         } 

@@ -70,7 +70,7 @@
           <span>Còn hàng</span>
         </div>
         <div class="product-detail--info__status">Mã sản phẩm:
-          <span>Đang cập nhật</span>
+          <span>{{$product->idSP}}</span>
         </div>
         <div class="product-detail--info__prices">
           {{-- @if ($product->discount>0)
@@ -140,7 +140,13 @@
             data-src="//bizweb.dktcdn.net/100/434/011/themes/845632/assets/customer-service.png?1676652183181">
           <div class="b_cont font-weight-bold ml-3">
             <span class="d-block">
-              Gọi ngay <a href="tel:1900123321" title="1900688688">1900 688 688</a> để được tư vấn tốt nhất!
+              Gọi ngay 
+              @foreach (App\Models\Contact::where('active', '1')->latest()->get() as $contact)
+                <a href="tel:{{$contact->hotline}}">
+                  {{$contact->hotline}}
+                </a>
+              @endforeach
+              để được tư vấn tốt nhất!
             </span>
           </div>
         </div>
@@ -190,7 +196,7 @@
     
               @endphp
               <div class="swiper-slide">
-                <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}" 
+                <x-ProductCard link="{{route('clientproduct-detail', $item->slug)}}" 
                   isProgress={{true}} progressTxt="Cháy hàng" progressValue="{{90}}"
                   name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
                   priceCurrent="{{$price2}}" discount="{{0}}" />
@@ -313,7 +319,14 @@
               <img width="40" height="40" src="//bizweb.dktcdn.net/100/485/131/themes/906771/assets/chinhsach_3.png?1686556941849" alt="Hỗ trợ nhanh chóng">
               <div class="text">
                 <span class="title">Hỗ trợ nhanh chóng</span>
-                <span class="des">Gọi Hotline: <a href="tel:19006750">19006750</a> để được hỗ trợ ngay</span>
+                <span class="des">Gọi Hotline: 
+                  @foreach (App\Models\Contact::where('active', '1')->latest()->get() as $contact)
+                    <a href="tel:{{$contact->hotline}}">
+                      {{$contact->hotline}}
+                    </a>
+                  @endforeach
+                  để được hỗ trợ ngay
+                </span>
               </div>
             </div>
           </div>

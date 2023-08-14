@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\BaivietRequest;
 use Illuminate\Http\Request;
 use App\Models\BaiViet;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BaivietController extends Controller
 {
@@ -29,24 +31,16 @@ class BaivietController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BaivietRequest $request)
     {
         $validatedData =$request->validate([
-            'tieuDe' => 'required | min:5 | max:255',
-            'noiDung' => 'required | min:5',
+            'tieuDe' => '',
+            'slug' => '',
+            'noiDung' => '',
             'tacGia'=> '',
-            'anHien' => 'required|boolean',
-            'noiBat' => 'required|boolean',
-            'thumbNail' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'tieuDe.required' => 'Bạn chưa nhập tiêu đề bài viết',
-            'tieuDe.min' => 'Tiêu đề bài viết phải dài hơn 5 ký tự',
-            'tieuDe.max' => 'Tiêu đề bài viết phải ngắn hơn 255 ký tự',
-            'noiDung.required' => 'Bạn chưa nhập nội dung bài viết',
-            'noiDung.min' => 'Nội dung bài viết phải dài hơn 5 ký tự',
-            'thumbNail.image' => 'File tải lên phải là hình ảnh',
-            'thumbNail.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'thumbNail.max' => 'File tải lên không vượt quá 2048 kb',
+            'anHien' => '',
+            'noiBat' => '',
+            'thumbNail' => '',
         ]);
         if ($request->has('thumbNail')) {
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('thumbNail')->getClientOriginalName();
@@ -81,7 +75,7 @@ class BaivietController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $idBV)
+    public function update(BaivietRequest $request, $idBV)
     {
         $bv = BaiViet::find($idBV);
         if ($bv==null) {
@@ -90,21 +84,13 @@ class BaivietController extends Controller
         }
 
         $validatedData =$request->validate([
-            'tieuDe' => 'required | min:5 | max:255',
-            'noiDung' => 'required | min:5',
+            'tieuDe' => '',
+            'slug' => '',
+            'noiDung' => '',
             'tacGia'=> '',
-            'anHien' => 'required|boolean',
-            'noiBat' => 'required|boolean',
-            'thumbNail' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'tieuDe.required' => 'Bạn chưa nhập tiêu đề bài viết',
-            'tieuDe.min' => 'Tiêu đề bài viết phải dài hơn 5 ký tự',
-            'tieuDe.max' => 'Tiêu đề bài viết phải ngắn hơn 255 ký tự',
-            'noiDung.required' => 'Bạn chưa nhập nội dung bài viết',
-            'noiDung.min' => 'Nội dung bài viết phải dài hơn 5 ký tự',
-            'thumbNail.image' => 'File tải lên phải là hình ảnh',
-            'thumbNail.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'thumbNail.max' => 'File tải lên không vượt quá 2048 kb',
+            'anHien' => '',
+            'noiBat' => '',
+            'thumbNail' => '',
         ]);
         if ($request->has('thumbNail')) {
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('thumbNail')->getClientOriginalName();
@@ -113,7 +99,7 @@ class BaivietController extends Controller
         }
         BaiViet::where('idBV', $idBV)->update($validatedData);
 
-        return redirect()->route('baiviet.index')->with('success', 'Cập nhật bài viết thành công!');
+        return redirect()->route('baiviet.index')->with('success', 'Cập nhật bài viết mã ID '.$idBV.' thành công!');
     }
 
     /**
@@ -126,4 +112,11 @@ class BaivietController extends Controller
         return redirect()->route('baiviet.index')
             ->with('success', 'Xóa bài viết thành công.');
     }
+
+    public function getSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(BaiViet::class, 'slug', $request->tieuDe);
+        return response()->json(['slug' => $slug]);
+    }
+
 }

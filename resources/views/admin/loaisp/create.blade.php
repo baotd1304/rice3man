@@ -42,6 +42,12 @@
                                                     <input value="{{ old('thuTu') }}" type="number" name="thuTu" id="thuTu" class="form-control" placeholder="" min="1">	
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="slug">Slug</label>
+                                                    <input value="{{ old('slug') }}" type="text" name="slug" id="slug" class="form-control" placeholder="">	
+                                                </div>
+                                            </div>
                                             <fieldset class="row mt-3">
                                                 <legend class="col-form-label col-sm-2 pt-0">Hiển thị</legend>
                                                 <div class="col-sm-10">
@@ -93,4 +99,21 @@
         </section>
     </main><!-- End #main -->
 
+    
+
 @endsection
+
+@section('customJs')
+<script>
+    $('#tenLoai').change(function(e) {
+        $.get('{{ route('loaisp.slug') }}',
+            { 'tenLoai': $(this).val() },
+            function( data ){
+                $('#slug').val(data.slug);
+            }
+        );
+    });
+</script>
+@endsection
+
+

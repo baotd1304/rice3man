@@ -23,9 +23,9 @@
                 <div class="m-auto bg-white d-block">
                     <div class="row">
                         <div class="col-md-6 col-12">
-                            <p class="mb-2"><b> Địa chỉ cửa hàng:</b> Công viên phần mềm Quang Trung, Quận 12, Thành phố Hồ Chí Minh</p>
-                            <p class="mb-2"><b> Hotline:</b><a href="tel: 0857626102"> 0857626102 </a></p>
-                            <p class="mb-2"><b> Email:</b><a href="mailto:hungpvps19362@fpt.edu.vn"> hungpvps19362@fpt.edu.vn</a></p>
+                            <p class="mb-2"><b> Địa chỉ:</b> {{ $contact->address}}</p>
+                            <p class="mb-2"><b> Hotline:</b><a href="tel: {{ $contact->hotline}}"> {{ $contact->hotline}} </a></p>
+                            <p class="mb-2"><b> Email:</b><a href="mailto:{{ $contact->email}}"> {{ $contact->email}}</a></p>
                             <div class="mt-3">
                                 <form method="post" action="{{route('clientcontact')}}" id="contact">
                                     @csrf

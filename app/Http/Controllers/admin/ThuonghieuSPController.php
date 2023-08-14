@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ThuonghieuspRequest;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 Paginator::useBootstrap();
 use App\Models\ThuongHieuSP;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ThuonghieuSPController extends Controller
 {
@@ -31,22 +33,14 @@ class ThuonghieuSPController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ThuonghieuspRequest $request)
     {
         $validatedData = $request->validate([
-            'tenTH' => 'required|min:3',
-            'thuTu' => 'required|integer',
-            'anHien' => 'required|boolean',
-            'urlHinhTH' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'tenTH.required' => 'Bạn chưa nhập tên thương hiệu sản phẩm',
-            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 3 ký tự',
-            'thuTu.required' => 'Bạn chưa nhập thứ tự thương hiệu sản phẩm',
-            'thuTu.integer' => 'Thứ tự phải là dạng số',
-            'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
-            'urlHinhTH.image' => 'File tải lên phải là hình ảnh',
-            'urlHinhTH.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'urlHinhTH.max' => 'File tải lên không vượt quá 2048 kb',
+            'tenTH' => '',
+            'slug' => '',
+            'thuTu' => '',
+            'anHien' => '',
+            'urlHinhTH' => '',
         ]);
         if ($request->has('urlHinhTH')) {
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinhTH')->getClientOriginalName();
@@ -78,7 +72,7 @@ class ThuonghieuSPController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ThuonghieuspRequest $request, $id)
     {
         $th = ThuongHieuSP::find($id);
         if ($th==null) {
@@ -86,19 +80,11 @@ class ThuonghieuSPController extends Controller
             redirect("/thongbao");
         }
         $validatedData = $request->validate([
-            'tenTH' => 'required|min:3',
-            'thuTu' => 'required|integer',
-            'anHien' => 'required|boolean',
-            'urlHinhTH' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ],[
-            'tenTH.required' => 'Bạn chưa nhập tên thương hiệu sản phẩm',
-            'tenTH.min' => 'Tên thương hiệu sản phẩm phải dài hơn 3 ký tự',
-            'thuTu.required' => 'Bạn chưa nhập thứ tự thương hiệu sản phẩm',
-            'thuTu.integer' => 'Thứ tự phải là dạng số',
-            'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
-            'urlHinhTH.image' => 'File tải lên phải là hình ảnh',
-            'urlHinhTH.mimes' => 'File tải lên phải có đuôi là jpeg, png, jpg',
-            'urlHinhTH.max' => 'File tải lên không vượt quá 2048 kb',
+            'tenTH' => '',
+            'slug' => '',
+            'thuTu' => '',
+            'anHien' => '',
+            'urlHinhTH' => '',
         ]);
         if ($request->has('urlHinhTH')) {
             $fileName = (date('Y-m-d',time())).'_'.time().'_'.$request->file('urlHinhTH')->getClientOriginalName();
@@ -120,4 +106,11 @@ class ThuonghieuSPController extends Controller
         return redirect()->route('thuonghieusp.index')
             ->with('success', 'Xoá thương hiệu sản phẩm thành công.');
     }
+
+    public function getSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(ThuongHieuSP::class, 'slug', $request->tenTH);
+        return response()->json(['slug' => $slug]);
+    }
+
 }

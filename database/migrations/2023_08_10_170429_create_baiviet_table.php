@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('baiviet', function (Blueprint $table) {
             $table->integer('idBV')->autoIncrement();
             $table->string('tieuDe');
+            $table->string('slug');
             $table->string('thumbNail');
             $table->text('noiDung');
             $table->string('tacGia', 50)->nullable();

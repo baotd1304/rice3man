@@ -37,14 +37,14 @@
                                 @foreach ($carts as $item)
                                 <div class="ajaxcart__row">
                                     <div class="ajaxcart__product cart_product" data-line="1">
-                                        <a href="{{route('clientproduct-detail', $item->idSP)}}"
+                                        <a href="{{route('clientproduct-detail', $item->slug)}}"
                                             class="ajaxcart__product-image cart_image">
                                             <img src="{{ $item->urlHinh}}" alt="">
                                         </a>
                                         <div class="grid__item cart_info">
                                            
                                             <div class="ajaxcart__product-name-wrapper cart_name">
-                                                <a href="{{route('clientproduct-detail', $item->idSP)}}"
+                                                <a href="{{route('clientproduct-detail', $item->slug)}}"
                                                     class="ajaxcart__product-name h4">
                                                     {{$item->tenSP}}
                                                 </a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
+use App\Models\Contact;
 use App\Models\customer_emails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,8 +14,8 @@ class ContactController extends Controller
 {
     public function contact()
     {
-     
-        return view('client.contact.index');
+        $contact = Contact::where('active', 1)->first();
+        return view('client.contact.index', ["contact" => $contact]);
     }
     public function contact_(Request $request)
     {   

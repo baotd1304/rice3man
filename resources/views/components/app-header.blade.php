@@ -26,11 +26,13 @@
 
                      <div class="action-item hotline">
                         <i class='bx bx-phone-call bx-tada' ></i>
-                        <div class="link">
-                             <a href="tel:19008080">
-                                19008080
-                             </a>
-                        </div>
+                        @foreach (App\Models\Contact::where('active', '1')->latest()->get() as $contact)
+                          <div class="link">
+                              <a href="tel:{{$contact->hotline}}">
+                                {{$contact->hotline}}
+                              </a>
+                          </div>
+                        @endforeach
                      </div>
                      <div class="action-item auth">
                          <div class="link">

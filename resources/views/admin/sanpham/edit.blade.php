@@ -39,6 +39,12 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
+                                                        <label for="slug">Slug</label>
+                                                        <input value="{{ $sanpham->slug }}" type="text" name="slug" id="slug" class="form-control" placeholder="">	
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
                                                         <label for="giaSP">Giá SP</label>
                                                         <div class="input-group">
                                                             <input value="{{ $sanpham->giaSP }}" type="number" name="giaSP" id="giaSP" class="form-control" 
@@ -166,10 +172,23 @@
 @endsection
 
 @section('customJs')
+
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('moTa', {
         height: '200px', width: '100%', language: 'vi',
     });
 </script>
+
+<script>
+    $('#tenSP').change(function(e) {
+        $.get('{{ route('sanpham.slug') }}',
+            { 'tenSP': $(this).val() },
+            function( data ){
+                $('#slug').val(data.slug);
+            }
+        );
+    });
+</script>
+
 @endsection

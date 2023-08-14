@@ -48,7 +48,9 @@
                             <tbody>
                                 @foreach ($listbv as $bv)
                                     <tr>
-                                        <td class="align-middle text-center"> {{$bv->idBV}} </td>
+                                        <td class="align-middle text-center">
+                                            <a href="{{route('clientnews-detail', $bv->slug)}}"> {{$bv->idBV}} </a>
+                                        </td>
                                         <td class="align-middle"> {{ Str::limit($bv->tieuDe, 50) }} </td>
                                         <td class="align-middle text-center"><img src="{{$bv->thumbNail}}" alt="" width="50px"></td>
                                         <td class="align-middle text-center"> {{$bv->tacGia}} </td>

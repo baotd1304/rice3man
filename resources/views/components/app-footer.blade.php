@@ -170,23 +170,28 @@
     <div class="foo-mid mb-4">
         <div class="container">
             <div class="row">
+                @foreach (App\Models\Contact::where('active', '1')->latest()->get() as $contact)
+                
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 footer-left">
                     <h3 class="footer-title mb2 position-relative font-weight-bold">Thông tin liên hệ</h3>
                     <address class="vcard mb-4">
                         <p class="adr">
                             <b>Địa Chỉ: </b>
-                            Công viên phần mềm Quang Trung, Quận 12, Thành phố Hồ Chí Minh
+                            {{$contact->address}}
                         </p>
                         <p class="email">
                             <b>Email:</b>
-                            <a href="mailto:rice3man@gmail.com" title="rice3man@gmail.com">rice3man@gmail.com</a>
+                            <a href="mailto:{{$contact->email}}" title="{{$contact->email}}">{{$contact->email}}</a>
                         </p>
                         <p class="hotline">
                             <b>Hotline: </b>
-                            <a href="tel:19006750" title="19006750">19006750</a>
+                            <x-hotline-contact hotline="{{$contact->hotline}}"/>
                         </p>
                     </address>
                 </div>
+                @endforeach
+
+                
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12 footer-left">
                     <div class="footer-title mb-2 position-relative font-weight-bold">
                         Kết Nối Với Chúng Tôi

@@ -5,19 +5,12 @@ namespace App\Http\Controllers\client;
 use App\Http\Requests\CommentRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mail\SendVerifyCodeMail;
-use App\Models\category;
-use App\Models\category_group;
-use App\Models\coupon;
 use App\Models\LoaiSP;
 use App\Models\MaGiamGia;
-use App\Models\news;
 use Illuminate\Http\Request;
-use App\Models\product;
 use App\Models\SanPham;
 use App\Models\BinhLuan;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Contact;
 
 class ProductsController extends Controller
 {
@@ -73,7 +66,7 @@ class ProductsController extends Controller
     }
     public function category($slug)
     {
-        $category = LoaiSP::where('idLoai', $slug)->firstOrFail();
+        $category = LoaiSP::where('slug', $slug)->firstOrFail();
         $categories = LoaiSP::all();
         $products =  $this->query->where('idLoai', $category->idLoai)->paginate(8);
         $coupons = MaGiamGia::limit(4)->get();
@@ -123,13 +116,13 @@ class ProductsController extends Controller
         ];
         return view('client.products.index', $data);
     }
-    public function productDetail($id)
+    public function productDetail($slug)
     {
         $currentDate = getdate();
-        $product = SanPham::where('idSP', $id)->firstOrFail();
+        $product = SanPham::where('slug', $slug)->firstOrFail();
         $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
         $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
-                ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP',$id)
+                ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP', $product->idSP)
                 ->orderbyDesc('ngayBL')->get();
         // $coupons = coupon::where('user_used', '<', 'limit_used')
         //     // ->whereDate('start_date', '>=', $currentDate)

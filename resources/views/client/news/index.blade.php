@@ -24,12 +24,11 @@
           <div style="display: grid;grid-template-columns:repeat(4,1fr);gap :20px;margin-top: 20px;">
 
             @foreach ($news as $item )
-            <x-NewsCard isRow={{false}} link="{{route('clientnews-detail',['id'=>$item->idBV])}}"
+            <x-NewsCard isRow={{false}} link="{{route('clientnews-detail', $item->slug)}}"
               title="{{$item->tieuDe}}"
               thumb="{{$item->thumbNail}}"
               summary="{{$item->noiDung}} "
-              {{-- day="{{$item->ngay->format('d')}}"
-              month="{{$item->ngay->format('m/Y')}}"  --}}
+              day="{{date('d/m/Y',strtotime($item->ngayDang))}}"
               />
               @endforeach
           </div>

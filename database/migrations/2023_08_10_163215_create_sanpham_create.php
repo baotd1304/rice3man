@@ -18,9 +18,10 @@ return new class extends Migration
             $table->integer('idLoai')->foreignId('idLoai')->references('idLoai')->on('loaisanpham');
             $table->integer('idTH')->foreignId('idTH')->references('idTH')->on('thuonghieusp');
             $table->string('tenSP');
+            $table->string('slug');
             $table->double('giaSP', 10, 0);
             $table->string('urlHinh');
-            $table->text('moTa');
+            $table->text('moTa')->nullable();
             $table->dateTime('ngayDang')->useCurrent();
             $table->integer('soLuotXem')->nullable();
             $table->integer('soLuotMua')->nullable();

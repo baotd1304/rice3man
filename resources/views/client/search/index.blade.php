@@ -36,7 +36,7 @@
     }
     @endphp
     <div class="col-3 mb-3">
-      <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}" name="{{$item->tenSP}}"
+      <x-ProductCard link="{{route('clientproduct-detail', $item->slug)}}" name="{{$item->tenSP}}"
         thumb="{{$item->urlHinh}}" priceOld="{{$price1}}" priceCurrent="{{$price2}}đ" discount="{{$item->discount}}" />
     </div>
 

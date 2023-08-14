@@ -54,7 +54,7 @@ style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url
                                 <ul class="nav navbar-pills">
                                     @foreach ($categories as $item )
                                     <li class="nav-item  relative {{ isset($category->idLoai) && $category->idLoai == $item->idLoai ? 'active' : '' }}">
-                                        <a title="Rau quả" href="{{route('clientcategory',["slug"=>$item->idLoai])}}" class="nav-link pr-5">{{$item->tenLoai}}</a>
+                                        <a title="" href="{{route('clientcategory', $item->slug)}}" class="nav-link pr-5">{{$item->tenLoai}}</a>
                                     </li>
                                     @endforeach
         
@@ -140,7 +140,7 @@ style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url
                     }
                     @endphp
                     <div class="col-6  col-lg-3 mb-2 mt-2">
-                        <x-ProductCard link="{{route('clientproduct-detail',['slug'=>$item->idSP])}}"
+                        <x-ProductCard link="{{route('clientproduct-detail', $item->slug)}}"
                             name="{{$item->tenSP}}" thumb="{{$item->urlHinh}}" priceOld="{{$price1}}"
                             priceCurrent="{{$price2}}đ" discount="{{$item->discount}}" />
 

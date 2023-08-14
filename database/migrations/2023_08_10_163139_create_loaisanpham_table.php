@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('loaisanpham', function (Blueprint $table) {
             $table->integer('idLoai')->autoIncrement();
             $table->string('tenLoai', 100);
+            $table->string('slug');
             $table->integer('thuTu');
             $table->boolean('anHien')->default(1);
         });

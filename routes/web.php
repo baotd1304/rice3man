@@ -84,6 +84,7 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/loaisp/{id}/edit', [LoaiSPController::class, 'edit'])->name('loaisp.edit');
     Route::put('/loaisp/{id}', [LoaiSPController::class, 'update'])->name('loaisp.update');
     Route::delete('/loaisp/{id}', [LoaiSPController::class, 'destroy'])->name('loaisp.destroy');
+    Route::get('/loaisp/get-slug', [LoaiSPController::class, 'getSlug'])->name('loaisp.slug');
 
     //2. Route san pham
     Route::get('/sanpham/index', [SanphamController::class, 'index'])->name('sanpham.index');
@@ -92,6 +93,7 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/sanpham/{id}/edit', [SanphamController::class, 'edit'])->name('sanpham.edit');
     Route::put('/sanpham/{id}', [SanphamController::class, 'update'])->name('sanpham.update');
     Route::delete('/sanpham/{id}', [SanphamController::class, 'destroy'])->name('sanpham.destroy');
+    Route::get('/sanpham/get-slug', [SanphamController::class, 'getSlug'])->name('sanpham.slug');
 
     //3. Route thuong hieu san pham
     Route::get('/thuonghieusp/index', [ThuonghieuSPController::class, 'index'])->name('thuonghieusp.index');
@@ -100,6 +102,8 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/thuonghieusp/{id}/edit', [ThuonghieuSPController::class, 'edit'])->name('thuonghieusp.edit');
     Route::put('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'update'])->name('thuonghieusp.update');
     Route::delete('/thuonghieusp/{id}', [ThuonghieuSPController::class, 'destroy'])->name('thuonghieusp.destroy');
+    Route::get('/thuonghieusp/get-slug', [ThuonghieuSPController::class, 'getSlug'])->name('thuonghieusp.slug');
+
 
     //4. Route bai viet
     Route::get('/baiviet/index', [BaivietController::class, 'index'])->name('baiviet.index');
@@ -108,6 +112,7 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/baiviet/{id}/edit', [BaivietController::class, 'edit'])->name('baiviet.edit');
     Route::put('/baiviet/{id}', [BaivietController::class, 'update'])->name('baiviet.update');
     Route::delete('/baiviet/{id}', [BaivietController::class, 'destroy'])->name('baiviet.destroy');
+    Route::get('/baiviet/get-slug', [BaivietController::class, 'getSlug'])->name('baiviet.slug');
 
     //5. Route binh luan
     Route::get('/binhluan/index', [BinhLuanController::class, 'index'])->name('binhluan.index');
