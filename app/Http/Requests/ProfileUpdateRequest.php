@@ -29,7 +29,7 @@ class ProfileUpdateRequest extends FormRequest
             'name.max' => 'Tên không được quá :max ký tự',
             'phone.unique' => 'Số điện thoại đã được sử dụng',
             'phone.numeric' => 'Số điện thoại phải là dạng số',
-            'phone.max_digits' => 'Số điện thoại không được quá :max_digits chữ số',
+            'phone.max_digits' => 'Số điện thoại không được quá :max chữ số',
             'email.unique' => 'Email đã được sử dụng',
             'email.max' => 'Email không được quá :max ký tự',
             'address.max' => 'Địa chỉ không được quá :max ký tự',
