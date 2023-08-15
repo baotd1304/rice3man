@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 07, 2023 lúc 03:32 PM
+-- Thời gian đã tạo: Th8 15, 2023 lúc 12:12 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -24,27 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admins`
---
-
-CREATE TABLE `admins` (
-  `Ten` varchar(50) NOT NULL,
-  `id` int(11) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `admins`
---
-
-INSERT INTO `admins` (`Ten`, `id`, `password`, `email`, `created_at`) VALUES
-('hùng ', 1, '12345678', 'hung@gmail.com', '2023-07-15 08:59:33');
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `baiviet`
 --
 
@@ -56,18 +35,19 @@ CREATE TABLE `baiviet` (
   `ngayDang` datetime NOT NULL DEFAULT current_timestamp(),
   `anHien` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 hien thi,\r\n0 an',
   `noiBat` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 noi bat,\r\n0 k noi bat',
-  `tieuDe` varchar(500) NOT NULL
+  `tieuDe` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `baiviet`
 --
 
-INSERT INTO `baiviet` (`idBV`, `thumbNail`, `noiDung`, `tacGia`, `ngayDang`, `anHien`, `noiBat`, `tieuDe`) VALUES
-(1, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:48', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
-(2, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', 'Bạn bắt đầu tập gym giảm cân và cần một chế độ ăn thật hợp lý? Xem qua lưu ý và cách thực hiện chế độ ăn hợp lý trong quá trình tập trong bài viết dưới đây.\r\nMột cơ thể thon gọn, khỏe, đẹp là điều mà bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm cân là cách được rất nhiều người lựa chọn. Và một trong những điều kiện tiên quyết khi tập luyện chính là duy trì chế độ ăn thật hợp lý. Cùng tìm hiểu trong bài viết này nhé!', 'kim', '2023-07-09 23:28:54', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần'),
-(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 1, 1, 'dadadad'),
-(4, '/upload/images/baiviet\\2023-08-05_1691228140_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '<p>31313</p>', '1313', '2023-08-04 23:29:22', 1, 1, 'dadadad');
+INSERT INTO `baiviet` (`idBV`, `thumbNail`, `noiDung`, `tacGia`, `ngayDang`, `anHien`, `noiBat`, `tieuDe`, `slug`) VALUES
+(1, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', '<p>Bạn bắt đầu tập gym giảm c&acirc;n v&agrave; cần một chế độ ăn thật hợp l&yacute;? Xem qua lưu &yacute; v&agrave; c&aacute;ch thực hiện chế độ ăn hợp l&yacute; trong qu&aacute; tr&igrave;nh tập trong b&agrave;i viết dưới đ&acirc;y. Một cơ thể thon gọn, khỏe, đẹp l&agrave; điều m&agrave; bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm c&acirc;n l&agrave; c&aacute;ch được rất nhiều người lựa chọn. V&agrave; một trong những điều kiện ti&ecirc;n quyết khi tập luyện ch&iacute;nh l&agrave; duy tr&igrave; chế độ ăn thật hợp l&yacute;. C&ugrave;ng t&igrave;m hiểu trong b&agrave;i viết n&agrave;y nh&eacute;!</p>', 'kim', '2023-07-09 23:28:48', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần', 'goi-y-9-mon-ngon-trong-dip-cuoi-tuan'),
+(2, 'https://bizweb.dktcdn.net/100/485/131/articles/1.png?v=1683207760607', '<p>Bạn bắt đầu tập gym giảm c&acirc;n v&agrave; cần một chế độ ăn thật hợp l&yacute;? Xem qua lưu &yacute; v&agrave; c&aacute;ch thực hiện chế độ ăn hợp l&yacute; trong qu&aacute; tr&igrave;nh tập trong b&agrave;i viết dưới đ&acirc;y. Một cơ thể thon gọn, khỏe, đẹp l&agrave; điều m&agrave; bất kỳ ai cũng mong muốn sở hữu. Tập gym giảm c&acirc;n l&agrave; c&aacute;ch được rất nhiều người lựa chọn. V&agrave; một trong những điều kiện ti&ecirc;n quyết khi tập luyện ch&iacute;nh l&agrave; duy tr&igrave; chế độ ăn thật hợp l&yacute;. C&ugrave;ng t&igrave;m hiểu trong b&agrave;i viết n&agrave;y nh&eacute;!</p>', 'kim', '2023-07-09 23:28:54', 1, 1, 'Gợi ý 9 món ngon trong dịp cuối tuần', 'goi-y-9-mon-ngon-trong-dip-cuoi-tuan-2'),
+(3, '/upload/images/baiviet\\2023-07-29_1690602197_logoRice3Man.jpg', '<p>3</p>', 'adadd', '2023-07-29 10:43:17', 1, 1, 'dadadad3', 'dadadad3'),
+(4, '/upload/images/baiviet\\2023-08-05_1691228140_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '<p>31313</p>', '1313', '2023-08-04 23:29:22', 1, 1, 'bai viet test 2', 'bai-viet-test-2');
 
 -- --------------------------------------------------------
 
@@ -109,7 +89,9 @@ INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) V
 (31, 1, 9, 'bluan 1', '2023-08-05 23:43:19', 1),
 (32, 19, 9, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
 (33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1),
-(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1);
+(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1),
+(35, 32, 9, 'Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.', '2023-08-07 21:46:26', 1),
+(36, 33, 19, 'Sản phẩm quá kém chất lượng, không như hình ảnh', '2023-08-09 15:39:47', 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +136,37 @@ INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaS
 (20, 26, 8, 'Nếp sáp Vinh Hiển túi 1kg', 1, 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg'),
 (21, 27, 34, 'Gạo lức PMT túi 2kg', 2, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
 (22, 28, 19, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 2, 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg'),
-(23, 28, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg');
+(23, 28, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(24, 29, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 1, 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg'),
+(25, 30, 5, 'Gạo lứt tím Vinh Hiển túi 1kg', 1, 48000, 'https://cdn.tgdd.vn/Products/Images/2513/262354/bhx/gao-lut-tim-vinh-hien-tui-1kg-202301090824554250_300x300.jpg'),
+(26, 31, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(27, 32, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 3, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `hotline` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 active, 0 inactive',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `logo`, `email`, `hotline`, `address`, `description`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'Cửa hàng lương thực Gạo 3 Ông', '', 'gao3ong@gmail.com', '19008080', 'Công viên phần mềm Quang Trung, Quận 12, TP Hồ Chí Minh', '', 1, '2023-08-06 07:18:10', '2023-08-06 07:18:10');
 
 -- --------------------------------------------------------
 
@@ -187,9 +199,9 @@ CREATE TABLE `hoadon` (
   `thanhToan` tinyint(1) NOT NULL COMMENT '1 da thanh toan,\r\n0 chua thanh toan',
   `trangThai` tinyint(1) NOT NULL COMMENT '1 da giao hang,\r\n0 chua giao hang',
   `isDone` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 chưa xác nhận,\r\n1 đã xác nhận,\r\n2 đã hoàn thành,\r\n3 hủy',
-  `tenNguoiNhan` varchar(50) NOT NULL,
+  `tenNguoiNhan` varchar(100) NOT NULL,
   `email` varchar(225) NOT NULL,
-  `soDienThoai` int(11) NOT NULL,
+  `soDienThoai` int(20) NOT NULL,
   `diaChi` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -220,9 +232,13 @@ INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan
 (23, 9, NULL, 38000, '2023-08-06 22:54:58', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh'),
 (24, 9, NULL, 38000, '2023-08-06 22:55:08', 1, 0, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
 (25, 9, NULL, 38000, '2023-08-06 22:56:01', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
-(26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
+(26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
 (27, 9, NULL, 97000, '2023-08-06 23:09:39', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 111111, 'fshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\n'),
-(28, 9, NULL, 115400, '2023-08-07 19:20:23', 0, 0, 3, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc');
+(28, 9, NULL, 115400, '2023-08-07 19:20:23', 1, 1, 2, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
+(29, 9, NULL, 83300, '2023-08-07 21:22:24', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tri Phương,Huyện Tiên Du,Tỉnh Bắc Ninh'),
+(30, 9, NULL, 48000, '2023-08-07 21:31:52', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đồng Ích,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
+(31, NULL, NULL, 36000, '2023-08-07 21:35:16', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tiên Minh,Huyện Tiên Lãng,Thành phố Hải Phòng'),
+(32, 9, NULL, 108000, '2023-08-10 20:47:37', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Lang, Huyện Hạ Hoà, Tỉnh Phú Thọ');
 
 -- --------------------------------------------------------
 
@@ -233,6 +249,7 @@ INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan
 CREATE TABLE `loaisanpham` (
   `idLoai` int(11) NOT NULL,
   `tenLoai` varchar(100) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `thuTu` int(11) NOT NULL,
   `anHien` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 la hien thi, 0 la an'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -241,13 +258,13 @@ CREATE TABLE `loaisanpham` (
 -- Đang đổ dữ liệu cho bảng `loaisanpham`
 --
 
-INSERT INTO `loaisanpham` (`idLoai`, `tenLoai`, `thuTu`, `anHien`) VALUES
-(1, 'Gạo trắng (gạo tẻ)', 1, 1),
-(2, 'Gạo nếp', 2, 1),
-(3, 'Gạo lứt', 3, 1),
-(4, 'Gạo tấm', 4, 1),
-(5, 'Gạo hữu cơ (organic)', 5, 1),
-(6, 'Gạo mầm, hỗn hợp', 6, 1);
+INSERT INTO `loaisanpham` (`idLoai`, `tenLoai`, `slug`, `thuTu`, `anHien`) VALUES
+(1, 'Gạo trắng (gạo tẻ)', 'gao-trang-gao-te', 1, 1),
+(2, 'Gạo nếp', 'gao-nep', 2, 1),
+(3, 'Gạo lứt', 'gao-lut', 3, 1),
+(4, 'Gạo tấm', 'gao-tam', 4, 1),
+(5, 'Gạo hữu cơ (organic)', 'gao-huu-co-organic', 5, 1),
+(6, 'Gạo mầm, hỗn hợp', 'gao-mam-hon-hop', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -294,33 +311,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `nguoidung`
---
-
-CREATE TABLE `nguoidung` (
-  `idND` int(11) NOT NULL,
-  `ten` varchar(100) NOT NULL,
-  `matKhau` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `sdt` varchar(20) DEFAULT NULL,
-  `diaChi` text DEFAULT NULL,
-  `hinh` varchar(255) DEFAULT NULL,
-  `vaiTro` tinyint(1) NOT NULL COMMENT '1 la admin, 0 la user',
-  `hoatDong` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 la active, 0 la inactive',
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `nguoidung`
---
-
-INSERT INTO `nguoidung` (`idND`, `ten`, `matKhau`, `email`, `sdt`, `diaChi`, `hinh`, `vaiTro`, `hoatDong`, `updated_at`) VALUES
-(1, 'Phan Văn Hùng', '212312312312', 'hungpvps19362@fpt.edu.vn', '0857626102', 'ssss', 'aaaaaaa', 0, 0, NULL),
-(9, 'Phan Văn Hùng ah', '212312312', 'hungpvps19362@fpt.edu.vn', '0857626104', 'âjajaj', 'aaaa', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -396,29 +386,6 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `quantri`
---
-
-CREATE TABLE `quantri` (
-  `Ten` varchar(50) NOT NULL,
-  `idQT` int(11) NOT NULL,
-  `password` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `soDienThoai` varchar(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `quantri`
---
-
-INSERT INTO `quantri` (`Ten`, `idQT`, `password`, `email`, `soDienThoai`, `created_at`) VALUES
-('hùng ', 1, '$2y$10$vnezb2VaYSfujrF6Vov8sOkM29PE.a4mY6/kJoo5nn5ivfRYfL866', 'hung@gmail.com', '12345678', '2023-07-15 08:53:32'),
-('hùng 2', 2, '12345678', 'hung2@gmai.com', '12345678', '2023-07-15 08:53:32');
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `sanpham`
 --
 
@@ -427,6 +394,7 @@ CREATE TABLE `sanpham` (
   `idLoai` int(11) NOT NULL,
   `idTH` int(11) NOT NULL,
   `tenSP` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `giaSP` double NOT NULL,
   `urlHinh` varchar(255) NOT NULL,
   `moTa` text DEFAULT NULL,
@@ -442,45 +410,45 @@ CREATE TABLE `sanpham` (
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`idSP`, `idLoai`, `idTH`, `tenSP`, `giaSP`, `urlHinh`, `moTa`, `ngayDang`, `soLuotXem`, `soLuotMua`, `anHien`, `noiBat`, `discount`) VALUES
-(1, 1, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 129000, 'https://cdn.tgdd.vn/Products/Images/2513/298801/bhx/gao-dac-san-trang-nguyen-vinh-hien-st25-tui-5kg-202212131033425735_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(2, 1, 1, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(3, 1, 1, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 78000, 'https://cdn.tgdd.vn/Products/Images/2513/193609/bhx/gao-vinh-hien-do-quyen-tui-5kg-202111021628092012_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(4, 1, 1, 'Gạo Vinh Hiển đặc sản ST24 túi 2kg', 60000, 'https://cdn.tgdd.vn/Products/Images/2513/212754/bhx/gao-vinh-hien-dac-san-st24-tui-2kg-202109201352377808_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(5, 3, 1, 'Gạo lứt tím Vinh Hiển túi 1kg', 48000, 'https://cdn.tgdd.vn/Products/Images/2513/262354/bhx/gao-lut-tim-vinh-hien-tui-1kg-202301090824554250_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(6, 4, 1, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(7, 2, 1, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(8, 2, 1, 'Nếp sáp Vinh Hiển túi 1kg', 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
-(9, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà ST24 túi 2kg', 195000, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(10, 1, 2, 'Gạo thơm Vua Gạo Phù Sa túi 2kg', 42000, 'https://cdn.tgdd.vn/Products/Images/2513/159560/bhx/gao-thom-vua-gao-phu-sa-tui-2kg-202208262020594337_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(11, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà túi 5kg', 140000, 'https://cdn.tgdd.vn/Products/Images/2513/182769/bhx/gao-thom-vua-gao-dam-da-tui-5kg-202106041129447653_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(12, 1, 2, 'Gạo thơm Vua Gạo Phù Sa túi 5kg', 138000, 'https://cdn.tgdd.vn/Products/Images/2513/159557/bhx/gao-thom-vua-gao-phu-sa-tui-5kg-202103040839353887_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(13, 1, 2, 'Gạo thơm Vua Gạo ST25 túi 2kg', 79000, 'https://cdn.tgdd.vn/Products/Images/2513/253156/bhx/gao-thom-vua-gao-st25-tui-2kg-202111200945235942_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(14, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà ST24 túi 2kg', 64000, 'https://cdn.tgdd.vn/Products/Images/2513/182768/bhx/gao-thom-vua-gao-dam-da-st24-tui-2kg-202201151549502331_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
-(15, 1, 3, 'Gạo thơm Hạt Ngọc Trời Thiên Vương túi 5kg', 194500, 'https://cdn.tgdd.vn/Products/Images/2513/236952/bhx/gao-thom-hat-ngoc-troi-thien-vuong-tui-5kg-202104261519374512_300x300.jpeg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
-(16, 1, 3, 'Gạo Hạt Ngọc Trời Tiên Nữ túi 5kg', 151000, 'https://cdn.tgdd.vn/Products/Images/2513/77530/bhx/-202210270823579419_300x300.jpg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
-(17, 1, 3, 'Gạo Hạt Ngọc Trời Thiên Long túi 5kg', 113000, 'https://cdn.tgdd.vn/Products/Images/2513/77531/bhx/gao-hat-ngoc-troi-thien-long-tui-5kg-202301132158171031_300x300.jpg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
-(18, 1, 3, 'Gạo Hạt Ngọc Trời Bạch Dương túi 5kg', 112000, 'https://cdn.tgdd.vn/Products/Images/2513/79016/bhx/gao-hat-ngoc-troi-bach-duong-tui-5kg-202210270826470675_300x300.jpg', NULL, '2023-05-31 17:00:55', NULL, NULL, 1, 1, 0),
-(19, 3, 5, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
-(20, 1, 5, 'Gạo thơm lài Lotus Rice Jasmine túi 2kg', 50500, 'https://cdn.tgdd.vn/Products/Images/2513/87310/bhx/gao-thom-lai-lotus-rice-jasmine-tui-2kg-202103040836123362_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
-(21, 1, 5, 'Gạo thơm lài Lotus Rice Jasmine túi 5kg', 132000, 'https://cdn.tgdd.vn/Products/Images/2513/82845/bhx/gao-thom-lai-lotus-rice-jasmine-tui-5kg-202103040834438617_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
-(22, 3, 5, 'Gạo lứt tím than Lotus Rice NutriChoice hộp 0,5kg', 62000, 'https://cdn.tgdd.vn/Products/Images/2513/203888/bhx/gao-tim-than-lotus-rice-nutrichoice-hop-0-5kg-202103040805168587_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
-(23, 1, 6, 'Gạo Lạc Việt đệ nhất ST25 túi 5kg', 175000, 'https://cdn.tgdd.vn/Products/Images/2513/279506/bhx/gao-lac-viet-de-nhat-st25-tui-5kg-202210110941589891_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
-(24, 1, 6, 'Gạo Lạc Việt hảo hạng ST24 túi 5kg', 160000, 'https://cdn.tgdd.vn/Products/Images/2513/279507/bhx/gao-lac-viet-hao-hang-st24-tui-5kg-202210110942572190_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
-(25, 1, 6, 'Gạo Lạc Việt dẻo thơm ST5 túi 5kg', 130000, 'https://cdn.tgdd.vn/Products/Images/2513/279514/bhx/gao-lac-viet-deo-thom-st5-tui-5kg-202210110942352192_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
-(26, 1, 6, 'Gạo Lạc Việt XK51 túi 5kg', 110000, 'https://cdn.tgdd.vn/Products/Images/2513/279509/bhx/gao-lac-viet-xk51-tui-5kg-202205211713507395_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
-(27, 1, 6, 'Gạo Lạc Việt hương lúa túi 5kg', 125000, 'https://cdn.tgdd.vn/Products/Images/2513/279513/bhx/gao-lac-viet-huong-lua-tui-5kg-202205211715591470_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
-(28, 1, 4, 'Gạo hương lài An Gia túi 5kg', 130000, 'https://cdn.tgdd.vn/Products/Images/2513/265867/bhx/gao-huong-lai-an-gia-tui-5kg-202201061054309814_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
-(29, 1, 4, 'Gạo An Gia Nàng Hoa túi 5kg', 117500, 'https://cdn.tgdd.vn/Products/Images/2513/266095/bhx/gao-an-gia-nang-hoa-tui-5kg-202201061053517481_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
-(30, 1, 4, 'Gạo An Gia Jasmine túi 5kg', 105000, 'https://cdn.tgdd.vn/Products/Images/2513/265892/bhx/gao-an-gia-jasmine-tui-5kg-202201061054059032_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
-(31, 2, 7, 'Nếp than PMT túi 1kg', 55500, 'https://cdn.tgdd.vn/Products/Images/2513/146577/bhx/nep-than-pmt-tui-1kg-202103040831126066_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(32, 3, 7, 'Gạo lức huyết rồng PMT túi 2kg', 100000, 'https://cdn.tgdd.vn/Products/Images/2513/146578/bhx/-202210150921521038_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(33, 3, 7, 'Gạo lức huyết rồng PMT túi 1kg', 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(34, 3, 7, 'Gạo lức PMT túi 2kg', 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(35, 4, 7, 'Gạo tấm thơm PMT túi 2kg', 42000, 'https://cdn.tgdd.vn/Products/Images/2513/146580/bhx/gao-tam-thom-pmt-tui-2kg-202303261932283448_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(36, 2, 7, 'Nếp ngỗng PMT túi 1kg', 33000, 'https://cdn.tgdd.vn/Products/Images/2513/146576/bhx/nep-ngong-pmt-tui-1kg-202103040808176553_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(39, 5, 4, 'okok212', 1, 'ok', '<p>ok</p>', '2023-06-27 12:13:24', 11, 1, 0, 0, 0),
-(40, 1, 3, 'Gạo hoa', 100000, '/upload/images\\2023-07-19_1689780426_IMG_20190626_204528.jpg', '<p>abcs</p>', '2023-07-19 22:27:06', 0, 0, 0, 0, 0);
+INSERT INTO `sanpham` (`idSP`, `idLoai`, `idTH`, `tenSP`, `slug`, `giaSP`, `urlHinh`, `moTa`, `ngayDang`, `soLuotXem`, `soLuotMua`, `anHien`, `noiBat`, `discount`) VALUES
+(1, 1, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 'gao-trang-nguyen-vinh-hien-st25-tui-5kg', 129000, 'https://cdn.tgdd.vn/Products/Images/2513/298801/bhx/gao-dac-san-trang-nguyen-vinh-hien-st25-tui-5kg-202212131033425735_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 10),
+(2, 1, 1, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 'gao-con-cam-vinh-hien-khong-tuoc-nguyen-tui-5kg', 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(3, 1, 1, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 'gao-vinh-hien-do-quyen-tui-5kg', 78000, 'https://cdn.tgdd.vn/Products/Images/2513/193609/bhx/gao-vinh-hien-do-quyen-tui-5kg-202111021628092012_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(4, 1, 1, 'Gạo Vinh Hiển đặc sản ST24 túi 2kg', 'gao-vinh-hien-dac-san-st24-tui-2kg', 60000, 'https://cdn.tgdd.vn/Products/Images/2513/212754/bhx/gao-vinh-hien-dac-san-st24-tui-2kg-202109201352377808_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(5, 3, 1, 'Gạo lứt tím Vinh Hiển túi 1kg', 'gao-lut-tim-vinh-hien-tui-1kg', 48000, 'https://cdn.tgdd.vn/Products/Images/2513/262354/bhx/gao-lut-tim-vinh-hien-tui-1kg-202301090824554250_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(6, 4, 1, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 'gao-tam-thom-thanh-yen-vinh-hien-tui-2kg', 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(7, 2, 1, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 'nep-cai-hoa-vang-vinh-hien-tui-1kg', 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(8, 2, 1, 'Nếp sáp Vinh Hiển túi 1kg', 'nep-sap-vinh-hien-tui-1kg', 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg', NULL, '2023-05-31 16:45:59', NULL, NULL, 1, 1, 0),
+(9, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà ST24 túi 2kg', 'gao-thom-vua-gao-dam-da-st24-tui-2kg', 195000, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(10, 1, 2, 'Gạo thơm Vua Gạo Phù Sa túi 2kg', 'gao-thom-vua-gao-phu-sa-tui-2kg', 42000, 'https://cdn.tgdd.vn/Products/Images/2513/159560/bhx/gao-thom-vua-gao-phu-sa-tui-2kg-202208262020594337_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(11, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà túi 5kg', 'gao-thom-vua-gao-dam-da-tui-5kg', 140000, 'https://cdn.tgdd.vn/Products/Images/2513/182769/bhx/gao-thom-vua-gao-dam-da-tui-5kg-202106041129447653_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(12, 1, 2, 'Gạo thơm Vua Gạo Phù Sa túi 5kg', 'gao-thom-vua-gao-phu-sa-tui-5kg', 138000, 'https://cdn.tgdd.vn/Products/Images/2513/159557/bhx/gao-thom-vua-gao-phu-sa-tui-5kg-202103040839353887_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(13, 1, 2, 'Gạo thơm Vua Gạo ST25 túi 2kg', 'gao-thom-vua-gao-st25-tui-2kg', 79000, 'https://cdn.tgdd.vn/Products/Images/2513/253156/bhx/gao-thom-vua-gao-st25-tui-2kg-202111200945235942_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(14, 1, 2, 'Gạo thơm Vua Gạo Đậm Đà ST24 túi 2kg', 'gao-thom-vua-gao-dam-da-st24-tui-2kg-2', 64000, 'https://cdn.tgdd.vn/Products/Images/2513/182768/bhx/gao-thom-vua-gao-dam-da-st24-tui-2kg-202201151549502331_300x300.jpg', NULL, '2023-05-31 16:56:51', NULL, NULL, 1, 1, 0),
+(15, 1, 3, 'Gạo thơm Hạt Ngọc Trời Thiên Vương túi 5kg', 'gao-thom-hat-ngoc-troi-thien-vuong-tui-5kg', 194500, 'https://cdn.tgdd.vn/Products/Images/2513/236952/bhx/gao-thom-hat-ngoc-troi-thien-vuong-tui-5kg-202104261519374512_300x300.jpeg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
+(16, 1, 3, 'Gạo Hạt Ngọc Trời Tiên Nữ túi 5kg', 'gao-hat-ngoc-troi-tien-nu-tui-5kg', 151000, 'https://cdn.tgdd.vn/Products/Images/2513/77530/bhx/-202210270823579419_300x300.jpg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
+(17, 1, 3, 'Gạo Hạt Ngọc Trời Thiên Long túi 5kg', '', 113000, 'https://cdn.tgdd.vn/Products/Images/2513/77531/bhx/gao-hat-ngoc-troi-thien-long-tui-5kg-202301132158171031_300x300.jpg', NULL, '2023-05-31 16:59:44', NULL, NULL, 1, 1, 0),
+(18, 1, 3, 'Gạo Hạt Ngọc Trời Bạch Dương túi 5kg', 'gao-hat-ngoc-troi-bach-duong-tui-5kg', 112000, 'https://cdn.tgdd.vn/Products/Images/2513/79016/bhx/gao-hat-ngoc-troi-bach-duong-tui-5kg-202210270826470675_300x300.jpg', NULL, '2023-05-31 17:00:55', NULL, NULL, 1, 1, 0),
+(19, 3, 5, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 'gao-lut-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg', 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
+(20, 1, 5, 'Gạo thơm lài Lotus Rice Jasmine túi 2kg', 'gao-thom-lai-lotus-rice-jasmine-tui-2kg', 50500, 'https://cdn.tgdd.vn/Products/Images/2513/87310/bhx/gao-thom-lai-lotus-rice-jasmine-tui-2kg-202103040836123362_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
+(21, 1, 5, 'Gạo thơm lài Lotus Rice Jasmine túi 5kg', 'gao-thom-lai-lotus-rice-jasmine-tui-5kg', 132000, 'https://cdn.tgdd.vn/Products/Images/2513/82845/bhx/gao-thom-lai-lotus-rice-jasmine-tui-5kg-202103040834438617_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
+(22, 3, 5, 'Gạo lứt tím than Lotus Rice NutriChoice hộp 0,5kg', 'gao-lut-tim-than-lotus-rice-nutrichoice-hop-0-5kg', 62000, 'https://cdn.tgdd.vn/Products/Images/2513/203888/bhx/gao-tim-than-lotus-rice-nutrichoice-hop-0-5kg-202103040805168587_300x300.jpg', NULL, '2023-05-31 17:04:51', NULL, NULL, 1, 1, 0),
+(23, 1, 6, 'Gạo Lạc Việt đệ nhất ST25 túi 5kg', 'gao-lac-viet-de-nhat-st25-tui-5kg', 175000, 'https://cdn.tgdd.vn/Products/Images/2513/279506/bhx/gao-lac-viet-de-nhat-st25-tui-5kg-202210110941589891_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
+(24, 1, 6, 'Gạo Lạc Việt hảo hạng ST24 túi 5kg', 'gao-lac-viet-hao-hang-st24-tui-5kg', 160000, 'https://cdn.tgdd.vn/Products/Images/2513/279507/bhx/gao-lac-viet-hao-hang-st24-tui-5kg-202210110942572190_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
+(25, 1, 6, 'Gạo Lạc Việt dẻo thơm ST5 túi 5kg', 'gao-lac-viet-deo-thom-st5-tui-5kg', 130000, 'https://cdn.tgdd.vn/Products/Images/2513/279514/bhx/gao-lac-viet-deo-thom-st5-tui-5kg-202210110942352192_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
+(26, 1, 6, 'Gạo Lạc Việt XK51 túi 5kg', 'gao-lac-viet-xk51-tui-5kg', 110000, 'https://cdn.tgdd.vn/Products/Images/2513/279509/bhx/gao-lac-viet-xk51-tui-5kg-202205211713507395_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
+(27, 1, 6, 'Gạo Lạc Việt hương lúa túi 5kg', 'gao-lac-viet-huong-lua-tui-5kg', 125000, 'https://cdn.tgdd.vn/Products/Images/2513/279513/bhx/gao-lac-viet-huong-lua-tui-5kg-202205211715591470_300x300.jpg', NULL, '2023-05-31 17:08:33', NULL, NULL, 1, 1, 0),
+(28, 1, 4, 'Gạo hương lài An Gia túi 5kg', 'gao-huong-lai-an-gia-tui-5kg', 130000, 'https://cdn.tgdd.vn/Products/Images/2513/265867/bhx/gao-huong-lai-an-gia-tui-5kg-202201061054309814_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
+(29, 1, 4, 'Gạo An Gia Nàng Hoa túi 5kg', 'gao-an-gia-nang-hoa-tui-5kg', 117500, 'https://cdn.tgdd.vn/Products/Images/2513/266095/bhx/gao-an-gia-nang-hoa-tui-5kg-202201061053517481_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
+(30, 1, 4, 'Gạo An Gia Jasmine túi 5kg', 'gao-an-gia-jasmine-tui-5kg', 105000, 'https://cdn.tgdd.vn/Products/Images/2513/265892/bhx/gao-an-gia-jasmine-tui-5kg-202201061054059032_300x300.jpg', NULL, '2023-05-31 17:12:37', NULL, NULL, 1, 1, 0),
+(31, 2, 7, 'Nếp than PMT túi 1kg', 'nep-than-pmt-tui-1kg3', 55500, 'https://cdn.tgdd.vn/Products/Images/2513/146577/bhx/nep-than-pmt-tui-1kg-202103040831126066_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(32, 3, 7, 'Gạo lức huyết rồng PMT túi 2kg', 'gao-luc-huyet-rong-pmt-tui-2kg', 100000, 'https://cdn.tgdd.vn/Products/Images/2513/146578/bhx/-202210150921521038_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(33, 3, 7, 'Gạo lức huyết rồng PMT túi 1kg', 'gao-luc-huyet-rong-pmt-tui-1kg', 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(34, 3, 7, 'Gạo lức PMT túi 2kg', 'gao-luc-pmt-tui-2kg', 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(35, 4, 7, 'Gạo tấm thơm PMT túi 2kg', 'gao-tam-thom-pmt-tui-2kg', 42000, 'https://cdn.tgdd.vn/Products/Images/2513/146580/bhx/gao-tam-thom-pmt-tui-2kg-202303261932283448_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(36, 2, 7, 'Nếp ngỗng PMT túi 1kg', 'nep-ngong-pmt-tui-1kg6', 33000, 'https://cdn.tgdd.vn/Products/Images/2513/146576/bhx/nep-ngong-pmt-tui-1kg-202103040808176553_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
+(39, 5, 4, 'okok212', '', 1, 'ok', '<p>ok</p>', '2023-06-27 12:13:24', 11, 1, 0, 0, 0),
+(40, 1, 3, 'Gạo hoa', '', 100000, '/upload/images\\2023-07-19_1689780426_IMG_20190626_204528.jpg', '<p>abcs</p>', '2023-07-19 22:27:06', 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -515,6 +483,7 @@ INSERT INTO `sliders` (`id`, `tenSlider`, `hinhSlider`, `ngayDang`, `nhom`, `anH
 CREATE TABLE `thuonghieusp` (
   `idTH` int(11) NOT NULL,
   `tenTH` varchar(100) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `urlHinhTH` varchar(255) DEFAULT NULL,
   `thuTu` int(11) NOT NULL,
   `anHien` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 hien thi, \r\n0 an'
@@ -524,15 +493,15 @@ CREATE TABLE `thuonghieusp` (
 -- Đang đổ dữ liệu cho bảng `thuonghieusp`
 --
 
-INSERT INTO `thuonghieusp` (`idTH`, `tenTH`, `urlHinhTH`, `thuTu`, `anHien`) VALUES
-(1, 'Vinh Hiển', '/upload/images/thuonghieuSP\\2023-07-22_1690037870_vinh-hien-21072022145433.jpg', 1, 1),
-(2, 'Vua Gạo', '/upload/images/thuonghieuSP\\2023-07-22_1690037880_vua-gao-05042021172031.jpg', 2, 1),
-(3, 'Hạt Ngọc Trời', '/upload/images/thuonghieuSP\\2023-07-22_1690037890_hat-ngoc-troi-05042021235620.jpg', 3, 1),
-(4, 'An gia', '/upload/images/thuonghieuSP\\2023-07-22_1690037899_an-gia-04042021002.jpg', 4, 1),
-(5, 'Lotus Rice', '/upload/images/thuonghieuSP\\2023-07-22_1690037908_lotus-rice-0404202123823.jpg', 5, 1),
-(6, 'Lạc Việt', '/upload/images/thuonghieuSP\\2023-07-22_1690037922_lac-viet-2506202295023.jpg', 6, 1),
-(7, 'PMT', '/upload/images/thuonghieuSP\\2023-07-22_1690037965_pmt-15032021131922.jpg', 7, 1),
-(8, 'Vibigaba', '/upload/images/thuonghieuSP\\2023-07-22_1690037974_vibigaba-05042021163544.jpg', 8, 1);
+INSERT INTO `thuonghieusp` (`idTH`, `tenTH`, `slug`, `urlHinhTH`, `thuTu`, `anHien`) VALUES
+(1, 'Vinh Hiển', 'vinh-hien', '/upload/images/thuonghieuSP\\2023-07-22_1690037870_vinh-hien-21072022145433.jpg', 1, 1),
+(2, 'Vua Gạo', 'vua-gao', '/upload/images/thuonghieuSP\\2023-07-22_1690037880_vua-gao-05042021172031.jpg', 2, 1),
+(3, 'Hạt Ngọc Trời', 'hat-ngoc-troi', '/upload/images/thuonghieuSP\\2023-07-22_1690037890_hat-ngoc-troi-05042021235620.jpg', 3, 1),
+(4, 'An gia', 'an-gia', '/upload/images/thuonghieuSP\\2023-07-22_1690037899_an-gia-04042021002.jpg', 4, 1),
+(5, 'Lotus Rice', 'lotus-rice', '/upload/images/thuonghieuSP\\2023-07-22_1690037908_lotus-rice-0404202123823.jpg', 5, 1),
+(6, 'Lạc Việt', 'lac-viet', '/upload/images/thuonghieuSP\\2023-07-22_1690037922_lac-viet-2506202295023.jpg', 6, 1),
+(7, 'PMT', 'pmt', '/upload/images/thuonghieuSP\\2023-07-22_1690037965_pmt-15032021131922.jpg', 7, 1),
+(8, 'Vibigaba', 'vibigaba', '/upload/images/thuonghieuSP\\2023-07-22_1690037974_vibigaba-05042021163544.jpg', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -561,21 +530,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`, `active`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'Irac9DJdLEII0y1Xf9WuBX3Bs6kr7lq6m3leDHRAua2gzWwegYMBmqr7XTda', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
+(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'YU9bfBtLytp47cDFQMdpQjyXhPFiqAkqgEYzS68xPWfE9blzf8nUqVdm5FpJ', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
 (10, 'Phan Văn Hùng', '343432@gmail.comrrr555', '5456546455', NULL, '21212', 1, 0, '$2y$10$nP0uKqaQArzUwpaibydj1OzYqw7gNvLVmKeZS2vvkqRFBEs1yO7fy', '2023-08-04 02:59:52', NULL, '2023-08-04 02:54:23', '2023-08-05 06:44:20'),
-(11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '34353535', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
+(11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '121212', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
 (12, 'Trần Duy Bảo', 'baotd1304@gmail.xn--com4rr34343434-ukb', '343535354343', '/upload/images/profile\\2023-08-05_1691243332_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', NULL, 1, 0, '$2y$10$wHumpfwYnRvkr.A6vj.4TumaDo.jHvx.EVM5gAkK5y/vF0pXM90qC', NULL, NULL, '2023-08-04 03:42:21', '2023-08-05 06:48:52'),
-(13, 'Trần Duy Bảo', 'baotd1304@gmail.com', '123434343434', NULL, '3333', 0, 1, '$2y$10$lU.7/Rmgx2NJR/FkqqA1nO9nR0cYx8SpwaPfptDUO3xdmhrJU.Y.2', '2023-08-04 07:01:29', NULL, '2023-08-04 07:01:09', '2023-08-04 07:18:29');
+(13, 'Trần Duy Bảo', 'baotd1304@gmail.com', '123434343434', NULL, '3333', 0, 1, '$2y$10$lU.7/Rmgx2NJR/FkqqA1nO9nR0cYx8SpwaPfptDUO3xdmhrJU.Y.2', '2023-08-04 07:01:29', NULL, '2023-08-04 07:01:09', '2023-08-04 07:18:29'),
+(19, 'Nguyen Van A', 'nguyenvana@gmail.com', '123456', NULL, NULL, 0, 1, '$2y$10$yfaRaU3XdsK1w6drYaAQNuUVH.Mbqho6kymadEJACEpmiURebIoeO', NULL, NULL, '2023-08-09 01:39:17', '2023-08-09 01:39:17');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
-
---
--- Chỉ mục cho bảng `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `baiviet`
@@ -598,6 +562,12 @@ ALTER TABLE `chitiethoadon`
   ADD PRIMARY KEY (`idCTHD`),
   ADD KEY `chitiethoadon_fk_idHD` (`idHD`),
   ADD KEY `chitiethoadon_fk_idSP` (`idSP`);
+
+--
+-- Chỉ mục cho bảng `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `failed_jobs`
@@ -633,12 +603,6 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
---
-ALTER TABLE `nguoidung`
-  ADD PRIMARY KEY (`idND`);
-
---
 -- Chỉ mục cho bảng `order_temp`
 --
 ALTER TABLE `order_temp`
@@ -657,12 +621,6 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Chỉ mục cho bảng `quantri`
---
-ALTER TABLE `quantri`
-  ADD PRIMARY KEY (`idQT`);
 
 --
 -- Chỉ mục cho bảng `sanpham`
@@ -697,12 +655,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT cho bảng `admins`
---
-ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
@@ -712,13 +664,19 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT cho bảng `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -730,7 +688,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -751,28 +709,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
---
-ALTER TABLE `nguoidung`
-  MODIFY `idND` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT cho bảng `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `quantri`
---
-ALTER TABLE `quantri`
-  MODIFY `idQT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -796,7 +742,7 @@ ALTER TABLE `thuonghieusp`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
