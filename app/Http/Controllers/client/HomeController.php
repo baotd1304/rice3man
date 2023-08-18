@@ -27,6 +27,7 @@ class HomeController extends Controller
                 ->join('sanpham', 'sanpham.idSP', '=', 'binhluan.idSP')
                 ->select('binhluan.*', 'users.name', 'users.avatar', 'sanpham.slug')
                 ->where('binhluan.anHien', 1)
+                ->whereRaw('LENGTH(binhluan.noiDung) > ? and LENGTH(binhluan.noiDung) < ?',[(30), (150)])
                 ->orderbyDesc('ngayBL')->get();
         $news=BaiViet::where('anHien', 1)->where('noiBat', 1)->orderbyDesc('ngayDang')->get();
         $data=[

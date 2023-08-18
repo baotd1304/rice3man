@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 15, 2023 lúc 12:12 PM
+-- Thời gian đã tạo: Th8 18, 2023 lúc 04:47 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -91,7 +91,10 @@ INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) V
 (33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1),
 (34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1),
 (35, 32, 9, 'Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.', '2023-08-07 21:46:26', 1),
-(36, 33, 19, 'Sản phẩm quá kém chất lượng, không như hình ảnh', '2023-08-09 15:39:47', 1);
+(36, 33, 19, 'Sản phẩm quá kém chất lượng, không như hình ảnh', '2023-08-09 15:39:47', 1),
+(37, 1, 9, '212', '2023-08-15 22:50:13', 1),
+(38, 36, 9, 'Nhân viên tư vấn nhiệt tình, chu đáo, sản phẩm đa dạng, phong phú, đóng gói cẩn thận', '2023-08-17 11:37:35', 1),
+(39, 36, 9, 'Đã mua thử, sản phẩm rất tốt', '2023-08-17 11:44:04', 1);
 
 -- --------------------------------------------------------
 
@@ -149,7 +152,7 @@ INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaS
 --
 
 CREATE TABLE `contact` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -166,7 +169,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`id`, `name`, `logo`, `email`, `hotline`, `address`, `description`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Cửa hàng lương thực Gạo 3 Ông', '', 'gao3ong@gmail.com', '19008080', 'Công viên phần mềm Quang Trung, Quận 12, TP Hồ Chí Minh', '', 1, '2023-08-06 07:18:10', '2023-08-06 07:18:10');
+(1, 'Cửa hàng lương thực Gạo 3 Ông', '/upload/images/contact\\2023-08-15_1692113799_logoRice3Man.png', 'gao3ong@gmail.com', '19008080', 'Công viên phần mềm Quang Trung, Quận 12, TP Hồ Chí Minh', '', 1, '2023-08-06 07:18:10', '2023-08-15 08:40:05'),
+(2, 'Cửa hàng phân phối gạo Rice 3 Man', '/upload/images/contact\\2023-08-15_1692113918_logoRice3Man.png', 'gao3ong@gmail.com', '19001234', 'Quận 12, TP Hồ Chí Minh', '', 0, '2023-08-15 08:32:19', '2023-08-15 08:39:39');
 
 -- --------------------------------------------------------
 
@@ -238,7 +242,7 @@ INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan
 (29, 9, NULL, 83300, '2023-08-07 21:22:24', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tri Phương,Huyện Tiên Du,Tỉnh Bắc Ninh'),
 (30, 9, NULL, 48000, '2023-08-07 21:31:52', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đồng Ích,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
 (31, NULL, NULL, 36000, '2023-08-07 21:35:16', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tiên Minh,Huyện Tiên Lãng,Thành phố Hải Phòng'),
-(32, 9, NULL, 108000, '2023-08-10 20:47:37', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Lang, Huyện Hạ Hoà, Tỉnh Phú Thọ');
+(32, 9, NULL, 108000, '2023-08-10 20:47:37', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Lang, Huyện Hạ Hoà, Tỉnh Phú Thọ');
 
 -- --------------------------------------------------------
 
@@ -530,7 +534,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`, `active`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-05_1691249956_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'YU9bfBtLytp47cDFQMdpQjyXhPFiqAkqgEYzS68xPWfE9blzf8nUqVdm5FpJ', '2023-08-03 08:07:41', '2023-08-05 09:51:36'),
+(9, 'Duy Bảo', 'tdb1304@gmail.com', '123123', '/upload/images/profile\\2023-08-15_1692113831_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', '343434', 1, 1, '$2y$10$pCcZNI9tWgFVG1NsLHMJEePkZESVg4P7svf14mtdQuCByIHJ8AoIS', '2023-08-03 08:12:24', 'YU9bfBtLytp47cDFQMdpQjyXhPFiqAkqgEYzS68xPWfE9blzf8nUqVdm5FpJ', '2023-08-03 08:07:41', '2023-08-15 08:37:11'),
 (10, 'Phan Văn Hùng', '343432@gmail.comrrr555', '5456546455', NULL, '21212', 1, 0, '$2y$10$nP0uKqaQArzUwpaibydj1OzYqw7gNvLVmKeZS2vvkqRFBEs1yO7fy', '2023-08-04 02:59:52', NULL, '2023-08-04 02:54:23', '2023-08-05 06:44:20'),
 (11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '121212', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
 (12, 'Trần Duy Bảo', 'baotd1304@gmail.xn--com4rr34343434-ukb', '343535354343', '/upload/images/profile\\2023-08-05_1691243332_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', NULL, 1, 0, '$2y$10$wHumpfwYnRvkr.A6vj.4TumaDo.jHvx.EVM5gAkK5y/vF0pXM90qC', NULL, NULL, '2023-08-04 03:42:21', '2023-08-05 06:48:52'),
@@ -664,7 +668,7 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
@@ -676,7 +680,7 @@ ALTER TABLE `chitiethoadon`
 -- AUTO_INCREMENT cho bảng `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`

@@ -14,7 +14,7 @@ class LoaiSPController extends Controller
 {
     public function index()
     {
-        $perPage = 50;
+        $perPage = 10;
         $listloaisp = LoaiSP::orderBy('idLoai', 'DESC')->paginate($perPage);
         return view('admin.loaisp.index', compact('listloaisp'));
     }

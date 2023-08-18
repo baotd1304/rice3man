@@ -197,6 +197,12 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("contact.index") }}">
+          <i class="bi bi-journal-text"></i><span>Liên hệ</span>
+        </a>
+      </li>
+
       <li class="nav-heading">Thông tin</li>
 
       <li class="nav-item">

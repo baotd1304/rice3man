@@ -69,7 +69,7 @@
                     <span>Trang chủ</span>
                 </div>
             </a>
-            <a href="">
+            <a href="{{route('clientabout')}}">
                 <div class="dashboard-navbar__item">
                     <div class="img"> <img
                             src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/icon_menu_2.png?1669280565026"
@@ -87,7 +87,7 @@
                     <span>Sản phẩm</span>
                 </div>
             </a>
-            <a href="">
+            <a href="{{route('clientnews')}}">
                 <div class="dashboard-navbar__item">
                     <div class="img"> <img
                             src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/icon_menu_4.png?1669280565026"
@@ -96,7 +96,7 @@
                     <span>Tin tức </span>
                 </div>
             </a>
-            <a href="">
+            {{-- <a href="">
                 <div class="dashboard-navbar__item">
                     <div class="img"> <img
                             src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/icon_menu_5.png?1669280565026"
@@ -104,8 +104,8 @@
                     </div>
                     <span>Tuyển dụng</span>
                 </div>
-            </a>
-            <a href="">
+            </a> --}}
+            <a href="{{route('clientcontact')}}">
                 <div class="dashboard-navbar__item">
                     <div class="img"> <img
                             src="https://bizweb.dktcdn.net/100/434/011/themes/845632/assets/icon_menu_5.png?1669280565026"
@@ -121,7 +121,7 @@
             <div class="categoryList">
                 @foreach ($categories as $category )
                     <div>
-                       <a href="{{route('clientcategory',["slug"=>$category->idLoai])}}">
+                       <a href="{{route('clientcategory', $category->slug)}}">
                         {{$category->tenLoai}}
                        </a>
                     </div>

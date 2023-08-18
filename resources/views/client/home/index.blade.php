@@ -225,10 +225,14 @@ $indexCategory++;
   <div class="container">
     <div class="swiper mySwiperFeeback"> 
       <div class="product-row__header position-relative d-flex">
-        <h2 class="title" style="font-size: 22px; font-weight: 700; text-transform: uppercase">Phản hồi từ khách hàng</h2>
+        <h2 class="title" 
+          style="font-size: 22px; font-weight: 700; text-transform: uppercase; padding-top: 5px;
+          padding-bottom: 5px;">
+          Phản hồi từ khách hàng
+        </h2>
         
       </div>
-      <div class="swiper-wrapper ">
+      <div class="swiper-wrapper mb-3">
         @foreach ($binhluans as $bl)
         <div class="swiper-slide ps-5 pe-5">
           <div class="feedback-card w-100">
@@ -243,9 +247,10 @@ $indexCategory++;
                   {{-- <div class="posittion">Nội trợ</div> --}}
                 </div>
               </div>
-              <div class="content">
-                {{-- {{ $bl->noiDung }} --}}
-                {{Str::limit($bl->noiDung, 120)}}
+              <div class="content" style="min-height: 54px;">
+                {{ $bl->noiDung }}
+                {{-- {{Str::limit($bl->noiDung, 80)}} --}}
+  
               </div>
             </a>
           </div>

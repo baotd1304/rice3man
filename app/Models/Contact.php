@@ -12,6 +12,6 @@ class Contact extends Model
     public $primaryKey = "id";
     public $timestamps = true;
     protected $fillable = ['id', 'name', 'logo', 'email', 'hotline',
-                        'address', 'description'];
-    protected $attributes= ['description'=>''];
+                        'address', 'description', 'active'];
+    protected $attributes= ['description'=>'', 'active'=>'1', 'logo'=> ''];
 }

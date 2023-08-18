@@ -224,11 +224,11 @@
                 @endif
                 <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
                 <input type="text" name="idSP" value="{{$product->idSP}}" hidden>
-                <div class="row comment-form">
+                <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
+                {{-- <div class="row comment-form">
                     <div class="col-12 form-group">
-                        <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
                     </div>
-                </div>
+                </div> --}}
                 <div class="field aw-blog-comment-area form-group">
                     <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
                         name="content">
@@ -262,8 +262,8 @@
                     <p>{{$binhluan->noiDung}}</p>
                 </div>
                 <div class="comment-footer">  
-                    <span>Thích</span>
-                    <span>Trả lời</span>
+                    {{-- <span>Thích</span> --}}
+                    {{-- <span>Trả lời</span> --}}
                     <span>{{ $binhluan->ngayBL->format('d/m/Y') }}</span>
                     {{-- <a href="#">Xóa</a> --}}
                 </div>

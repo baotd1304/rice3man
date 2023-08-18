@@ -86,10 +86,17 @@
                                             <tr>
                                                 <td class="ps-4 pe-4">Trạng thái</td>
                                                 <td class="ps-4 pe-4">
+                                                    <span class="badge 
+                                                    @if ($order->isDone==0) bg-secondary
+                                                    @elseif ($order->isDone==1) bg-info
+                                                    @elseif ($order->isDone==2) bg-success
+                                                    @elseif ($order->isDone==3) bg-danger
+                                                    @endif
+                                                    ">
                                                     @if ($order->isDone==0) Chưa xác nhận
                                                     @elseif ($order->isDone==1) Đã xác nhận
                                                     @elseif ($order->isDone==2) Đã hoàn thành
-                                                    @elseif ($order->isDone==3) <p style="color: red">Đã hủy</p>
+                                                    @elseif ($order->isDone==3) Đã hủy
                                                     @endif
                                                 </td>
                                             </tr>
@@ -120,10 +127,10 @@
                                         @endphp
                                         <tr align="center" valign="middle ">
                                             <td>{{ $stt }}</td> 
-                                            <td class="text-left"><a href="{{route('clientproduct-detail', $order2->idSP)}}">{{Str::limit($order2->tenSP)}}</a></td>
+                                            <td class="text-left"><a href="{{route('clientproduct-detail', $order2->slug)}}">{{Str::limit($order2->tenSP)}}</a></td>
                                             <td>{{ number_format($order2->giaSP, 0, ',', '.') }} đ</td>
                                             <td>{{ $order2->soLuong }}</td>
-                                            <td><a href="{{route('clientproduct-detail', $order2->idSP)}}"><img src="{{$order2->urlHinh}}" alt="" width="50px"></a></td>
+                                            <td><a href="{{route('clientproduct-detail', $order2->slug)}}"><img src="{{$order2->urlHinh}}" alt="" width="50px"></a></td>
                                             <td>{{date('d/m/Y',strtotime($order->ngayMua))}}</td>
                                             <td>{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
                                         </tr>

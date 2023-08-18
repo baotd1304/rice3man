@@ -13,6 +13,7 @@ use App\Models\BaiViet;
 use App\Models\chitietdonhang;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardController extends Controller
 {
@@ -28,7 +29,33 @@ class dashboardController extends Controller
         $news=BaiViet::where('anHien', 1)->where('noiBat', 1)->orderbyDesc('ngayDang')->get();
         
         $orders = Order::orderbyDesc('ngayMua')->get();
-        $spRecent = chitietdonhang::orderbyDesc('idCTHD')->limit(5)->get();
+        
+        $spTopselling = chitietdonhang::groupBy('chitiethoadon.idSP')
+                ->join('sanpham', 'sanpham.idSP', '=', 'chitiethoadon.idSP')
+                ->select([
+                    'chitiethoadon.*', 'sanpham.slug', 'sanpham.urlHinh',
+                    DB::raw("SUM(soLuong) as soLuongBan"),
+                ])
+                ->orderbyDesc('soLuongBan')->get();
+        
+        //So sp moi loaisp       
+        $spPerCategory = Sanpham::groupBy('sanpham.idLoai')
+                ->join('loaisanpham', 'sanpham.idLoai', '=', 'loaisanpham.idLoai')
+                ->select([
+                    'loaisanpham.tenLoai',
+                    DB::raw("count(sanpham.idLoai) as spMoiLoai"),
+                ])
+                ->get();
+
+        //So sp moi thuong hieu sp       
+        $spPerBrand = Sanpham::groupBy('sanpham.idTH')
+                ->join('thuonghieusp', 'sanpham.idTH', '=', 'thuonghieusp.idTH')
+                ->select([
+                    'thuonghieusp.tenTH',
+                    DB::raw("count(sanpham.idTH) as spMoiTH"),
+                ])
+                ->get();
+
 
         $countOrders = Order::count();
         $countOrdersDone = Order::where('isDone','=',0)->count();
@@ -51,7 +78,9 @@ class dashboardController extends Controller
             "countCustomer" => $countCustomer,
             "countRevenue" => $countRevenue,
             "countRevenueDone" => $countRevenueDone,
-            "spRecent" => $spRecent,
+            "spTopselling" => $spTopselling,
+            "spPerCategory" => $spPerCategory,
+            "spPerBrand" => $spPerBrand,
             
 
         ];

@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\ThuonghieuSPController;
 use App\Http\Controllers\Admin\BaivietController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ContactAdminController;
+
 use App\Http\Controllers\client\OrderProfileController;
 
 /*
@@ -146,6 +148,14 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::put('/orders/{idHD}', [DatHangController::class, 'update'])->name('order.update');
     // Route hiển thị chi tiết đơn hàng
     Route::get('orders/{idHD}/edit', [DatHangController::class, 'showOrderDetail'])->name('order.showOrderDetail');
+
+    //9.Route contact
+    Route::get('/contact/index', [ContactAdminController::class, 'index'])->name('contact.index');
+    Route::get('/contact/create', [ContactAdminController::class, 'create'])->name('contact.create');
+    Route::post('/contact', [ContactAdminController::class, 'store'])->name('contact.store');
+    Route::get('/contact/{id}/edit', [ContactAdminController::class, 'edit'])->name('contact.edit');
+    Route::put('/contact/{id}', [ContactAdminController::class, 'update'])->name('contact.update');
+    Route::delete('/contact/{id}', [ContactAdminController::class, 'destroy'])->name('contact.destroy');
 
 });
 

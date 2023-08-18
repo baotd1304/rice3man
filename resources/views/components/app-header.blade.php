@@ -156,7 +156,7 @@
                                 <div class="categoryList">
                                     @foreach ($categories as $category )
                                         <div>
-                                           <a href="{{route('clientcategory',["slug"=>$category->idLoai])}}">
+                                           <a href="{{route('clientcategory', $category->slug)}}">
                                             {{$category->tenLoai}}
                                            </a>
                                         </div>

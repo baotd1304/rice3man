@@ -26,7 +26,9 @@ class OrderProfileController extends Controller
     
     public function showOrderDetail($idHD)
     {
-        $order1 = chitietdonhang::where('idHD', $idHD)->get();
+        $order1 = chitietdonhang::join('sanpham', 'sanpham.idSP', '=', 'chitiethoadon.idSP')
+                                ->select('chitiethoadon.*', 'sanpham.slug')
+                                ->where('idHD', $idHD)->get();
         $order = Order::find($idHD); // Lấy thông tin đơn hàng từ model Order theo $idHD
         $user = User::find($order->idND); // Truy xuất thông tin người dùng
 
