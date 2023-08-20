@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 18, 2023 lúc 04:47 AM
+-- Thời gian đã tạo: Th8 20, 2023 lúc 07:47 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -143,7 +143,30 @@ INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaS
 (24, 29, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 1, 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg'),
 (25, 30, 5, 'Gạo lứt tím Vinh Hiển túi 1kg', 1, 48000, 'https://cdn.tgdd.vn/Products/Images/2513/262354/bhx/gao-lut-tim-vinh-hien-tui-1kg-202301090824554250_300x300.jpg'),
 (26, 31, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
-(27, 32, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 3, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg');
+(27, 32, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 3, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(28, 33, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 1, 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg'),
+(29, 33, 35, 'Gạo tấm thơm PMT túi 2kg', 1, 42000, 'https://cdn.tgdd.vn/Products/Images/2513/146580/bhx/gao-tam-thom-pmt-tui-2kg-202303261932283448_300x300.jpg'),
+(30, 34, 34, 'Gạo lức PMT túi 2kg', 1, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
+(31, 35, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(32, 36, 34, 'Gạo lức PMT túi 2kg', 1, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
+(33, 37, 34, 'Gạo lức PMT túi 2kg', 2, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
+(34, 38, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 1, 78000, 'https://cdn.tgdd.vn/Products/Images/2513/193609/bhx/gao-vinh-hien-do-quyen-tui-5kg-202111021628092012_300x300.jpg'),
+(35, 40, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(36, 41, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 2, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(37, 41, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 1, 116100, 'https://cdn.tgdd.vn/Products/Images/2513/298801/bhx/gao-dac-san-trang-nguyen-vinh-hien-st25-tui-5kg-202212131033425735_300x300.jpg'),
+(38, 42, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 2, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(39, 42, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 1, 116100, 'https://cdn.tgdd.vn/Products/Images/2513/298801/bhx/gao-dac-san-trang-nguyen-vinh-hien-st25-tui-5kg-202212131033425735_300x300.jpg'),
+(40, 42, 24, 'Gạo Lạc Việt hảo hạng ST24 túi 5kg', 1, 160000, 'https://cdn.tgdd.vn/Products/Images/2513/279507/bhx/gao-lac-viet-hao-hang-st24-tui-5kg-202210110942572190_300x300.jpg'),
+(41, 43, 1, 'Gạo Trạng Nguyên Vinh Hiển ST25 túi 5kg', 1, 116100, 'https://cdn.tgdd.vn/Products/Images/2513/298801/bhx/gao-dac-san-trang-nguyen-vinh-hien-st25-tui-5kg-202212131033425735_300x300.jpg'),
+(42, 44, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 2, 78000, 'https://cdn.tgdd.vn/Products/Images/2513/193609/bhx/gao-vinh-hien-do-quyen-tui-5kg-202111021628092012_300x300.jpg'),
+(43, 45, 22, 'Gạo lứt tím than Lotus Rice NutriChoice hộp 0,5kg', 1, 62000, 'https://cdn.tgdd.vn/Products/Images/2513/203888/bhx/gao-tim-than-lotus-rice-nutrichoice-hop-0-5kg-202103040805168587_300x300.jpg'),
+(44, 46, 33, 'Gạo lức huyết rồng PMT túi 1kg', 1, 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg'),
+(45, 47, 22, 'Gạo lứt tím than Lotus Rice NutriChoice hộp 0,5kg', 2, 62000, 'https://cdn.tgdd.vn/Products/Images/2513/203888/bhx/gao-tim-than-lotus-rice-nutrichoice-hop-0-5kg-202103040805168587_300x300.jpg'),
+(46, 48, 13, 'Gạo thơm Vua Gạo ST25 túi 2kg', 2, 79000, 'https://cdn.tgdd.vn/Products/Images/2513/253156/bhx/gao-thom-vua-gao-st25-tui-2kg-202111200945235942_300x300.jpg'),
+(47, 49, 19, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 2, 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg'),
+(48, 50, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 1, 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg'),
+(49, 51, 2, 'Gạo còn cám Vinh Hiển Khổng Tước Nguyên túi 5kg', 2, 83300, 'https://cdn.tgdd.vn/Products/Images/2513/193613/bhx/-202304060918080104_300x300.jpg'),
+(50, 51, 6, 'Gạo tấm thơm Thanh Yến Vinh Hiển túi 2kg', 1, 38000, 'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/gao-tam-thom-thanh-yen-vinh-hien-tui-2kg-202112151346079514_300x300.jpg');
 
 -- --------------------------------------------------------
 
@@ -206,43 +229,63 @@ CREATE TABLE `hoadon` (
   `tenNguoiNhan` varchar(100) NOT NULL,
   `email` varchar(225) NOT NULL,
   `soDienThoai` int(20) NOT NULL,
-  `diaChi` varchar(250) NOT NULL
+  `diaChi` varchar(250) NOT NULL,
+  `randomString` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan`, `trangThai`, `isDone`, `tenNguoiNhan`, `email`, `soDienThoai`, `diaChi`) VALUES
-(4, NULL, NULL, 166600, '2023-07-19 21:47:53', 0, 1, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Duy Phiên,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(5, NULL, NULL, 166600, '2023-07-19 21:49:36', 0, 0, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Phú Đô,Huyện Phú Lương,Tỉnh Thái Nguyên'),
-(6, NULL, NULL, 156000, '2023-07-19 22:06:06', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(7, NULL, NULL, 156000, '2023-07-19 22:07:16', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc'),
-(8, NULL, NULL, 774000, '2023-07-23 20:00:22', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(9, NULL, NULL, 774000, '2023-07-23 20:00:47', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(10, NULL, NULL, 774000, '2023-07-23 20:01:12', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang'),
-(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam'),
-(12, NULL, NULL, 62000, '2023-08-04 20:48:08', 1, 1, 0, 'tran baotran baotran bao', 'tdb1304@gmail.com', 131313, '31313,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
-(13, NULL, NULL, 163500, '2023-08-04 20:49:27', 1, 1, 3, 'tdb1304@gmail.com', 'tdb1304@gmail.com', 123123123, '121212,Xã Mỹ Thái,Huyện Lạng Giang,Tỉnh Bắc Giang'),
-(14, NULL, NULL, 93000, '2023-08-04 21:06:17', 1, 0, 0, 'tran baotran baotran bao', 'baotd1304@gmail.com', 123123123, '424232,Thị trấn Thanh Sơn,Huyện Thanh Sơn,Tỉnh Phú Thọ'),
-(15, NULL, NULL, 240000, '2023-08-06 15:59:02', 0, 0, 0, 'duy baoduy baoduy bao', 'baotd1304@gmail.com', 123123123, '313112,Xã Văn Quán,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
-(16, NULL, NULL, 234000, '2023-08-06 16:18:27', 0, 0, 0, '3131313131313', 'admin@gmail.com', 3131313, '3131313,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
-(17, NULL, NULL, 184000, '2023-08-06 18:22:10', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,,Huyện Đồng Hỷ,Tỉnh Thái Nguyên'),
-(18, NULL, NULL, 180000, '2023-08-06 18:29:02', 0, 0, 0, '3131313', 'admin@gmail', 31313, 'êrẻ,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
-(19, NULL, NULL, 183000, '2023-08-06 22:41:16', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Hùng Thắng,Huyện Tiên Lãng,Thành phố Hải Phòng'),
-(20, NULL, NULL, 0, '2023-08-06 22:42:06', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh'),
-(21, NULL, NULL, 0, '2023-08-06 22:46:00', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Sơn Đông,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
-(22, 9, NULL, 38000, '2023-08-06 22:51:51', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh'),
-(23, 9, NULL, 38000, '2023-08-06 22:54:58', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh'),
-(24, 9, NULL, 38000, '2023-08-06 22:55:08', 1, 0, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
-(25, 9, NULL, 38000, '2023-08-06 22:56:01', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
-(26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
-(27, 9, NULL, 97000, '2023-08-06 23:09:39', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 111111, 'fshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\n'),
-(28, 9, NULL, 115400, '2023-08-07 19:20:23', 1, 1, 2, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
-(29, 9, NULL, 83300, '2023-08-07 21:22:24', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tri Phương,Huyện Tiên Du,Tỉnh Bắc Ninh'),
-(30, 9, NULL, 48000, '2023-08-07 21:31:52', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đồng Ích,Huyện Lập Thạch,Tỉnh Vĩnh Phúc'),
-(31, NULL, NULL, 36000, '2023-08-07 21:35:16', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tiên Minh,Huyện Tiên Lãng,Thành phố Hải Phòng'),
-(32, 9, NULL, 108000, '2023-08-10 20:47:37', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Lang, Huyện Hạ Hoà, Tỉnh Phú Thọ');
+INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan`, `trangThai`, `isDone`, `tenNguoiNhan`, `email`, `soDienThoai`, `diaChi`, `randomString`) VALUES
+(4, NULL, NULL, 166600, '2023-07-19 21:47:53', 0, 1, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Duy Phiên,Huyện Tam Dương,Tỉnh Vĩnh Phúc', 'Qx2OkyzS81'),
+(5, NULL, NULL, 166600, '2023-07-19 21:49:36', 0, 0, 0, 'Phan văn hùng', 'mobanight2107@gmail.com', 857626102, 'abc,Xã Phú Đô,Huyện Phú Lương,Tỉnh Thái Nguyên', 'nTDgf6yAxd'),
+(6, NULL, NULL, 156000, '2023-07-19 22:06:06', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc', '1LMBq3KZhb'),
+(7, NULL, NULL, 156000, '2023-07-19 22:07:16', 0, 0, 0, 'Phan văn hùng', 'hung@gmail.com', 857626102, 'abc,Xã An Hòa,Huyện Tam Dương,Tỉnh Vĩnh Phúc', '66ElznXmn9'),
+(8, NULL, NULL, 774000, '2023-07-23 20:00:22', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang', 'kfPvUphaiK'),
+(9, NULL, NULL, 774000, '2023-07-23 20:00:47', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang', 'BIuHkwycDh'),
+(10, NULL, NULL, 774000, '2023-07-23 20:01:12', 0, 0, 0, 'Phan Văn Hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Thị trấn Cao Thượng,Huyện Tân Yên,Tỉnh Bắc Giang', 'lPdiVcFG8E'),
+(11, NULL, NULL, 249900, '2023-07-23 20:02:09', 0, 0, 0, 'Phan Văn hùng', 'hkmir7@gmail.com', 857626102, '1a đồng trạch,Xã Chuyên Ngoại,Thị xã Duy Tiên,Tỉnh Hà Nam', 'ITSodJrEEa'),
+(12, NULL, NULL, 62000, '2023-08-04 20:48:08', 1, 1, 0, 'tran baotran baotran bao', 'tdb1304@gmail.com', 131313, '31313,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc', 'hzH2Ck9XvQ'),
+(13, NULL, NULL, 163500, '2023-08-04 20:49:27', 1, 1, 3, 'tdb1304@gmail.com', 'tdb1304@gmail.com', 123123123, '121212,Xã Mỹ Thái,Huyện Lạng Giang,Tỉnh Bắc Giang', 'sXjkduMVNJ'),
+(14, NULL, NULL, 93000, '2023-08-04 21:06:17', 1, 0, 0, 'tran baotran baotran bao', 'baotd1304@gmail.com', 123123123, '424232,Thị trấn Thanh Sơn,Huyện Thanh Sơn,Tỉnh Phú Thọ', 'IMDRyKFFrC'),
+(15, NULL, NULL, 240000, '2023-08-06 15:59:02', 0, 0, 0, 'duy baoduy baoduy bao', 'baotd1304@gmail.com', 123123123, '313112,Xã Văn Quán,Huyện Lập Thạch,Tỉnh Vĩnh Phúc', 'hLHubITEkK'),
+(16, NULL, NULL, 234000, '2023-08-06 16:18:27', 0, 0, 0, '3131313131313', 'admin@gmail.com', 3131313, '3131313,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh', 'NdR5PkFGzD'),
+(17, NULL, NULL, 184000, '2023-08-06 18:22:10', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,,Huyện Đồng Hỷ,Tỉnh Thái Nguyên', 'J8SLRf41T2'),
+(18, NULL, NULL, 180000, '2023-08-06 18:29:02', 0, 0, 0, '3131313', 'admin@gmail', 31313, 'êrẻ,Phường Trưng Nhị,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc', 'yYAf7LAbWP'),
+(19, NULL, NULL, 183000, '2023-08-06 22:41:16', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Hùng Thắng,Huyện Tiên Lãng,Thành phố Hải Phòng', 'wYVy5n5HZ1'),
+(20, NULL, NULL, 0, '2023-08-06 22:42:06', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh', 'DruN1fd6P6'),
+(21, NULL, NULL, 0, '2023-08-06 22:46:00', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Sơn Đông,Huyện Lập Thạch,Tỉnh Vĩnh Phúc', 'UVU0dbXt3H'),
+(22, 9, NULL, 38000, '2023-08-06 22:51:51', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh', '6wNjR3aNVA'),
+(23, 9, NULL, 38000, '2023-08-06 22:54:58', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Thị trấn Chờ,Huyện Yên Phong,Tỉnh Bắc Ninh', 'RLdmTsytOW'),
+(24, 9, NULL, 38000, '2023-08-06 22:55:08', 1, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh', 'RLdmTsytOW'),
+(25, 9, NULL, 38000, '2023-08-06 22:56:01', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh', '3qVmQou1pw'),
+(26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh', 'h8H2T4GZny'),
+(27, 9, NULL, 97000, '2023-08-06 23:09:39', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 111111, 'fshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\n', 'DZl0RPgiD7'),
+(28, 9, NULL, 115400, '2023-08-07 19:20:23', 1, 1, 2, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc', 'DZl0RPgiD7'),
+(29, 9, NULL, 83300, '2023-08-07 21:22:24', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tri Phương,Huyện Tiên Du,Tỉnh Bắc Ninh', 'VjlVvuZk6e'),
+(30, 9, NULL, 48000, '2023-08-07 21:31:52', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đồng Ích,Huyện Lập Thạch,Tỉnh Vĩnh Phúc', 'nFYnedQoxl'),
+(31, NULL, NULL, 36000, '2023-08-07 21:35:16', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Tiên Minh,Huyện Tiên Lãng,Thành phố Hải Phòng', 'VjlVvuZk6e'),
+(32, 9, NULL, 108000, '2023-08-10 20:47:37', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Lang, Huyện Hạ Hoà, Tỉnh Phú Thọ', 'hp5Vcc7xRb'),
+(33, 9, NULL, 80000, '2023-08-18 12:54:20', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Văn Môn, Huyện Yên Phong, Tỉnh Bắc Ninh', 'Rkfn634AbJ'),
+(34, 9, NULL, 38500, '2023-08-18 12:56:00', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Phường Âu Cơ, Thị xã Phú Thọ, Tỉnh Phú Thọ', 'bJDpUKv6X9'),
+(35, 9, NULL, 26000, '2023-08-18 13:10:35', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Minh Phú, Huyện Đoan Hùng, Tỉnh Phú Thọ', '0LG5LeXVky'),
+(36, NULL, NULL, 48500, '2023-08-18 13:13:16', 1, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Tri Phương, Huyện Tiên Du, Tỉnh Bắc Ninh', 'p9B9jFP86S'),
+(37, 9, 1, 87000, '2023-08-18 13:31:02', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Minh Đạo, Huyện Tiên Du, Tỉnh Bắc Ninh', '$2a$12$OpBuwsaViKN3B39dcAU.OOoasxqfw6.Q/Qu.wAGqfKgUXExFoEBBO'),
+(38, 9, 1, 68000, '2023-08-18 14:25:30', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Mộ Đạo, Thị xã Quế Võ, Tỉnh Bắc Ninh', '$2y$10$C8.n1T1yYFS6M3ZkJL157O56E0nA3D2NkGorOLod2rjzoGQtRspna'),
+(39, 9, 1, 68000, '2023-08-18 14:26:02', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Mộ Đạo, Thị xã Quế Võ, Tỉnh Bắc Ninh', '$2y$10$187gV2TY/GncNTF9q1/QS.AZ90IymcRoX7G4e/WLg2Ii7f417Zkwi'),
+(40, 9, 1, 26000, '2023-08-18 14:33:56', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Vô Tranh, Huyện Hạ Hoà, Tỉnh Phú Thọ', '3EmQHmyDUJ'),
+(41, 9, 2, 241380, '2023-08-18 16:15:35', 1, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Triệu Đề, Huyện Lập Thạch, Tỉnh Vĩnh Phúc', 'rLZQk3iaG1'),
+(42, 9, 1, 418200, '2023-08-18 16:20:14', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Đồng Tĩnh, Huyện Tam Dương, Tỉnh Vĩnh Phúc', 'cFpxNOLAot'),
+(43, 9, 2, 104490, '2023-08-18 16:27:32', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Tân Mỹ, Huyện Văn Lãng, Tỉnh Lạng Sơn', '6EOCW3vbMS'),
+(44, 9, 1, 146000, '2023-08-18 16:43:02', 1, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Đỗ Sơn, Huyện Thanh Ba, Tỉnh Phú Thọ', 'tYZxd1osOO'),
+(45, 9, 2, 55800, '2023-08-18 16:50:26', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Sơn Cương, Huyện Thanh Ba, Tỉnh Phú Thọ', 'x15EDaeF1h'),
+(46, 9, 2, 49050, '2023-08-18 16:55:56', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Mỹ Tài, Huyện Phù Mỹ, Tỉnh Bình Định', 'Hy8JxSnrQo'),
+(47, 9, NULL, 124000, '2023-08-18 16:57:15', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Đồng Ích, Huyện Lập Thạch, Tỉnh Vĩnh Phúc', 'TBAadPgKz7'),
+(48, 9, NULL, 158000, '2023-08-18 17:05:11', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Đỗ Sơn, Huyện Thanh Ba, Tỉnh Phú Thọ', '2ECxvT6mXq'),
+(49, 9, 1, 76800, '2023-08-18 17:08:17', 1, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Phường Đồng Kỵ, Thành phố Từ Sơn, Tỉnh Bắc Ninh', 'rz54OrGjpH'),
+(50, 9, NULL, 83300, '2023-08-18 17:09:03', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434, Xã Vụ Quang, Huyện Đoan Hùng, Tỉnh Phú Thọ', 'Soz6KMVttk'),
+(51, 9, 2, 184140, '2023-08-20 20:47:42', 0, 0, 0, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434fdfd, Xã Cẩm Đông, Huyện Cẩm Giàng, Tỉnh Hải Dương', 'ID59blojfU');
 
 -- --------------------------------------------------------
 
@@ -278,12 +321,15 @@ INSERT INTO `loaisanpham` (`idLoai`, `tenLoai`, `slug`, `thuTu`, `anHien`) VALUE
 
 CREATE TABLE `magiamgia` (
   `idMGG` int(11) NOT NULL,
-  `maGiamGia` varchar(50) NOT NULL,
+  `maGiamGia` varchar(20) NOT NULL,
   `chiTiet` varchar(255) DEFAULT NULL,
-  `ngayBatDau` datetime NOT NULL,
-  `ngayKetThuc` datetime NOT NULL,
   `loaiMa` tinyint(1) NOT NULL COMMENT '1 la giam theo %, 0 la giam truc tiep so tien',
-  `giaTri` double NOT NULL,
+  `giaTri` double(10,0) NOT NULL,
+  `dieuKien` double(10,0) DEFAULT NULL,
+  `luotSuDung` int(11) DEFAULT NULL,
+  `gioiHan` int(11) DEFAULT NULL,
+  `ngayBatDau` datetime DEFAULT NULL,
+  `ngayKetThuc` datetime DEFAULT NULL,
   `hoatDong` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 la active, 0 la inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -291,8 +337,13 @@ CREATE TABLE `magiamgia` (
 -- Đang đổ dữ liệu cho bảng `magiamgia`
 --
 
-INSERT INTO `magiamgia` (`idMGG`, `maGiamGia`, `chiTiet`, `ngayBatDau`, `ngayKetThuc`, `loaiMa`, `giaTri`, `hoatDong`) VALUES
-(1, 'SANSALE', 'Giảm 10.000đ giá trị đơn hàng', '2023-06-28 03:12:59', '2023-06-28 03:12:59', 1, 10000, 1);
+INSERT INTO `magiamgia` (`idMGG`, `maGiamGia`, `chiTiet`, `loaiMa`, `giaTri`, `dieuKien`, `luotSuDung`, `gioiHan`, `ngayBatDau`, `ngayKetThuc`, `hoatDong`) VALUES
+(1, 'SANSALE', 'Giảm 10.000đ giá trị đơn hàng', 0, 10000, 10000, 57, 100, '2023-08-08 21:34:07', '2023-08-31 23:42:16', 1),
+(2, 'Giam10pt', 'Giảm 10% gia tri don hang', 1, 10, 50000, 3, NULL, NULL, '2023-08-31 21:30:02', 1),
+(3, 'Giam20k', 'Giảm 20k giá trị đơn hàng', 0, 20000, 100000, 2, NULL, '2023-06-28 03:12:59', '2023-08-29 22:20:03', 1),
+(4, 'Giam20pt', 'Giảm 20% giá trị đơn hàng', 1, 20, 200000, NULL, NULL, NULL, NULL, 1),
+(5, 'Vuicuoituan', 'Giảm 15k', 0, 15000, NULL, 50, 50, '2023-08-16 21:35:14', '2023-08-31 21:35:17', 1),
+(23, 'sansale11', '12311', 1, 11, 212, 12, 21, '2023-08-17 16:51:00', '2023-08-24 16:51:00', 0);
 
 -- --------------------------------------------------------
 
@@ -324,6 +375,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `order_temp` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `idND` int(11) DEFAULT NULL,
+  `idMGG` int(11) DEFAULT NULL,
   `total` int(11) NOT NULL,
   `payment_type` varchar(255) NOT NULL,
   `fee_ship` int(11) NOT NULL,
@@ -344,9 +397,10 @@ CREATE TABLE `order_temp` (
 -- Đang đổ dữ liệu cho bảng `order_temp`
 --
 
-INSERT INTO `order_temp` (`id`, `total`, `payment_type`, `fee_ship`, `user_name`, `email`, `province`, `district`, `ward`, `address`, `phone`, `customer_note`, `shop_note`, `created_at`, `updated_at`) VALUES
-(8, 129000, 'ATM', 0, 'thanhdatfood', 'dat@gmail.com', 'Tỉnh Bắc Giang', 'Huyện Lục Ngạn', 'Xã Kim Sơn', 'quận gò vấp tp Hồ Chí minh', '0386352313', 'Ghi chú', NULL, '2023-07-09 09:04:17', '2023-07-09 09:04:17'),
-(10, 62000, 'ATM', 0, 'Phan Văn Hùng', 'hung@gmail.com', 'Tỉnh Hà Tĩnh', 'Huyện Kỳ Anh', 'Xã Lâm Hợp', '1a đồng trạch', '0857626102', NULL, NULL, '2023-07-23 06:55:55', '2023-07-23 06:55:55');
+INSERT INTO `order_temp` (`id`, `idND`, `idMGG`, `total`, `payment_type`, `fee_ship`, `user_name`, `email`, `province`, `district`, `ward`, `address`, `phone`, `customer_note`, `shop_note`, `created_at`, `updated_at`) VALUES
+(8, NULL, NULL, 129000, 'ATM', 0, 'thanhdatfood', 'dat@gmail.com', 'Tỉnh Bắc Giang', 'Huyện Lục Ngạn', 'Xã Kim Sơn', 'quận gò vấp tp Hồ Chí minh', '0386352313', 'Ghi chú', NULL, '2023-07-09 09:04:17', '2023-07-09 09:04:17'),
+(10, NULL, NULL, 62000, 'ATM', 0, 'Phan Văn Hùng', 'hung@gmail.com', 'Tỉnh Hà Tĩnh', 'Huyện Kỳ Anh', 'Xã Lâm Hợp', '1a đồng trạch', '0857626102', NULL, NULL, '2023-07-23 06:55:55', '2023-07-23 06:55:55'),
+(13, NULL, NULL, 26000, 'ATM', 0, 'Duy Bảo', 'tdb1304@gmail.com', 'Tỉnh Bắc Ninh', 'Huyện Tiên Du', 'Xã Đại Đồng', 'Quận 12, TP Hồ Chí Minh', '123123', NULL, NULL, '2023-08-17 23:08:39', '2023-08-17 23:08:39');
 
 -- --------------------------------------------------------
 
@@ -450,9 +504,7 @@ INSERT INTO `sanpham` (`idSP`, `idLoai`, `idTH`, `tenSP`, `slug`, `giaSP`, `urlH
 (33, 3, 7, 'Gạo lức huyết rồng PMT túi 1kg', 'gao-luc-huyet-rong-pmt-tui-1kg', 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
 (34, 3, 7, 'Gạo lức PMT túi 2kg', 'gao-luc-pmt-tui-2kg', 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
 (35, 4, 7, 'Gạo tấm thơm PMT túi 2kg', 'gao-tam-thom-pmt-tui-2kg', 42000, 'https://cdn.tgdd.vn/Products/Images/2513/146580/bhx/gao-tam-thom-pmt-tui-2kg-202303261932283448_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(36, 2, 7, 'Nếp ngỗng PMT túi 1kg', 'nep-ngong-pmt-tui-1kg6', 33000, 'https://cdn.tgdd.vn/Products/Images/2513/146576/bhx/nep-ngong-pmt-tui-1kg-202103040808176553_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0),
-(39, 5, 4, 'okok212', '', 1, 'ok', '<p>ok</p>', '2023-06-27 12:13:24', 11, 1, 0, 0, 0),
-(40, 1, 3, 'Gạo hoa', '', 100000, '/upload/images\\2023-07-19_1689780426_IMG_20190626_204528.jpg', '<p>abcs</p>', '2023-07-19 22:27:06', 0, 0, 0, 0, 0);
+(36, 2, 7, 'Nếp ngỗng PMT túi 1kg', 'nep-ngong-pmt-tui-1kg', 33000, 'https://cdn.tgdd.vn/Products/Images/2513/146576/bhx/nep-ngong-pmt-tui-1kg-202103040808176553_300x300.jpg', NULL, '2023-05-31 17:18:18', NULL, NULL, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -674,7 +726,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT cho bảng `contact`
@@ -692,7 +744,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -704,7 +756,7 @@ ALTER TABLE `loaisanpham`
 -- AUTO_INCREMENT cho bảng `magiamgia`
 --
 ALTER TABLE `magiamgia`
-  MODIFY `idMGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -716,7 +768,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

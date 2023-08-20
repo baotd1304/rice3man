@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\chitietdonhang;
+use App\Models\MaGiamGia;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -24,25 +25,25 @@ class OrderProfileController extends Controller
         return view('profile.order.index', ['orderPersonal' => $orderPersonal]);
     }
     
-    public function showOrderDetail($idHD)
+    public function showOrderDetail($randomString)
     {
+        $order = Order::where('randomString', $randomString)->first();
+        $mgg = MaGiamGia::find($order->idMGG); // Lấy thông tin đơn hàng từ model Order theo $randomString
+        $user = User::where('id', $order->idND)->first(); // Truy xuất thông tin người dùng
         $order1 = chitietdonhang::join('sanpham', 'sanpham.idSP', '=', 'chitiethoadon.idSP')
-                                ->select('chitiethoadon.*', 'sanpham.slug')
-                                ->where('idHD', $idHD)->get();
-        $order = Order::find($idHD); // Lấy thông tin đơn hàng từ model Order theo $idHD
-        $user = User::find($order->idND); // Truy xuất thông tin người dùng
+                                ->join('hoadon', 'hoadon.idHD', '=', 'chitiethoadon.idHD')
+                                ->select('chitiethoadon.*', 'sanpham.slug', 'hoadon.idMGG')
+                                ->where('chitiethoadon.idHD', $order->idHD)->get();
 
-        return view('profile.order.detail', compact('order', 'order1', 'user'));
+        return view('profile.order.detail', compact('order', 'order1', 'user', 'mgg'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $randomString)
     {
         $validatedData =$request->validate([
             'isDone' => 'required | numeric',
-        ],[
-
         ]);
        
-        Order::where('idHD', $id)->update($validatedData);
+        Order::where('randomString', $randomString)->update($validatedData);
         
         return redirect()->route('orderPersonal.index')->with('success', 'Hủy đơn hàng thành công!');
     }

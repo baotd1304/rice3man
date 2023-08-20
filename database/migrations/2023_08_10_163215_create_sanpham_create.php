@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('idLoai')->foreignId('idLoai')->references('idLoai')->on('loaisanpham');
             $table->integer('idTH')->foreignId('idTH')->references('idTH')->on('thuonghieusp');
             $table->string('tenSP');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->double('giaSP', 10, 0);
             $table->string('urlHinh');
             $table->text('moTa')->nullable();

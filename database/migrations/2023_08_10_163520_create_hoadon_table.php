@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('thanhToan')->comment('1 da thanh toan, 0 chua thanh toan');
             $table->boolean('trangThai')->comment('1 da giao hang, 0 chua giao hang');
             $table->tinyInteger('isDone')->default(0)->comment('0 chua xac nhan, 1 da xac nhan, 2 hoan thanh, 3 huy');
+            $table->string('randomString')->unique();
         });
     }
 

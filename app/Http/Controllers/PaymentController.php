@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentRequest;
-use App\Jobs\send_email;
 use App\Mail\SendVerifyCodeMail;
 use App\Models\chitietdonhang;
-use App\Models\coupon;
 use App\Models\MaGiamGia;
 use App\Models\order;
-use App\Models\order_details;
 use App\Models\order_temp;
-use App\Models\product;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use PhpParser\Node\Stmt\TryCatch;
@@ -27,8 +23,11 @@ class PaymentController extends Controller
     $cartFarmApp = [];
     $carts = [];
     $total = 0;
-    $couponMsg = "";
+    $totalTemp = 0;
+    $couponMsgSuccess = "";
+    $couponMsgError = "";
     $couponCode = "";
+    $coupon = "";
     if (isset($_COOKIE["cartFarmApp"])) {
       $json = $_COOKIE["cartFarmApp"];
       $cartFarmApp = json_decode($json, true);
@@ -44,49 +43,65 @@ class PaymentController extends Controller
             $carts[$i]->amount = $cartFarmApp[$i]['amount'];
           $total += ($carts[$i]->giaSP - ($carts[$i]->giaSP * $carts[$i]->discount / 100)) * $cartFarmApp[$i]['amount'];
         }
+        $totalTemp = $total;
       } else {
       }
     }
     if (isset($_COOKIE["couponCode"])) {
-      $coupon = MaGiamGia::where('maGiamGia', $_COOKIE["couponCode"])->first();
+      $coupon = MaGiamGia::where('maGiamGia', $_COOKIE["couponCode"])
+              ->where('hoatDong', 1)
+              ->first();
       $couponCode = $_COOKIE["couponCode"];
       if ($coupon != null) {
-        if ($total >= $coupon->min_condition) {
-          $this->couponEligibleForUse = true;
-          $couponMsg = "Mã khuyến mãi đã được áp dụng";
-          if ($coupon->coupon_type == 1) {
-            $total = $total - $coupon->discount;
-          } elseif ($coupon->coupon_type == 2) {
-            $total = $total - (($total * $coupon->discount) / 100);
-          } elseif ($coupon->coupon_type == 3) {
-          }
-        } else {
-          $couponMsg = "Đơn hàng không đủ điều kiện đế sử dụng mã khuyễn mãi này";
-        }
+        if (($coupon->ngayBatDau != '' && $coupon->ngayBatDau > now(+7)) || ($coupon->ngayKetThuc != '' && $coupon->ngayKetThuc < now(+7))){
+          $couponMsgError = "Mã khuyến mãi không còn hiệu lực";
+        } else 
+            if ($total >= $coupon->dieuKien) {
+              if (($coupon->gioiHan == null) || ($coupon->luotSuDung < $coupon->gioiHan) ) {
+                $this->couponEligibleForUse = true;
+                $couponMsgSuccess = "Mã khuyến mãi đã được áp dụng";
+                if ($coupon->loaiMa == 0) {
+                  $total = $total - $coupon->giaTri;
+                } elseif ($coupon->loaiMa == 1) {
+                  $total = $total - (($total * $coupon->giaTri) / 100);
+                }
+              } else {
+                $couponMsgError = "Mã khuyến mãi đã hết lượt sử dụng";
+              }
+            } else {
+              $couponMsgError = "Đơn hàng không đủ điều kiện đế sử dụng mã khuyễn mãi này.
+                  Vui lòng mua thêm ".number_format($coupon->dieuKien - $total, 0, ',','.'). ' vnđ để được hưởng khuyến mãi';
+            }
       } else {
-        $couponMsg = "Mã khuyến mãi không còn tồn tại";
+        $couponMsgError = "Mã khuyến mãi không tồn tại";
       }
     } else {
-      $couponMsg = "Đơn hàng này chưa áp dụng mã khuyến mãi";
+      $couponMsgError = "Đơn hàng này chưa áp dụng mã khuyến mãi";
     }
     $data = [
       'carts' => $carts,
       'total' => $total,
-      'couponMsg' => $couponMsg,
-      'couponCode' => $couponCode
+      'totalTemp' => $totalTemp,
+      'couponMsgSuccess' => $couponMsgSuccess,
+      'couponMsgError' => $couponMsgError,
+      'couponCode' => $couponCode,
+      'coupon' => $coupon,
+      'couponEligibleForUse' => $this->couponEligibleForUse,
+      
     ];
     return view('client.payment.index', $data);
   }
+
+
   //  CHỨC NĂNG THANH TOÁN VỚI VNPAY
-
-
-
   public function create_payment_vnpay_e(PaymentRequest $request)
   {
     $order_code = rand(0000, 9999);
     session(['cost_id' => $order_code]);
     session(['url_prev' => url()->previous()]);
     $order_temp = new order_temp();
+    $order_temp->idND = $request->idND;
+    $order_temp->idMGG = $request->idMGG;
     $order_temp->user_name = $request->username;
     $order_temp->email = $request->email;
     $order_temp->phone = $request->phone;
@@ -181,13 +196,15 @@ class PaymentController extends Controller
         $order = new order();
         $order->trangThai = 0;
         $order->thanhToan = 1;
+        $order->isDone = 0;
         $order->tongTien = $order_temp->total;
-        // $order->idMGG = 1;
-        // $order->idND = 4;
+        $order->idMGG = $order_temp->idMGG;
+        $order->idND = $order_temp->idND;
         $order->tenNguoiNhan = $order_temp->user_name;
         $order->email = $order_temp->email;
         $order->soDienThoai = $order_temp->phone;
         $order->diaChi = $order_temp->address.", ".$order_temp->ward.", ".$order_temp->district.", ".$order_temp->province;
+        $order->randomString = Str::random(10);
         $order->save();
         foreach ($cartFarmApp as $item) {
           // Fetch the product information from the database
@@ -200,20 +217,20 @@ class PaymentController extends Controller
           $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
           $chiTietHoaDon->soLuong = $item['amount'];
           $chiTietHoaDon->save();
-          // $sanPham->quantity_output = $sanPham->quantity_output + $item['amount'];
+          // $sanPham->slBanra = $sanPham->slMuavao + $item['amount'];
           // $sanPham->save();
         }
+        $coupon = MaGiamGia::where('idMGG', $order_temp->idMGG)->first();
+        if ($coupon != null) {
+          $coupon->luotSuDung = $coupon->luotSuDung+1;
+          $coupon->save();
+        }
         $order_temp = order_temp::where("id", $data["id"])->delete();
-        // $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
-        // if ($coupon != null) {
-        //     $coupon->user_used = $coupon->user_used+1;
-        //     $coupon->save();
-        // }
         setcookie('cartFarmApp', json_encode([]), time() + 3 * 24 * 60 * 60, '/');
         setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
         $mail = new SendVerifyCodeMail(0000);
         Mail::to($order->email)->send($mail);
-        return redirect()->route('clientpage-thanks',['idHD'=>$order->idHD]);
+        return redirect()->route('clientpage-thanks', $order->randomString);
         return redirect($url)->with('success', 'Đã thanh toán phí dịch vụ');
       }
       session()->forget('url_prev');
@@ -235,15 +252,16 @@ class PaymentController extends Controller
       }
       $hoaDon = new order();
       $hoaDon->idND = $request->idND;
+      $hoaDon->idMGG = $request->idMGG;
       $hoaDon->tenNguoiNhan = $request->username;
       $hoaDon->email = $request->email;
       $hoaDon->soDienThoai = $request->phone;
       $hoaDon->diaChi = $request->address.", ".$request->ward.", ".$request->district.", ".$request->province;
       $hoaDon->trangThai = 0;
       $hoaDon->thanhToan = 0;
+      $hoaDon->isDone = 0;
       $hoaDon->tongTien = $request->total;
-      // $hoaDon->idMGG = 1;
-      // $hoaDon->idND = 4;
+      $hoaDon->randomString = Str::random(10);
       $hoaDon->save();
       foreach ($cartFarmApp as $item) {
         // Fetch the product information from the database
@@ -258,24 +276,25 @@ class PaymentController extends Controller
         $chiTietHoaDon->save();
       }
 
-      // $coupon = coupon::where('coupon_code', $_COOKIE["couponCode"] ?? null)->first();
-      // if ($coupon != null) {
-      //   $coupon->user_used = $coupon->user_used + 1;
-      //   $coupon->save();
-      // }
+      $coupon = MaGiamGia::where('idMGG', $request->idMGG)->first();
+      if ($coupon != null) {
+            $coupon->luotSuDung = $coupon->luotSuDung+1;
+            $coupon->save();
+      }
       setcookie('cartFarmApp', json_encode([]), time() - 3 * 24 * 60 * 60, '/');
       setcookie('couponCode', null, time() - 3 * 24 * 60 * 60, '/');
       $mail = new SendVerifyCodeMail(0000);
       Mail::to($hoaDon->email)->send($mail);
-      return redirect()->route('clientpage-thanks', ['idHD' => $hoaDon->idHD]);
+      return redirect()->route('clientpage-thanks', $hoaDon->randomString);
   }
 
-  public function thanks($idHD)
+  public function thanks($randomString)
   {
-    $hoaDon = order::where('idHD', $idHD)->first();
+    $hoaDon = order::where('randomString', $randomString)->first();
     $data = [
       "hoaDon" => $hoaDon
     ];
+    // dd($hoaDon);
     return view('client.thankyou.index', $data);
   }
 }

@@ -118,21 +118,25 @@ class ProductsController extends Controller
     }
     public function productDetail($slug)
     {
-        $currentDate = getdate();
         $product = SanPham::where('slug', $slug)->firstOrFail();
         $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
         $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
                 ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP', $product->idSP)
                 ->orderbyDesc('ngayBL')->get();
-        // $coupons = coupon::where('user_used', '<', 'limit_used')
-        //     // ->whereDate('start_date', '>=', $currentDate)
-        //     // ->whereDate('end_date', '>', $currentDate)
-        //     // ->orderBy('created_at')
-        //     ->get();
-        $coupons = MaGiamGia::all();
+        $coupons = MaGiamGia::where('hoatDong', 1)
+            ->where(function($query) {
+                $query->whereNull('gioiHan')->orwhereColumn('luotSuDung', '<', 'gioiHan');
+            })
+            ->where(function($query) {
+                $query->whereNull('ngayBatDau')->orWhere('ngayBatDau', '<', now(+7));
+            })
+            ->where(function($query) {
+                $query->whereNull('ngayKetThuc')->orWhere('ngayKetThuc', '>', now(+7));
+            })
+            ->orderbyDesc('idMGG')
+            ->get();
         $data = [
             "product" => $product,
-            // "coupons" => json_encode($coupons),
             "coupons" => $coupons,
             "product_relate" => $product_relate,
             "binhluans"=>$binhluans,

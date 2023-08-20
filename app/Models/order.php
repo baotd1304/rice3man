@@ -24,6 +24,12 @@ class Order extends Model
     {
         return $this->hasMany(chitietdonhang::class, 'idHD');
     }
+
+    public function orderMGG()
+    {
+        return $this->belongsTo(MaGiamGia::class, 'idMGG');
+    }
+
     public function getAllOrders()
     {
         return $this->orderbyDesc('ngayMua')->get();

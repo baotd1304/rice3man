@@ -180,6 +180,12 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route("magiamgia.index") }}">
+          <i class="bi bi-journal-text"></i><span>Mã giảm giá</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route("baiviet.index") }}">
           <i class="bi bi-journal-text"></i><span>Bài viết</span>
         </a>

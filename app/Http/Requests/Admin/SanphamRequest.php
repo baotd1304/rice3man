@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SanphamRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class SanphamRequest extends FormRequest
     {
         return [
             'tenSP' => 'required | min:5 | max:255',
-            'slug' => 'required | max:255 | alpha_dash | unique:sanpham',
+            'slug' => 'required | max:255 | alpha_dash | '.
+                        Rule::unique('sanpham', 'slug')->ignore($this->route()->id, 'idSP'),
             'giaSP' => 'required | integer | min:1',
             'idLoai' => '',
             'idTH' => '',

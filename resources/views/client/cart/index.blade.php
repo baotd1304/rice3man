@@ -111,11 +111,31 @@
             <div class=" cart cart-page">
                 <div class="ajaxcart__footer ajaxcart__footer--fixed cart-footer">
                     <div class="row">
+                        @if ($couponEligibleForUse)
+                            <div class="ajaxcart__subtotal">
+                                <div class="cart__subtotal">
+                                    <div class="cart__col-6">Tạm tính:</div>
+                                
+                                    <div class="text-right cart__totle"><span class="total-price">{{number_format($totalTemp,0,",",".")}} đ</span></div>
+                                    
+                                </div>
+                                <div class="cart__subtotal">
+                                    <div class="cart__col-6">Mã giảm giá:</div>
+                                    @if ($coupon->loaiMa==0)
+                                    <div class="text-right cart__totle"><span class="total-price">- {{number_format($coupon->giaTri, 0, ',','.')}} đ</span></div>
+                                        @else <div class="text-right cart__totle"><span class="total-price">- {{number_format(($totalTemp*$coupon->giaTri/100), 0, ',','.')}} đ</span></div>
+                                    @endif
+                                    
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                        @endif
                         <div class="ajaxcart__subtotal">
                             <div class="cart__subtotal">
                                 <div class="cart__col-6">Tổng tiền:</div>
                                
-                                <div class="text-right cart__totle"><span class="total-price">{{number_format($total,0,",",".")}}</span></div>
+                                <div class="text-right cart__totle"><span class="total-price">{{number_format($total,0,",",".")}} đ</span></div>
                             </div>
                         </div>
                         <div class="cart__btn-proceed-checkout-dt">
@@ -133,7 +153,13 @@
                     {{-- <button style="width:100%" class="btn btn-delete-all">Xóa tất cả</button> --}}
                 </form>
             </div>
-            <div class="alert-success text-center mt-2">{{$couponMsg}}</div>
+            <div class="alert-success text-center mt-2">
+                <span class="text-success" id="msg-applyCouponCode-success">{{$couponMsgSuccess}}</span>
+            </div>
+            <div class="alert-error text-center mt-2">
+                <span class="text-danger" id="msg-applyCouponCode-error">{{$couponMsgError}}</span>
+            </div>
+            
         </div>
     </div>
     @else

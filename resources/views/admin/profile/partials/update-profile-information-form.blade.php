@@ -18,6 +18,13 @@
         @method('patch')
 
         <div>
+            <x-input-label for="avatar" :value="__('Hình ảnh')" />
+            <img class="p-3" src="{{$user->avatar}}" alt="User chưa có hình" width="150px">
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" autofocus autocomplete="avatar" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
+
+        <div>
             <x-input-label for="name" :value="__('Họ tên')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
@@ -58,12 +65,7 @@
             <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" autofocus autocomplete="address" />
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
-        <div>
-            <x-input-label for="avatar" :value="__('Hình ảnh')" />
-            <img class="p-3" src="{{$user->avatar}}" alt="User chưa có hình" width="150px">
-            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" autofocus autocomplete="avatar" />
-            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
-        </div>
+        
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Lưu') }}</x-primary-button>

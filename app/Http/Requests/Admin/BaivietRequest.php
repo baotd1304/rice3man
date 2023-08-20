@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BaivietRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class BaivietRequest extends FormRequest
     {
         return [
             'tieuDe' => 'required | min:5 | max:255',
-            'slug' => 'required | max:255 | alpha_dash | unique:baiviet',
+            'slug' => 'required | max:255 | alpha_dash | '.
+                        Rule::unique('baiviet', 'slug')->ignore($this->route()->id, 'idBV'),
             'noiDung' => 'required | min:5',
             'tacGia'=> 'max:50',
             'anHien' => 'required|boolean',

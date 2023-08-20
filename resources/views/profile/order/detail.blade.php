@@ -26,7 +26,7 @@
                                         {{ $message }}
                                     </div>
                                 @endif
-                                <form action="{{ route('orderPersonal.update', $order->idHD)}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('orderPersonal.update', $order->randomString)}}" method="POST" enctype="multipart/form-data">
                                     <div class="col-lg-8 m-auto">
                                     <h5 class="m-2"><strong>Thông tin người nhận</strong></h5>
                                     <table class="col-lg-8 table table-hover table-strip table-bordered">
@@ -120,6 +120,7 @@
                                     <tbody>
                                         @php
                                         $stt = 0;
+                                        $totalTemp =0;
                                         @endphp
                                         @foreach ($order1 as $order2) 
                                         @php
@@ -133,13 +134,33 @@
                                             <td><a href="{{route('clientproduct-detail', $order2->slug)}}"><img src="{{$order2->urlHinh}}" alt="" width="50px"></a></td>
                                             <td>{{date('d/m/Y',strtotime($order->ngayMua))}}</td>
                                             <td>{{ number_format($order2->soLuong * $order2->giaSP, 0, ',', '.') }} đ</td>
+                                            <?php $totalTemp += $order2->soLuong * $order2->giaSP; ?>
                                         </tr>
                                         @endforeach
+                                        @if ($stt >1)
+                                            <tr align="center">
+                                                <td colspan="6">Tạm tính</td>
+                                                <td> {{ number_format($totalTemp, 0, ',', '.') }} đ</td>
+                                            </tr>
+                                        @endif
+                                            
+                                        @if ($order->idMGG != '')
+                                            <tr align="center">
+                                                <td colspan="6">Mã giảm giá</td>
+                                                @if ($mgg->loaiMa == 0)
+                                                    <td> -{{ number_format($mgg->giaTri, 0, ',', '.') }} đ</td>
+                                                @else <td> -{{ number_format($totalTemp*$mgg->giaTri/100, 0, ',', '.') }} đ</td>
+                                                @endif
+                                                
+                                            </tr>
+                                        @endif
+                                        
                                     </tbody>
                                     <tfoot align="center" style="font-weight: bolder">
+                                        
                                         <tr>
-                                        <td colspan="6">Tổng cộng</td>
-                                        <td>{{ number_format($order->tongTien, 0, ',', '.') }} đ</td>
+                                            <td colspan="6">Tổng cộng</td>
+                                            <td>{{ number_format($order->tongTien, 0, ',', '.') }} đ</td>
                                         </tr>
                                     </tfoot>
             

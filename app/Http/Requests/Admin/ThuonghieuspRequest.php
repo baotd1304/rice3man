@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ThuonghieuspRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class ThuonghieuspRequest extends FormRequest
     {
         return [
             'tenTH' => 'required|min:3|max:100',
-            'slug' => 'required | max:255 | alpha_dash | unique:thuonghieusp',
+            'slug' => 'required | max:255 | alpha_dash | '.
+                        Rule::unique('thuonghieusp', 'slug')->ignore($this->route()->id, 'idTH'),
             'thuTu' => 'required|integer',
             'anHien' => 'required|boolean',
             'urlHinhTH' => 'image | mimes:jpeg,png,jpg | max:2048',

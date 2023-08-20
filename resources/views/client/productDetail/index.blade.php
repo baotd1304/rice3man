@@ -351,9 +351,12 @@
         </div>
         <div class="section_list_coupons">
           @foreach ($coupons as $item)
-            <x-AppCouponCard maGiamGia="{{$item->maGiamGia}}" chiTiet="{{$item->chiTiet}}" ngayBatDau="{{$item->ngayBatDau}}" ngayKetThuc="{{$item->ngayKetThuc}}" />
+            <x-AppCouponCard maGiamGia="{{$item->maGiamGia}}" chiTiet="{{$item->chiTiet}}"
+              ngayBatDau="{{$item->ngayBatDau}}" ngayKetThuc="{{$item->ngayKetThuc}}"
+              dieuKien="{{$item->dieuKien}}" />
             
-           @endforeach
+          @endforeach
+          
         </div>
       </div>
 

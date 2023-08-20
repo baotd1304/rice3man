@@ -32,7 +32,7 @@ style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url
             @foreach ($coupons as $item)
             <div class="col-12 col-lg-3 col-md-6">
                 <x-AppCouponCard maGiamGia="{{$item->maGiamGia}}" chiTiet="{{$item->chiTiet}}"
-                    ngayBatDau="{{$item->ngayBatDau}}" ngayKetThuc="{{$item->ngayKetThuc}}" />
+                    ngayBatDau="{{$item->ngayBatDau}}" ngayKetThuc="{{$item->ngayKetThuc}}" dieuKien="{{$item->dieuKien}}" />
 
             </div>
             @endforeach

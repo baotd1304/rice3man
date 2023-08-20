@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Models\LoaiSP;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoaispRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class LoaispRequest extends FormRequest
     {
         return [
             'tenLoai' => 'required|min:5|max:100',
-            'slug' => 'required | max:255 | alpha_dash | unique:loaisanpham',
+            'slug' => 'required | max:255 | alpha_dash | '.
+                        Rule::unique('loaisanpham', 'slug')->ignore($this->route()->id, 'idLoai'),
             'thuTu' => 'required|integer',
             'anHien' => 'required|boolean',
         ];

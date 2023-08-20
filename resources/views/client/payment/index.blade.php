@@ -70,6 +70,8 @@
 					<div>
 						<input type="number" name="idND" id="idND"
 								value="{{Auth::guard('web')->user()->id??null}}" hidden>
+						<input type="number" name="idMGG" id="idMGG"
+								value="{{$couponEligibleForUse? $coupon->idMGG : ''}}" hidden>
 						<div class="form-group order">
 							<input type="email" name="email" placeholder="email" id="user_email"
 								value="{{Auth::guard('web')->user()->email??old('email')}}" required>
@@ -163,7 +165,7 @@
 								<i class='bx bx-money-withdraw'></i>
 							</div>
 							<div class="message">
-								bạn chỉ phải thanh toán khi nhân được hàng
+								Bạn chỉ phải thanh toán khi nhân được hàng
 							</div>
 						</div>
 					</div>
@@ -227,13 +229,13 @@
 							<img src="{{asset($item->urlHinh)}}" alt="">
 							<span>{{$item->amount}}</span>
 						</div>
-						<div class="order-item_txt">
-							<div>
+						<div class="order-item_txt row">
+							<div class="col-9" style="padding-right: 5px">
 								<p class="name">{{$item->tenSP}}</p>
-								{{-- <span class="weight">1kg</span> --}}
 							</div>
-							<div class="price">
-								{{number_format($item->giaSP-($item->price_current*$item->discount/100))}}</div>
+							<div class="col-3 price" style="padding-right: 0px">
+								{{number_format($item->giaSP-($item->price_current*$item->discount/100) ,0, ',','.')}}
+							</div>
 						</div>
 					</div>
 					@endforeach
@@ -248,23 +250,34 @@
 							<button  class="btn-applyCouponCode">Áp Dụng</button>
 						</div>
 					</form>
-					<span class="text-danger" id="msg-applyCouponCode-error"></span>
-					<span class="text-success" id="msg-applyCouponCode-success">{{$couponMsg}}</span>
+					<span class="text-danger" id="msg-applyCouponCode-error">{{$couponMsgError}}</span>
+					<span class="text-success" id="msg-applyCouponCode-success">{{$couponMsgSuccess}}</span>
 				</div>
 
 				<!-- Phần hiển thị tông tiền -->
 				<div class="orderSumary">
-					<div class="orderSumary-line tmp-fee">
-						<span class="text">Tạm tính</span>
-						<span class="price"></span>
-					</div>
+					@if ($couponEligibleForUse)
+						<div class="orderSumary-line tmp-fee">
+							<span class="text">Tạm tính</span>
+							<span class="price">{{ number_format($totalTemp, 0, ',','.') }}</span>
+						</div>
+						
+						<div class="orderSumary-line tmp-fee">
+							<span class="text">Mã giảm giá</span>
+							@if ($coupon->loaiMa==0)
+							<span class="price">-{{number_format($coupon->giaTri, 0, ',','.')}}</span>
+							@else <span class="price">-{{number_format(($totalTemp*$coupon->giaTri/100), 0, ',','.')}}</span>
+							@endif
+						</div>
+					@endif
+					
 					<!-- <div class="orderSumary-line ship-fee">
                             <span class="text">phí ship</span>
                             <span class="price">400000</span>
                         </div> -->
 					<div class="orderSumary-line total">
 						<span class="text">Tổng cộng</span>
-						<span class="price" id="order__total">{{number_format($total)}}</span>
+						<span class="price" id="order__total">{{number_format($total, 0, ',','.')}}</span>
 					</div>
 				</div>
 				<div class="form-orderNow">
@@ -273,8 +286,8 @@
 						Quay về trang đặt hàng
 					</a>
 					<button class="btn btn-buyNow d-none d-sm-block" id="btn-order-now">Đặt mua</button>
-					{{-- <button hidden class="btn btn-showModalInputCode" data-toggle="modal"
-						data-target="#exampleModalCenter">Đặt mua</button> --}}
+					<button hidden class="btn btn-showModalInputCode" data-toggle="modal"
+						data-target="#exampleModalCenter">Đặt mua</button>
 				</div>
 			</div>
 		</div>

@@ -16,13 +16,15 @@ class CouponCard extends Component
     public $chiTiet;
     public $ngayBatDau;
     public $ngayKetThuc;
-    public function __construct($maGiamGia=null,$chiTiet=null,$ngayBatDau=null,$ngayKetThuc=null)
+    public $dieuKien;
+    public function __construct($maGiamGia=null,$chiTiet=null,$ngayBatDau=null,$ngayKetThuc=null,$dieuKien=null)
     {    
         // $this->list=json_decode($list);
         $this->maGiamGia=$maGiamGia;
         $this->chiTiet=$chiTiet;
         $this->ngayBatDau=$ngayBatDau;
         $this->ngayKetThuc=$ngayKetThuc;
+        $this->dieuKien=$dieuKien;
     }
 
     /**

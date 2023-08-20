@@ -36,7 +36,7 @@
         </div>
          <div class="confirm-line">
             <h3>Phương thức vận chuyển</h3>
-            <p class="name">Giao Tận nơi</p>
+            <p class="name">Giao tận nơi</p>
         </div>
     </div>
     </div>
@@ -44,9 +44,13 @@
     <div class="order-details">
       <!-- Hiển thị danh sách sản phẩm ở đây -->
       <div class="confirm-orderList">
-        <h4>Đơn hàng <span class="id-order">{{$hoaDon->id}}</h4>
+        <h4>Mã đơn hàng: <span class="id-order">{{$hoaDon->idHD}}</span></h4>
         <ul class="order-list">
+          <?php  $totalTemp=0  ?>
           @foreach ($hoaDon->orderDetails as $item )
+          <?php  
+            $totalTemp = $totalTemp + $item->giaSP*$item->soLuong;
+          ?>
           <div class="order-item">
             <div class="order-item_img">
                 <img src="{{asset($item->urlHinh)}}" alt="">
@@ -56,17 +60,38 @@
                 <div>
                     <p class="name">{{$item->tenSP}}</p>
                 </div>
-                <div class="price">{{number_format($item->giaSP,0,",",".")}} vnđ</div>
+                <div class="price">{{number_format($item->giaSP,0,",",".")}} đ</div>
             </div>
         </div>
           @endforeach
           
         </ul>
         <div class="orderSumary">
+          @if ($hoaDon->idMGG !=null)
+            <div class="orderSumary-line">
+              <span class="text">Thành tiền</span>
+              <span class="price">
+                {{number_format($totalTemp,0,",",".")}} đ
+              </span>
+            </div>
+            <div class="orderSumary-line">
+              <span class="text">Mã giảm giá</span>
+              @if ($hoaDon->orderMGG->loaiMa == 0)
+                <span class="price">
+                  -{{number_format($hoaDon->orderMGG->giaTri,0,",",".")}} đ
+                </span>
+              @else <span class="price">
+                    -{{number_format($totalTemp*$hoaDon->orderMGG->giaTri/100,0,",",".")}} đ
+                  </span>
+              @endif
+              
+            </div>
+          @endif
+          
           <div class="orderSumary-line total">
             <span class="text">Tổng cộng</span>
             <span class="price">
-               {{number_format($hoaDon->tongTien,0,",",".")}} vnđ
+               {{number_format($hoaDon->tongTien,0,",",".")}} đ
             </span>
           </div>
         </div>

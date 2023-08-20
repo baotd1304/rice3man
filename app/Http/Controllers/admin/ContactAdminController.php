@@ -16,7 +16,7 @@ class ContactAdminController extends Controller
      */
     public function index()
     {
-        $perPage = 10;
+        $perPage = 50;
         $listcontact = Contact::orderBy('id', 'DESC')->paginate($perPage);
         return view('admin.contact.index', compact('listcontact'));
     }

@@ -11,12 +11,16 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+  protected $couponEligibleForUse = false;
   public function cart()
   {
     $cartFarmApp = [];
     $carts = [];
     $total = 0;
-    $couponMsg = "";
+    $totalTemp = 0;
+    $couponMsgSuccess = "";
+    $couponMsgError = "";
+    $coupon = "";
     if (isset($_COOKIE["cartFarmApp"])) {
       $json = $_COOKIE["cartFarmApp"];
       $cartFarmApp = json_decode($json, true);
@@ -32,36 +36,50 @@ class CartController extends Controller
             $carts[$i]->amount = $cartFarmApp[$i]['amount'];
           $total += ($carts[$i]->giaSP - ($carts[$i]->giaSP * $carts[$i]->discount / 100))* $cartFarmApp[$i]['amount'];
         }
+        $totalTemp = $total;
       } else {
       }
     }
     if (isset($_COOKIE["couponCode"])) {
-      $coupon = MaGiamGia::where('maGiamGia', $_COOKIE["couponCode"])->first();
+      $coupon = MaGiamGia::where('maGiamGia', $_COOKIE["couponCode"])
+              ->where('hoatDong', 1)
+              ->first();
       $couponCode = $_COOKIE["couponCode"];
       if ($coupon != null) {
-        if ($total >= $coupon->min_condition) {
-          $couponMsg = "Mã khuyến mãi đã được áp dụng";
-          if ($coupon->coupon_type == 1) {
-            $total = $total - $coupon->discount;
-          } elseif ($coupon->coupon_type == 2) {
-            $total = $total - (($total * $coupon->discount) / 100);
-          } elseif ($coupon->coupon_type == 3) {
+        if (($coupon->ngayBatDau != '' && $coupon->ngayBatDau > now(+7)) || ($coupon->ngayKetThuc != '' && $coupon->ngayKetThuc < now(+7))){
+          $couponMsgError = "Mã khuyến mãi không còn hiệu lực";
+        } else
+          if ($total >= $coupon->dieuKien) {
+            if (($coupon->gioiHan == null) || ($coupon->luotSuDung < $coupon->gioiHan) ) {
+              $this->couponEligibleForUse = true;
+              $couponMsgSuccess = "Mã khuyến mãi đã được áp dụng";
+              if ($coupon->loaiMa == 0) {
+                $total = $total - $coupon->giaTri;
+              } elseif ($coupon->loaiMa == 1) {
+                $total = $total - (($total * $coupon->giaTri) / 100);
+              }
+            } else {
+              $couponMsgError = "Mã khuyến mãi đã hết lượt sử dụng";
+            }
+          } else {
+            $couponMsgError = "Đơn hàng không đủ điều kiện để sử dụng mã khuyễn mãi: ".$couponCode.'. Vui lòng mua thêm '.number_format($coupon->dieuKien - $total, 0, ',','.'). ' vnđ để được hưởng khuyến mãi.' ;
           }
-        } else {
-          $couponMsg = "Đơn hàng không đủ điều kiện đế sử dụng mã khuyễn mãi này";
-        }
       } else {
-        $couponMsg = "Mã khuyến mãi không còn tồn tại";
+        $couponMsgError = "Mã khuyến mãi không còn tồn tại";
       }
     } else {
-      $couponMsg = "";
+      $couponMsgError = "";
     }
     $coupons = MaGiamGia::limit(4)->get();
     $data = [
       'carts' => $carts,
       'total' => $total,
-      'couponMsg' => $couponMsg,
+      'totalTemp' => $totalTemp,
+      'couponMsgSuccess' => $couponMsgSuccess,
+      'couponMsgError' => $couponMsgError,
       "coupons" => $coupons,
+      "coupon" => $coupon,
+      'couponEligibleForUse' => $this->couponEligibleForUse,
     ];
     return view('client.cart.index', $data);
   }

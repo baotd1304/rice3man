@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('thuonghieusp', function (Blueprint $table) {
             $table->integer('idTH')->autoIncrement();
             $table->string('tenTH', 100);
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('urlHinhTH');
             $table->integer('thuTu');
             $table->boolean('anHien')->default(1);

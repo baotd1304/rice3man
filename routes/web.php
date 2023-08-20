@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\BaivietController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ContactAdminController;
-
+use App\Http\Controllers\Admin\MagiamgiaController;
 use App\Http\Controllers\client\OrderProfileController;
 
 /*
@@ -60,7 +60,7 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/payment_vnpay', [PaymentController::class, 'create_payment_vnpay_e'])->name('payment_vnpay');
     Route::get('/return_payment_vnpay', [PaymentController::class, 'return_payment_vnpay_e'])->name('return_payment_vnpay');
     Route::get('/search', [ProductsController::class, 'search'])->name('search');
-    Route::get('/thanks/{idHD}', [PaymentController::class, 'thanks'])->name('page-thanks');
+    Route::get('/thanks/{randomString}', [PaymentController::class, 'thanks'])->name('page-thanks');
     Route::post('/add-to-cart', [ProductsController::class, 'addToCart'])->name('add-to-cart');
     Route::post('/buy-now', [ProductsController::class, 'buyNow'])->name('buy-now');
     Route::post('/minus-to-cart', [ProductsController::class, 'minusToCart'])->name('minus-to-cart');
@@ -157,6 +157,14 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::put('/contact/{id}', [ContactAdminController::class, 'update'])->name('contact.update');
     Route::delete('/contact/{id}', [ContactAdminController::class, 'destroy'])->name('contact.destroy');
 
+    //10.Route ma giam gia
+    Route::get('/magiamgia/index', [MagiamgiaController::class, 'index'])->name('magiamgia.index');
+    Route::get('/magiamgia/create', [MagiamgiaController::class, 'create'])->name('magiamgia.create');
+    Route::post('/magiamgia', [MagiamgiaController::class, 'store'])->name('magiamgia.store');
+    Route::get('/magiamgia/{id}/edit', [MagiamgiaController::class, 'edit'])->name('magiamgia.edit');
+    Route::put('/magiamgia/{id}', [MagiamgiaController::class, 'update'])->name('magiamgia.update');
+    Route::delete('/magiamgia/{id}', [MagiamgiaController::class, 'destroy'])->name('magiamgia.destroy');
+
 });
 
 //Route profile
@@ -166,8 +174,8 @@ Route::prefix('/profile')->middleware(['auth', 'verified'])->group(function () {
     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     Route::get('/order', [OrderProfileController::class, 'index'])->name('orderPersonal.index');
-    Route::put('/order/{idHD}', [OrderProfileController::class, 'update'])->name('orderPersonal.update');
-    Route::get('/order/{idHD}/edit', [OrderProfileController::class, 'showOrderDetail'])->name('orderPersonal.showOrderDetail');
+    Route::put('/order/{randomString}', [OrderProfileController::class, 'update'])->name('orderPersonal.update');
+    Route::get('/order/{randomString}/edit', [OrderProfileController::class, 'showOrderDetail'])->name('orderPersonal.showOrderDetail');
 });
 
 require __DIR__.'/auth.php';

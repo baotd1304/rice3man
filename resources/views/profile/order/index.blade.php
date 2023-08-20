@@ -75,7 +75,7 @@
                                                     </a>
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <a href="{{route('orderPersonal.showOrderDetail', $order->idHD)}}" class="btn btn-primary rounded-circle"><i class="bi bi-pencil-square"></i></a>            
+                                                    <a href="{{route('orderPersonal.showOrderDetail', $order->randomString)}}" class="btn btn-primary rounded-circle"><i class="bi bi-pencil-square"></i></a>            
                                                 </td>
                                             </tr>
                                         
