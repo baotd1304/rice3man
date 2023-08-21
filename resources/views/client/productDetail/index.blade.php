@@ -213,7 +213,7 @@
     <hr>
     <div class="container mt-4 text-color">
       <div class="row mb-5">
-        <div class="col-6 ">
+        <div class="col-12 ">
             <h3 class="title">Viết bình luận</h3>
             <form method="POST" action="{{route('clientcomment')}}" id="article_comments" accept-charset="UTF-8" class="comment-form">
                 @csrf
@@ -225,10 +225,7 @@
                 <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
                 <input type="text" name="idSP" value="{{$product->idSP}}" hidden>
                 <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
-                {{-- <div class="row comment-form">
-                    <div class="col-12 form-group">
-                    </div>
-                </div> --}}
+
                 <div class="field aw-blog-comment-area form-group">
                     <textarea rows="6" cols="50" class="form-control" title="Nội dung *" placeholder="Nội dung*"
                         name="content">
@@ -245,35 +242,125 @@
                 </div>
             </form>
         </div>
-        <div class="col-6">
-            <h3 class="title">Bình luận</h3>
-            @if (count($binhluans)>0)
-            @foreach ($binhluans as $binhluan )
-            <div class="comment-container">
-                <div class="comment-header">
-                    @if ($binhluan->avatar == '')
-                        <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="40px" height="40px">
-                    @else <img src="{{$binhluan->avatar}}" alt="" width="40px" height="40px">
-                    @endif
-                    {{-- <img src="https://via.placeholder.com/40x40" alt="Avatar"> --}}
-                    <h4>{{$binhluan->name}}</h4>
+        <div class="col-12">
+              <h3 class="title">Bình luận</h3>
+              @if (count($binhluans)>0)
+                @foreach ($binhluans as $binhluan )
+                    <div class="comment-container">
+                          <div class="comment-header">
+                              @if ($binhluan->avatar == '')
+                                  <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="40px" height="40px">
+                              @else <img src="{{$binhluan->avatar}}" alt="" width="40px" height="40px">
+                              @endif
+                              <h4>{{$binhluan->name}}</h4>
+                          </div>
+                          <div class="comment-body">
+                              <p>{{$binhluan->noiDung}}</p>
+                          </div>
+                          <div class="comment-footer">  
+                              {{-- <span>Thích</span> --}}
+                              <span>
+                                <a href="javascript::void(0);" onclick="reply(this)" data-Commentid="{{$binhluan->idBL }}">Trả lời</a>
+                              </span>
+                              <span>
+                                {{ $binhluan->ngayBL->format('d/m/Y H:i:s') }}
+                              </span>
+                              {{-- <a href="#">Xóa</a> --}}
+                          </div>
+                          <hr>
+
+                    
+                    @foreach ($replyBLs as $reply )
+                      @if ($reply->parent_id == $binhluan->idBL)
+                        <div class="comment-container" style="margin-left: 40px">
+                              <div class="comment-header">
+                                  @if ($reply->avatar == '')
+                                      <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="40px" height="40px">
+                                  @else <img src="{{$reply->avatar}}" alt="" width="40px" height="40px">
+                                  @endif
+                                  <h4>{{$reply->name}}</h4>
+                              </div>
+                              <div class="comment-body">
+                                  <p>{{$reply->noiDung}}</p>
+                              </div>
+                              <div class="comment-footer">  
+                                  {{-- <span>Thích</span> --}}
+                                  <span>
+                                    <a href="javascript::void(0);" onclick="reply(this)" data-Commentid="{{$reply->idBL }}">Trả lời</a>
+                                  </span>
+                                  <span>
+                                    {{ $reply->ngayBL->format('d/m/Y H:i:s') }}
+                                  </span>
+                                  {{-- <a href="#">Xóa</a> --}}
+                              </div>
+                              <hr>
+
+                              @foreach ($replyBLs as $reply2 )
+                              @if ($reply2->parent_id == $reply->idBL)
+                                <div class="comment-container"  style="margin-left: 40px">
+                                      <div class="comment-header">
+                                          @if ($reply2->avatar == '')
+                                              <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="40px" height="40px">
+                                          @else <img src="{{$reply2->avatar}}" alt="" width="40px" height="40px">
+                                          @endif
+                                          <h4>{{$reply2->name}}</h4>
+                                      </div>
+                                      <div class="comment-body">
+                                          <p>{{$reply2->noiDung}}</p>
+                                      </div>
+                                      <div class="comment-footer">  
+                                          {{-- <span>Thích</span> --}}
+                                          <span>
+                                            <a href="javascript::void(0);" onclick="reply(this)" data-Commentid="{{$reply2->idBL }}">Trả lời</a>
+                                          </span>
+                                          <span>
+                                            {{ $reply2->ngayBL->format('d/m/Y H:i:s') }}
+                                          </span>
+                                          {{-- <a href="#">Xóa</a> --}}
+                                      </div>
+        
+        
+                                      
+                                </div>
+                              @endif
+                            @endforeach
+
+
+                        </div>
+                      @endif
+                    @endforeach
+                  </div>
+                @endforeach
+
+                {{-- Reply textbox --}}
+                <div class="replyDiv" style="display: none">
+                  
+                  <form action="{{route('clientreplycomment')}}" method="POST">
+                    @csrf
+                    <input type="text" id="commentId" name="commentId" hidden>
+                    <input type="text" name="idND" value="{{Auth::guard('web')->user()->id??null}}" hidden>
+                    <input type="text" name="idSP" value="{{$product->idSP}}" hidden>
+                    <input type="text" class="form-control" placeholder="Tên *" title="Tên" name="name" value="{{Auth::guard('web')->user()->name??null}}" hidden>
+                    <textarea rows="3" cols="50" class="form-control" name="replycomment">
+                    </textarea>
+                    <div class="text-danger">
+                      @error('replycomment')
+                        {{$message}}
+                      @enderror
+                    </div>
+                    <div class="ps-5">
+                      <button class="btn-sm btn-success book-submit text-center align-items-center font-weight-bold" @disabled(Auth::guard('web')->check()==true?false:true)>Trả lời</button>
+                      <a href="javascript::void(0);" class="btn" onclick="reply_close(this)"><button class="btn-sm btn-secondary text-center align-items-center font-weight-bold">Đóng</button></a>
+                    </div>
+                  </form>
                 </div>
-                <div class="comment-body">
-                    <p>{{$binhluan->noiDung}}</p>
-                </div>
-                <div class="comment-footer">  
-                    {{-- <span>Thích</span> --}}
-                    {{-- <span>Trả lời</span> --}}
-                    <span>{{ $binhluan->ngayBL->format('d/m/Y') }}</span>
-                    {{-- <a href="#">Xóa</a> --}}
-                </div>
-            </div>
-            @endforeach
-            @else
-            <p class="alert alert-warning">
-                Hiện tại chưa có bình luận.
-            </p>
-            @endif
+                  {{--End Reply textbox --}}
+
+                @else
+                  <p class="alert alert-warning">
+                      Hiện tại chưa có bình luận.
+                  </p>
+              @endif
         </div>
       </div>
     </div>
@@ -437,4 +524,34 @@
     }
   
 </script>
+
+<script>
+  function reply(caller)
+  {
+    document.getElementById('commentId').value = $(caller).attr('data-Commentid');
+    $('.replyDiv').insertAfter($(caller));
+    $('.replyDiv').show();
+  }
+
+  function reply_close(caller)
+  {
+    $('.replyDiv').hide();
+  }
+
+</script>
+
+
+{{-- Refresh Page and Keep Scroll Position --}}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) { 
+      var scrollpos = localStorage.getItem('scrollpos');
+      if (scrollpos) window.scrollTo(0, scrollpos);
+  });
+
+  window.onbeforeunload = function(e) {
+      localStorage.setItem('scrollpos', window.scrollY);
+  };
+</script>
+
 @endsection
+

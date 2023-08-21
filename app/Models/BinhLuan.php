@@ -12,25 +12,20 @@ class BinhLuan extends Model
     public $primaryKey = "idBL";
     public $timestamps = false;
     protected $fillable = ['idBL', 'idSP', 'idND', 'noiDung',
-                            'anHien'];
+                            'anHien', 'parent_id'];
     protected $dates = ['ngayBL'];
-    protected $attributes= ['anHien'=>1];
+    protected $attributes= ['anHien'=>1, 'parent_id'=>''];
     
-    // public function nguoibl()
-    // {
-    //     return $this->belongsTo(NguoiDung::class, 'idND', 'idND');
-    // }
-    // public function baiviet()
-    // {
-    //     return $this->belongsTo(SanPham::class, 'idSP', 'idSP');
-    // }
-
-    public function author()
+    public function user()
     {
         return $this->belongsTo(User::class,'idND','id');
     }
-    public function sanphams()
+    public function sanpham()
     {
         return $this->belongsTo(SanPham::class,"idSP","idSP");
+    }
+    public function replies()
+    {
+        return $this->hasMany(BinhLuan::class, 'parent_id');
     }
 }

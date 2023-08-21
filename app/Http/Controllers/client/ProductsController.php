@@ -121,7 +121,14 @@ class ProductsController extends Controller
         $product = SanPham::where('slug', $slug)->firstOrFail();
         $product_relate = SanPham::where('idLoai', $product->idLoai)->get();
         $binhluans=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
-                ->select('binhluan.*', 'users.name', 'users.avatar')->where('anHien', 1)->where('idSP', $product->idSP)
+                ->select('binhluan.*', 'users.name', 'users.avatar')
+                ->where('anHien', 1)->whereNull('parent_id')
+                ->where('idSP', $product->idSP)
+                ->orderbyDesc('ngayBL')->get();
+        $replyBLs=BinhLuan::join('users', 'users.id', '=', 'binhluan.idND')
+                ->select('binhluan.*', 'users.name', 'users.avatar')
+                ->where('anHien', 1)->whereNotNull('parent_id')
+                ->where('idSP', $product->idSP)
                 ->orderbyDesc('ngayBL')->get();
         $coupons = MaGiamGia::where('hoatDong', 1)
             ->where(function($query) {
@@ -140,6 +147,7 @@ class ProductsController extends Controller
             "coupons" => $coupons,
             "product_relate" => $product_relate,
             "binhluans"=>$binhluans,
+            "replyBLs"=>$replyBLs,
 
         ];
         return view('client.productDetail.index', $data);
@@ -260,6 +268,22 @@ class ProductsController extends Controller
        $binhluan->idSP=$request->idSP;
        $binhluan->idND=$request->idND;
        $binhluan->save();
+       return redirect()->back();
+    }
+    public function replycomment(Request $request)
+    {
+        $request->validate([
+            'replycomment' => ['required', 'max:255'],
+        ],[
+            'replycomment.required' => 'Trả lời bình luận không được để trống',
+        ]);
+       $replycomment=new BinhLuan();
+       $replycomment->parent_id=$request->commentId;
+       $replycomment->noiDung=$request->replycomment;
+       $replycomment->idSP=$request->idSP;
+       $replycomment->idND=$request->idND;
+       $replycomment->save();
+    //    dd($replycomment);
        return redirect()->back();
     }
 

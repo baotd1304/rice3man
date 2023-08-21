@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('idBL')->autoIncrement();
             $table->integer('idSP')->foreignId('idSP')->references('idSP')->on('sanpham');
             $table->integer('idND')->foreignId('idND')->references('id')->on('users');
+            $table->integer('parent_id')->nullable();
             $table->text('noiDung');
             $table->dateTime('ngayBL')->useCurrent();
             $table->boolean('anHien')->default(1)->comment('1 hien thi, 0 an');

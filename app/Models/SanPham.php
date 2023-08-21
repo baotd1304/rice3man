@@ -21,9 +21,9 @@ class SanPham extends Model
                             'anHien'=>1, 'noiBat'=>1, 'idLoai'=>1, 'idTH'=>1 ]; 
 
     // Quan hệ 1-nhiều với bình luận
-    public function binhLuans()
+    public function Binhluans()
     {
-        return $this->hasMany(BinhLuan::class, 'sanpham_id', 'id');
+        return $this->hasMany(BinhLuan::class, 'idSP', 'idSP')->whereNull('parent_id');
     }
     public function LoaiSP()
     {

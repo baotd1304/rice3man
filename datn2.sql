@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 20, 2023 lúc 07:47 PM
+-- Thời gian đã tạo: Th8 21, 2023 lúc 09:39 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -59,6 +59,7 @@ CREATE TABLE `binhluan` (
   `idBL` int(11) NOT NULL,
   `idSP` int(11) NOT NULL,
   `idND` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `noiDung` text NOT NULL,
   `ngayBL` datetime NOT NULL DEFAULT current_timestamp(),
   `anHien` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 hien thi,\r\n0 an'
@@ -68,33 +69,43 @@ CREATE TABLE `binhluan` (
 -- Đang đổ dữ liệu cho bảng `binhluan`
 --
 
-INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) VALUES
-(14, 1, 9, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:01:10', 1),
-(15, 2, 9, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:01:10', 1),
-(16, 3, 10, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:01:10', 1),
-(17, 4, 10, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:01:10', 1),
-(18, 5, 11, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:01:10', 1),
-(19, 1, 9, 't4tretret', '2023-08-05 23:01:10', 1),
-(20, 1, 9, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:06:47', 1),
-(21, 2, 9, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:06:47', 1),
-(22, 3, 10, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:06:47', 1),
-(23, 4, 10, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:06:47', 1),
-(24, 5, 11, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:06:47', 1),
-(25, 3, 9, 'sản phẩm chất lượng cao, giá hợp lý', '2023-08-05 23:09:35', 1),
-(26, 10, 9, '41414', '2023-08-05 23:27:24', 1),
-(27, 10, 9, 'rtrtrt', '2023-08-05 23:28:18', 1),
-(28, 10, 9, '54545', '2023-08-05 23:28:23', 1),
-(29, 10, 9, 'sđsư', '2023-08-05 23:32:42', 1),
-(30, 1, 9, '31313', '2023-08-05 23:43:04', 1),
-(31, 1, 9, 'bluan 1', '2023-08-05 23:43:19', 1),
-(32, 19, 9, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
-(33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1),
-(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1),
-(35, 32, 9, 'Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.', '2023-08-07 21:46:26', 1),
-(36, 33, 19, 'Sản phẩm quá kém chất lượng, không như hình ảnh', '2023-08-09 15:39:47', 1),
-(37, 1, 9, '212', '2023-08-15 22:50:13', 1),
-(38, 36, 9, 'Nhân viên tư vấn nhiệt tình, chu đáo, sản phẩm đa dạng, phong phú, đóng gói cẩn thận', '2023-08-17 11:37:35', 1),
-(39, 36, 9, 'Đã mua thử, sản phẩm rất tốt', '2023-08-17 11:44:04', 1);
+INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `parent_id`, `noiDung`, `ngayBL`, `anHien`) VALUES
+(14, 1, 9, NULL, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:01:10', 1),
+(15, 2, 9, NULL, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:01:10', 1),
+(16, 3, 10, NULL, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:01:10', 1),
+(17, 4, 10, NULL, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:01:10', 1),
+(18, 5, 11, NULL, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:01:10', 1),
+(19, 1, 9, NULL, 't4tretret', '2023-08-05 23:01:10', 1),
+(20, 1, 9, NULL, 'Sản phẩm chất lượng, giao hàng nhanh chóng', '2023-08-05 23:06:47', 1),
+(21, 2, 9, NULL, 'Giao hàng đúng giờ, nhân viên tư vấn nhiệt tình', '2023-08-05 23:06:47', 1),
+(22, 3, 10, NULL, 'Gạo rất ngon, mềm dẻo và thươm', '2023-08-05 23:06:47', 1),
+(23, 4, 10, NULL, 'Nhân viên tư vấn nhiệt tình, sản phẩm đa dạng, phong phú', '2023-08-05 23:06:47', 1),
+(24, 5, 11, NULL, 'Gạo lứt của website rất chất lượng mà giá cả hợp lý', '2023-08-05 23:06:47', 1),
+(25, 3, 9, NULL, 'sản phẩm chất lượng cao, giá hợp lý', '2023-08-05 23:09:35', 1),
+(26, 10, 9, NULL, '41414', '2023-08-05 23:27:24', 1),
+(27, 10, 9, NULL, 'rtrtrt', '2023-08-05 23:28:18', 1),
+(28, 10, 9, NULL, '54545', '2023-08-05 23:28:23', 1),
+(29, 10, 9, NULL, 'sđsư', '2023-08-05 23:32:42', 1),
+(30, 1, 9, NULL, '31313', '2023-08-05 23:43:04', 1),
+(31, 1, 9, NULL, 'bluan 1', '2023-08-05 23:43:19', 1),
+(32, 19, 9, NULL, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
+(33, 22, 9, NULL, 'binh luan test', '2023-08-06 09:51:37', 1),
+(34, 14, 9, NULL, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1),
+(35, 32, 9, NULL, 'Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.Hiện tại chưa có bình luận.', '2023-08-07 21:46:26', 1),
+(36, 33, 19, NULL, 'Sản phẩm quá kém chất lượng, không như hình ảnh', '2023-08-09 15:39:47', 1),
+(37, 1, 9, NULL, '212', '2023-08-15 22:50:13', 1),
+(38, 36, 9, NULL, 'Nhân viên tư vấn nhiệt tình, chu đáo, sản phẩm đa dạng, phong phú, đóng gói cẩn thận', '2023-08-17 11:37:35', 1),
+(39, 36, 9, NULL, 'Đã mua thử, sản phẩm rất tốt', '2023-08-17 11:44:04', 1),
+(40, 5, 9, 18, '3131313', '2023-08-21 12:34:28', 1),
+(41, 5, 9, 24, '3131313', '2023-08-21 12:40:39', 1),
+(42, 5, 9, 24, 'rêr', '2023-08-21 12:40:49', 1),
+(43, 5, 9, 24, 'sâs', '2023-08-21 12:50:45', 1),
+(44, 5, 9, 41, '313cscs', '2023-08-21 12:56:17', 1),
+(45, 5, 9, 40, 'reply 2', '2023-08-21 12:57:19', 1),
+(46, 5, 9, 45, '3131313', '2023-08-21 12:59:06', 1),
+(47, 32, 9, 35, 'hhh', '2023-08-21 14:37:14', 1),
+(48, 32, 9, 47, 'dada', '2023-08-21 14:37:58', 1),
+(49, 32, 9, 48, 'dsdsd', '2023-08-21 14:38:06', 1);
 
 -- --------------------------------------------------------
 
@@ -720,7 +731,7 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`

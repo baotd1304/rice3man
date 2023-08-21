@@ -67,6 +67,7 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/remove-to-cart', [ProductsController::class, 'removeToCart'])->name('remove-to-cart');
     Route::post('/remove-all-cart', [ProductsController::class, 'removeAllCart'])->name('remove-all-cart');
     Route::post('/comment', [ProductsController::class, 'binhluan'])->name('comment');
+    Route::post('/replycomment', [ProductsController::class, 'replycomment'])->name('replycomment');
     Route::post('/useCouponCode', [CouponController::class, 'useCouponCode'])->name('use-coupon-code');
 });
 
