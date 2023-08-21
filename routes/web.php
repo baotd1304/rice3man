@@ -40,7 +40,6 @@ use App\Http\Controllers\client\OrderProfileController;
 */
 
 Route::prefix('/')->name('client')->group(function () {
-
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/category/{slug}', [ProductsController::class, 'category'])->name('category');
@@ -71,9 +70,8 @@ Route::prefix('/')->name('client')->group(function () {
     Route::post('/useCouponCode', [CouponController::class, 'useCouponCode'])->name('use-coupon-code');
 });
 
-// PHAN ADMIN
+// phần ADMIN
 Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
-
     Route::get('/profile', [ProfileAdminController::class, 'edit'])->name('admin.profile.edit');
     Route::patch('/profile', [ProfileAdminController::class, 'update'])->name('admin.profile.update');
     Route::delete('/profile', [ProfileAdminController::class, 'destroy'])->name('admin.profile.destroy');
@@ -124,7 +122,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/binhluan/{id}/edit', [BinhLuanController::class, 'edit'])->name('binhluan.edit');
     Route::put('/binhluan/{id}', [BinhLuanController::class, 'update'])->name('binhluan.update');
     Route::delete('/binhluan/{id}', [BinhLuanController::class, 'destroy'])->name('binhluan.destroy');
-
     //6. Route user
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -132,7 +129,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
-
     //7. Route slider
     Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
     Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
@@ -140,8 +136,6 @@ Route::prefix('/admin')->middleware('auth', 'adminAccess')->group(function () {
     Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('slider.edit');
     Route::put('/slider/{id}', [SliderController::class, 'update'])->name('slider.update');
     Route::delete('/slider/{id}', [SliderController::class, 'destroy'])->name('slider.destroy');
-
-
     //8. Route hoadon
     // Route hiển thị danh sách đơn hàng
     Route::get('/orders', [DatHangController::class, 'index'])->name('order.index');
@@ -178,5 +172,4 @@ Route::prefix('/profile')->middleware(['auth', 'verified'])->group(function () {
     Route::put('/order/{randomString}', [OrderProfileController::class, 'update'])->name('orderPersonal.update');
     Route::get('/order/{randomString}/edit', [OrderProfileController::class, 'showOrderDetail'])->name('orderPersonal.showOrderDetail');
 });
-
 require __DIR__.'/auth.php';

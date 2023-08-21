@@ -110,7 +110,7 @@
                                 <ul class="links">
                                         
                                         <li>
-                                            <a href="/chinh-sach" title="Liên Hệ">Liên Hệ</a>
+                                            <a href="{{route('clientcontact')}}" title="Liên Hệ">Liên Hệ</a>
                                         </li>
                                 </ul>
                             </div>
@@ -122,19 +122,17 @@
                                 </div>
                                 <ul class="links">
                                     <li>    
-                                        <a href="#" title="mua hàng">Hướng dẫn mua hàng</a>
+                                        <a href="{{route('clientdemo')}}" title="mua hàng">Hướng dẫn mua hàng</a>
                                     </li>
                                     <li>
-                                        <a href="/huong-dan" title="đổi trả">Hướng dẫn đổi trả</a>
+                                        <a href="{{route('clientchinhsach')}}" title="đổi trả">Hướng dẫn đổi trả</a>
                                     </li>
                                     <li>
-                                        <a href="/huong-dan" title="kiểm tra đơn hàng">Hướng dẫn kiểm tra đơn hàng</a>
+                                        <a href="{{route('clientchinhsach')}}" title="kiểm tra đơn hàng">Hướng dẫn kiểm tra đơn hàng</a>
                                     </li>
+                                   
                                     <li>
-                                        <a href="/huong-dan" title="Cộng tác">Hướng dẫn cộng tác</a>
-                                    </li>
-                                    <li>
-                                        <a href="/huong-dan" title="Thanh toán">Hướng dẫn thanh toán</a>
+                                        <a href="{{route('clientchinhsach')}}" title="Thanh toán">Hướng dẫn thanh toán</a>
                                     </li>
                                 </ul>
                             </div>
@@ -145,21 +143,15 @@
                                     Hỗ Trợ Khách Hàng
                                 </div>
                                 <ul class="links">
-                                    <li>    
-                                        <a href="/chuong-trinh-khuyen-mai-than-thiet" title="Khuyến Mãi Thân Thiết">Chương Trình KHTT</a>
+                                    
+                                    <li>
+                                        <a href="{{route('clientcontact')}}" title="Yêu cầu hỗ trợ">Gửi yêu cầu hỗ trợ</a>
                                     </li>
                                     <li>
-                                        <a href="/yeu-cau-ho-tro" title="Yêu cầu hỗ trợ">Gửi yêu cầu hỗ trợ</a>
+                                        <a href="{{route('clientchinhsach')}}" title="Phương thức thanh toán">Phương Thức Thanh Toán</a>
                                     </li>
-                                    <li>
-                                        <a href="/phuong-thuc-thanh-toan" title="Phương thức thanh toán">Phương Thức Thanh Toán</a>
-                                    </li>
-                                    <li>
-                                        <a href="/goc-am-thuc" title="Góc ẩm thực">Góc Ẩm Thực</a>
-                                    </li>
-                                    <li>
-                                        <a href="/he-thong-cua-hang" title="Hệ Thống Cửa Hàng">Hệ Thống Cửa Hàng</a>
-                                    </li>
+                                    
+                                    
                                 </ul>
                             </div>
                     </div>

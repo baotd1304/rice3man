@@ -59,7 +59,6 @@
       </div>
     </div>
     <div class="products-row">
-      
       <div class="swiper mySwiperTypeEvent">
         <div class="swiper-wrapper">
           @foreach ($productsFlashSale as $item)
@@ -93,6 +92,7 @@
     </div>
   </div>
 </section>
+
 {{-- Dịch vụ --}}
 <section class="service-section mb-4 ">
   <div class="container">

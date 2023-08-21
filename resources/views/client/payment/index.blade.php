@@ -184,7 +184,7 @@
 										<div class="col-4">
 											<div id="payment_vnpay" class="payment_vnpay payment-online__item ">
 												<div class="thumb">
-													<img src="https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBd2w2SHc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3c10eafdffd111f6ec8ef44d76353152683cf2b2/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJc0FXa0NMQUU9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--492f60b9aac6e8159e50e72bb289c5feb47a79d4/logo%20VNPAY-02.png"
+													<img src="https://i.pinimg.com/originals/94/55/8d/94558d1127769c2496e9497f62119e00.jpg"
 														alt="">
 												</div>
 												<div class="check"><i class='bx bxs-check-circle'></i></div>

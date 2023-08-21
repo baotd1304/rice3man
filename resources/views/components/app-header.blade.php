@@ -7,7 +7,7 @@
                 <i class='bx bx-menu'></i>
             </div>
             <div class="app__logo">
-                <img src="{{asset('assets/img/logoRice3man.jpg')}}" alt="">
+                <img src="https://s3.ap-northeast-1.amazonaws.com/h.files/images/1692259182135_g9jGKwCe0L.jpg" alt="">
             </div>
             <div class="action-item cart-mobile position-relative">
                 <a  href="{{route('clientcart')}}">

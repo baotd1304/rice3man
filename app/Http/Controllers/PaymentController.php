@@ -215,6 +215,7 @@ class PaymentController extends Controller
           $chiTietHoaDon->tenSP = $sanPham->tenSP;
           $chiTietHoaDon->urlHinh = $sanPham->urlHinh;
           $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
+          $chiTietHoaDon->urlHinh = $sanPham->urlHinh;
           $chiTietHoaDon->soLuong = $item['amount'];
           $chiTietHoaDon->save();
           // $sanPham->slBanra = $sanPham->slMuavao + $item['amount'];
