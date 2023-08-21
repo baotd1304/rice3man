@@ -229,7 +229,7 @@ $indexCategory++;
         @foreach ($binhluans as $bl)
         <div class="swiper-slide ps-4 pe-4 ">
           <div class="feedback-card w-100 ">
-           
+        
             <div class="info">
               @if ($bl->avatar == '')
                   <img src="{{asset('upload/images/bx_user_circle.png')}}" alt="" width="50px" height="50px">
@@ -246,20 +246,7 @@ $indexCategory++;
             </div>
           </div>
         </div>
-        {{-- <div class="swiper-slide ">
-          <div class="feedback-card">
-            <div class="info">
-              <img src="https://bizweb.dktcdn.net/thumb/small/100/434/011/themes/845632/assets/ykkh_2.jpg?1681360920404" class="thumb" alt="">
-              <div class="auth">
-                <div class="name">Đoàn Hương Giang</div>
-                <div class="posittion">Nhân viên văn phòng</div>
-              </div>
-            </div>
-            <div class="content">
-             Mình là một nhân viên văn phòng nên thời gian để đi chợ là không có, thật may mắn mình đã tìm được green market.  Theo mình thì đây là website về thực phẩm tốt nhất hiện nay,
-            </div>
-          </div>
-        </div> --}}
+        
         @endforeach
       </div>
       <div class="swiper-button-next"></div>

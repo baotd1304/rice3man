@@ -1,5 +1,18 @@
 @extends('client.appLayout.index')
 @section("css")
+<style>
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  </style>
 <link rel="stylesheet" href="{{asset('css/client/productDetail.css')}}">
 <link rel="stylesheet" href="{{asset('css/client/newsDetail.css')}}">
 @endsection
@@ -73,14 +86,7 @@
           <span>Đang cập nhật</span>
         </div>
         <div class="product-detail--info__prices">
-          {{-- @if ($product->discount>0)
-          <div class="product-detail--info__price-new">
-            {{number_format(($product->giaSP-($product->giaSP*$product->discount/100)))}}<span>
-              vnđ</span></div>
-          <div class="product-detail--info__price-old">{{number_format($product->giaSP)}}<span> vnđ</span></div>
-          @else
-          <div class="product-detail--info__price-old">{{$product->giaSP}}<span> vnđ</span></div>
-          @endif --}}
+        
           <div class="product-detail--info__price-new">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
           <div class="product-detail--info__price-old">{{number_format($product->giaSP,0,",",".")}}<span> vnđ</span></div>
         </div>
@@ -96,14 +102,7 @@
             </div>
           </div>
           <div class="product-detail--info__cta">
-            {{-- @if ($product->quantity_input>$product->quantity_output)
-            <button class="btn btn-1" id="btn_add_to_card">Thêm vào giỏ hàng</button>
-            <button class="btn btn-2" id="btn_buy_now">Mua ngay</button>
-            @else
-            <button class="btn btn-success py-1 d-flex gap-2 align-items-center justify-content-center w-auto"
-              disabled><i class="bi bi-cart4 fs-5"></i> <span>Cháy hàng</span></button>
-            @endif --}}
-            {{-- <button class="btn btn-2" id="btn_buy_now">Mua ngay</button> --}}
+           
             <button class="btn btn-1" id="btn_add_to_card">
               <div class="icon">
                 <i class='bx bx-cart'></i>

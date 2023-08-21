@@ -78,9 +78,6 @@ class PaymentController extends Controller
     return view('client.payment.index', $data);
   }
   //  CHỨC NĂNG THANH TOÁN VỚI VNPAY
-
-
-
   public function create_payment_vnpay_e(PaymentRequest $request)
   {
     $order_code = rand(0000, 9999);
@@ -197,6 +194,7 @@ class PaymentController extends Controller
           $chiTietHoaDon->idSP = $item['productId'];
           $chiTietHoaDon->tenSP = $sanPham->tenSP;
           $chiTietHoaDon->giaSP = $sanPham->giaSP - ($sanPham->giaSP * $sanPham->discount / 100);
+          $chiTietHoaDon->urlHinh = $sanPham->urlHinh;
           $chiTietHoaDon->soLuong = $item['amount'];
           $chiTietHoaDon->save();
           // $sanPham->quantity_output = $sanPham->quantity_output + $item['amount'];

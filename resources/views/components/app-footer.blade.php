@@ -91,7 +91,7 @@
                                 </div>
                                 <ul class="links">
                                         <li>    
-                                            <a href="{{route('clientaddjobs')}}" title="Về Rice 3 man">Về Chúng Tôi</a>
+                                            <a href="{{route('clientabout')}}" title="Về Rice 3 man">Về Chúng Tôi</a>
                                         </li>
                                         <li>
                                             <a href="" title="Nguồn Gốc">Nguồn Gốc Thực Phẩm</a>

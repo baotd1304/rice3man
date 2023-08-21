@@ -25,15 +25,7 @@ class LoaiSPController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tenLoai' => 'required|min:5',
-            'thuTu' => 'required|integer',
-            'anHien' => 'required|boolean',
-        ],[
-            'tenLoai.required' => 'Bạn chưa nhập tên loại sản phẩm',
-            'tenLoai.min' => 'Tên loại sản phẩm phải dài hơn 5 ký tự',
-            'thuTu.required' => 'Bạn chưa nhập thứ tự loại sản phẩm',
-            'thuTu.ỉnteger' => 'Thứ tự phải là dạng số',
-            'anHien.required' => 'Bạn chưa chọn dạng ẩn hiện',
+            
         ]);
 
         LoaiSP::create($validatedData);

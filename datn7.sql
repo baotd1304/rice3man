@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th8 07, 2023 lúc 03:32 PM
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th8 12, 2023 lúc 10:35 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `datn2`
+-- Cơ sở dữ liệu: `datn7`
 --
 
 -- --------------------------------------------------------
@@ -109,7 +109,8 @@ INSERT INTO `binhluan` (`idBL`, `idSP`, `idND`, `noiDung`, `ngayBL`, `anHien`) V
 (31, 1, 9, 'bluan 1', '2023-08-05 23:43:19', 1),
 (32, 19, 9, 'dfdfd fdfdf', '2023-08-05 23:49:49', 0),
 (33, 22, 9, 'binh luan test', '2023-08-06 09:51:37', 1),
-(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1);
+(34, 14, 9, 'sản phẩm không như hình ảnh, đóng gói kém, giao hàng lâu', '2023-08-07 01:11:02', 1),
+(35, 2, 19, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, vitae ipsa! Nulla modi consequuntur, suscipit explicabo adipisci ut aperiam pariatur alias. Harum labore debitis odio tempora facere praesentium itaque illo.', '2023-08-07 21:46:35', 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,15 @@ INSERT INTO `chitiethoadon` (`idCTHD`, `idHD`, `idSP`, `tenSP`, `soLuong`, `giaS
 (20, 26, 8, 'Nếp sáp Vinh Hiển túi 1kg', 1, 31000, 'https://cdn.tgdd.vn/Products/Images/2513/225003/bhx/nep-sap-vinh-hien-tui-1kg-202103040826093614_300x300.jpg'),
 (21, 27, 34, 'Gạo lức PMT túi 2kg', 2, 48500, 'https://cdn.tgdd.vn/Products/Images/2513/146579/bhx/-202210150924135415_300x300.jpg'),
 (22, 28, 19, 'Gạo lứt huyết rồng Lotus Rice NutriChoice hộp 0,5kg', 2, 43400, 'https://cdn.tgdd.vn/Products/Images/2513/203887/bhx/gao-huyet-rong-lotus-rice-nutrichoice-hop-0-5kg-202103040832315314_300x300.jpg'),
-(23, 28, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg');
+(23, 28, 7, 'Nếp cái hoa vàng Vinh Hiển túi 1kg', 1, 36000, 'https://cdn.tgdd.vn/Products/Images/2513/227004/bhx/nep-cai-hoa-vang-vinh-hien-tui-1kg-202103040830355507_300x300.jpg'),
+(24, 30, 33, 'Gạo lức huyết rồng PMT túi 1kg', 3, 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg'),
+(25, 30, 32, 'Gạo lức huyết rồng PMT túi 2kg', 1, 100000, 'https://cdn.tgdd.vn/Products/Images/2513/146578/bhx/-202210150921521038_300x300.jpg'),
+(26, 32, 33, 'Gạo lức huyết rồng PMT túi 1kg', 2, 54500, 'https://cdn.tgdd.vn/Products/Images/2513/138644/bhx/gao-luc-huyet-rong-pmt-tui-1kg-202103040823523914_300x300.jpg'),
+(27, 32, 32, 'Gạo lức huyết rồng PMT túi 2kg', 1, 100000, 'https://cdn.tgdd.vn/Products/Images/2513/146578/bhx/-202210150921521038_300x300.jpg'),
+(28, 33, 32, 'Gạo lức huyết rồng PMT túi 2kg', 2, 100000, 'https://cdn.tgdd.vn/Products/Images/2513/146578/bhx/-202210150921521038_300x300.jpg'),
+(29, 34, 3, 'Gạo Vinh Hiển Đỗ Quyên túi 5kg', 1, 78000, 'https://cdn.tgdd.vn/Products/Images/2513/193609/bhx/gao-vinh-hien-do-quyen-tui-5kg-202111021628092012_300x300.jpg'),
+(30, 34, 31, 'Nếp than PMT túi 1kg', 9, 55500, 'https://cdn.tgdd.vn/Products/Images/2513/146577/bhx/nep-than-pmt-tui-1kg-202103040831126066_300x300.jpg'),
+(31, 34, 36, 'Nếp ngỗng PMT túi 1kg', 1, 33000, 'https://cdn.tgdd.vn/Products/Images/2513/146576/bhx/nep-ngong-pmt-tui-1kg-202103040808176553_300x300.jpg');
 
 -- --------------------------------------------------------
 
@@ -222,7 +231,13 @@ INSERT INTO `hoadon` (`idHD`, `idND`, `idMGG`, `tongTien`, `ngayMua`, `thanhToan
 (25, 9, NULL, 38000, '2023-08-06 22:56:01', 0, 0, 3, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Mộ Đạo,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
 (26, 9, NULL, 31000, '2023-08-06 22:56:47', 1, 1, 2, 'Duy Bảo', 'tdb1304@gmail.com', 123123, '343434,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh'),
 (27, 9, NULL, 97000, '2023-08-06 23:09:39', 1, 1, 1, 'Duy Bảo', 'tdb1304@gmail.com', 111111, 'fshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\nfshfìmím fsf sf,Xã Long Châu,Huyện Yên Phong,Tỉnh Bắc Ninh\n'),
-(28, 9, NULL, 115400, '2023-08-07 19:20:23', 0, 0, 3, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc');
+(28, 9, NULL, 115400, '2023-08-07 19:20:23', 0, 0, 3, 'Tran Duy', 'tdb1304@gmail.com', 123456789, 'quang trung,Phường Xuân Hoà,Thành phố Phúc Yên,Tỉnh Vĩnh Phúc'),
+(29, NULL, NULL, 163500, '2023-08-07 21:23:04', 1, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1a đồng trạch,Xã Thanh Hóa,Huyện Tuyên Hóa,Tỉnh Quảng Bình'),
+(30, 19, NULL, 354500, '2023-08-07 21:23:27', 0, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1a đồng trạch,Xã Hương Hóa,Huyện Tuyên Hóa,Tỉnh Quảng Bình'),
+(31, NULL, NULL, 109000, '2023-08-07 21:30:47', 1, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1a đồng trạch,Xã Quảng Kim,Huyện Quảng Trạch,Tỉnh Quảng Bình'),
+(32, NULL, NULL, 254500, '2023-08-07 21:36:53', 1, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1a đồng trạch,Xã Thanh Hóa,Huyện Tuyên Hóa,Tỉnh Quảng Bình'),
+(33, NULL, NULL, 200000, '2023-08-09 09:26:51', 1, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1aaaa,Xã Ngọc Vân,Huyện Tân Yên,Tỉnh Bắc Giang'),
+(34, NULL, NULL, 610500, '2023-08-09 15:35:28', 1, 0, 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 857626102, '1a đồng trạch,Xã Đức Long,Thị xã Quế Võ,Tỉnh Bắc Ninh');
 
 -- --------------------------------------------------------
 
@@ -271,7 +286,8 @@ CREATE TABLE `magiamgia` (
 --
 
 INSERT INTO `magiamgia` (`idMGG`, `maGiamGia`, `chiTiet`, `ngayBatDau`, `ngayKetThuc`, `loaiMa`, `giaTri`, `hoatDong`) VALUES
-(1, 'SANSALE', 'Giảm 10.000đ giá trị đơn hàng', '2023-06-28 03:12:59', '2023-06-28 03:12:59', 1, 10000, 1);
+(1, 'SANSALE', 'Giảm 10.000đ giá trị đơn hàng', '2023-06-28 03:12:59', '2023-06-28 03:12:59', 1, 10000, 1),
+(2, 'RICE3MAN', 'abc', '2023-08-11 10:31:41', '2023-08-24 15:31:41', 1, 30000, 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +368,10 @@ CREATE TABLE `order_temp` (
 
 INSERT INTO `order_temp` (`id`, `total`, `payment_type`, `fee_ship`, `user_name`, `email`, `province`, `district`, `ward`, `address`, `phone`, `customer_note`, `shop_note`, `created_at`, `updated_at`) VALUES
 (8, 129000, 'ATM', 0, 'thanhdatfood', 'dat@gmail.com', 'Tỉnh Bắc Giang', 'Huyện Lục Ngạn', 'Xã Kim Sơn', 'quận gò vấp tp Hồ Chí minh', '0386352313', 'Ghi chú', NULL, '2023-07-09 09:04:17', '2023-07-09 09:04:17'),
-(10, 62000, 'ATM', 0, 'Phan Văn Hùng', 'hung@gmail.com', 'Tỉnh Hà Tĩnh', 'Huyện Kỳ Anh', 'Xã Lâm Hợp', '1a đồng trạch', '0857626102', NULL, NULL, '2023-07-23 06:55:55', '2023-07-23 06:55:55');
+(10, 62000, 'ATM', 0, 'Phan Văn Hùng', 'hung@gmail.com', 'Tỉnh Hà Tĩnh', 'Huyện Kỳ Anh', 'Xã Lâm Hợp', '1a đồng trạch', '0857626102', NULL, NULL, '2023-07-23 06:55:55', '2023-07-23 06:55:55'),
+(12, 163500, 'ATM', 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 'Tỉnh Quảng Bình', 'Huyện Tuyên Hóa', 'Xã Thanh Hóa', '1a đồng trạch', '0857626102', NULL, NULL, '2023-08-07 07:22:47', '2023-08-07 07:22:47'),
+(13, 109000, 'ATM', 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 'Tỉnh Quảng Bình', 'Huyện Quảng Trạch', 'Xã Quảng Kim', '1a đồng trạch', '0857626102', NULL, NULL, '2023-08-07 07:30:32', '2023-08-07 07:30:32'),
+(17, 54500, 'ATM', 0, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', 'Tỉnh Bắc Ninh', 'Thị xã Quế Võ', 'Xã Đức Long', '1a đồng trạch', '0857626102', NULL, NULL, '2023-08-09 01:37:18', '2023-08-09 01:37:18');
 
 -- --------------------------------------------------------
 
@@ -565,7 +584,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `avatar`, `address`, `role`
 (10, 'Phan Văn Hùng', '343432@gmail.comrrr555', '5456546455', NULL, '21212', 1, 0, '$2y$10$nP0uKqaQArzUwpaibydj1OzYqw7gNvLVmKeZS2vvkqRFBEs1yO7fy', '2023-08-04 02:59:52', NULL, '2023-08-04 02:54:23', '2023-08-05 06:44:20'),
 (11, 'Trần Duy Bảo', 'baotd1304@gmail.com4343434', '34353535', NULL, NULL, 1, 0, '$2y$10$mSa.91tXsQYB.h5jSaXy8uhxdxptMMghtFa4oZ89ZqzIhCmBX4i/m', NULL, NULL, '2023-08-04 03:40:54', '2023-08-05 06:47:21'),
 (12, 'Trần Duy Bảo', 'baotd1304@gmail.xn--com4rr34343434-ukb', '343535354343', '/upload/images/profile\\2023-08-05_1691243332_360_F_432860224_PpBBcVzMlzvgqPx1z0ygcZPhccgXS1ui.jpg', NULL, 1, 0, '$2y$10$wHumpfwYnRvkr.A6vj.4TumaDo.jHvx.EVM5gAkK5y/vF0pXM90qC', NULL, NULL, '2023-08-04 03:42:21', '2023-08-05 06:48:52'),
-(13, 'Trần Duy Bảo', 'baotd1304@gmail.com', '123434343434', NULL, '3333', 0, 1, '$2y$10$lU.7/Rmgx2NJR/FkqqA1nO9nR0cYx8SpwaPfptDUO3xdmhrJU.Y.2', '2023-08-04 07:01:29', NULL, '2023-08-04 07:01:09', '2023-08-04 07:18:29');
+(13, 'Trần Duy Bảo', 'baotd1304@gmail.com', '123434343434', NULL, '3333', 0, 1, '$2y$10$lU.7/Rmgx2NJR/FkqqA1nO9nR0cYx8SpwaPfptDUO3xdmhrJU.Y.2', '2023-08-04 07:01:29', NULL, '2023-08-04 07:01:09', '2023-08-04 07:18:29'),
+(19, 'phan văn hùng', 'hungpvps19362@fpt.edu.vn', '0857626102', NULL, NULL, 1, 1, '$2y$10$167h6VZWRvw3McKzJltu4Ooojn4QTVuHBMdisNCOvySbk9.ItG75.', NULL, NULL, '2023-08-07 07:22:26', '2023-08-07 07:22:26');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -712,13 +732,13 @@ ALTER TABLE `baiviet`
 -- AUTO_INCREMENT cho bảng `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `idBL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `chitiethoadon`
 --
 ALTER TABLE `chitiethoadon`
-  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idCTHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -730,7 +750,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idHD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -742,7 +762,7 @@ ALTER TABLE `loaisanpham`
 -- AUTO_INCREMENT cho bảng `magiamgia`
 --
 ALTER TABLE `magiamgia`
-  MODIFY `idMGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -760,7 +780,7 @@ ALTER TABLE `nguoidung`
 -- AUTO_INCREMENT cho bảng `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -796,7 +816,7 @@ ALTER TABLE `thuonghieusp`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

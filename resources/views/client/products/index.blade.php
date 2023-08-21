@@ -54,7 +54,7 @@ style="background: linear-gradient(0deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),  url
                                 <ul class="nav navbar-pills">
                                     @foreach ($categories as $item )
                                     <li class="nav-item  relative {{ isset($category->idLoai) && $category->idLoai == $item->idLoai ? 'active' : '' }}">
-                                        <a title="Rau quả" href="{{route('clientcategory',["slug"=>$item->idLoai])}}" class="nav-link pr-5">{{$item->tenLoai}}</a>
+                                        <a title="gạo" href="{{route('clientcategory',["slug"=>$item->idLoai])}}" class="nav-link pr-5">{{$item->tenLoai}}</a>
                                     </li>
                                     @endforeach
         
