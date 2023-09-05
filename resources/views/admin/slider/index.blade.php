@@ -48,7 +48,7 @@
                                     <tr>
                                         <td class="align-middle text-center"> {{$bv->id}} </td>
                                         <td class="align-middle"> {{ Str::limit($bv->tenSlider, 50) }} </td>
-                                        <td class="align-middle text-center"><img src="{{$bv->hinhSlider}}" alt="" width="50px"></td>
+                                        <td class="align-middle text-center"><img src="{{asset($bv->hinhSlider)}}" alt="" width="50px"></td>
                                         <td class="align-middle text-center"> {{date('d/m/Y',strtotime($bv->ngayDang))}} </td>
                                         <td class="align-middle text-center"> {{$bv->nhom}} </td>
                                         <td class="align-middle text-center">
